@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.MyTrailEvaluateMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.MyTrailEvaluate">
+        <!--
+        @mbggenerated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="TYPE" jdbcType="INTEGER" property="type" />
+        <result column="TRAIL_ID" jdbcType="INTEGER" property="trailId" />
+        <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+        <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+        <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+        <result column="SCORE" jdbcType="INTEGER" property="score" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        ID, TYPE, TRAIL_ID, USER_ID, CONTENT, CITY_CODE, SCORE, CREATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from my_trail_evaluate
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from my_trail_evaluate
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.MyTrailEvaluate">
+        <!--
+        @mbggenerated
+        -->
+        insert into my_trail_evaluate (ID, TYPE, TRAIL_ID, 
+            USER_ID, CONTENT, CITY_CODE, 
+            SCORE, CREATE_TIME)
+        values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{trailId,jdbcType=INTEGER}, 
+            #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+            #{score,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.MyTrailEvaluate">
+        <!--
+        @mbggenerated
+        -->
+        insert into my_trail_evaluate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="type != null">
+                TYPE,
+            </if>
+            <if test="trailId != null">
+                TRAIL_ID,
+            </if>
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+            <if test="cityCode != null">
+                CITY_CODE,
+            </if>
+            <if test="score != null">
+                SCORE,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="trailId != null">
+                #{trailId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.MyTrailEvaluate">
+        <!--
+        @mbggenerated
+        -->
+        update my_trail_evaluate
+        <set>
+            <if test="type != null">
+                TYPE = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="trailId != null">
+                TRAIL_ID = #{trailId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                USER_ID = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="score != null">
+                SCORE = #{score,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.MyTrailEvaluate">
+        <!--
+        @mbggenerated
+        -->
+        update my_trail_evaluate
+        set TYPE = #{type,jdbcType=INTEGER},
+            TRAIL_ID = #{trailId,jdbcType=INTEGER},
+            USER_ID = #{userId,jdbcType=INTEGER},
+            CONTENT = #{content,jdbcType=VARCHAR},
+            CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+            SCORE = #{score,jdbcType=INTEGER},
+            CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>

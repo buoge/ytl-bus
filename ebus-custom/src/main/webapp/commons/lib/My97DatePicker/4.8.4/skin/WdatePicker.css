@@ -1,0 +1,25 @@
+.Wdate{
+	border:1px solid #cccccc;
+	height:28px;
+	line-height:28px;
+	border-radius: 4px;
+	padding:0 25px 0px 5px;
+	min-width:152px;
+	max-width: 152px;
+}
+.Wdateico{
+	background:#d4d4d4 url(datebox_arrow.png) no-repeat center center;
+	background-size: 16px 16px;
+	width:20px; 
+	height:28px;
+	position: absolute;
+	top:1px;
+	right:0px;
+	border-radius: 0px 4px   4px  0px;
+}
+.Wdate::-ms-clear{display:none;}
+
+.WdateFmtErr{
+	font-weight:bold;
+	color:red;
+}

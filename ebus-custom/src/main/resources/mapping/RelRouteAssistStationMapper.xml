@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.realtime.dao.RelRouteAssistStationMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.realtime.model.RelRouteAssistStation">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="routeId" jdbcType="VARCHAR" property="routeid" />
+        <result column="routeName" jdbcType="VARCHAR" property="routename" />
+        <result column="lineAlias" jdbcType="VARCHAR" property="linealias" />
+        <result column="direction" jdbcType="VARCHAR" property="direction" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="flag" jdbcType="VARCHAR" property="flag" />
+        <result column="startLongitude" jdbcType="DECIMAL" property="startlongitude" />
+        <result column="startLatitude" jdbcType="DECIMAL" property="startlatitude" />
+        <result column="endLongitude" jdbcType="DECIMAL" property="endlongitude" />
+        <result column="endLatitude" jdbcType="DECIMAL" property="endlatitude" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lantaiyuan.ebus.realtime.model.RelRouteAssistStationWithBLOBs">
+        <!--
+        @mbggenerated
+        -->
+        <result column="stationMap" jdbcType="LONGVARCHAR" property="stationmap" />
+        <result column="stationMap2" jdbcType="LONGVARCHAR" property="stationmap2" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, routeId, routeName, lineAlias, direction, createTime, flag, startLongitude, startLatitude, 
+        endLongitude, endLatitude, cityCode
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        stationMap, stationMap2
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from rel_route_assit_station
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from rel_route_assit_station
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.realtime.model.RelRouteAssistStationWithBLOBs">
+        <!--
+        @mbggenerated
+        -->
+        insert into rel_route_assit_station (id, routeId, routeName, 
+            lineAlias, direction, createTime, 
+            flag, startLongitude, startLatitude, 
+            endLongitude, endLatitude, cityCode, 
+            stationMap, stationMap2)
+        values (#{id,jdbcType=INTEGER}, #{routeid,jdbcType=VARCHAR}, #{routename,jdbcType=VARCHAR}, 
+            #{linealias,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+            #{flag,jdbcType=VARCHAR}, #{startlongitude,jdbcType=DECIMAL}, #{startlatitude,jdbcType=DECIMAL}, 
+            #{endlongitude,jdbcType=DECIMAL}, #{endlatitude,jdbcType=DECIMAL}, #{citycode,jdbcType=VARCHAR}, 
+            #{stationmap,jdbcType=LONGVARCHAR}, #{stationmap2,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.realtime.model.RelRouteAssistStationWithBLOBs">
+        <!--
+        @mbggenerated
+        -->
+        insert into rel_route_assit_station
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="routeid != null">
+                routeId,
+            </if>
+            <if test="routename != null">
+                routeName,
+            </if>
+            <if test="linealias != null">
+                lineAlias,
+            </if>
+            <if test="direction != null">
+                direction,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="flag != null">
+                flag,
+            </if>
+            <if test="startlongitude != null">
+                startLongitude,
+            </if>
+            <if test="startlatitude != null">
+                startLatitude,
+            </if>
+            <if test="endlongitude != null">
+                endLongitude,
+            </if>
+            <if test="endlatitude != null">
+                endLatitude,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+            <if test="stationmap != null">
+                stationMap,
+            </if>
+            <if test="stationmap2 != null">
+                stationMap2,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="routeid != null">
+                #{routeid,jdbcType=VARCHAR},
+            </if>
+            <if test="routename != null">
+                #{routename,jdbcType=VARCHAR},
+            </if>
+            <if test="linealias != null">
+                #{linealias,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                #{direction,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="flag != null">
+                #{flag,jdbcType=VARCHAR},
+            </if>
+            <if test="startlongitude != null">
+                #{startlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="startlatitude != null">
+                #{startlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="endlongitude != null">
+                #{endlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="endlatitude != null">
+                #{endlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="stationmap != null">
+                #{stationmap,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="stationmap2 != null">
+                #{stationmap2,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.realtime.model.RelRouteAssistStationWithBLOBs">
+        <!--
+        @mbggenerated
+        -->
+        update rel_route_assit_station
+        <set>
+            <if test="routeid != null">
+                routeId = #{routeid,jdbcType=VARCHAR},
+            </if>
+            <if test="routename != null">
+                routeName = #{routename,jdbcType=VARCHAR},
+            </if>
+            <if test="linealias != null">
+                lineAlias = #{linealias,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                direction = #{direction,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="flag != null">
+                flag = #{flag,jdbcType=VARCHAR},
+            </if>
+            <if test="startlongitude != null">
+                startLongitude = #{startlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="startlatitude != null">
+                startLatitude = #{startlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="endlongitude != null">
+                endLongitude = #{endlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="endlatitude != null">
+                endLatitude = #{endlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="stationmap != null">
+                stationMap = #{stationmap,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="stationmap2 != null">
+                stationMap2 = #{stationmap2,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lantaiyuan.ebus.realtime.model.RelRouteAssistStationWithBLOBs">
+        <!--
+        @mbggenerated
+        -->
+        update rel_route_assit_station
+        set routeId = #{routeid,jdbcType=VARCHAR},
+            routeName = #{routename,jdbcType=VARCHAR},
+            lineAlias = #{linealias,jdbcType=VARCHAR},
+            direction = #{direction,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            flag = #{flag,jdbcType=VARCHAR},
+            startLongitude = #{startlongitude,jdbcType=DECIMAL},
+            startLatitude = #{startlatitude,jdbcType=DECIMAL},
+            endLongitude = #{endlongitude,jdbcType=DECIMAL},
+            endLatitude = #{endlatitude,jdbcType=DECIMAL},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            stationMap = #{stationmap,jdbcType=LONGVARCHAR},
+            stationMap2 = #{stationmap2,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.realtime.model.RelRouteAssistStation">
+        <!--
+        @mbggenerated
+        -->
+        update rel_route_assit_station
+        set routeId = #{routeid,jdbcType=VARCHAR},
+            routeName = #{routename,jdbcType=VARCHAR},
+            lineAlias = #{linealias,jdbcType=VARCHAR},
+            direction = #{direction,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            flag = #{flag,jdbcType=VARCHAR},
+            startLongitude = #{startlongitude,jdbcType=DECIMAL},
+            startLatitude = #{startlatitude,jdbcType=DECIMAL},
+            endLongitude = #{endlongitude,jdbcType=DECIMAL},
+            endLatitude = #{endlatitude,jdbcType=DECIMAL},
+            cityCode = #{citycode,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update> 
+    <select id="getRelRouteAssitStation"  resultType="com.lantaiyuan.ebus.realtime.model.RelRouteAssistStation">
+		select  <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />  from rel_route_assit_station
+		where routeId = #{routeId} and direction = #{direction} and cityCode = #{cityCode}
+	</select>
+	<select id="getAllRelRouteStations"  resultType="com.lantaiyuan.ebus.realtime.model.RelRouteAssistStation">
+		select  <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />  from rel_route_assit_station
+	</select>
+</mapper>

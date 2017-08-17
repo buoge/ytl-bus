@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.realtime.dao.AlreadyAlertDynamicMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.realtime.model.AlreadyAlertDynamic">
+        <!--
+        @mbggenerated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="GOTO_CAR_ALERT_SETTING_ID" jdbcType="VARCHAR" property="gotoCarAlertSettingId" />
+        <result column="VEHICLE_ID" jdbcType="VARCHAR" property="vehicleId" />
+        <result column="ROUTE_ID" jdbcType="VARCHAR" property="routeId" />
+        <result column="TAG" jdbcType="INTEGER" property="tag" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        ID, GOTO_CAR_ALERT_SETTING_ID, VEHICLE_ID, ROUTE_ID, TAG, CREATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from jpush_already_alert_dynamic
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from jpush_already_alert_dynamic
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.realtime.model.AlreadyAlertDynamic">
+        <!--
+        @mbggenerated
+        -->
+        insert into jpush_already_alert_dynamic (ID, GOTO_CAR_ALERT_SETTING_ID, VEHICLE_ID, 
+            ROUTE_ID, CREATE_TIME)
+        values (#{id,jdbcType=VARCHAR}, #{gotoCarAlertSettingId,jdbcType=VARCHAR}, #{vehicleId,jdbcType=VARCHAR}, 
+            #{routeId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.realtime.model.AlreadyAlertDynamic">
+        <!--
+        @mbggenerated
+        -->
+        insert into jpush_already_alert_dynamic
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="gotoCarAlertSettingId != null">
+                GOTO_CAR_ALERT_SETTING_ID,
+            </if>
+            <if test="vehicleId != null">
+                VEHICLE_ID,
+            </if>
+            <if test="routeId != null">
+                ROUTE_ID,
+            </if>
+            <if test="tag != null">
+                TAG,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="gotoCarAlertSettingId != null">
+                #{gotoCarAlertSettingId,jdbcType=VARCHAR},
+            </if>
+            <if test="vehicleId != null">
+                #{vehicleId,jdbcType=VARCHAR},
+            </if>
+            <if test="routeId != null">
+                #{routeId,jdbcType=VARCHAR},
+            </if>
+            <if test="tag != null">
+                #{tag,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.realtime.model.AlreadyAlertDynamic">
+        <!--
+        @mbggenerated
+        -->
+        update jpush_already_alert_dynamic
+        <set>
+            <if test="gotoCarAlertSettingId != null">
+                GOTO_CAR_ALERT_SETTING_ID = #{gotoCarAlertSettingId,jdbcType=VARCHAR},
+            </if>
+            <if test="vehicleId != null">
+                VEHICLE_ID = #{vehicleId,jdbcType=VARCHAR},
+            </if>
+            <if test="routeId != null">
+                ROUTE_ID = #{routeId,jdbcType=VARCHAR},
+            </if>
+            <if test="tag != null">
+                TAG = #{tag,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.realtime.model.AlreadyAlertDynamic">
+        <!--
+        @mbggenerated
+        -->
+        update jpush_already_alert_dynamic
+        set GOTO_CAR_ALERT_SETTING_ID = #{gotoCarAlertSettingId,jdbcType=VARCHAR},
+            VEHICLE_ID = #{vehicleId,jdbcType=VARCHAR},
+            ROUTE_ID = #{routeId,jdbcType=VARCHAR},
+            TAG = #{tag,jdbcType=INTEGER},
+            CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 自定义方法：条件查询实体信息 -->
+    <select id="selectByCondition" parameterType="com.lantaiyuan.ebus.realtime.model.AlreadyAlertDynamicQueryModel" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from jpush_already_alert_dynamic
+        <trim prefix="WHERE" prefixOverrides="AND" >
+        	 <if test="gotoCarAlertSettingId != null and gotoCarAlertSettingId !=''">
+                AND GOTO_CAR_ALERT_SETTING_ID = #{gotoCarAlertSettingId,jdbcType=VARCHAR}
+            </if>
+            <if test="vehicleId != null and vehicleId !=''">
+                AND VEHICLE_ID = #{vehicleId,jdbcType=VARCHAR}
+            </if>
+            <if test="routeId != null and routeId !=''">
+                AND ROUTE_ID = #{routeId,jdbcType=VARCHAR}
+            </if>
+            <if test="tag != null and tag !=''">
+                AND TAG = #{tag,jdbcType=INTEGER}
+            </if>
+            <if test="createTime != null and createTime !=''">
+                AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </trim>
+        ORDER BY CREATE_TIME DESC
+    </select>
+    
+    <!--  清空用户上车提醒动态表,供定时器用 -->
+    <delete id="clearTheDataOfAlreadyAlert">
+        delete from jpush_already_alert_dynamic
+    </delete>
+    
+     <!--  清空用户上车提醒动态表,供定时器用 -->
+    <delete id="clearTheDataInLeavingCarAlert">
+        DELETE from t_trave_car_setting where IS_REMIND = TRUE
+    </delete>
+    
+</mapper>

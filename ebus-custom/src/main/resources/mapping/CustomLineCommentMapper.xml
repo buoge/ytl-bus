@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.CustomLineCommentMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.CustomLineComment">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="routeId" jdbcType="VARCHAR" property="routeid" />
+        <result column="takeTime" jdbcType="VARCHAR" property="taketime" />
+        <result column="startStation" jdbcType="VARCHAR" property="startstation" />
+        <result column="endStation" jdbcType="VARCHAR" property="endstation" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+        <result column="userId" jdbcType="INTEGER" property="userid" />
+        <result column="comment" jdbcType="VARCHAR" property="comment" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, routeId, takeTime, startStation, endStation, cityCode, userId, comment, createTime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_custom_line_comment
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_custom_line_comment
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.CustomLineComment">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_custom_line_comment (id, routeId, takeTime, 
+            startStation, endStation, cityCode, 
+            userId, comment, createTime
+            )
+        values (#{id,jdbcType=INTEGER}, #{routeid,jdbcType=VARCHAR}, #{taketime,jdbcType=VARCHAR}, 
+            #{startstation,jdbcType=VARCHAR}, #{endstation,jdbcType=VARCHAR}, #{citycode,jdbcType=VARCHAR}, 
+            #{userid,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.CustomLineComment">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_custom_line_comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="routeid != null">
+                routeId,
+            </if>
+            <if test="taketime != null">
+                takeTime,
+            </if>
+            <if test="startstation != null">
+                startStation,
+            </if>
+            <if test="endstation != null">
+                endStation,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+            <if test="userid != null">
+                userId,
+            </if>
+            <if test="comment != null">
+                comment,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="routeid != null">
+                #{routeid,jdbcType=VARCHAR},
+            </if>
+            <if test="taketime != null">
+                #{taketime,jdbcType=VARCHAR},
+            </if>
+            <if test="startstation != null">
+                #{startstation,jdbcType=VARCHAR},
+            </if>
+            <if test="endstation != null">
+                #{endstation,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="comment != null">
+                #{comment,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.CustomLineComment">
+        <!--
+        @mbggenerated
+        -->
+        update base_custom_line_comment
+        <set>
+            <if test="routeid != null">
+                routeId = #{routeid,jdbcType=VARCHAR},
+            </if>
+            <if test="taketime != null">
+                takeTime = #{taketime,jdbcType=VARCHAR},
+            </if>
+            <if test="startstation != null">
+                startStation = #{startstation,jdbcType=VARCHAR},
+            </if>
+            <if test="endstation != null">
+                endStation = #{endstation,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                userId = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="comment != null">
+                comment = #{comment,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.CustomLineComment">
+        <!--
+        @mbggenerated
+        -->
+        update base_custom_line_comment
+        set routeId = #{routeid,jdbcType=VARCHAR},
+            takeTime = #{taketime,jdbcType=VARCHAR},
+            startStation = #{startstation,jdbcType=VARCHAR},
+            endStation = #{endstation,jdbcType=VARCHAR},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            userId = #{userid,jdbcType=INTEGER},
+            comment = #{comment,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

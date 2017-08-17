@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.dao.TaskTimerScannerMapper">
+	<!-- 若30分钟没有付款则更改订单表的状态为订单失效 -->
+	<update id="invalidOrderStatus" parameterType="java.util.Date">
+		UPDATE base_order SET orderStatus=3 WHERE orderStatus=0 AND
+		orderDetailId IN (
+		SELECT
+		d.orderDetailId
+		FROM
+		base_order_detail d
+		INNER
+		JOIN base_bookbus b ON d.goodsId = b.goodsId AND
+		(UNIX_TIMESTAMP(#{date,jdbcType=TIMESTAMP}) -
+		UNIX_TIMESTAMP(b.quotedTime)) <![CDATA[>]]>
+		1800 and b.status = 1
+		)
+	</update>
+	<!-- 若30分钟没有付款则包车表中待付款的状态改为已取消 -->
+	<update id="invalidBookBusStatus" parameterType="java.util.Date">
+		UPDATE
+		base_bookbus SET status=3 WHERE
+		(UNIX_TIMESTAMP(#{date,jdbcType=TIMESTAMP}) -
+		UNIX_TIMESTAMP(quotedTime)) > 1800 AND status=1
+	</update>
+
+	<!-- 小于当前日期且isOpenToBuy=1的票改为isOpenToBuy=0（不开放购买） STR_TO_DATE(#{dateStr,jdbcType=VARCHAR}, 
+		'%Y-%m-%d') -->
+	<update id="updateTickcetStatusBeforeNow" parameterType="java.util.Date">
+		UPDATE base_tickcet_schedual
+		SET isOpenToBuy = 0
+		WHERE
+		STR_TO_DATE(serverDate, '%Y-%m-%d') <![CDATA[<]]>
+		DATE_FORMAT(#{date,jdbcType=TIMESTAMP},'%Y-%m-%d')
+		AND isOpenToBuy = 1
+	</update>
+
+	<!-- 开放购买当前日期到当月最后一天的票 -->
+	<update id="updateTickcetStatus4now2lastDay" parameterType="java.util.Date">
+		UPDATE base_tickcet_schedual
+		SET isOpenToBuy = 1
+		WHERE
+		STR_TO_DATE(
+		serverDate,
+		'%Y-%m-%d %H:%i:%s'
+		)
+		BETWEEN
+		DATE_FORMAT(#{date,jdbcType=TIMESTAMP},'%Y-%m-%d')
+		AND date_sub(
+		date_sub(
+		date_format(#{date,jdbcType=TIMESTAMP}, '%y-%m-%d'),
+		INTERVAL
+		extract(DAY FROM DATE_FORMAT(#{date,jdbcType=TIMESTAMP},'%Y-%m-%d'))
+		DAY
+		),
+		INTERVAL - 1 MONTH
+		)
+	</update>
+
+	<!-- 开放购买下个月的票 -->
+	<update id="updateTickcetStatusNextMonth">
+		UPDATE base_tickcet_schedual
+		SET isOpenToBuy = 1
+		where
+		STR_TO_DATE(serverDate,'%Y-%m-%d')
+		between
+		date_add(curdate()-day(curdate())+1,interval 1 month)
+		AND
+		last_day(date_add(curdate()-day(curdate())+1,interval 1 month))
+	</update>
+
+	<!-- 用户当前日期之前且票状态为1（有效）-*代表其未乘车* 的车票，状态改为3(过期) -->
+	<update id="modifyTickcetStatusToExpired" parameterType="java.util.Date">
+		UPDATE base_bookticket SET ticketStatus = '3'
+		WHERE ticketStatus = '1'
+		AND
+		STR_TO_DATE(takeDate, '%Y-%m-%d') <![CDATA[<]]>
+		date_format(#{date,jdbcType=TIMESTAMP},'%Y-%m-%d')
+	</update>
+
+
+	<!-- 若10分钟没有付款的车票订单则更改订单表的号码状态为订单失效 -->
+	<update id="modifyTicketOrderStatus" parameterType="java.lang.String">
+		UPDATE
+		base_order SET orderStatus=3 WHERE orderStatus=0 AND
+		orderNo =
+		#{orderNo,jdbcType=VARCHAR}
+	</update>
+	<!-- 查詢 10分钟没有付款的车票订单 -->
+	<select id="queryUnPaidTicketOrderNum" resultType="java.lang.String">
+		SELECT
+		C.orderNo FROM base_order C
+		WHERE C.orderStatus = 0 and
+		C.orderDetailId
+		IN
+		(SELECT A.orderDetailId FROM
+		base_order
+		A,base_order_detail B
+		WHERE
+		A.orderStatus ='0'
+		AND B.type = '1'
+		AND
+		A.orderDetailId = B.orderDetailId
+		AND UNIX_TIMESTAMP(NOW()) -
+		UNIX_TIMESTAMP(A.createTime) > 600
+		)
+	</select>
+
+	<select id="findRouteNoByRouteIdAndCity" resultType="java.lang.String">
+		SELECT
+		DISTINCT routeNo FROM
+		base_route WHERE cityCode
+		= #{cityCode} AND
+		routeId= #{routeId}
+	</select>
+
+	<select id="findVehicleIdByrouteNoAndCity" parameterType="java.util.Map"
+		resultType="java.lang.String">
+		SELECT vehicleId FROM
+		rel_route_bus WHERE
+		routeNo = #{routeNo}
+		AND
+		cityCode =#{cityCode}
+		AND
+		vehicleId IN
+		<foreach collection="vehicleIds" index="index" item="item"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+
+	<!-- 实时更新rel_route_bus表数据 -->
+	<update id="updateRelRouteBus" parameterType="java.util.Map">
+		UPDATE rel_route_bus SET
+		routeNo = #{routeNo}
+		WHERE
+		cityCode =#{cityCode}
+		AND vehicleId IN
+		<foreach collection="vehicleIds" index="index" item="item"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+	<!-- rel_route_bus表如果没有保存过redis的实时数据，则新增记录 -->
+	<insert id="insertToRelRouteBus" parameterType="java.util.List">
+		INSERT INTO rel_route_bus (routeNo, vehicleId, cityCode)
+		VALUES
+		<foreach collection="list" item="RelRouteBus" index="index"
+			separator=",">
+			(
+			#{RelRouteBus.routeno},
+			#{RelRouteBus.vehicleid},
+			#{RelRouteBus.citycode}
+			)
+		</foreach>
+	</insert>
+
+	<!-- 查詢 没有付款的订单 -->
+	<select id="queryUnPaidOrderNo" resultType="java.lang.String">
+		SELECT orderNo from
+		base_order WHERE orderStatus =0
+	</select>
+
+	<!-- 清空用户上车提醒动态表,供定时器用 -->
+	<delete id="clearTheDataOfAlreadyAlert">
+		delete from jpush_already_alert_dynamic
+	</delete>
+
+	<!-- 清空用户上车提醒动态表,供定时器用 -->
+	<delete id="clearTheDataInLeavingCarAlert">
+		DELETE from t_trave_car_setting where IS_REMIND =
+		TRUE
+	</delete>
+
+	<!-- 更新车票已经使用 -->
+	<update id="updateStatusToUsed" parameterType="java.lang.String">
+		<!-- @mbggenerated -->
+		UPDATE base_bookticket SET ticketStatus = 2
+		WHERE
+		goodsId =
+		#{ticketId,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 更新票池 -->
+	<update id="addRemainTicketNum" parameterType="java.lang.String">
+		UPDATE
+		base_tickcet_schedual SET base_tickcet_schedual.remainTicketNum =
+		base_tickcet_schedual.remainTicketNum+1
+		WHERE
+		base_tickcet_schedual.routeId in(SELECT
+		base_bookticket.routeId
+		FROM
+		base_bookticket,
+		base_order
+		WHERE
+		base_bookticket.orderDetailId =
+		base_order.orderDetailId
+		AND orderNo = #{orderno,jdbcType=VARCHAR})
+		and
+		base_tickcet_schedual.serverDate in (SELECT
+		base_bookticket.takeDate
+		FROM
+		base_bookticket,
+		base_order
+		WHERE
+		base_bookticket.orderDetailId =
+		base_order.orderDetailId
+		AND orderNo = #{orderno,jdbcType=VARCHAR})
+		and
+		base_tickcet_schedual.cityCode in (SELECT
+		base_bookticket.cityCode
+		FROM
+		base_bookticket,
+		base_order
+		WHERE
+		base_bookticket.orderDetailId =
+		base_order.orderDetailId
+		AND orderNo = #{orderno,jdbcType=VARCHAR})
+	</update>
+
+	<!-- 自定义：收藏列表 -->
+	<resultMap id="FavoriateResultMap" type="com.lantaiyuan.ebus.model.Favoriate">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userId" property="userid" jdbcType="INTEGER" />
+		<result column="routeId" property="routeid" jdbcType="VARCHAR" />
+		<result column="tag" property="tag" jdbcType="VARCHAR" />
+		<result column="stationId" property="stationid" jdbcType="INTEGER" />
+		<result column="stationName" property="stationname" jdbcType="VARCHAR" />
+		<result column="direction" property="direction" jdbcType="INTEGER" />
+		<result column="collectionStatus" property="collectionstatus"
+			jdbcType="INTEGER" />
+		<result column="cityCode" property="citycode" jdbcType="VARCHAR" />
+		<result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 自定义查询:根据线路ID和cityCode查询收藏列表 -->
+	<select id="findFavoriateByRouteAndCity" resultMap="FavoriateResultMap">
+		select
+		*
+		from
+		biz_favoriate
+		where routeId=#{routeId}
+		and cityCode=#{cityCode}
+		and
+		collectionStatus = 1
+	</select>
+
+	<!-- 更新订单表 过期未支付(60分钟)的周边游订单为：3-订单失效 -->
+	<update id="updateBaseOrderStatusToInvalid">
+		<!-- @mbggenerated -->
+		UPDATE base_order
+		SET orderStatus = 3
+		WHERE
+		orderNo IN (
+		SELECT
+		C.orderNo
+		FROM
+		(
+		SELECT
+		C.orderNo
+		FROM
+		base_order C
+		WHERE
+		C.orderStatus = 0
+		AND
+		C.orderDetailId IN (
+		SELECT
+		A.orderDetailId
+		FROM
+		base_order A,
+		base_order_detail B
+		WHERE
+		A.orderStatus = '0'
+		AND B.type = '4'
+		AND
+		A.orderDetailId = B.orderDetailId
+		AND UNIX_TIMESTAMP(NOW()) -
+		UNIX_TIMESTAMP(A.createTime) > 3600
+		)
+		) C
+		)
+	</update>
+
+	<!-- 更新周边游订单详情表base_booktravel 过期未支付(60分钟)的周边游订单为：4-订单失效 -->
+	<update id="updateTravelOrderStatusToInvalid">
+		<!-- @mbggenerated -->
+		UPDATE base_booktravel SET status = 4
+		WHERE status = 0
+		AND
+		UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(create_time) > 3600
+	</update>
+	
+	<!-- 自定义 TravelOrderMap -->
+	<resultMap id="TravelOrderMap" type="com.lantaiyuan.ebus.model.BaseTravelOrder">
+		<!-- @mbggenerated -->
+		<result column="id"  jdbcType="VARCHAR"  property="id" />
+		<result column="num" jdbcType="INTEGER"  property="num" />
+	</resultMap>
+	
+	<!-- 根据周边游ID分组 统计未支付周边游订单的总票数 -->
+	<select id="queryUnPaidTravelOrderTicketNum" resultMap="TravelOrderMap"	>
+		SELECT
+		travel_around_id as id,
+		SUM(ticket_num) as num
+		FROM
+		base_booktravel
+		WHERE
+		STATUS = 0
+		AND UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(create_time) > 3600
+		GROUP BY
+		travel_around_id
+	</select>
+	
+	<!-- 更新周边游票池 -->
+	<update id="updateTravelTicketNumById" >
+	UPDATE travel_around SET ticket_num = ticket_num + #{num,jdbcType=INTEGER}
+    WHERE id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

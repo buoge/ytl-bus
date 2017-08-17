@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.BaseStationMapper">
+	<resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.BaseStation">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="stationId" property="stationid" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="longitude" property="longitude" jdbcType="DECIMAL" />
+		<result column="latitude" property="latitude" jdbcType="DECIMAL" />
+		<result column="longitudeIn" property="longitudein" jdbcType="DECIMAL" />
+		<result column="latitudeIn" property="latitudein" jdbcType="DECIMAL" />
+		<result column="longitudeOut" property="longitudeout" jdbcType="DECIMAL" />
+		<result column="latitudeOut" property="latitudeout" jdbcType="DECIMAL" />
+		<result column="stationFlag" property="stationflag" jdbcType="INTEGER" />
+		<result column="stationStatus" property="stationstatus"
+			jdbcType="INTEGER" />
+		<result column="cityCode" property="citycode" jdbcType="VARCHAR" />
+		<result column="distance" property="distance" jdbcType="DOUBLE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, stationId, name, longitude, latitude, longitudeIn,
+		latitudeIn,
+		longitudeOut,
+		latitudeOut, stationFlag, stationStatus,
+		cityCode
+	</sql>
+	<sql id="Column_List_Five_And_Ten">
+		id, stationId, name, longitude, latitude,cityCode
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from base_station
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		base_station
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.BaseStation">
+		insert into base_station (id,
+		stationId, name,
+		longitude, latitude, longitudeIn,
+		latitudeIn,
+		longitudeOut, latitudeOut,
+		stationFlag, stationStatus, cityCode
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{stationid,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
+		#{longitude,jdbcType=DECIMAL},
+		#{latitude,jdbcType=DECIMAL}, #{longitudein,jdbcType=DECIMAL},
+		#{latitudein,jdbcType=DECIMAL}, #{longitudeout,jdbcType=DECIMAL},
+		#{latitudeout,jdbcType=DECIMAL},
+		#{stationflag,jdbcType=INTEGER},
+		#{stationstatus,jdbcType=INTEGER}, #{citycode,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseStation">
+		insert into base_station
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="stationid != null">
+				stationId,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="longitude != null">
+				longitude,
+			</if>
+			<if test="latitude != null">
+				latitude,
+			</if>
+			<if test="longitudein != null">
+				longitudeIn,
+			</if>
+			<if test="latitudein != null">
+				latitudeIn,
+			</if>
+			<if test="longitudeout != null">
+				longitudeOut,
+			</if>
+			<if test="latitudeout != null">
+				latitudeOut,
+			</if>
+			<if test="stationflag != null">
+				stationFlag,
+			</if>
+			<if test="stationstatus != null">
+				stationStatus,
+			</if>
+			<if test="citycode != null">
+				cityCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="stationid != null">
+				#{stationid,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude != null">
+				#{longitude,jdbcType=DECIMAL},
+			</if>
+			<if test="latitude != null">
+				#{latitude,jdbcType=DECIMAL},
+			</if>
+			<if test="longitudein != null">
+				#{longitudein,jdbcType=DECIMAL},
+			</if>
+			<if test="latitudein != null">
+				#{latitudein,jdbcType=DECIMAL},
+			</if>
+			<if test="longitudeout != null">
+				#{longitudeout,jdbcType=DECIMAL},
+			</if>
+			<if test="latitudeout != null">
+				#{latitudeout,jdbcType=DECIMAL},
+			</if>
+			<if test="stationflag != null">
+				#{stationflag,jdbcType=INTEGER},
+			</if>
+			<if test="stationstatus != null">
+				#{stationstatus,jdbcType=INTEGER},
+			</if>
+			<if test="citycode != null">
+				#{citycode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseStation">
+		update base_station
+		<set>
+			<if test="stationid != null">
+				stationId = #{stationid,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude != null">
+				longitude = #{longitude,jdbcType=DECIMAL},
+			</if>
+			<if test="latitude != null">
+				latitude = #{latitude,jdbcType=DECIMAL},
+			</if>
+			<if test="longitudein != null">
+				longitudeIn = #{longitudein,jdbcType=DECIMAL},
+			</if>
+			<if test="latitudein != null">
+				latitudeIn = #{latitudein,jdbcType=DECIMAL},
+			</if>
+			<if test="longitudeout != null">
+				longitudeOut = #{longitudeout,jdbcType=DECIMAL},
+			</if>
+			<if test="latitudeout != null">
+				latitudeOut = #{latitudeout,jdbcType=DECIMAL},
+			</if>
+			<if test="stationflag != null">
+				stationFlag = #{stationflag,jdbcType=INTEGER},
+			</if>
+			<if test="stationstatus != null">
+				stationStatus = #{stationstatus,jdbcType=INTEGER},
+			</if>
+			<if test="citycode != null">
+				cityCode = #{citycode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.BaseStation">
+		update
+		base_station
+		set stationId = #{stationid,jdbcType=INTEGER},
+		name =
+		#{name,jdbcType=VARCHAR},
+		longitude = #{longitude,jdbcType=DECIMAL},
+		latitude = #{latitude,jdbcType=DECIMAL},
+		longitudeIn =
+		#{longitudein,jdbcType=DECIMAL},
+		latitudeIn =
+		#{latitudein,jdbcType=DECIMAL},
+		longitudeOut =
+		#{longitudeout,jdbcType=DECIMAL},
+		latitudeOut =
+		#{latitudeout,jdbcType=DECIMAL},
+		stationFlag =
+		#{stationflag,jdbcType=INTEGER},
+		stationStatus =
+		#{stationstatus,jdbcType=INTEGER},
+		cityCode =
+		#{citycode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- TanYuan 自定义： -->
+	<select id="queryStationByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from base_station
+		where name = #{stationName,jdbcType=VARCHAR}
+		and
+		cityCode = #{cityCode,jdbcType=VARCHAR}
+		limit 0,1
+	</select>
+	<!-- 自定义方法 -->
+	<select id="queryStationsByStationIdsAndCityCodes" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_station
+		<if test="model != null">	
+			where
+			<foreach collection="model" index="index" item="item"
+				open="(" separator="or" close=")">
+				(stationid = #{item.stationid} and cityCode = #{item.citycode})
+			</foreach>
+		</if>
+	</select>
+	
+	
+	<resultMap id="StationInfoMap"
+		type="com.lantaiyuan.ebus.custom.model.StationNameInfo">
+		<result column="name" property="stationname" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="queryStationList" resultMap="StationInfoMap"
+		parameterType="java.lang.String">
+		SELECT base_station.name from base_station WHERE
+		base_station.name like CONCAT('%',#{stationName,jdbcType=VARCHAR},'%')
+		and
+		base_station.cityCode = #{cityCode,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 自定义站点模糊查询 -->
+	<select id="getStationByName" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		<!-- stationStatus,latitude,latitudein,latitudeout,longitude,longitudein,longitudeout,name,stationflag,stationid,stationstatus -->
+		from base_station where cityCode=#{cityCode} and name like
+		concat('%',#{stationName},'%')
+	</select>
+
+	<!-- 自定义站点byId查询 -->
+	<select id="getStationById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_station where cityCode=#{cityCode} and
+		stationId=#{stationId}
+	</select>
+	
+	 <!-- 自定义查询出城市所有站点  -->
+   <select id="getCityStations"  resultMap="BaseResultMap">
+	  	select 
+	    <include refid="Base_Column_List" /> 
+	    from base_station where stationStatus = 1 and cityCode = #{cityCode} 
+	    and stationId in 
+	    (select distinct stationId from rel_route_station where routeId = #{routeId} 
+	    and direction = #{direction} and cityCode = #{cityCode})
+  </select>
+
+	<!-- 自定义 -->
+	<select id="getStationByStationId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_station where stationId = #{stationId} and cityCode =
+		#{cityCode} and stationStatus = 1
+	</select>
+
+	<!-- 自定义 -->
+	<select id="getStationsByIds" resultMap="BaseResultMap">
+		select a.stationNo, b.* from rel_route_station a 
+		inner join base_station b on(a.stationId = b.stationId and a.cityCode = b.cityCode)
+		where a.cityCode = #{cityCode} and a.routeId = #{routeId} and a.direction = #{direction}
+		order by a.stationNo
+	</select>
+
+	<!-- 得到当前站点附近的站点信息 -->
+	<!-- <include refid="Column_List_Five_And_Ten" /> , t.distance as distance -->
+	<select id="getNearStations" resultMap="BaseResultMap">
+		SELECT *
+		FROM
+		(SELECT *,round(6378.138*2*asin(sqrt(pow(sin(
+		(latitude*pi()/180-#{currentStation.latitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(latitude*pi()/180)*cos(#{currentStation.latitude,jdbcType=DECIMAL}*pi()/180)*
+		pow(sin(
+		(longitude*pi()/180-#{currentStation.longitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000)
+		as distance from base_station ) t
+		WHERE
+		stationStatus = 1
+		<if test="currentStation.citycode != null and currentStation.citycode!=''">
+			and	cityCode = #{currentStation.citycode,jdbcType=VARCHAR}
+		</if>
+		AND
+		t.distance <![CDATA[<]]>
+		#{distance,jdbcType=INTEGER}
+		ORDER BY t.distance ASC
+		limit 0,5
+	</select>
+	<!-- TanYuan 自定义： -->
+	<select id="queryStationByTicketIdAndStationNo" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		SELECT d.name from base_station d WHERE
+		d.stationId =(
+		SELECT DISTINCT c.stationId FROM rel_route_station c,base_bookticket a
+		WHERE c.routeId =(
+		SELECT
+		DISTINCT b.routeId
+		FROM
+		base_bookticket a,base_custom_line b
+		WHERE
+		a.cityCode = b.cityCode
+		AND
+		a.routeId = b.id
+		AND a.goodsId =#{ticketId,jdbcType=VARCHAR}
+		)
+		AND
+		c.stationNo =#{onBusStationNo,jdbcType=INTEGER}
+		AND
+		c.direction =
+		#{direction,jdbcType=INTEGER}
+		AND
+		c.cityCode = a.cityCode
+		)
+		AND
+		d.cityCode = (SELECT cityCode from base_bookticket WHERE goodsId
+		=#{ticketId,jdbcType=VARCHAR})
+		limit 0,1
+	</select>
+	
+	<!-- 自定义 -->
+	<select id="getAllStations" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_station where stationStatus = 1
+	</select>
+	
+	<!-- 自定义 -->
+	<select id="getStationByCityCode" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_station where cityCode = #{cityCode}
+	</select>
+	<!-- 查询某个城市，站点表中站点名称出现次数大于times的站点名称和次数 -->
+	<select id="queryTimesOfStation" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		SELECT name, COUNT(*) as count FROM base_station WHERE cityCode
+		=
+		#{cityCode,jdbcType=VARCHAR} GROUP BY
+		`name`
+		HAVING(COUNT(name)>#{times,jdbcType=INTEGER}) ORDER BY `name`
+	</select>
+
+	<!-- 查询某个城市，站点表中站点名称出现次数大于times的站点详情 -->
+	<select id="queryStationDetail" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		SELECT * FROM base_station WHERE `name` in
+		 (SELECT name FROM base_station WHERE cityCode = #{cityCode,jdbcType=VARCHAR}  GROUP BY
+		`name` HAVING(COUNT(name)>#{times,jdbcType=INTEGER}) ORDER BY `name`) and cityCode = #{cityCode,jdbcType=VARCHAR} 
+		ORDER BY `name`, stationId ASC
+	</select>
+</mapper>

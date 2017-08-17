@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.BaseBusMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.BaseBus">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="vehicleId" jdbcType="VARCHAR" property="vehicleid" />
+        <result column="busPlateNumber" jdbcType="VARCHAR" property="busplatenumber" />
+        <result column="busPlateNumber2" jdbcType="VARCHAR" property="busplatenumber2" />
+        <result column="busType" jdbcType="INTEGER" property="bustype" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, vehicleId, busPlateNumber, busPlateNumber2, busType, cityCode
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_bus
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_bus
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.BaseBus">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_bus (id, vehicleId, busPlateNumber, 
+            busPlateNumber2, busType, cityCode
+            )
+        values (#{id,jdbcType=INTEGER}, #{vehicleid,jdbcType=VARCHAR}, #{busplatenumber,jdbcType=VARCHAR}, 
+            #{busplatenumber2,jdbcType=VARCHAR}, #{bustype,jdbcType=INTEGER}, #{citycode,jdbcType=VARCHAR}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseBus">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_bus
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="vehicleid != null">
+                vehicleId,
+            </if>
+            <if test="busplatenumber != null">
+                busPlateNumber,
+            </if>
+            <if test="busplatenumber2 != null">
+                busPlateNumber2,
+            </if>
+            <if test="bustype != null">
+                busType,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="vehicleid != null">
+                #{vehicleid,jdbcType=VARCHAR},
+            </if>
+            <if test="busplatenumber != null">
+                #{busplatenumber,jdbcType=VARCHAR},
+            </if>
+            <if test="busplatenumber2 != null">
+                #{busplatenumber2,jdbcType=VARCHAR},
+            </if>
+            <if test="bustype != null">
+                #{bustype,jdbcType=INTEGER},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseBus">
+        <!--
+        @mbggenerated
+        -->
+        update base_bus
+        <set>
+            <if test="vehicleid != null">
+                vehicleId = #{vehicleid,jdbcType=VARCHAR},
+            </if>
+            <if test="busplatenumber != null">
+                busPlateNumber = #{busplatenumber,jdbcType=VARCHAR},
+            </if>
+            <if test="busplatenumber2 != null">
+                busPlateNumber2 = #{busplatenumber2,jdbcType=VARCHAR},
+            </if>
+            <if test="bustype != null">
+                busType = #{bustype,jdbcType=INTEGER},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.BaseBus">
+        <!--
+        @mbggenerated
+        -->
+        update base_bus
+        set vehicleId = #{vehicleid,jdbcType=VARCHAR},
+            busPlateNumber = #{busplatenumber,jdbcType=VARCHAR},
+            busPlateNumber2 = #{busplatenumber2,jdbcType=VARCHAR},
+            busType = #{bustype,jdbcType=INTEGER},
+            cityCode = #{citycode,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+	<!-- 自定义 -->
+    <select id="getCityBus" resultMap="BaseResultMap">
+		select  <include refid="Base_Column_List" />  from base_bus where cityCode = #{cityCode,jdbcType=VARCHAR}
+	</select>
+	<!-- 自定义 -->
+    <select id="getBuses" resultMap="BaseResultMap">
+		select  <include refid="Base_Column_List" />  from base_bus where cityCode = #{cityCode,jdbcType=VARCHAR} 
+		and vehicleId in
+		<foreach collection="vehicleIds" index="index" item="item"
+			open="(" separator="," close=")">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+	</select>
+	<!-- 自定义 -->
+    <select id="getAllBuses" resultMap="BaseResultMap">
+		select  <include refid="Base_Column_List" />  from base_bus 
+	</select>
+</mapper>

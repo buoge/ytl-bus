@@ -1,0 +1,211 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" /> 
+
+<title>预约报名</title>
+<link href="css/sm.css" rel="stylesheet">
+<link href="css/sm-extend.css" rel="stylesheet">
+<link href="css/iconfont/iconfont.css" rel="stylesheet">
+
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="page" id="page-index">
+    <div class="content   gray-bg scroll-wrap">
+        <div class="ui-content  gray-bg">
+
+
+        <div class="ui-item  white-bg ui-border-b">
+            <div class="ui-line ui-btm ">
+                <span class="ui-lable"><img class="ui-icon" src="images/icon_driver.png "></span>
+                <p class="ui-p">请选择驾照类型</p>
+            </div>
+            <div class="ui-lines ui-btm ui-vilddate ui-borblue open-choose-modal">
+                <input type="text" class="ui-col ui-input f-m-gray" id="carType"   readonly="readonly"  placeholder="请选择">
+                <input  type="hidden" class="ui-col ui-input f-m-gray" id="carTypeVal"  >
+                <i class="arrow"><img class="ui-icon" src="images/button_arrow.png"></i>
+            </div>
+            <div class="ui-line ui-btm">
+                <span class="ui-lable"><img class="ui-icon" src="images/icon_phone.png "></span>
+                <p class="ui-p">请填写联系方式</p>
+            </div>
+            <div class="ui-rows ui-btm ui-vilddate ui-borblue">
+                <span class="ui-span">姓名</span>
+                <input class="ui-input" id="name" type="text">
+            </div>
+            <div class="ui-rows ui-vilddate ui-borblue">
+                <span class="ui-span">手机号</span>
+                <input class="ui-input" id="telephone" type="text">
+            </div>
+        </div>
+        <div class="ui-item">
+            <div class="ui-line">
+                <span class="ui-lable"><img class="ui-icon" src="images/icon_order.png "></span>
+                <p class="ui-p ui-btm f-m-gray">预约提交后，驾校工作人员会及时安排体检等事宜，请留意相关通知。</p>
+            </div>
+        </div>
+         <span  class="bookbtn ui-postation" id="bookCar">立即预约</span>
+        </div>
+    </div><!--end content -->
+</div><!--end page -->
+
+<script src="js/zepto.js"></script>
+<script>
+    $.config = {
+        router: false
+    }
+</script>
+<script src="js/sm.js"></script>
+<script src="js/sm-extend.js"></script>
+<script src="js/all.js"></script>
+<script>
+$(function() {
+
+//open-choose-modal 的选择框
+$(document).on('touchend','.open-choose-modal', function () {
+    //初始化 model 驾照类型
+
+    getCarType();
+});
+    //点击选中checked
+    $(document).on('touchend','.carList ul li', function () {
+      $(this).find('.ui-radio').prop('checked',true);
+    })
+    //校验
+    $(document).on("touchend","#bookCar",function() {
+        if (verifyCarEmpty('carType', '请选择驾照类型！')&&verifyCarEmpty('name', '请输入名字！') && verifyCarEmpty('telephone', '请输入手机号码！')) {
+             var number=$('#telephone').val();
+           if(isPhoneOrTell(number,"请输入正确手机号!")){
+
+               var carTypeVal= $('#carTypeVal').val();
+               var name= $('#name').val();
+               var telephone= $('#telephone').val();
+               var driverSchoolId=localStorageUtil.getLocalStorageItem('driverSchoolId');
+               var params={"driverSchoolId":driverSchoolId,"licenseType":carTypeVal,"name":name,"tel":telephone};
+               removebor();
+               bookCarSchool(params)
+            }
+            removebor();
+        }
+    })
+});
+
+//获取驾照类型
+
+function getCarType(){
+    var typeId=localStorageUtil.getLocalStorageItem('driverSchoolId');
+    $('.carList ul').empty();
+    $.ajax({
+                url :'/driver/school/licenseTypes/'+typeId,
+                        cache : false,
+                        type : 'get',
+                        dataType : 'JSON',
+                        success : function(data) {
+                    var data=JSON.parse(data);
+                    console.log(data);
+                    if (data.success) {
+                        var liststr="";
+                        $.modal({
+                            text: '<div class="carList crbox"><ul></ul></div>',
+                            buttons: [
+                                {
+                                    text: '提交',
+                                    bold: true,
+                                    onClick: function() {
+                                        chooseCarType();
+                                    }
+                                },
+                            ]
+                        })
+                for(var i=0;i<data.obj.length;i++){
+                    liststr+='<li><span class="carSpan">'+data.obj[i].desc+'</span><input type="radio" class="ui-radio fr" name="radio" id="r'+i+'" value='+data.obj[i].value+' checked ><label for="r'+i+'"> </label></li>';
+
+                }
+                $('.carList ul').append(liststr);
+            }
+        }
+    });
+}
+
+//选择驾照类型
+function  chooseCarType(){
+    var len=$('.carList ul li').length;
+    for (var i=0;i<len;i++){
+        var check= $('.carList ul li').eq(i).find('.ui-radio').prop('checked');
+        if(check==true){
+            var txt= $('.carList ul li').eq(i).find('.carSpan').text();
+            var valType= $('.carList ul li').eq(i).find('.ui-radio').val();
+            $('#carType').val(txt);
+            $('#carTypeVal').val(valType);
+        }
+    }
+}
+//
+function bookCarSchool(params){
+    $.ajax({
+        url :'/driver/school/signUp/join',
+        cache : false,
+        data:params,
+        type : 'post',
+        dataType : 'JSON',
+        success : function(data) {
+            var data=JSON.parse(data);
+            console.log(data);
+            if (data.success) {
+            	$.toast('预约成功！', 2000);
+            	closeWindow();
+            }
+            else{
+            	$.toast('请不要重复预约！', 2000);
+            }
+         },
+        error: function () {
+	    	$.toast('预约异常！', 2000);
+	    }
+    });
+}
+//验证是否为空
+function verifyCarEmpty(id,tip){
+    var flag = true;
+   var value=$('#'+id).val();
+    if(!value){
+        $.toast(tip, 2000);
+        $('#'+id).parent('.ui-vilddate').addClass('ui-linebor');
+        flag = false;
+    }
+
+   return flag;
+}
+//清除红色线
+function removebor(){
+    $('.ui-vilddate').removeClass('ui-linebor')
+}
+var validateJson = {
+    "MobileOrTell":{"reg":"","tip":"手机(例：13568995400)"},
+    "Tell":{"reg":"^((\\+?86)|(\\(\\+86\\)))?\\d{3,4}-\\d{7,8}(-\\d{3,4})?$","tip":"国内电话号码，格式: 0755-6305222 或 021-8788882"},
+    "Phone":{"reg":"^((0{0,1})|(\\+?86)|(\\(\\+86\\)))(13[0-9]|15[0-9]|147|17[0-9]|18[0-9])[0-9]{8}$","tip":"输入合法手机号码"}
+};
+
+//手机和固定座机电话一起校验
+function isPhoneOrTell(number,tip)
+{
+    var isMobile = new RegExp(validateJson.Phone.reg);
+    var isTell = new RegExp(validateJson.Tell.reg);
+    if(isMobile.test(number) || isTell.test(number)){
+        return true;
+    }
+    else {
+        $.toast(tip, 2000);
+        $('#telephone').parent('.ui-vilddate').addClass('ui-linebor');
+        return false;
+    }
+}
+function closeWindow() { 
+    window.javaMethod.closeActivity();
+}
+
+</script>
+</body>
+</html>

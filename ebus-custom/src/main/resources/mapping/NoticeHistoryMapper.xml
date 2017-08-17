@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.NoticeHistoryMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.NoticeHistory">
+        <!--
+        @mbggenerated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="NOTICE_ID" jdbcType="VARCHAR" property="noticeId" />
+        <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+        <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+        <result column="BUS_COMPANY_TITLE" jdbcType="VARCHAR" property="busCompanyTitle" />
+        <result column="IMG_URL" jdbcType="VARCHAR" property="imgUrl" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        ID, NOTICE_ID, USER_ID, CONTENT, BUS_COMPANY_TITLE, IMG_URL, CREATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from weather_notice_history
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from weather_notice_history
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.NoticeHistory">
+        <!--
+        @mbggenerated
+        -->
+        insert into weather_notice_history (ID, NOTICE_ID, USER_ID, 
+            CONTENT, BUS_COMPANY_TITLE, IMG_URL, CREATE_TIME)
+        values (#{id,jdbcType=VARCHAR}, #{noticeId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+            #{content,jdbcType=VARCHAR}, #{busCompanyTitle,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.NoticeHistory">
+        <!--
+        @mbggenerated
+        -->
+        insert into weather_notice_history
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="noticeId != null">
+                NOTICE_ID,
+            </if>
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+            <if test="busCompanyTitle != null">
+                BUS_COMPANY_TITLE,
+            </if>
+            <if test="imgUrl != null">
+                IMG_URL,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="noticeId != null">
+                #{noticeId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="busCompanyTitle != null">
+                #{busCompanyTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="imgUrl != null">
+                #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.NoticeHistory">
+        <!--
+        @mbggenerated
+        -->
+        update weather_notice_history
+        <set>
+            <if test="noticeId != null">
+                NOTICE_ID = #{noticeId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                USER_ID = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="busCompanyTitle != null">
+                BUS_COMPANY_TITLE = #{busCompanyTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="imgUrl != null">
+                IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.NoticeHistory">
+        <!--
+        @mbggenerated
+        -->
+        update weather_notice_history
+        set NOTICE_ID = #{noticeId,jdbcType=VARCHAR},
+            USER_ID = #{userId,jdbcType=VARCHAR},
+            CONTENT = #{content,jdbcType=VARCHAR},
+            BUS_COMPANY_TITLE = #{busCompanyTitle,jdbcType=VARCHAR},
+            IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+            CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    
+   <!--  以下是自定义方法 -->
+   <select id="listByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.NoticeHistoryQueryModel">
+		select
+		<include refid="Base_Column_List" />
+		from weather_notice_history
+		<trim prefix="WHERE" prefixOverrides="AND" suffixOverrides=",">
+			<if test="id != null and id !=''">
+				AND ID=#{id,jdbcType=VARCHAR}
+			</if>
+			<if test="noticeId != null and noticeId !=''">
+                NOTICE_ID = #{noticeId,jdbcType=VARCHAR}
+            </if>
+            <if test="userId != null and userId !=''">
+                USER_ID = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null and createTime !=''">
+                AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+		</trim>
+	</select>
+	
+	<!--自定义： -->
+	<select id="getNoticeHistorysByUserId" resultType="com.lantaiyuan.ebus.custom.model.NoticeHistory"
+		parameterType="java.lang.String">
+		select 
+			ID AS id, NOTICE_ID AS noticeId, USER_ID AS userId, CONTENT AS content, BUS_COMPANY_TITLE AS busCompanyTitle, IMG_URL AS imgUrl, CREATE_TIME AS createTime 
+		from weather_notice_history
+		where USER_ID = #{userId,jdbcType=VARCHAR}  OR USER_ID = 'ALL_USER' OR USER_ID = #{cityCode,jdbcType=VARCHAR}
+		ORDER BY CREATE_TIME DESC
+	</select>
+	
+	<!--自定义（查询用户通知记录，供天气信息用）： -->
+	<select id="getNoticeHistorysByUserId4Weather" resultType="com.lantaiyuan.ebus.custom.model.NoticeHistory"
+		parameterType="java.lang.String">
+		select 
+			ID AS id, NOTICE_ID AS noticeId, USER_ID AS userId, CONTENT AS content, BUS_COMPANY_TITLE AS busCompanyTitle, IMG_URL AS imgUrl, CREATE_TIME AS createTime 
+		from weather_notice_history
+		where USER_ID = #{userId,jdbcType=VARCHAR}  OR USER_ID = 'ALL_USER' OR USER_ID = #{cityCode,jdbcType=VARCHAR}
+		ORDER BY createTime DESC
+		limit 0,3
+	</select>
+	
+	<!--自定义： -->
+	<select id="getCountByUserIdAndLastTime" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select COUNT(1)
+		from weather_notice_history
+		where (USER_ID = #{userId,jdbcType=VARCHAR}  OR USER_ID = 'ALL_USER' OR USER_ID = #{cityCode,jdbcType=VARCHAR})
+		<if test="lastRequestTime != null and lastRequestTime !=''">
+			and CREATE_TIME <![CDATA[>]]>  STR_TO_DATE(#{lastRequestTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s') 
+        </if>
+	</select>
+	
+</mapper>

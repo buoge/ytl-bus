@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.DriverSchoolContactRecordMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.DriverSchoolContactRecord">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="signup_id" jdbcType="CHAR" property="signupId" />
+        <result column="contact_time" jdbcType="TIMESTAMP" property="contactTime" />
+        <result column="contact_record" jdbcType="VARCHAR" property="contactRecord" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, signup_id, contact_time, contact_record
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from driver_school_contact_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from driver_school_contact_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.DriverSchoolContactRecord">
+        <!--
+        @mbggenerated
+        -->
+        insert into driver_school_contact_record (id, signup_id, contact_time, 
+            contact_record)
+        values (#{id,jdbcType=INTEGER}, #{signupId,jdbcType=CHAR}, #{contactTime,jdbcType=TIMESTAMP}, 
+            #{contactRecord,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.DriverSchoolContactRecord">
+        <!--
+        @mbggenerated
+        -->
+        insert into driver_school_contact_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="signupId != null">
+                signup_id,
+            </if>
+            <if test="contactTime != null">
+                contact_time,
+            </if>
+            <if test="contactRecord != null">
+                contact_record,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="signupId != null">
+                #{signupId,jdbcType=CHAR},
+            </if>
+            <if test="contactTime != null">
+                #{contactTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="contactRecord != null">
+                #{contactRecord,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.DriverSchoolContactRecord">
+        <!--
+        @mbggenerated
+        -->
+        update driver_school_contact_record
+        <set>
+            <if test="signupId != null">
+                signup_id = #{signupId,jdbcType=CHAR},
+            </if>
+            <if test="contactTime != null">
+                contact_time = #{contactTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="contactRecord != null">
+                contact_record = #{contactRecord,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.DriverSchoolContactRecord">
+        <!--
+        @mbggenerated
+        -->
+        update driver_school_contact_record
+        set signup_id = #{signupId,jdbcType=CHAR},
+            contact_time = #{contactTime,jdbcType=TIMESTAMP},
+            contact_record = #{contactRecord,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 根据报名id，查出用户所有的联系记录 -->
+    <select id="selectBySignUpId" parameterType="java.lang.String" resultMap="BaseResultMap">
+      	select <include refid="Base_Column_List" />
+        from driver_school_contact_record
+        where signup_id = #{signUpId,jdbcType=CHAR}
+    </select>
+</mapper>

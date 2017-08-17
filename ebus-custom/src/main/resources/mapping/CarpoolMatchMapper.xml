@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.CarpoolMatchMapper">
+	<resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.carpool.model.CarpoolMatch">
+		<!--
+        @mbggenerated
+        -->
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="match_id" jdbcType="CHAR" property="matchId" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+		<result column="match_status" jdbcType="TINYINT" property="matchStatus" />
+		<result column="match_persons" jdbcType="TINYINT" property="matchPersons" />
+		<result column="required_persons" jdbcType="TINYINT" property="requiredPersons" />
+		<result column="depart_bus_seats" jdbcType="TINYINT" property="departBusSeats" />
+		<result column="match_times" jdbcType="INTEGER" property="matchTimes" />
+		<result column="depart_time" jdbcType="TIMESTAMP" property="departTime" />
+		<result column="dynamic_msg" jdbcType="VARCHAR" property="dynamicMsg" />
+		<result column="match_expect_time" jdbcType="INTEGER" property="matchExpectTime" />
+		<result column="carpool_route_id" jdbcType="CHAR" property="carpoolRouteId" />
+		<result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+		<result column="vehicle_id" jdbcType="VARCHAR" property="vehicleId" />
+		<result column="bus_plate_number" jdbcType="VARCHAR" property="busPlateNumber" />
+		<result column="depart_bus_type" jdbcType="INTEGER" property="departBusType" />
+		<result column="driver_id" jdbcType="VARCHAR" property="driverId" />
+		<result column="driver_name" jdbcType="VARCHAR" property="driverName" />
+		<result column="driver_phone_no" jdbcType="VARCHAR" property="driverPhoneNo" />
+		<result column="driver_judgement" jdbcType="VARCHAR" property="driverJudgement" />
+		<result column="field1" jdbcType="VARCHAR" property="field1" />
+		<result column="field2" jdbcType="VARCHAR" property="field2" />
+		<result column="field3" jdbcType="VARCHAR" property="field3" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--
+        @mbggenerated
+        -->
+		id, match_id, gmt_create, gmt_modified, match_status, match_persons, required_persons,
+		depart_bus_seats, match_times, depart_time, dynamic_msg, match_expect_time, carpool_route_id,
+		city_code, vehicle_id, bus_plate_number, depart_bus_type, driver_id, driver_name,
+		driver_phone_no, driver_judgement, field1, field2, field3
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		<!--
+        @mbggenerated
+        -->
+		select
+		<include refid="Base_Column_List" />
+		from carpool_match
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		<!--
+        @mbggenerated
+        -->
+		delete from carpool_match
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolMatch">
+		<!--
+        @mbggenerated
+        -->
+		insert into carpool_match (id, match_id, gmt_create,
+		gmt_modified, match_status, match_persons,
+		required_persons, depart_bus_seats, match_times,
+		depart_time, dynamic_msg, match_expect_time,
+		carpool_route_id, city_code, vehicle_id,
+		bus_plate_number, depart_bus_type, driver_id,
+		driver_name, driver_phone_no, driver_judgement,
+		field1, field2, field3
+		)
+		values (#{id,jdbcType=BIGINT}, #{matchId,jdbcType=CHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP}, #{matchStatus,jdbcType=TINYINT}, #{matchPersons,jdbcType=TINYINT},
+		#{requiredPersons,jdbcType=TINYINT}, #{departBusSeats,jdbcType=TINYINT}, #{matchTimes,jdbcType=INTEGER},
+		#{departTime,jdbcType=TIMESTAMP}, #{dynamicMsg,jdbcType=VARCHAR}, #{matchExpectTime,jdbcType=INTEGER},
+		#{carpoolRouteId,jdbcType=CHAR}, #{cityCode,jdbcType=VARCHAR}, #{vehicleId,jdbcType=VARCHAR},
+		#{busPlateNumber,jdbcType=VARCHAR}, #{departBusType,jdbcType=INTEGER}, #{driverId,jdbcType=VARCHAR},
+		#{driverName,jdbcType=VARCHAR}, #{driverPhoneNo,jdbcType=VARCHAR}, #{driverJudgement,jdbcType=VARCHAR},
+		#{field1,jdbcType=VARCHAR}, #{field2,jdbcType=VARCHAR}, #{field3,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolMatch">
+		<!--
+        @mbggenerated
+        -->
+		insert into carpool_match
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="matchId != null">
+				match_id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="matchStatus != null">
+				match_status,
+			</if>
+			<if test="matchPersons != null">
+				match_persons,
+			</if>
+			<if test="requiredPersons != null">
+				required_persons,
+			</if>
+			<if test="departBusSeats != null">
+				depart_bus_seats,
+			</if>
+			<if test="matchTimes != null">
+				match_times,
+			</if>
+			<if test="departTime != null">
+				depart_time,
+			</if>
+			<if test="dynamicMsg != null">
+				dynamic_msg,
+			</if>
+			<if test="matchExpectTime != null">
+				match_expect_time,
+			</if>
+			<if test="carpoolRouteId != null">
+				carpool_route_id,
+			</if>
+			<if test="cityCode != null">
+				city_code,
+			</if>
+			<if test="vehicleId != null">
+				vehicle_id,
+			</if>
+			<if test="busPlateNumber != null">
+				bus_plate_number,
+			</if>
+			<if test="departBusType != null">
+				depart_bus_type,
+			</if>
+			<if test="driverId != null">
+				driver_id,
+			</if>
+			<if test="driverName != null">
+				driver_name,
+			</if>
+			<if test="driverPhoneNo != null">
+				driver_phone_no,
+			</if>
+			<if test="driverJudgement != null">
+				driver_judgement,
+			</if>
+			<if test="field1 != null">
+				field1,
+			</if>
+			<if test="field2 != null">
+				field2,
+			</if>
+			<if test="field3 != null">
+				field3,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="matchId != null">
+				#{matchId,jdbcType=CHAR},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="matchStatus != null">
+				#{matchStatus,jdbcType=TINYINT},
+			</if>
+			<if test="matchPersons != null">
+				#{matchPersons,jdbcType=TINYINT},
+			</if>
+			<if test="requiredPersons != null">
+				#{requiredPersons,jdbcType=TINYINT},
+			</if>
+			<if test="departBusSeats != null">
+				#{departBusSeats,jdbcType=TINYINT},
+			</if>
+			<if test="matchTimes != null">
+				#{matchTimes,jdbcType=INTEGER},
+			</if>
+			<if test="departTime != null">
+				#{departTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dynamicMsg != null">
+				#{dynamicMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="matchExpectTime != null">
+				#{matchExpectTime,jdbcType=INTEGER},
+			</if>
+			<if test="carpoolRouteId != null">
+				#{carpoolRouteId,jdbcType=CHAR},
+			</if>
+			<if test="cityCode != null">
+				#{cityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="vehicleId != null">
+				#{vehicleId,jdbcType=VARCHAR},
+			</if>
+			<if test="busPlateNumber != null">
+				#{busPlateNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="departBusType != null">
+				#{departBusType,jdbcType=INTEGER},
+			</if>
+			<if test="driverId != null">
+				#{driverId,jdbcType=VARCHAR},
+			</if>
+			<if test="driverName != null">
+				#{driverName,jdbcType=VARCHAR},
+			</if>
+			<if test="driverPhoneNo != null">
+				#{driverPhoneNo,jdbcType=VARCHAR},
+			</if>
+			<if test="driverJudgement != null">
+				#{driverJudgement,jdbcType=VARCHAR},
+			</if>
+			<if test="field1 != null">
+				#{field1,jdbcType=VARCHAR},
+			</if>
+			<if test="field2 != null">
+				#{field2,jdbcType=VARCHAR},
+			</if>
+			<if test="field3 != null">
+				#{field3,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolMatch">
+		<!--
+        @mbggenerated
+        -->
+		update carpool_match
+		<set>
+			<if test="matchId != null">
+				match_id = #{matchId,jdbcType=CHAR},
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="matchStatus != null">
+				match_status = #{matchStatus,jdbcType=TINYINT},
+			</if>
+			<if test="matchPersons != null">
+				match_persons = #{matchPersons,jdbcType=TINYINT},
+			</if>
+			<if test="requiredPersons != null">
+				required_persons = #{requiredPersons,jdbcType=TINYINT},
+			</if>
+			<if test="departBusSeats != null">
+				depart_bus_seats = #{departBusSeats,jdbcType=TINYINT},
+			</if>
+			<if test="matchTimes != null">
+				match_times = #{matchTimes,jdbcType=INTEGER},
+			</if>
+			<if test="departTime != null">
+				depart_time = #{departTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dynamicMsg != null">
+				dynamic_msg = #{dynamicMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="matchExpectTime != null">
+				match_expect_time = #{matchExpectTime,jdbcType=INTEGER},
+			</if>
+			<if test="carpoolRouteId != null">
+				carpool_route_id = #{carpoolRouteId,jdbcType=CHAR},
+			</if>
+			<if test="cityCode != null">
+				city_code = #{cityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="vehicleId != null">
+				vehicle_id = #{vehicleId,jdbcType=VARCHAR},
+			</if>
+			<if test="busPlateNumber != null">
+				bus_plate_number = #{busPlateNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="departBusType != null">
+				depart_bus_type = #{departBusType,jdbcType=INTEGER},
+			</if>
+			<if test="driverId != null">
+				driver_id = #{driverId,jdbcType=VARCHAR},
+			</if>
+			<if test="driverName != null">
+				driver_name = #{driverName,jdbcType=VARCHAR},
+			</if>
+			<if test="driverPhoneNo != null">
+				driver_phone_no = #{driverPhoneNo,jdbcType=VARCHAR},
+			</if>
+			<if test="driverJudgement != null">
+				driver_judgement = #{driverJudgement,jdbcType=VARCHAR},
+			</if>
+			<if test="field1 != null">
+				field1 = #{field1,jdbcType=VARCHAR},
+			</if>
+			<if test="field2 != null">
+				field2 = #{field2,jdbcType=VARCHAR},
+			</if>
+			<if test="field3 != null">
+				field3 = #{field3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolMatch">
+		<!--
+        @mbggenerated
+        -->
+		update carpool_match
+		set match_id = #{matchId,jdbcType=CHAR},
+		gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+		match_status = #{matchStatus,jdbcType=TINYINT},
+		match_persons = #{matchPersons,jdbcType=TINYINT},
+		required_persons = #{requiredPersons,jdbcType=TINYINT},
+		depart_bus_seats = #{departBusSeats,jdbcType=TINYINT},
+		match_times = #{matchTimes,jdbcType=INTEGER},
+		depart_time = #{departTime,jdbcType=TIMESTAMP},
+		dynamic_msg = #{dynamicMsg,jdbcType=VARCHAR},
+		match_expect_time = #{matchExpectTime,jdbcType=INTEGER},
+		carpool_route_id = #{carpoolRouteId,jdbcType=CHAR},
+		city_code = #{cityCode,jdbcType=VARCHAR},
+		vehicle_id = #{vehicleId,jdbcType=VARCHAR},
+		bus_plate_number = #{busPlateNumber,jdbcType=VARCHAR},
+		depart_bus_type = #{departBusType,jdbcType=INTEGER},
+		driver_id = #{driverId,jdbcType=VARCHAR},
+		driver_name = #{driverName,jdbcType=VARCHAR},
+		driver_phone_no = #{driverPhoneNo,jdbcType=VARCHAR},
+		driver_judgement = #{driverJudgement,jdbcType=VARCHAR},
+		field1 = #{field1,jdbcType=VARCHAR},
+		field2 = #{field2,jdbcType=VARCHAR},
+		field3 = #{field3,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<!-- 自定义 根据撮合id找出该撮合的最新动态 -->
+	<select id="selectByMatchId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		<include refid="Base_Column_List" />
+		from carpool_match
+		where match_id = #{matchId,jdbcType=CHAR}
+	</select>
+
+	<!-- 自定义：carPoolMatchResultMap By YvanTan -->
+	<resultMap id="carPoolMatchResultMap"
+		type="com.lantaiyuan.ebus.custom.model.carpool.CarpoolMatchResult">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="match_id" jdbcType="CHAR" property="matchId" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+		<result column="match_status" jdbcType="TINYINT" property="status" />
+		<result column="match_persons" jdbcType="TINYINT" property="matchPersons" />
+		<result column="required_persons" jdbcType="TINYINT" property="requiredPersons" />
+		<result column="depart_bus_seats" jdbcType="TINYINT" property="realDepartSeats" />
+		<result column="match_times" jdbcType="INTEGER" property="matchTimes" />
+		<result column="depart_time" jdbcType="TIMESTAMP" property="departTime" />
+		<result column="dynamic_msg" jdbcType="VARCHAR" property="dynamicMsg" />
+		<result column="match_expect_time" jdbcType="INTEGER" property="matchExpectTime" />
+		<result column="carpool_route_id" jdbcType="CHAR" property="carpoolRouteId" />
+		<result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+		<result column="vehicle_id" jdbcType="VARCHAR" property="vehicleId" />
+		<result column="bus_plate_number" jdbcType="VARCHAR" property="busNumber" />
+		<result column="depart_bus_type" jdbcType="INTEGER" property="busType" />
+		<result column="driver_id" jdbcType="VARCHAR" property="driverId" />
+		<result column="driver_name" jdbcType="VARCHAR" property="driverName" />
+		<result column="driver_phone_no" jdbcType="VARCHAR" property="driverPhoneNo" />
+		<result column="driver_judgement" jdbcType="VARCHAR" property="driverJudgement" />
+		<result column="field1" jdbcType="VARCHAR" property="field1" />
+		<result column="field2" jdbcType="VARCHAR" property="field2" />
+		<result column="field3" jdbcType="VARCHAR" property="field3" />
+		<result column="carpool_route_name" jdbcType="VARCHAR"
+			property="carpoolRouteName" />
+		<result column="carpool_route_type" jdbcType="INTEGER"
+			property="carpoolRouteType" />
+		<result column="distance" jdbcType="DECIMAL" property="distance" />
+		<result column="price" jdbcType="DECIMAL" property="price" />
+		<result column="start_station" jdbcType="VARCHAR" property="startStation" />
+		<result column="end_station" jdbcType="VARCHAR" property="endStation" />
+		<result column="route_status" jdbcType="BIT" property="routeStatus" />
+		<result column="depart_times" jdbcType="INTEGER" property="departTimes" />
+		<result column="arrive_time" jdbcType="TIME" property="arriveTime" />
+	</resultMap>
+
+
+	<!--后台web 自定义：根据起始点、时间，城市ID查询撮合记录 -->
+	<select id="findMatchResultByPage" resultMap="carPoolMatchResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.carpool.CarpoolMatchResultQueryModel">
+		SELECT
+		M.*,
+		R.carpool_route_name,
+		R.carpool_route_type,
+		R.distance,
+		R.price,
+		R.start_station,
+		R.end_station,
+		R.status AS route_status,
+		R.depart_times,
+		R.arrive_time
+		FROM
+		carpool_match M LEFT JOIN
+		carpool_route R
+		on M.carpool_route_id = R.carpool_route_id
+		AND  M.city_code = R.city_code
+		WHERE 1=1
+			<if test="startPlace != null and startPlace != ''">
+				and R.start_station like
+				concat('%',concat(#{startPlace,jdbcType=VARCHAR},'%'))
+			</if>
+			<if test="endPlace != null and endPlace != ''">
+				and R.end_station like
+				concat('%',concat(#{endPlace,jdbcType=VARCHAR},'%'))
+			</if>
+			<if test="startTime != null and startTime != ''">
+				and M.gmt_create <![CDATA[>=]]>  STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s') 
+			</if>
+			<if test="endTime != null and endTime != ''">
+				and  M.gmt_create  <![CDATA[<=]]> STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="cityCode != null and cityCode != -1">
+				and M.city_code=#{cityCode,jdbcType=VARCHAR}
+			</if>
+	
+		ORDER BY M.gmt_modified DESC
+	</select>
+	
+	<!-- 自定义：carPoolMatchResultMap By zhenghanbin -->
+	<resultMap id="CarpoolMatchAndRouteResult"
+		type="com.lantaiyuan.ebus.custom.model.carpool.CarpoolMatchAndRouteResultModel">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="match_id" jdbcType="CHAR" property="matchId" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+		<result column="match_status" jdbcType="TINYINT" property="matchStatus" />
+		<result column="match_persons" jdbcType="TINYINT" property="matchPersons" />
+		<result column="required_persons" jdbcType="TINYINT" property="requiredPersons" />
+		<result column="depart_bus_seats" jdbcType="TINYINT" property="departBusSeats" />
+		<result column="match_times" jdbcType="INTEGER" property="matchTimes" />
+		<result column="depart_time" jdbcType="TIMESTAMP" property="departTime" />
+		<result column="dynamic_msg" jdbcType="VARCHAR" property="dynamicMsg" />
+		<result column="match_expect_time" jdbcType="INTEGER" property="matchExpectTime" />
+		<result column="carpool_route_id" jdbcType="CHAR" property="carpoolRouteId" />
+		<result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+		<result column="vehicle_id" jdbcType="VARCHAR" property="vehicleId" />
+		<result column="bus_plate_number" jdbcType="VARCHAR" property="busPlateNumber" />
+		<result column="depart_bus_type" jdbcType="INTEGER" property="departBusType" />
+		<result column="driver_id" jdbcType="VARCHAR" property="driverId" />
+		<result column="driver_name" jdbcType="VARCHAR" property="driverName" />
+		<result column="driver_phone_no" jdbcType="VARCHAR" property="driverPhoneNo" />
+		<result column="driver_judgement" jdbcType="VARCHAR" property="driverJudgement" />
+		<result column="field1" jdbcType="VARCHAR" property="field1" />
+		<result column="field2" jdbcType="VARCHAR" property="field2" />
+		<result column="field3" jdbcType="VARCHAR" property="field3" />
+		<result column="carpool_route_name" jdbcType="CHAR" property="carpoolRouteName" />
+		<result column="price" jdbcType="VARCHAR" property="price" />
+	</resultMap>
+	
+	<!-- 根据当前位置信息查询经过该位置的拼车信息-->
+	<select id="findCarpoolRoutesByCurrentPlace" resultMap="CarpoolMatchAndRouteResult">
+	SELECT A.id, A.match_id, A.gmt_create, A.gmt_modified, A.match_status,
+	A.match_persons, A.required_persons, A.depart_bus_seats, A.match_times,
+	A.depart_time, A.dynamic_msg, A.match_expect_time, A.carpool_route_id,
+	A.city_code, A.vehicle_id, A.bus_plate_number, A.depart_bus_type, A.driver_id,
+	A.driver_name, A.driver_phone_no, A.driver_judgement, A.field1, A.field2, A.field3,
+	B.price, B.carpool_route_name
+	FROM (
+		select
+		<include refid="Base_Column_List" />
+		from carpool_match m
+		where 1=1
+		<if test="citycode != null  and citycode !=''">
+			and city_code = #{citycode,jdbcType=VARCHAR}
+		</if>
+		AND m.match_status=1
+		AND m.carpool_route_id IN (
+			SELECT
+				carpool_route_id
+			FROM
+				(SELECT *, round(6378.138 * 2 * asin(sqrt(pow(sin((s.station_lat * pi() / 180 - #{startlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(s.station_lat*pi()/180)*cos(#{startlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (s.station_lon*pi()/180-#{startlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) as distance FROM carpool_route_station s ) t WHERE t.distance <![CDATA[<]]>1000
+		))A, carpool_route B
+		WHERE A.carpool_route_id = B.carpool_route_id
+	</select>
+	
+</mapper>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>常见问题</title>
+    <link rel="stylesheet" href="css/commonProblem.css"/>
+</head>
+<body>
+<header class="pd30 h88">
+    <a href="#" class="btnNav fl"></a>
+    <h1 class="fl">常见问题</h1>
+</header>
+<div class="contents clx">
+    <p class="top pd30 h88 bodB">
+        猜您可能会问
+    </p>
+    <div class="problemTit bodB bgDef">
+        <!-- <p class="qusTit bodB">怎么坐车？ <a href="#" class="btnJump fr"></a></p>
+        <p class="qusTit">怎么坐车怎么坐车怎么坐车怎么坐车？ <a href="#" class="btnJump fr"></a></p>
+        <p class="qusTit">怎么坐车怎么坐车怎么坐车怎么坐车怎么坐车？ <a href="#" class="btnJump fr"></a></p> -->
+    </div>
+    <div class="bottom bgDef bodB bodT">
+        	意见反馈
+    </div>
+</div>
+<div class="question hide">
+    <div class="pd30 bgDef">
+        <p class="titles h88 bodB">怎么坐车？</p>
+    </div>
+    <div class="conts pd30 bgDef bodB">
+        <p class="conts_sub">方法一:<br>点击说也最撒谎线路</p>
+    </div>
+    <div class="top h88 pd30">
+        可能还需要
+    </div>
+    <div class="bottomSub bodB bodT bgDef h88 pd30">
+        意见反馈<a href="#" class="btnJump fr"></a>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+	$('.btnNav').click(function(){
+		$('.contents').show();
+		$('.question').hide();
+		$('.titles,.conts_sub').empty();
+	})
+    $.ajax({
+        type:"GET",
+        url:'/commonQuestion/all',
+        cache : false,
+		dataType : 'JSON',
+        success:function(data){
+			if (data.success) {
+				//console.log(data.obj)
+				var htmlTit='';
+				for(let i=0;i<data.obj.length;i++){
+					//console.log(data.obj[i].questionTitle)
+					htmlTit+=`<p class="qusTit bodB">${data.obj[i].questionTitle}<a href="#" class="btnJump fr"></a></p>`;
+					
+				}
+				$('.problemTit').append(htmlTit);
+				
+				$('.problemTit p').click(function(){
+					var n=$(this).index();
+					console.log(data.obj[n].questionTitle);
+					$('.contents').hide();
+					$('.question').show();
+					$('.titles').html(data.obj[n].questionTitle);
+					$('.conts_sub').html(data.obj[n].questionContent);
+				})
+			}else {
+				alert('抱歉，出错了!');
+			}
+        }
+    });
+</script>
+</body>
+</html>

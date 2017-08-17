@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.MyTrailMapper" >
+  <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.MyTrail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="startStationId" property="startstationid" jdbcType="INTEGER" />
+    <result column="startTime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endStationId" property="endstationid" jdbcType="INTEGER" />
+    <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="cityCode" property="citycode" jdbcType="VARCHAR" />
+    <result column="routeId" property="routeId" jdbcType="VARCHAR" />
+    <result column="direction" property="direction" jdbcType="INTEGER" />
+    <result column="trailDistance" property="trailDistance" jdbcType="DOUBLE" />
+    <result column="routeName" property="routeName" jdbcType="VARCHAR" />
+    <result column="carbonEmission" property="carbonEmission" jdbcType="DOUBLE" />
+    <result column="evaluateStatus" property="evaluateStatus" jdbcType="INTEGER" />
+    <result column="vehicleId" property="vehicleId" jdbcType="VARCHAR" />
+    <result column="busPlateNumber" property="busPlateNumber" jdbcType="VARCHAR" />
+    
+    <result column="id2" property="startstation.id"/>
+    <result column="startStationId" property="startstation.stationid"/>
+    <result column="name" property="startstation.name"/>
+    <result column="longitude" property="startstation.longitude"/>
+    <result column="latitude" property="startstation.latitude"/>
+    <result column="longitudeIn" property="startstation.longitudein"/>
+    <result column="latitudeIn" property="startstation.latitudein"/>
+    <result column="longitudeOut" property="startstation.longitudeout"/>
+    <result column="latitudeOut" property="startstation.latitudeout"/>
+    <result column="stationFlag" property="startstation.stationflag"/>
+    <result column="stationStatus" property="startstation.stationstatus"/>
+    <result column="cityCode2" property="startstation.citycode"/>
+    
+    <result column="id3" property="endstation.id"/>
+    <result column="endStationId" property="endstation.stationid"/>
+    <result column="name3" property="endstation.name"/>
+    <result column="longitude3" property="endstation.longitude"/>
+    <result column="latitude3" property="endstation.latitude"/>
+    <result column="longitudeIn3" property="endstation.longitudein"/>
+    <result column="latitudeIn3" property="endstation.latitudein"/>
+    <result column="longitudeOut3" property="endstation.longitudeout"/>
+    <result column="latitudeOut3" property="endstation.latitudeout"/>
+    <result column="stationFlag3" property="endstation.stationflag"/>
+    <result column="stationStatus3" property="endstation.stationstatus"/>
+    <result column="cityCode3" property="endstation.citycode"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    t1.id, t1.userId, t1.startStationId, t1.startTime, t1.endStationId, t1.endTime, t1.createTime,t1.cityCode,t1.routeId,t1.direction,t1.trailDistance,t1.vehicleId,t1.busPlateNumber,t1.routeName,t1.carbonEmission,t1.evaluateStatus
+  </sql>
+  <sql id="Base_Station_List1" >
+    t2.id as id2, t2.name, t2.longitude, t2.latitude, t2.longitudeIn, t2.latitudeIn, t2.longitudeOut,t2.latitudeOut,t2.stationFlag,t2.stationStatus,t2.cityCode as cityCode2
+  </sql>
+  <sql id="Base_Station_List2" >
+    t3.id as id3, t3.name as name3, t3.longitude as longitude3, t3.latitude as latitude3, t3.longitudeIn as longitudeIn3, t3.latitudeIn as latitudeIn3, t3.longitudeOut as longitudeOut3,t3.latitudeOut as latitudeOut3,t3.stationFlag as stationFlag3,t3.stationStatus as stationStatus3,t3.cityCode as cityCode3 
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />,
+    <include refid="Base_Station_List1" />,
+    <include refid="Base_Station_List2" />
+    from my_trail t1 join base_station t2 join base_station t3
+    on
+    t1.startStationId = t2.stationId and t1.endStationId = t3.stationId
+    where t1.id = #{id,jdbcType=INTEGER} AND t2.cityCode = t1.cityCode AND t3.cityCode = t1.cityCode
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from my_trail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.MyTrail" >
+    insert into my_trail (id, userId, startStationId, 
+      startTime, endStationId, endTime, 
+      createTime,cityCode,routeId,direction,trailDistance,vehicleId,busPlateNumber)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{startstationid,jdbcType=INTEGER}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{endstationid,jdbcType=INTEGER}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{citycode,jdbcType=VARCHAR}, #{routeId,jdbcType=VARCHAR},
+      #{direction,jdbcType=INTEGER},#{trailDistance,jdbcType=DOUBLE},#{vehicleId,jdbcType=VARCHAR},#{busPlateNumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.MyTrail" >
+    insert into my_trail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="startstationid != null" >
+        startStationId,
+      </if>
+      <if test="starttime != null" >
+        startTime,
+      </if>
+      <if test="endstationid != null" >
+        endStationId,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="citycode != null" >
+        cityCode,
+      </if>
+      <if test="routeId != null" >
+        routeId,
+      </if>
+      <if test="direction != null" >
+        direction,
+      </if>
+      <if test="trailDistance != null" >
+        trailDistance,
+      </if>
+      <if test="vehicleId != null" >
+        vehicleId,
+      </if>
+      <if test="busPlateNumber != null" >
+        busPlateNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="startstationid != null" >
+        #{startstationid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endstationid != null" >
+        #{endstationid,jdbcType=INTEGER},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="citycode != null" >
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="routeId != null" >
+        #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null" >
+        #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="trailDistance != null" >
+        #{trailDistance,jdbcType=DOUBLE},
+      </if>
+      <if test="vehicleId != null" >
+        #{vehicleId,jdbcType=VARCHAR},
+      </if>
+      <if test="busPlateNumber != null" >
+        #{busPlateNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.MyTrail" >
+    update my_trail
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="startstationid != null" >
+        startStationId = #{startstationid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endstationid != null" >
+        endStationId = #{endstationid,jdbcType=INTEGER},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="citycode != null" >
+        cityCode = #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="routeId != null" >
+        routeId = #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null" >
+        direction = #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="trailDistance != null" >
+        trailDistance = #{trailDistance,jdbcType=DOUBLE},
+      </if>
+      <if test="vehicleId != null" >
+        vehicleId = #{vehicleId,jdbcType=VARCHAR},
+      </if>
+      <if test="busPlateNumber != null" >
+        busPlateNumber = #{busPlateNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.MyTrail" >
+    update my_trail
+    set userId = #{userid,jdbcType=INTEGER},
+      startStationId = #{startstationid,jdbcType=INTEGER},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      endStationId = #{endstationid,jdbcType=INTEGER},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      cityCode=#{citycode,jdbcType=VARCHAR},
+      routeId=#{routeId,jdbcType=VARCHAR},
+      direction = #{direction,jdbcType=INTEGER},
+      trailDistance = #{trailDistance,jdbcType=DOUBLE},
+      vehicleId=#{vehicleId,jdbcType=VARCHAR},
+      busPlateNumber=#{busPlateNumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- 根据用户id查看我的行程列表 -->
+  <select id="selectByUserId" resultType="com.lantaiyuan.ebus.custom.model.MyTrailVo" parameterType="int" >
+    select 
+    	t1.id, t1.routeId, t1.direction, t1.userId, t1.startStationId, t1.startTime, t1.endStationId, t1.endTime, t1.cityCode, t1.trailDistance, t1.routeName, t1.carbonEmission, t1.evaluateStatus,
+    	t2.name as startStationName,
+    	t3.name	as endStationName
+    from my_trail t1 join base_station t2 join base_station t3
+    on
+    t1.startStationId = t2.stationId and t1.endStationId = t3.stationId
+    where t1.userId = #{userId,jdbcType=INTEGER} AND t2.cityCode = t1.cityCode AND t3.cityCode = t1.cityCode
+    ORDER BY t1.startTime DESC
+  </select>
+</mapper>

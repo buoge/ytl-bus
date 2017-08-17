@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.EvaluationGeneralMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.EvaluationGeneral">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="route_name" jdbcType="VARCHAR" property="routeName" />
+        <result column="direction" jdbcType="INTEGER" property="direction" />
+        <result column="driver" jdbcType="VARCHAR" property="driver" />
+        <result column="bus_plate_number" jdbcType="VARCHAR" property="busPlateNumber" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="kind" jdbcType="INTEGER" property="kind" />
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+        <result column="attach_paths" jdbcType="VARCHAR" property="attachPaths" />
+        <result column="bus_arrive_speed_star" jdbcType="TINYINT" property="busArriveSpeedStar" />
+        <result column="comfort_in_bus_star" jdbcType="TINYINT" property="comfortInBusStar" />
+        <result column="service_for_driver_star" jdbcType="TINYINT" property="serviceForDriverStar" />
+        <result column="station_facilities_star" jdbcType="TINYINT" property="stationFacilitiesStar" />
+        <result column="riding_place_reasonable_star" jdbcType="TINYINT" property="ridingPlaceReasonableStar" />
+        <result column="position" jdbcType="VARCHAR" property="position" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lantaiyuan.ebus.custom.model.EvaluationGeneral">
+        <!--
+        @mbggenerated
+        -->
+        <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, user_id, user_name, route_name, direction, driver, bus_plate_number, gmt_create, 
+        gmt_modified, kind, city_code, attach_paths, bus_arrive_speed_star, comfort_in_bus_star, 
+        service_for_driver_star, station_facilities_star, riding_place_reasonable_star, position
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        comment
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from base_evaluation_general
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_evaluation_general
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationGeneral">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_evaluation_general (id, user_id, user_name, 
+            route_name, direction, driver, 
+            bus_plate_number, gmt_create, gmt_modified, 
+            kind, city_code, attach_paths, 
+            bus_arrive_speed_star, comfort_in_bus_star, 
+            service_for_driver_star, station_facilities_star, 
+            riding_place_reasonable_star, comment, position
+            )
+        values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+            #{routeName,jdbcType=VARCHAR}, #{direction,jdbcType=INTEGER}, #{driver,jdbcType=VARCHAR}, 
+            #{busPlateNumber,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+            #{kind,jdbcType=INTEGER}, #{cityCode,jdbcType=VARCHAR}, #{attachPaths,jdbcType=VARCHAR}, 
+            #{busArriveSpeedStar,jdbcType=TINYINT}, #{comfortInBusStar,jdbcType=TINYINT}, 
+            #{serviceForDriverStar,jdbcType=TINYINT}, #{stationFacilitiesStar,jdbcType=TINYINT}, 
+            #{ridingPlaceReasonableStar,jdbcType=TINYINT}, #{comment,jdbcType=LONGVARCHAR},
+            #{position,jdbcType=VARCHAR}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationGeneral">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_evaluation_general
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="routeName != null">
+                route_name,
+            </if>
+            <if test="direction != null">
+                direction,
+            </if>
+            <if test="driver != null">
+                driver,
+            </if>
+            <if test="busPlateNumber != null">
+                bus_plate_number,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="kind != null">
+                kind,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="attachPaths != null">
+                attach_paths,
+            </if>
+            <if test="busArriveSpeedStar != null">
+                bus_arrive_speed_star,
+            </if>
+            <if test="comfortInBusStar != null">
+                comfort_in_bus_star,
+            </if>
+            <if test="serviceForDriverStar != null">
+                service_for_driver_star,
+            </if>
+            <if test="stationFacilitiesStar != null">
+                station_facilities_star,
+            </if>
+            <if test="ridingPlaceReasonableStar != null">
+                riding_place_reasonable_star,
+            </if>
+            <if test="comment != null">
+                comment,
+            </if>
+            <if test="position != null">
+                position,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="routeName != null">
+                #{routeName,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                #{direction,jdbcType=INTEGER},
+            </if>
+            <if test="driver != null">
+                #{driver,jdbcType=VARCHAR},
+            </if>
+            <if test="busPlateNumber != null">
+                #{busPlateNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="kind != null">
+                #{kind,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="attachPaths != null">
+                #{attachPaths,jdbcType=VARCHAR},
+            </if>
+            <if test="busArriveSpeedStar != null">
+                #{busArriveSpeedStar,jdbcType=TINYINT},
+            </if>
+            <if test="comfortInBusStar != null">
+                #{comfortInBusStar,jdbcType=TINYINT},
+            </if>
+            <if test="serviceForDriverStar != null">
+                #{serviceForDriverStar,jdbcType=TINYINT},
+            </if>
+            <if test="stationFacilitiesStar != null">
+                #{stationFacilitiesStar,jdbcType=TINYINT},
+            </if>
+            <if test="ridingPlaceReasonableStar != null">
+                #{ridingPlaceReasonableStar,jdbcType=TINYINT},
+            </if>
+            <if test="comment != null">
+                #{comment,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="position != null">
+                #{position,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationGeneral">
+        <!--
+        @mbggenerated
+        -->
+        update base_evaluation_general
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="routeName != null">
+                route_name = #{routeName,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                direction = #{direction,jdbcType=INTEGER},
+            </if>
+            <if test="driver != null">
+                driver = #{driver,jdbcType=VARCHAR},
+            </if>
+            <if test="busPlateNumber != null">
+                bus_plate_number = #{busPlateNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="kind != null">
+                kind = #{kind,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="attachPaths != null">
+                attach_paths = #{attachPaths,jdbcType=VARCHAR},
+            </if>
+            <if test="busArriveSpeedStar != null">
+                bus_arrive_speed_star = #{busArriveSpeedStar,jdbcType=TINYINT},
+            </if>
+            <if test="comfortInBusStar != null">
+                comfort_in_bus_star = #{comfortInBusStar,jdbcType=TINYINT},
+            </if>
+            <if test="serviceForDriverStar != null">
+                service_for_driver_star = #{serviceForDriverStar,jdbcType=TINYINT},
+            </if>
+            <if test="stationFacilitiesStar != null">
+                station_facilities_star = #{stationFacilitiesStar,jdbcType=TINYINT},
+            </if>
+            <if test="ridingPlaceReasonableStar != null">
+                riding_place_reasonable_star = #{ridingPlaceReasonableStar,jdbcType=TINYINT},
+            </if>
+            <if test="comment != null">
+                comment = #{comment,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="position != null">
+                comment = #{"position != null",jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationGeneral">
+        <!--
+        @mbggenerated
+        -->
+        update base_evaluation_general
+        set user_id = #{userId,jdbcType=INTEGER},
+            user_name = #{userName,jdbcType=VARCHAR},
+            route_name = #{routeName,jdbcType=VARCHAR},
+            direction = #{direction,jdbcType=INTEGER},
+            driver = #{driver,jdbcType=VARCHAR},
+            bus_plate_number = #{busPlateNumber,jdbcType=VARCHAR},
+            gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            kind = #{kind,jdbcType=INTEGER},
+            city_code = #{cityCode,jdbcType=VARCHAR},
+            attach_paths = #{attachPaths,jdbcType=VARCHAR},
+            bus_arrive_speed_star = #{busArriveSpeedStar,jdbcType=TINYINT},
+            comfort_in_bus_star = #{comfortInBusStar,jdbcType=TINYINT},
+            service_for_driver_star = #{serviceForDriverStar,jdbcType=TINYINT},
+            station_facilities_star = #{stationFacilitiesStar,jdbcType=TINYINT},
+            riding_place_reasonable_star = #{ridingPlaceReasonableStar,jdbcType=TINYINT},
+            comment = #{comment,jdbcType=LONGVARCHAR}
+            position = #{position,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationGeneral">
+        <!--
+        @mbggenerated
+        -->
+        update base_evaluation_general
+        set user_id = #{userId,jdbcType=INTEGER},
+            user_name = #{userName,jdbcType=VARCHAR},
+            route_name = #{routeName,jdbcType=VARCHAR},
+            direction = #{direction,jdbcType=INTEGER},
+            driver = #{driver,jdbcType=VARCHAR},
+            bus_plate_number = #{busPlateNumber,jdbcType=VARCHAR},
+            gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            kind = #{kind,jdbcType=INTEGER},
+            city_code = #{cityCode,jdbcType=VARCHAR},
+            attach_paths = #{attachPaths,jdbcType=VARCHAR},
+            bus_arrive_speed_star = #{busArriveSpeedStar,jdbcType=TINYINT},
+            comfort_in_bus_star = #{comfortInBusStar,jdbcType=TINYINT},
+            service_for_driver_star = #{serviceForDriverStar,jdbcType=TINYINT},
+            station_facilities_star = #{stationFacilitiesStar,jdbcType=TINYINT},
+            riding_place_reasonable_star = #{ridingPlaceReasonableStar,jdbcType=TINYINT}
+            position = #{position,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 自定义方法 , 分页查询周边游项目信息 -->
+	<select id="selectByPage" resultType="com.lantaiyuan.ebus.custom.model.EvaluationGeneral"
+		parameterType="com.lantaiyuan.ebus.custom.model.EvaluationGeneralQueryModel">
+		select
+		id, route_name as routeName, direction, driver, bus_plate_number as busPlateNumber, user_name as userName, gmt_create as gmtCreate, bus_arrive_speed_star as busArriveSpeedStar, comfort_in_bus_star as comfortInBusStar, 
+		service_for_driver_star as serviceForDriverStar, station_facilities_star as stationFacilitiesStar, riding_place_reasonable_star as ridingPlaceReasonableStar, comment, city_code as cityCode,position
+		from
+		base_evaluation_general
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="cityCode != null and cityCode != ''">
+				and city_code = #{cityCode,jdbcType=VARCHAR}
+			</if>
+			<if test="routeName != null and routeName != ''">
+				and route_name like concat(#{routeName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="busPlateNumber != null and busPlateNumber != ''">
+				and bus_plate_number like concat('%',#{busPlateNumber,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="driver != null and driver != ''">
+				and driver like concat('%',#{driver,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="position != null and position != ''">
+				and position like concat('%',#{position,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="userName != null and userName != ''">
+				and user_name like concat('%',#{userName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="starttime != null  and starttime !=''">
+				and gmt_create <![CDATA[>=]]>  STR_TO_DATE(#{starttime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s') 
+			</if>
+			<if test="endtime != null  and endtime !=''">
+				and gmt_create  <![CDATA[<=]]> STR_TO_DATE(#{endtime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+		</trim>
+		order by gmt_create desc
+	</select>
+	
+	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from base_evaluation_general
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="id != null">
+			and id = #{id,jdbcType=VARCHAR} 
+		</if>
+		<if test="cityCode != null">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		</trim>
+	</select>
+</mapper>

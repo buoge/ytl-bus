@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.realtime.dao.FavoriateMapper" >
+  <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.realtime.model.Favoriate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="routeId" property="routeid" jdbcType="VARCHAR" />
+    <result column="tag" property="tag" jdbcType="VARCHAR" />
+    <result column="stationId" property="stationid" jdbcType="INTEGER" />
+    <result column="stationName" property="stationname" jdbcType="VARCHAR" />
+    <result column="direction" property="direction" jdbcType="INTEGER" />
+    <result column="collectionStatus" property="collectionstatus" jdbcType="INTEGER" />
+    <result column="cityCode" property="citycode" jdbcType="VARCHAR" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, routeId, tag, stationId, stationName, direction, collectionStatus, cityCode, 
+    createDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from biz_favoriate
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from biz_favoriate
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lantaiyuan.ebus.realtime.model.Favoriate" >
+    insert into biz_favoriate (id, userId, routeId, 
+      tag, stationId, stationName, 
+      direction, collectionStatus, cityCode, 
+      createDate)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{routeid,jdbcType=VARCHAR}, 
+      #{tag,jdbcType=VARCHAR}, #{stationid,jdbcType=INTEGER}, #{stationname,jdbcType=VARCHAR}, 
+      #{direction,jdbcType=INTEGER}, #{collectionstatus,jdbcType=INTEGER}, #{citycode,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.realtime.model.Favoriate" >
+    insert into biz_favoriate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="routeid != null" >
+        routeId,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="stationid != null" >
+        stationId,
+      </if>
+      <if test="stationname != null" >
+        stationName,
+      </if>
+      <if test="direction != null" >
+        direction,
+      </if>
+      <if test="collectionstatus != null" >
+        collectionStatus,
+      </if>
+      <if test="citycode != null" >
+        cityCode,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="routeid != null" >
+        #{routeid,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="stationid != null" >
+        #{stationid,jdbcType=INTEGER},
+      </if>
+      <if test="stationname != null" >
+        #{stationname,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null" >
+        #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="collectionstatus != null" >
+        #{collectionstatus,jdbcType=INTEGER},
+      </if>
+      <if test="citycode != null" >
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.realtime.model.Favoriate" >
+    update biz_favoriate
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="routeid != null" >
+        routeId = #{routeid,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="stationid != null" >
+        stationId = #{stationid,jdbcType=INTEGER},
+      </if>
+      <if test="stationname != null" >
+        stationName = #{stationname,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null" >
+        direction = #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="collectionstatus != null" >
+        collectionStatus = #{collectionstatus,jdbcType=INTEGER},
+      </if>
+      <if test="citycode != null" >
+        cityCode = #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.realtime.model.Favoriate" >
+    update biz_favoriate
+    set userId = #{userid,jdbcType=INTEGER},
+      routeId = #{routeid,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      stationId = #{stationid,jdbcType=INTEGER},
+      stationName = #{stationname,jdbcType=VARCHAR},
+      direction = #{direction,jdbcType=INTEGER},
+      collectionStatus = #{collectionstatus,jdbcType=INTEGER},
+      cityCode = #{citycode,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- Group映射 -->
+  <resultMap type="com.lantaiyuan.ebus.realtime.model.Group" id="collectionRoutesResultMap">
+  		<association property="favoriate" javaType="com.lantaiyuan.ebus.realtime.model.Favoriate">
+  			<result column="userId" property="userid"/>
+  			<result column="routeId" property="routeid"/>
+  			<result column="tag" property="tag"/>
+  			<result column="selectedStationID" property="stationid"/>
+  			<result column="stationName" property="stationname"/>
+  			<result column="direction" property="direction"/>
+  			<result column="collectionStatus" property="collectionstatus"/>
+  			<result column="cityCode" property="citycode"/>
+  		</association>
+  		
+  		<association property="routeInBaseLine" javaType="com.lantaiyuan.ebus.custom.model.BaseRoute">
+  			<id column="id" property="id"/>
+  			<result column="routeId" property="routeid"/>
+  			<result column="routeNo" property="routeno"/>
+  			<result column="routeName" property="routename"/>
+  			<result column="price" property="price"/>
+  			<result column="distance" property="distance"/>
+  			<result column="routeType" property="routetype"/>
+  			<result column="startStation" property="startstation"/>
+  			<result column="endStation" property="endstation"/>
+  			<result column="status" property="status"/>
+  			<result column="reversal" property="reversal"/>
+  			<result column="shortName" property="shortname"/>
+  			<result column="startTime" property="starttime"/>
+  			<result column="endTime" property="endtime"/>
+  			
+  			<result column="direction" property="direction"/>
+  		</association>
+  		
+  		<association property="relRouteStation" javaType="com.lantaiyuan.ebus.custom.model.RelRouteStation">
+  			<result column="stationNo" property="stationno"/>
+  		</association>
+  		
+  		<association property="baseStation" javaType="com.lantaiyuan.ebus.custom.model.BaseStation">
+  			<result column="stationId" property="stationid"/>
+  			<result column="name" property="name"/>
+  			<result column="lon" property="longitude"/>
+  			<result column="lat" property="latitude"/>
+  			<result column="longitudeIn" property="longitudein"/>
+  			<result column="latitudeIn" property="latitudein"/>
+  			<result column="longitudeOut" property="longitudeout"/>
+  			<result column="latitudeOut" property="latitudeout"/>
+  			<result column="stationFlag" property="stationflag"/>
+  			<result column="stationStatus" property="stationstatus"/>
+  		</association>
+  </resultMap>
+  
+  <!-- 自定义查询 ：用户是否存在-->
+  <select id="countExist" resultType="Integer">
+		select count(1) from
+		base_user where userId = #{userId}
+		and
+		status = 0
+   </select>
+   
+   <!-- 自定义查询：查询用户所有收藏线路信息 -->
+   <select id="queryCollectionRoutes" resultMap="collectionRoutesResultMap">
+		SELECT a.userId,a.routeId,a.tag,a.stationId AS selectedStationID,a.stationName,
+		a.direction,a.collectionStatus,a.cityCode,b.id,b.routeNo,b.routeName,
+		b.price,b.distance,b.routeType,b.startStation,b.endStation,b.status,
+		b.reversal,b.shortName,
+		
+		<if test="season == 0">
+			b.summerStartTime AS startTime, b.summerEndTime AS endTime,
+		</if>
+		<if test="season == 1">
+			b.winterStartTime as startTime, b.winterEndTime as endTime
+		</if>
+		
+		c.stationNo,
+		
+		d.stationId, d.name, d.longitude as lon, d.latitude as lat, d.longitudeIn,
+		d.latitudeIn,
+		d.longitudeOut,
+		d.latitudeOut, d.stationFlag, d.stationStatus
+
+			
+		FROM biz_favoriate a INNER JOIN base_route b INNER JOIN rel_route_station c  INNER JOIN base_station d ON
+		a.routeId=b.routeId AND
+		a.direction=b.direction AND a.cityCode = b.cityCode AND a.cityCode = c.citycode AND a.routeId = c.routeId AND a.stationId = c.stationId AND a.direction = c.direction
+		AND a.stationId = d.stationId AND a.cityCode = d.cityCode
+		
+		WHERE
+		a.userId=#{userId} and a.cityCode=#{cityCode}
+	</select>
+	
+	<!-- 自定义查询：查询用户标签 -->
+	<select id="queryCollectionTags" resultType="String">
+		select distinct tag
+		from biz_favoriate where userId = #{userId} and cityCode = #{cityCode}
+	</select>
+	
+	<!-- 自定义查询：查询指定某条收藏线路记录 -->
+	<select id="getCollectionRoute" parameterType="com.lantaiyuan.ebus.realtime.model.Favoriate" resultType="Integer">
+			select count(1) from biz_favoriate a 
+		where userId=#{userid}
+		   and routeId=#{routeid}
+		   and cityCode=#{citycode}
+		   and stationId=#{stationid}
+		   and direction=#{direction}
+	</select>
+	
+	<!-- 自定义删除 ：删除指定记录-->
+	<delete id="delete" parameterType="com.lantaiyuan.ebus.realtime.model.Favoriate">
+		delete from
+		biz_favoriate
+		where userId = #{userid}
+		and routeId = #{routeid}
+		and cityCode
+		=#{citycode}
+		and stationId= #{stationid}
+		and tag=
+		#{tag}
+		and direction=
+		#{direction}
+	</delete>
+	
+	
+	<!-- 自定义查询：查询所有收藏线路记录 -->
+	<select id="findAll" resultMap="BaseResultMap">
+		select 
+	    	<include refid="Base_Column_List" />
+	    from biz_favoriate
+	</select>
+	
+	<!-- 自定义查询:查询当前用户收藏线路记录 -->
+	<select id="findFavoriateByUserIdAndCityCode" resultMap="BaseResultMap">
+			select 
+		    	<include refid="Base_Column_List" />
+		    from biz_favoriate
+			where userId=#{userId}
+			   and cityCode=#{cityCode}
+	</select>
+	
+	<!-- 自定义查询:根据线路Id查询关注该线路的用户ID -->
+	<select id="findUserIdByRouteId" resultType="Integer">
+			select userId
+		    from biz_favoriate
+			where routeId=#{routeId}
+	</select>
+	<!-- 自定义查询:根据线路ID和cityCode查询收藏列表 -->
+	<select id="findFavoriateByRouteAndCity" resultMap="BaseResultMap">
+		select
+		*
+		from biz_favoriate
+		where routeId=#{0}
+		and cityCode=#{1}
+		and collectionStatus = 1
+	</select>
+</mapper>

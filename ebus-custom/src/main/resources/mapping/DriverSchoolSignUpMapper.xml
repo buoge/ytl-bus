@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.DriverSchoolSignUpMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.DriverSchoolSignUp">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="CHAR" property="id" />
+        <result column="driver_school_id" jdbcType="CHAR" property="driverSchoolId" />
+        <result column="license_type" jdbcType="TINYINT" property="licenseType" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="sex" jdbcType="TINYINT" property="sex" />
+        <result column="age" jdbcType="TINYINT" property="age" />
+        <result column="tel" jdbcType="VARCHAR" property="tel" />
+        <result column="signup_time" jdbcType="TIMESTAMP" property="signupTime" />
+        <result column="last_contact_time" jdbcType="TIMESTAMP" property="lastContactTime" />
+        <result column="contact_person" jdbcType="VARCHAR" property="contactPerson" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+    </resultMap>
+    
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, driver_school_id, license_type, name, sex, age, tel, signup_time, last_contact_time,contact_person 
+        status
+    </sql>
+     <sql id="Base_Column_List_A">
+        <!--
+        @mbggenerated
+        -->
+        a.id, a.driver_school_id, a.license_type, a.name, a.sex, a.age, a.tel, a.signup_time, a.last_contact_time, 
+        a.contact_person, a.status
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from driver_school_signup
+        where id = #{id,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from driver_school_signup
+        where id = #{id,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.DriverSchoolSignUp">
+        <!--
+        @mbggenerated
+        -->
+        insert into driver_school_signup (id, driver_school_id, license_type, 
+            name, sex, age, tel, 
+            signup_time, last_contact_time, contact_person, status
+            )
+        values (#{id,jdbcType=CHAR}, #{driverSchoolId,jdbcType=CHAR}, #{licenseType,jdbcType=TINYINT}, 
+            #{name,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{age,jdbcType=TINYINT}, #{tel,jdbcType=VARCHAR}, 
+            #{signupTime,jdbcType=TIMESTAMP}, #{lastContactTime,jdbcType=TIMESTAMP}, #{contactPerson,jdbcType=VARCHAR}, 
+            #{status,jdbcType=TINYINT}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.DriverSchoolSignUp">
+        <!--
+        @mbggenerated
+        -->
+        insert into driver_school_signup
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="driverSchoolId != null">
+                driver_school_id,
+            </if>
+            <if test="licenseType != null">
+                license_type,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="signupTime != null">
+                signup_time,
+            </if>
+            <if test="lastContactTime != null">
+                last_contact_time,
+            </if>
+            <if test="contactPerson != null">
+                contact_person,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=CHAR},
+            </if>
+            <if test="driverSchoolId != null">
+                #{driverSchoolId,jdbcType=CHAR},
+            </if>
+            <if test="licenseType != null">
+                #{licenseType,jdbcType=TINYINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=TINYINT},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="signupTime != null">
+                #{signupTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastContactTime != null">
+                #{lastContactTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="contactPerson != null">
+                #{contactPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.DriverSchoolSignUp">
+        <!--
+        @mbggenerated
+        -->
+        update driver_school_signup
+        <set>
+            <if test="driverSchoolId != null">
+                driver_school_id = #{driverSchoolId,jdbcType=CHAR},
+            </if>
+            <if test="licenseType != null">
+                license_type = #{licenseType,jdbcType=TINYINT},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=TINYINT},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="signupTime != null">
+                signup_time = #{signupTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastContactTime != null">
+                last_contact_time = #{lastContactTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="contactPerson != null">
+               contact_person =  #{contactPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.DriverSchoolSignUp">
+        <!--
+        @mbggenerated
+        -->
+        update driver_school_signup
+        set driver_school_id = #{driverSchoolId,jdbcType=CHAR},
+            license_type = #{licenseType,jdbcType=TINYINT},
+            name = #{name,jdbcType=VARCHAR},
+            sex = #{sex,jdbcType=TINYINT},
+            age = #{age,jdbcType=TINYINT},
+            tel = #{tel,jdbcType=VARCHAR},
+            signup_time = #{signupTime,jdbcType=TIMESTAMP},
+            last_contact_time = #{lastContactTime,jdbcType=TIMESTAMP},
+            contact_person =  #{contactPerson,jdbcType=VARCHAR},
+            status = #{status,jdbcType=TINYINT}
+        where id = #{id,jdbcType=CHAR}
+    </update>
+    
+     <!-- 自定义分页查询方法 -->
+	<select id="findDriverSchoolSignUpByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.DriverSchoolSignUpQueryModel">
+		select <include refid="Base_Column_List_A" /> from driver_school_signup a 
+		join base_driver_school b on(a.driver_school_id=b.id)
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+          <if test="name != null">
+            and a.name like concat('%',#{name,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="tel != null">
+            and a.tel like concat('%',#{tel,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="licenseType != null and licenseType != -1">
+            and a.license_type = #{licenseType,jdbcType=TINYINT}
+          </if>
+          <if test="cityCode != null and cityCode != -1">
+            and b.citycode = #{cityCode,jdbcType=VARCHAR}
+          </if>
+          <if test="statusArray != null">
+            and a.status in 
+            <foreach item="item" index="index" collection="statusArray" open="(" separator="," close=")">
+				${item}
+			</foreach>
+          </if>
+	    </trim>
+	    order by a.signup_time desc
+	</select>
+	<!-- 查看该手机号码的预约数目 -->
+	<select id="selectByTel" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select count(1) from driver_school_signup where tel = #{tel,jdbcType=VARCHAR}
+	</select>
+	
+    
+</mapper>

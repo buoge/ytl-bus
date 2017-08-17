@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.dao.RelRouteBusMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.model.RelRouteBus">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="routeNo" jdbcType="VARCHAR" property="routeno" />
+        <result column="vehicleId" jdbcType="VARCHAR" property="vehicleid" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, routeNo, vehicleId, createTime, cityCode
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from rel_route_bus
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from rel_route_bus
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.model.RelRouteBus">
+        <!--
+        @mbggenerated
+        -->
+        insert into rel_route_bus (id, routeNo, vehicleId, 
+            createTime, cityCode)
+        values (#{id,jdbcType=INTEGER}, #{routeno,jdbcType=VARCHAR}, #{vehicleid,jdbcType=VARCHAR}, 
+            #{createtime,jdbcType=TIMESTAMP}, #{citycode,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.model.RelRouteBus">
+        <!--
+        @mbggenerated
+        -->
+        insert into rel_route_bus
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="routeno != null">
+                routeNo,
+            </if>
+            <if test="vehicleid != null">
+                vehicleId,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="routeno != null">
+                #{routeno,jdbcType=VARCHAR},
+            </if>
+            <if test="vehicleid != null">
+                #{vehicleid,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.model.RelRouteBus">
+        <!--
+        @mbggenerated
+        -->
+        update rel_route_bus
+        <set>
+            <if test="routeno != null">
+                routeNo = #{routeno,jdbcType=VARCHAR},
+            </if>
+            <if test="vehicleid != null">
+                vehicleId = #{vehicleid,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.model.RelRouteBus">
+        <!--
+        @mbggenerated
+        -->
+        update rel_route_bus
+        set routeNo = #{routeno,jdbcType=VARCHAR},
+            vehicleId = #{vehicleid,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            cityCode = #{citycode,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 更新线车关系 -->
+    <update id="updateRelRouteBus" parameterType="com.lantaiyuan.ebus.model.RelRouteBus">
+        update rel_route_bus set routeNo = #{routeno,jdbcType=VARCHAR}
+        where vehicleId = #{vehicleid,jdbcType=VARCHAR} and cityCode = #{citycode,jdbcType=VARCHAR}
+    </update>
+    <!-- 自定义方法 -->
+    <select id="getRelRouteBus" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from rel_route_bus 
+        where vehicleId = #{vehicleId,jdbcType=VARCHAR} and cityCode = #{cityCode,jdbcType=VARCHAR}
+    </select>
+    <insert id="insertRelRouteBus">
+        insert into rel_route_bus (routeNo, vehicleId, cityCode)
+        values (#{routeNo,jdbcType=VARCHAR}, #{vehicleId,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR})
+    </insert>
+    
+    
+</mapper>

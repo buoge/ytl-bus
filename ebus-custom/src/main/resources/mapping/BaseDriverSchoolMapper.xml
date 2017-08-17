@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.BaseDriverSchoolMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.BaseDriverSchool">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="CHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="image" jdbcType="VARCHAR" property="image" />
+        <result column="location" jdbcType="VARCHAR" property="location" />
+        <result column="tel" jdbcType="VARCHAR" property="tel" />
+        <result column="accept_licenses" jdbcType="VARCHAR" property="acceptLicenses" />
+        <result column="citycode" jdbcType="VARCHAR" property="citycode" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lantaiyuan.ebus.custom.model.BaseDriverSchool">
+        <!--
+        @mbggenerated
+        -->
+        <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, name, image, location, tel, accept_licenses, citycode
+    </sql>
+    <sql id="Base_Column_List_A">
+        <!--
+        @mbggenerated
+        -->
+        a.id, a.name, a.image, a.location, a.tel, a.accept_licenses, a.citycode
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        introduction
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from base_driver_school
+        where id = #{id,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_driver_school
+        where id = #{id,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.BaseDriverSchool">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_driver_school (id, name, image, 
+            location, tel, accept_licenses, 
+            citycode, introduction)
+        values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+            #{location,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{acceptLicenses,jdbcType=VARCHAR}, 
+            #{citycode,jdbcType=VARCHAR}, #{introduction,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseDriverSchool">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_driver_school
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="location != null">
+                location,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="acceptLicenses != null">
+                accept_licenses,
+            </if>
+            <if test="citycode != null">
+                citycode,
+            </if>
+            <if test="introduction != null">
+                introduction,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=CHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="acceptLicenses != null">
+                #{acceptLicenses,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                #{introduction,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseDriverSchool">
+        <!--
+        @mbggenerated
+        -->
+        update base_driver_school
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                location = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="acceptLicenses != null">
+                accept_licenses = #{acceptLicenses,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                citycode = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lantaiyuan.ebus.custom.model.BaseDriverSchool">
+        <!--
+        @mbggenerated
+        -->
+        update base_driver_school
+        set name = #{name,jdbcType=VARCHAR},
+            image = #{image,jdbcType=VARCHAR},
+            location = #{location,jdbcType=VARCHAR},
+            tel = #{tel,jdbcType=VARCHAR},
+            accept_licenses = #{acceptLicenses,jdbcType=VARCHAR},
+            citycode = #{citycode,jdbcType=VARCHAR},
+            introduction = #{introduction,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.BaseDriverSchool">
+        <!--
+        @mbggenerated
+        -->
+        update base_driver_school
+        set name = #{name,jdbcType=VARCHAR},
+            image = #{image,jdbcType=VARCHAR},
+            location = #{location,jdbcType=VARCHAR},
+            tel = #{tel,jdbcType=VARCHAR},
+            accept_licenses = #{acceptLicenses,jdbcType=VARCHAR},
+            citycode = #{citycode,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=CHAR}
+    </update>
+    
+     <!-- 自定义分页查询方法 -->
+	<select id="findDriverSchoolByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.BaseDriverSchoolQueryModel">
+		select <include refid="Base_Column_List_A" />, b.cityName from base_driver_school a
+		inner join base_service_ip b on(a.citycode=b.cityCode)
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+          <if test="name != null">
+            and a.name like concat('%',#{name,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="location != null">
+            and a.location like concat('%',#{location,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="tel != null">
+            and a.tel like concat('%',#{tel,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="licenseType != null and licenseType != -1">
+            and a.accept_licenses like concat('%',#{licenseType,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="cityCode != null and cityCode != -1">
+            and a.citycode = #{cityCode,jdbcType=VARCHAR}
+          </if>
+	    </trim>
+	    order by name
+	</select>
+	
+	<!-- 根据citycode获取该城市的驾校信息（只返回一条） -->
+	<select id="selectByCityCode" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select 
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from base_driver_school
+        where cityCode = #{cityCode,jdbcType=VARCHAR} limit 0,1
+    </select>
+    <!-- 根据citycode获取该城市的驾校信息（只返回一条） -->
+	<select id="selectAcceptLicensesByPrimaryKey" parameterType="java.lang.String" resultType="java.lang.String">
+        select accept_licenses from base_driver_school where id = #{id,jdbcType=CHAR}
+    </select>
+</mapper>

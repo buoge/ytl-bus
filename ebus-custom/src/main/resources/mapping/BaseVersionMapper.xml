@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.BaseVersionMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.BaseVersion">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="versionId" jdbcType="VARCHAR" property="versionid" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
+        <result column="versionURL" jdbcType="VARCHAR" property="versionurl" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, versionId, type, versionURL, cityCode, createTime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_app_version
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_app_version
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.BaseVersion">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_app_version (id, versionId, type, 
+            versionURL, cityCode, createTime
+            )
+        values (#{id,jdbcType=VARCHAR}, #{versionid,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+            #{versionurl,jdbcType=VARCHAR}, #{citycode,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseVersion">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_app_version
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="versionid != null">
+                versionId,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="versionurl != null">
+                versionURL,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="versionid != null">
+                #{versionid,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="versionurl != null">
+                #{versionurl,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseVersion">
+        <!--
+        @mbggenerated
+        -->
+        update base_app_version
+        <set>
+            <if test="versionid != null">
+                versionId = #{versionid,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="versionurl != null">
+                versionURL = #{versionurl,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.BaseVersion">
+        <!--
+        @mbggenerated
+        -->
+        update base_app_version
+        set versionId = #{versionid,jdbcType=VARCHAR},
+            type = #{type,jdbcType=VARCHAR},
+            versionURL = #{versionurl,jdbcType=VARCHAR},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    <!--以下是自定义的方法 -->
+    <select id="findObjectsByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.BaseVersionQueryModel">
+		 select 
+	    <include refid="Base_Column_List" />
+	    from base_app_version
+		<trim prefix="WHERE" prefixOverrides="AND">
+           <if test="versionid != null and versionid !=''">
+                and versionId = #{versionid,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null and type !=''">
+                and type = #{type,jdbcType=VARCHAR}
+            </if>
+            <if test="versionurl != null and versionurl !=''">
+                and versionURL = #{versionurl,jdbcType=VARCHAR} 
+            </if>
+            <if test="citycode != null and citycode !=''">
+                and cityCode = #{citycode,jdbcType=VARCHAR}
+            </if>
+        </trim>
+	</select>
+    <!--查询版本信息 -->
+    <select id="queryBaseVersion" resultType="com.lantaiyuan.ebus.custom.model.BaseVersion">
+		select * from base_app_version
+		where  type = #{type,jdbcType=VARCHAR} 
+		and cityCode = #{cityCode,jdbcType=VARCHAR}
+		ORDER BY createTime DESC
+		limit 0,1
+	</select>
+	
+	<!--获取最新的版本信息 -->
+	<select id="getFinalVersion" resultType="com.lantaiyuan.ebus.custom.model.BaseVersion">
+		select * from base_app_version
+		ORDER BY createTime DESC
+		limit 0,1
+	</select>
+	
+</mapper>

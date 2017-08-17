@@ -1,0 +1,87 @@
+{"properties": [
+  {
+    "name": "kafka.bootstrap.servers",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.bootstrap.servers'"
+  },
+  {
+    "name": "kafka.session.timeout-ms",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.session.timeout-ms'"
+  },
+  {
+    "name": "kafka.auto-commit.enable",
+    "type": "java.lang.Boolean",
+    "description": "A description for 'kafka.auto-commit.enable'"
+  },
+  {
+    "name": "kafka.auto-commit.interval-ms",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.auto-commit.interval-ms'"
+  },
+  {
+    "name": "kafka.auto-offset.reset",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.offset.reset'"
+  },
+  {
+    "name": "kafka.group.id",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.group.id'"
+  },
+  {
+    "name": "kafka.topic.city-code",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.topic.city-code'"
+  },
+  {
+    "name": "kafka.topic.jpush",
+    "type": "java.lang.String",
+    "description": "The topic-value for 'kafka.topic.jpush'"
+  },
+  {
+    "name": "task.update-order-status2-invalid",
+    "type": "java.lang.String",
+    "description": "A description for 'task.update-order-status2-invalid'"
+  },
+  {
+    "name": "task.update-tickcet-status-before-now",
+    "type": "java.lang.String",
+    "description": "A description for 'task.update-tickcet-status-before-now'"
+  },
+  {
+    "name": "task.clear-the-data-of-already-alert",
+    "type": "java.lang.String",
+    "description": "A description for 'task.clear-the-data-of-already-alert'"
+  },
+  {
+    "name": "task.clear-the-data-in-leaving-car-alert",
+    "type": "java.lang.String",
+    "description": "A description for 'task.clear-the-data-in-leaving-car-alert'"
+  },
+  {
+    "name": "task.update-tickcet-status-next-month",
+    "type": "java.lang.String",
+    "description": "A description for 'task.update-tickcet-status-next-month'"
+  },
+  {
+    "name": "task.modify-tickcet-status-to-expired",
+    "type": "java.lang.String",
+    "description": "A description for 'task.modify-tickcet-status-to-expired'"
+  },
+  {
+    "name": "task.modify-un-paid-tickcet-order-status",
+    "type": "java.lang.String",
+    "description": "A description for 'task.modify-un-paid-tickcet-order-status'"
+  },
+  {
+    "name": "kafka.topic.jpush-topic",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.topic.jpush-topic'"
+  },
+  {
+    "name": "kafka.topic.od-topic",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.topic.od-topic'"
+  }
+]}

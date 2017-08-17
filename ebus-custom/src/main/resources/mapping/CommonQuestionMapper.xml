@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.CommonQuestionMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.CommonQuestion">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="question_type" jdbcType="TINYINT" property="questionType" />
+        <result column="question_title" jdbcType="VARCHAR" property="questionTitle" />
+        <result column="question_icon_url" jdbcType="VARCHAR" property="questionIconUrl" />
+        <result column="question_content" jdbcType="VARCHAR" property="questionContent" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, question_type, question_title, question_icon_url, question_content, gmt_create,
+        gmt_modified, city_code
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select
+        <include refid="Base_Column_List" />
+        from base_common_question
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_common_question
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.CommonQuestion">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_common_question (id, question_type, question_title,
+        question_icon_url, question_content, gmt_create,
+        gmt_modified, city_code)
+        values (#{id,jdbcType=INTEGER}, #{questionType,jdbcType=TINYINT}, #{questionTitle,jdbcType=VARCHAR},
+        #{questionIconUrl,jdbcType=VARCHAR}, #{questionContent,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
+        #{gmtModified,jdbcType=TIMESTAMP}, #{cityCode,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.CommonQuestion">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_common_question
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="questionType != null">
+                question_type,
+            </if>
+            <if test="questionTitle != null">
+                question_title,
+            </if>
+            <if test="questionIconUrl != null">
+                question_icon_url,
+            </if>
+            <if test="questionContent != null">
+                question_content,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="questionType != null">
+                #{questionType,jdbcType=TINYINT},
+            </if>
+            <if test="questionTitle != null">
+                #{questionTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="questionIconUrl != null">
+                #{questionIconUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="questionContent != null">
+                #{questionContent,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.CommonQuestion">
+        <!--
+        @mbggenerated
+        -->
+        update base_common_question
+        <set>
+            <if test="questionType != null">
+                question_type = #{questionType,jdbcType=TINYINT},
+            </if>
+            <if test="questionTitle != null">
+                question_title = #{questionTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="questionIconUrl != null">
+                question_icon_url = #{questionIconUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="questionContent != null">
+                question_content = #{questionContent,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.CommonQuestion">
+        <!--
+        @mbggenerated
+        -->
+        update base_common_question
+        set question_type = #{questionType,jdbcType=TINYINT},
+        question_title = #{questionTitle,jdbcType=VARCHAR},
+        question_icon_url = #{questionIconUrl,jdbcType=VARCHAR},
+        question_content = #{questionContent,jdbcType=VARCHAR},
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+        city_code = #{cityCode,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 查出所有的常见问题 -->
+    <select id="selectAll" resultMap="BaseResultMap">
+    	select 
+        <include refid="Base_Column_List" />
+        from base_common_question
+    </select>
+</mapper>

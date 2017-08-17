@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.CustomLineMapper">
+	<resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.CustomLine">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="routeId" property="routeid" jdbcType="VARCHAR" />
+		<result column="routeNo" property="routeno" jdbcType="VARCHAR" />
+		<result column="routeName" property="routename" jdbcType="VARCHAR" />
+		<result column="shortName" property="shortname" jdbcType="VARCHAR" />
+		<result column="distance" property="distance" jdbcType="DECIMAL" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="startWorkTime" property="startworktime"
+			jdbcType="VARCHAR" />
+		<result column="offWorkTime" property="offworktime" jdbcType="VARCHAR" />
+		<result column="startStation" property="startstation" jdbcType="VARCHAR" />
+		<result column="startLongitude" property="startlongitude"
+			jdbcType="DECIMAL" />
+		<result column="startLatitude" property="startlatitude"
+			jdbcType="DECIMAL" />
+		<result column="endStation" property="endstation" jdbcType="VARCHAR" />
+		<result column="endLongitude" property="endlongitude" jdbcType="DECIMAL" />
+		<result column="endLatitude" property="endlatitude" jdbcType="DECIMAL" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="cityCode" property="citycode" jdbcType="VARCHAR" />
+		<result column="applicantUserId" property="applicantuserid"
+			jdbcType="INTEGER" />
+		<result column="count" property="count" jdbcType="INTEGER" />
+		<result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id,routeId, routeNo, routeName, shortName, distance, price,
+		startWorkTime,
+		offWorkTime, startStation,
+		startLongitude, startLatitude,
+		endStation, endLongitude, endLatitude, status,
+		cityCode,
+		applicantUserId, count, createTime
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from base_custom_line
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		base_custom_line
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.CustomLine">
+		insert into base_custom_line
+		(id,routeId, routeNo, routeName,
+		shortName, distance, price,
+		startWorkTime,
+		offWorkTime, startStation,
+		startLongitude, startLatitude, endStation,
+		endLongitude, endLatitude, status,
+		cityCode, applicantUserId, count,
+		createTime)
+		values (#{id,jdbcType=VARCHAR},
+		#{routeid,jdbcType=VARCHAR},
+		#{routeno,jdbcType=VARCHAR},
+		#{routename,jdbcType=VARCHAR},
+		#{shortname,jdbcType=VARCHAR}, #{distance,jdbcType=DECIMAL},
+		#{price,jdbcType=DECIMAL},
+		#{startworktime,jdbcType=VARCHAR},
+		#{offworktime,jdbcType=VARCHAR},
+		#{startstation,jdbcType=VARCHAR},
+		#{startlongitude,jdbcType=DECIMAL}, #{startlatitude,jdbcType=DECIMAL},
+		#{endstation,jdbcType=VARCHAR},
+		#{endlongitude,jdbcType=DECIMAL},
+		#{endlatitude,jdbcType=DECIMAL},
+		#{status,jdbcType=INTEGER},
+		#{citycode,jdbcType=VARCHAR}, #{applicantuserid,jdbcType=INTEGER},
+		#{count,jdbcType=INTEGER},
+		#{createtime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.CustomLine">
+		insert into base_custom_line
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="routeid != null">
+				routeId,
+			</if>
+			<if test="routeno != null">
+				routeNo,
+			</if>
+			<if test="routename != null">
+				routeName,
+			</if>
+			<if test="shortname != null">
+				shortName,
+			</if>
+			<if test="distance != null">
+				distance,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="startworktime != null">
+				startWorkTime,
+			</if>
+			<if test="offworktime != null">
+				offWorkTime,
+			</if>
+			<if test="startstation != null">
+				startStation,
+			</if>
+			<if test="startlongitude != null">
+				startLongitude,
+			</if>
+			<if test="startlatitude != null">
+				startLatitude,
+			</if>
+			<if test="endstation != null">
+				endStation,
+			</if>
+			<if test="endlongitude != null">
+				endLongitude,
+			</if>
+			<if test="endlatitude != null">
+				endLatitude,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="citycode != null">
+				cityCode,
+			</if>
+			<if test="applicantuserid != null">
+				applicantUserId,
+			</if>
+			<if test="count != null">
+				count,
+			</if>
+			<if test="createtime != null">
+				createTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="routeid != null">
+				#{routeid,jdbcType=VARCHAR},
+			</if>
+			<if test="routeno != null">
+				#{routeno,jdbcType=VARCHAR},
+			</if>
+			<if test="routename != null">
+				#{routename,jdbcType=VARCHAR},
+			</if>
+			<if test="shortname != null">
+				#{shortname,jdbcType=VARCHAR},
+			</if>
+			<if test="distance != null">
+				#{distance,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="startworktime != null">
+				#{startworktime,jdbcType=VARCHAR},
+			</if>
+			<if test="offworktime != null">
+				#{offworktime,jdbcType=VARCHAR},
+			</if>
+			<if test="startstation != null">
+				#{startstation,jdbcType=VARCHAR},
+			</if>
+			<if test="startlongitude != null">
+				#{startlongitude,jdbcType=DECIMAL},
+			</if>
+			<if test="startlatitude != null">
+				#{startlatitude,jdbcType=DECIMAL},
+			</if>
+			<if test="endstation != null">
+				#{endstation,jdbcType=VARCHAR},
+			</if>
+			<if test="endlongitude != null">
+				#{endlongitude,jdbcType=DECIMAL},
+			</if>
+			<if test="endlatitude != null">
+				#{endlatitude,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="citycode != null">
+				#{citycode,jdbcType=VARCHAR},
+			</if>
+			<if test="applicantuserid != null">
+				#{applicantuserid,jdbcType=INTEGER},
+			</if>
+			<if test="count != null">
+				#{count,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.CustomLine">
+		update base_custom_line
+		<set>
+			<if test="routeno != null">
+				routeNo = #{routeno,jdbcType=VARCHAR},
+			</if>
+			<if test="routename != null">
+				routeName = #{routename,jdbcType=VARCHAR},
+			</if>
+			<if test="shortname != null">
+				shortName = #{shortname,jdbcType=VARCHAR},
+			</if>
+			<if test="distance != null">
+				distance = #{distance,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="startworktime != null">
+				startWorkTime = #{startworktime,jdbcType=VARCHAR},
+			</if>
+			<if test="offworktime != null">
+				offWorkTime = #{offworktime,jdbcType=VARCHAR},
+			</if>
+			<if test="startstation != null">
+				startStation = #{startstation,jdbcType=VARCHAR},
+			</if>
+			<if test="startlongitude != null">
+				startLongitude = #{startlongitude,jdbcType=DECIMAL},
+			</if>
+			<if test="startlatitude != null">
+				startLatitude = #{startlatitude,jdbcType=DECIMAL},
+			</if>
+			<if test="endstation != null">
+				endStation = #{endstation,jdbcType=VARCHAR},
+			</if>
+			<if test="endlongitude != null">
+				endLongitude = #{endlongitude,jdbcType=DECIMAL},
+			</if>
+			<if test="endlatitude != null">
+				endLatitude = #{endlatitude,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="citycode != null">
+				cityCode = #{citycode,jdbcType=VARCHAR},
+			</if>
+			<if test="applicantuserid != null">
+				applicantUserId = #{applicantuserid,jdbcType=INTEGER},
+			</if>
+			<if test="count != null">
+				count = #{count,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createTime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.CustomLine">
+		update
+		base_custom_line
+		set routeId = #{routeid,jdbcType=VARCHAR},
+		routeNo = #{routeno,jdbcType=VARCHAR},
+		routeName =
+		#{routename,jdbcType=VARCHAR},
+		shortName =
+		#{shortname,jdbcType=VARCHAR},
+		distance = #{distance,jdbcType=DECIMAL},
+		price = #{price,jdbcType=DECIMAL},
+		startWorkTime =
+		#{startworktime,jdbcType=VARCHAR},
+		offWorkTime =
+		#{offworktime,jdbcType=VARCHAR},
+		startStation =
+		#{startstation,jdbcType=VARCHAR},
+		startLongitude =
+		#{startlongitude,jdbcType=DECIMAL},
+		startLatitude =
+		#{startlatitude,jdbcType=DECIMAL},
+		endStation =
+		#{endstation,jdbcType=VARCHAR},
+		endLongitude =
+		#{endlongitude,jdbcType=DECIMAL},
+		endLatitude =
+		#{endlatitude,jdbcType=DECIMAL},
+		status = #{status,jdbcType=INTEGER},
+		cityCode = #{citycode,jdbcType=VARCHAR},
+		applicantUserId =
+		#{applicantuserid,jdbcType=INTEGER},
+		count = #{count,jdbcType=INTEGER},
+		createTime = #{createtime,jdbcType=TIMESTAMP}
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 自定 -->
+	<select id="findObjectsByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.CustomLineQueryModel">
+		select
+		<include refid="Base_Column_List" />
+		from base_custom_line
+		<trim prefix="WHERE" prefixOverrides="AND" suffixOverrides=",">
+			<if test="id != null">
+				id=#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="routeid != null">
+				routeNo=#{routeid,jdbcType=VARCHAR},
+			</if>
+			<if test="routeno != null">
+				routeNo=#{routeno,jdbcType=VARCHAR},
+			</if>
+			<if test="routename != null">
+				routeName=#{routename,jdbcType=VARCHAR},
+			</if>
+			<if test="shortname != null">
+				shortName=#{shortname,jdbcType=VARCHAR},
+			</if>
+			<if test="distance != null">
+				distance=#{distance,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				price=#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="startworktime != null">
+				startWorkTime=#{startworktime,jdbcType=VARCHAR},
+			</if>
+			<if test="offworktime != null">
+				offWorkTime=#{offworktime,jdbcType=VARCHAR},
+			</if>
+			<if test="startstation != null">
+				startStation=#{startstation,jdbcType=VARCHAR},
+			</if>
+			<if test="startlongitude != null">
+				startLongitude=#{startlongitude,jdbcType=DECIMAL},
+			</if>
+			<if test="startlatitude != null">
+				startLatitude#{startlatitude,jdbcType=DECIMAL},
+			</if>
+			<if test="endstation != null">
+				endStation=#{endstation,jdbcType=VARCHAR},
+			</if>
+			<if test="endlongitude != null">
+				endLongitude=#{endlongitude,jdbcType=DECIMAL},
+			</if>
+			<if test="endlatitude != null">
+				endLatitude=#{endlatitude,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				status=#{status,jdbcType=INTEGER},
+			</if>
+			<if test="citycode != null">
+				cityCode=#{citycode,jdbcType=VARCHAR},
+			</if>
+			<if test="applicantuserid != null">
+				applicantUserId=#{applicantuserid,jdbcType=INTEGER},
+			</if>
+			<if test="count != null">
+				count=#{count,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createTime=#{createtime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</select>
+	<!-- 自定义方法 -->
+	<select id="findObjectByIds" resultMap="BaseResultMap"
+		parameterType="map">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM base_custom_line
+		WHERE id IN
+		<foreach item="idItem" collection="ids" open="(" separator=","
+			close=")">
+			#{idItem}
+		</foreach>
+	</select>
+	<!-- 自定义方法 -->
+	<select id="findMayFocLine" resultMap="BaseResultMap"
+		parameterType="map">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM base_custom_line
+		WHERE id IN
+		<foreach item="idItem" collection="ids" open="(" separator=","
+			close=")">
+			#{idItem}
+		</foreach>
+		AND cityCode=#{citycode,jdbcType=VARCHAR}
+		AND status = 4
+	</select>
+	<!-- 自定义方法 -->
+	<select id="findAllCustomLine" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM base_custom_line
+	</select>
+
+	<select id="findCustomLineByStartAndDistinctPlace" parameterType="java.util.Map" resultMap="BaseResultMap">
+		<!-- SELECT 
+		<include refid="Base_Column_List" />
+		FROM base_custom_line WHERE id IN(
+				SELECT c.routeId from rel_custom_line_station c where c.routeId in (
+					SELECT b.id FROM base_custom_line b
+							INNER JOIN rel_custom_line_station r 
+							ON b.id = r.routeId where r.stationId in(
+									select id from (SELECT *,round(6378.138*2*asin(sqrt(pow(sin( (s.latitude*pi()/180-#{startlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(s.latitude*pi()/180)*cos(#{startlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (s.longitude*pi()/180-#{startlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) as distance FROM base_custom_station s ) t WHERE t.distance <![CDATA[<]]>500
+							)
+					)
+				and  c.stationId in (
+						select id from (SELECT *,round(6378.138*2*asin(sqrt(pow(sin( (s.latitude*pi()/180-#{endlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(s.latitude*pi()/180)*cos(#{endlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (s.longitude*pi()/180-#{endlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) as distance FROM base_custom_station s ) t WHERE t.distance <![CDATA[<]]>500
+				)
+		)
+		<if test="status != null">
+			status=#{status,jdbcType=INTEGER},
+		</if> -->
+		
+		
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM base_custom_line WHERE routeId IN(
+				SELECT c.routeId from rel_route_station c where c.routeId in (
+					SELECT b.routeId FROM base_custom_line b
+							INNER JOIN rel_route_station r 
+							ON b.routeId = r.routeId where r.stationId in(
+									select stationId from (SELECT *,round(6378.138*2*asin(sqrt(pow(sin( (s.latitude*pi()/180-#{startlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(s.latitude*pi()/180)*cos(#{startlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (s.longitude*pi()/180-#{startlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) as distance FROM base_station s ) t WHERE t.distance <![CDATA[<]]>1000
+							)
+					)
+				and  c.stationId in (
+						select stationId from (SELECT *,round(6378.138*2*asin(sqrt(pow(sin( (s.latitude*pi()/180-#{endlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(s.latitude*pi()/180)*cos(#{endlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (s.longitude*pi()/180-#{endlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) as distance FROM base_station s ) t WHERE t.distance <![CDATA[<]]>1000
+				)
+		)
+		<!--根据开通状态查 -->
+		<if test="status!=null  and  status!=5">
+			AND status=#{status,jdbcType=INTEGER}
+		</if>
+		<!--查未开通 ，要查询未开通（包含1-众筹中 2-待处理 3-不开通），直接排除4即可-->
+		<if test="status!=null  and  status==5">
+			AND status != 4
+		</if>
+		
+		<if test="citycode!=null">
+			AND cityCode = #{citycode,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<select id="findTempLineByStartAndDistinctPlace" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM base_custom_line b
+		where 1=1
+		and b.status=1
+		AND round(6378.138*2*asin(sqrt(pow(sin( (b.startlatitude*pi()/180-#{startlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(b.startlatitude*pi()/180)*cos(#{startlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (b.startlongitude*pi()/180-#{startlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) <![CDATA[<]]>1000
+		AND round(6378.138*2*asin(sqrt(pow(sin( (b.endlatitude*pi()/180-#{endlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(b.endlatitude*pi()/180)*cos(#{endlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (b.endlongitude*pi()/180-#{endlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) <![CDATA[<]]>1000
+		<!--根据开通状态查 -->
+		<if test="status!=null  and  status!=5">
+			AND status=#{status,jdbcType=INTEGER}
+		</if>
+		<!--查未开通 ，要查询未开通（包含1-众筹中 2-待处理 3-不开通），直接排除4即可-->
+		<if test="status!=null  and  status==5">
+			AND status != 4
+		</if>
+		
+		<if test="citycode!=null">
+			AND cityCode = #{citycode,jdbcType=VARCHAR}
+		</if>
+		
+		<!-- 	AND 正向查
+		(
+			round(6378.138*2*asin(sqrt(pow(sin( (b.startlatitude*pi()/180-#{startlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(b.startlatitude*pi()/180)*cos(#{startlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (b.startlongitude*pi()/180-#{startlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) <![CDATA[<]]>1000
+			AND
+			round(6378.138*2*asin(sqrt(pow(sin( (b.endlatitude*pi()/180-#{endlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(b.endlatitude*pi()/180)*cos(#{endlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (b.endlongitude*pi()/180-#{endlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) <![CDATA[<]]>1000
+		)
+		OR 反向查
+		(
+			round(6378.138*2*asin(sqrt(pow(sin( (b.endlatitude*pi()/180-#{startlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(b.endlatitude*pi()/180)*cos(#{startlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (b.endlongitude*pi()/180-#{startlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) <![CDATA[<]]>1000
+			AND
+			round(6378.138*2*asin(sqrt(pow(sin( (b.startlatitude*pi()/180-#{endlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(b.startlatitude*pi()/180)*cos(#{endlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (b.startlongitude*pi()/180-#{endlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) <![CDATA[<]]>1000
+		) -->
+		
+	</select>
+
+	<update id="updateLineStatus" parameterType="java.util.Map">
+		update base_custom_line
+		set status = #{status,jdbcType=INTEGER}
+		where id = #{lineid,jdbcType=VARCHAR}
+	</update>
+	
+	<!--查询当前用户是否有参与该路线-->
+	<select id="getApplicationCountByUserIdAndLineId" resultType="int"
+		parameterType="java.util.Map">
+		SELECT count(1) from base_custom_line_application 
+		where lineId = #{lineId,jdbcType=VARCHAR}
+		<if test="userId != null and userId !=''">
+			and userId = #{userId,jdbcType=INTEGER}
+		</if>
+	</select>
+	<!-- 自定义方法 -->
+	<select id="findCustomLineListByPage" 
+		resultType="com.lantaiyuan.ebus.custom.model.CustomLine"
+		parameterType="com.lantaiyuan.ebus.custom.model.CustomLineQueryModel">
+		select a.*,
+		(select count(1) from base_custom_line_application b where b.lineId = a.id) as currentcount  
+		from base_custom_line a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="id != null">
+				and id=#{id,jdbcType=VARCHAR} 
+			</if>
+			<if test="routeid != null">
+				and routeNo=#{routeid,jdbcType=VARCHAR} 
+			</if>
+			<if test="routeno != null">
+				and routeNo=#{routeno,jdbcType=VARCHAR} 
+			</if>
+			<if test="routename != null">
+				and routeName=#{routename,jdbcType=VARCHAR} 
+			</if>
+			<if test="shortname != null">
+				and shortName=#{shortname,jdbcType=VARCHAR} 
+			</if>
+			<if test="distance != null">
+				and distance=#{distance,jdbcType=DECIMAL} 
+			</if>
+			<if test="price != null">
+				and price=#{price,jdbcType=DECIMAL} 
+			</if>
+			<if test="startworktime != null">
+				and startWorkTime=#{startworktime,jdbcType=VARCHAR} 
+			</if>
+			<if test="offworktime != null">
+				and offWorkTime=#{offworktime,jdbcType=VARCHAR} 
+			</if>
+			<if test="startstation != null and startstation != ''">
+				and startStation like concat('%',concat(#{startstation,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="startlongitude != null">
+				and startLongitude=#{startlongitude,jdbcType=DECIMAL} 
+			</if>
+			<if test="startlatitude != null">
+				and startLatitude#{startlatitude,jdbcType=DECIMAL} 
+			</if>
+			<if test="endstation != null and endstation != ''">
+				and endStation like concat('%',concat(#{endstation,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="endlongitude != null">
+				and endLongitude=#{endlongitude,jdbcType=DECIMAL} 
+			</if>
+			<if test="endlatitude != null">
+				and endLatitude=#{endlatitude,jdbcType=DECIMAL} 
+			</if>
+			<if test="status != -1">
+				and status=#{status,jdbcType=INTEGER} 
+			</if>
+			<if test="citycode != -1">
+				and cityCode=#{citycode,jdbcType=VARCHAR} 
+			</if>
+			<if test="applicantuserid != null">
+				and applicantUserId=#{applicantuserid,jdbcType=INTEGER} 
+			</if>
+			<if test="count != null">
+				and count=#{count,jdbcType=INTEGER} 
+			</if>
+			<if test="createtime != null">
+				and createTime=#{createtime,jdbcType=TIMESTAMP} 
+			</if>
+		</trim>
+		order by createTime desc
+	</select>
+	<!-- 自定义方法 -->
+	<select id="findOrderByPage" resultType="com.lantaiyuan.ebus.custom.model.BookBus"
+		parameterType="com.lantaiyuan.ebus.custom.model.BookBusQueryModel">
+		select (concat(b.takeDate,concat(' ',b.takeTime))) as startTime,  
+		b.sourceLocation, b.targetLocation,d.amount as quotedPrice,d.payPerson,
+		d.payTime,d.orderNo,c.userName,d.createtime as orderTime,d.payType,d.orderStatus,d.orderDetailId,
+		d.orderPrice,e.phoneNo as contactphone from base_custom_line a  
+		left join base_bookticket b on(a.id=b.routeId) left join base_order_detail c 
+		on(b.orderDetailId=c.orderDetailId) 
+		left join base_order d on(c.orderDetailId=d.orderDetailId) 
+		left join base_user e on(c.userId = e.userId) 	
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="contactphone != null and contactphone != ''">
+				and e.phoneNo like concat('%',concat(#{contactphone,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="orderNo != null and orderNo != ''">
+				and d.orderNo like concat('%',concat(#{orderNo,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="citycode != -1">
+				and a.citycode = #{citycode,jdbcType=VARCHAR} 
+			</if>
+			<if test="orderStatus != -1">
+				and d.orderStatus = #{orderStatus,jdbcType=INTEGER} 
+			</if>
+			<if test="orderStatus == -1">
+				and d.orderStatus &lt;4		
+			</if>
+		</trim>
+		order by d.createtime desc
+	</select>
+	<!-- 自定义方法 -->
+	<select id="findVerifyOrderByPage" resultType="com.lantaiyuan.ebus.custom.model.BookBus"
+		parameterType="com.lantaiyuan.ebus.custom.model.BookBusQueryModel">
+		select (concat(b.takeDate,concat(' ',b.takeTime))) as startTime,  
+		b.sourceLocation, b.targetLocation,d.amount as quotedPrice,d.payPerson,
+		d.payTime,d.orderNo,c.userName,d.createtime as orderTime,d.payType,d.orderStatus,
+		d.orderDetailId,d.remark as refundRemark, 
+		d.orderPrice,e.phoneNo as contactphone from base_custom_line a  
+		left join base_bookticket b on(a.id=b.routeId) left join base_order_detail c 
+		on(b.orderDetailId=c.orderDetailId) 
+		left join base_order d on(c.orderDetailId=d.orderDetailId) 
+		left join base_user e on(c.userId = e.userId) 	
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="contactphone != null and contactphone != ''">
+				and e.phoneNo like concat('%',concat(#{contactphone,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="orderNo != null and orderNo != ''">
+				and d.orderNo like concat('%',concat(#{orderNo,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="citycode != -1">
+				and a.citycode = #{citycode,jdbcType=VARCHAR} 
+			</if>
+			<if test="orderStatus != -1">
+				and d.orderStatus = #{orderStatus,jdbcType=INTEGER} 
+			</if>
+			<if test="orderStatus == -1">
+				and d.orderStatus >=4		
+			</if>
+		</trim>
+		order by d.createtime desc
+	</select>
+	
+	<!-- 申请退款 start  -->
+	<!-- 自定义方法 -->
+	<update id="updateOrderApplyRefund">
+		update base_order set orderStatus = 4 , remark = #{remark,jdbcType=VARCHAR}
+		where orderNo = #{orderNo,jdbcType=VARCHAR} 
+	</update>
+	<!-- 自定义方法 -->
+	<update id="updateTicketApplyRefund" parameterType="java.lang.String">
+		update base_bookticket set ticketStatus = 0  
+		where orderDetailId = #{orderDetailId,jdbcType=VARCHAR} 
+	</update>
+	<!-- 申请退款 end -->
+	
+	<!-- 拒绝退款申请 start  -->
+	<!-- 自定义方法 -->
+	<update id="updateOrderRefuseRefund" parameterType="java.lang.String">
+		update base_order set orderStatus = 1 
+		where orderNo = #{orderNo,jdbcType=VARCHAR} 
+	</update>
+	<!-- 自定义方法 -->
+	<update id="updateTicketRefuseRefund" parameterType="java.lang.String">
+		update base_bookticket set ticketStatus = 1  
+		where orderDetailId = #{orderDetailId,jdbcType=VARCHAR} 
+	</update>
+	<!-- 拒绝退款申请 end  -->
+	
+	<!-- 同意退款申请 start  -->
+	<!-- 自定义方法 -->
+	<update id="updateOrderApproveRefund" parameterType="java.lang.String">
+		update base_order set orderStatus = 5 
+		where orderNo = #{orderNo,jdbcType=VARCHAR} 
+	</update>
+	<!-- 自定义方法 -->
+	<update id="updateTicketApproveRefund" parameterType="java.lang.String">
+		update base_bookticket set ticketStatus = 4  
+		where orderDetailId = #{orderDetailId,jdbcType=VARCHAR} 
+	</update>
+	<!-- 同意退款申请 end  -->
+	
+	
+	<!-- <select id="queryCustomLinIdByRouteId" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select id
+		from base_custom_line
+		where routeId = #{routeid,jdbcType=VARCHAR}
+	</select> -->
+	<!--查詢線路id  -->
+	<!-- 自定义方法 -->
+	<select id="queryCustomLinIdByRouteId" resultType="java.lang.String"
+		parameterType="java.util.Map">
+		select id
+		from base_custom_line
+		where routeId = #{routeId,jdbcType=VARCHAR}
+		and cityCode = #{cityCode,jdbcType=VARCHAR}
+	</select>
+	<!-- 自定义方法:根据专线Id查询参与人的Id -->
+	<select id="getPaticalUserIdByLineId" resultType="int">
+		select userId
+		from base_custom_line_application
+		where lineId = #{routeId,jdbcType=VARCHAR}
+	</select>
+	<!--  根据orderNo查询userId -->
+	<select id="queryUserIdByOrderNo" resultType="java.lang.String">
+		SELECT B.userId from base_order A,base_order_detail B WHERE A.orderDetailId = B.orderDetailId AND A.orderNo =
+		 #{orderNo,jdbcType=VARCHAR}
+	</select>
+	<!--  根据orderNo查询金額-->
+	<select id="queryAmountIdByOrderNo" resultType="java.lang.Float">
+		SELECT A.amount from base_order A WHERE  A.orderNo =
+		 #{orderNo,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 根据当前位置信息查询经过该位置的专线信息  status=4表示已开通-->
+	<select id="findCustomRoutesByCurrentPlace" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_custom_line
+		where 1=1
+		<if test="citycode != null  and citycode !=''">
+			and cityCode = #{citycode,jdbcType=VARCHAR}
+		</if>
+		AND status = 4
+		AND routeId IN(
+				SELECT c.routeId from rel_route_station c where c.routeId in (
+					SELECT b.routeId FROM base_custom_line b
+							INNER JOIN rel_route_station r 
+							ON b.routeId = r.routeId where r.stationId in(
+									select stationId from (SELECT *,round(6378.138*2*asin(sqrt(pow(sin( (s.latitude*pi()/180-#{startlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(s.latitude*pi()/180)*cos(#{startlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (s.longitude*pi()/180-#{startlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) as distance FROM base_station s ) t WHERE t.distance <![CDATA[<]]>1000
+							)
+					)
+		)
+	</select>
+</mapper>

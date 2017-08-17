@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.realtime.dao.GotoCarAlertSettingMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.realtime.model.GotoCarAlertSetting">
+        <!--
+        @mbggenerated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+        <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+        <result column="TAG" jdbcType="INTEGER" property="tag" />
+        <result column="ALERT_STRATEGY" jdbcType="INTEGER" property="alertStrategy" />
+        <result column="IS_REMIND" jdbcType="BIT" property="isRemind" />
+        <result column="IS_OPEN" jdbcType="BIT" property="isOpen" />
+        <result column="START_TIME" jdbcType="VARCHAR" property="startTime" />
+        <result column="END_TIME" jdbcType="VARCHAR" property="endTime" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        ID, USER_ID, CITY_CODE, TAG, ALERT_STRATEGY, IS_REMIND, IS_OPEN, START_TIME, END_TIME, 
+        CREATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from jpush_goto_car_alert_setting
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from jpush_goto_car_alert_setting
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.realtime.model.GotoCarAlertSetting">
+        <!--
+        @mbggenerated
+        -->
+        insert into jpush_goto_car_alert_setting (ID, USER_ID, CITY_CODE, 
+            TAG, ALERT_STRATEGY, IS_REMIND, 
+            IS_OPEN, START_TIME, END_TIME, 
+            CREATE_TIME)
+        values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{cityCode,jdbcType=VARCHAR}, 
+            #{tag,jdbcType=INTEGER}, #{alertStrategy,jdbcType=INTEGER}, #{isRemind,jdbcType=BIT}, 
+            #{isOpen,jdbcType=BIT}, #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, 
+            #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.realtime.model.GotoCarAlertSetting">
+        <!--
+        @mbggenerated
+        -->
+        insert into jpush_goto_car_alert_setting
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="cityCode != null">
+                CITY_CODE,
+            </if>
+            <if test="tag != null">
+                TAG,
+            </if>
+            <if test="alertStrategy != null">
+                ALERT_STRATEGY,
+            </if>
+            <if test="isRemind != null">
+                IS_REMIND,
+            </if>
+            <if test="isOpen != null">
+                IS_OPEN,
+            </if>
+            <if test="startTime != null">
+                START_TIME,
+            </if>
+            <if test="endTime != null">
+                END_TIME,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tag != null">
+                #{tag,jdbcType=INTEGER},
+            </if>
+            <if test="alertStrategy != null">
+                #{alertStrategy,jdbcType=INTEGER},
+            </if>
+            <if test="isRemind != null">
+                #{isRemind,jdbcType=BIT},
+            </if>
+            <if test="isOpen != null">
+                #{isOpen,jdbcType=BIT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=VARCHAR},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.realtime.model.GotoCarAlertSetting">
+        <!--
+        @mbggenerated
+        -->
+        update jpush_goto_car_alert_setting
+        <set>
+            <if test="userId != null">
+                USER_ID = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null">
+                CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tag != null">
+                TAG = #{tag,jdbcType=INTEGER},
+            </if>
+            <if test="alertStrategy != null">
+                ALERT_STRATEGY = #{alertStrategy,jdbcType=INTEGER},
+            </if>
+            <if test="isRemind != null">
+                IS_REMIND = #{isRemind,jdbcType=BIT},
+            </if>
+            <if test="isOpen != null">
+                IS_OPEN = #{isOpen,jdbcType=BIT},
+            </if>
+            <if test="startTime != null">
+                START_TIME = #{startTime,jdbcType=VARCHAR},
+            </if>
+            <if test="endTime != null">
+                END_TIME = #{endTime,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.realtime.model.GotoCarAlertSetting">
+        <!--
+        @mbggenerated
+        -->
+        update jpush_goto_car_alert_setting
+        set USER_ID = #{userId,jdbcType=INTEGER},
+            CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+            TAG = #{tag,jdbcType=INTEGER},
+            ALERT_STRATEGY = #{alertStrategy,jdbcType=INTEGER},
+            IS_REMIND = #{isRemind,jdbcType=BIT},
+            IS_OPEN = #{isOpen,jdbcType=BIT},
+            START_TIME = #{startTime,jdbcType=VARCHAR},
+            END_TIME = #{endTime,jdbcType=VARCHAR},
+            CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 自定义方法：条件查询实体信息 -->
+    <select id="selectByCondition" parameterType="com.lantaiyuan.ebus.realtime.model.GotoCarAlertSettingQueryModel" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from jpush_goto_car_alert_setting
+        <trim prefix="WHERE" prefixOverrides="AND" >
+        	<if test="id != null and id !=''">
+	            AND ID = #{id,jdbcType=VARCHAR}
+	        </if>
+	        <if test="userId != null and userId !=''">
+                AND USER_ID = #{userId,jdbcType=INTEGER}
+            </if>
+            <if test="cityCode != null and cityCode !=''">
+                AND CITY_CODE = #{cityCode,jdbcType=VARCHAR}
+            </if>
+            <if test="tag != null and tag !=''">
+                AND TAG = #{tag,jdbcType=INTEGER}
+            </if>
+            <if test="alertStrategy != null and alertStrategy !=''">
+                AND ALERT_STRATEGY = #{alertStrategy,jdbcType=INTEGER}
+            </if>
+            <if test="isRemind != null and isRemind !=''">
+                AND IS_REMIND = #{isRemind,jdbcType=BIT}
+            </if>
+            <if test="isOpen != null and isOpen !=''">
+                AND IS_OPEN = #{isOpen,jdbcType=BIT}
+            </if>
+            <if test="startTime != null and startTime !=''">
+                AND START_TIME = #{startTime,jdbcType=VARCHAR}
+            </if>
+            <if test="endTime != null and endTime !=''">
+                AND END_TIME = #{endTime,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null and createTime !=''">
+                AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </trim>
+        ORDER BY CREATE_TIME DESC limit 0,2
+    </select>
+    
+</mapper>

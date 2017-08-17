@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.CarpoolOrderMapper">
+	<resultMap id="BaseResultMap"
+		type="com.lantaiyuan.ebus.carpool.model.CarpoolOrder">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="match_id" jdbcType="CHAR" property="matchId" />
+		<result column="old_match_id" jdbcType="CHAR" property="oldMatchId" />
+		<result column="order_no" jdbcType="CHAR" property="orderNo" />
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="initial_start_place" jdbcType="VARCHAR"
+			property="initialStartPlace" />
+		<result column="initial_start_lon" jdbcType="DECIMAL" property="initialStartLon" />
+		<result column="initial_start_lat" jdbcType="DECIMAL" property="initialStartLat" />
+		<result column="initial_end_place" jdbcType="VARCHAR" property="initialEndPlace" />
+		<result column="initial_end_lon" jdbcType="DECIMAL" property="initialEndLon" />
+		<result column="initial_end_lat" jdbcType="DECIMAL" property="initialEndLat" />
+		<result column="initial_aboard_time" jdbcType="TIMESTAMP"
+			property="initialAboardTime" />
+		<result column="initial_price" jdbcType="DECIMAL" property="initialPrice" />
+		<result column="seats" jdbcType="TINYINT" property="seats" />
+		<result column="paid_price" jdbcType="DECIMAL" property="paidPrice" />
+		<result column="arrive_or_start_time" jdbcType="TIMESTAMP"
+			property="arriveOrStartTime" />
+		<result column="return_time" jdbcType="TIMESTAMP" property="returnTime" />
+		<result column="max_walk_distance" jdbcType="INTEGER" property="maxWalkDistance" />
+		<result column="earliest_start_time" jdbcType="TIMESTAMP"
+			property="earliestStartTime" />
+		<result column="latest_start_time" jdbcType="TIMESTAMP"
+			property="latestStartTime" />
+		<result column="is_regular" jdbcType="TINYINT" property="isRegular" />
+		<result column="regular_detail" jdbcType="TINYINT" property="regularDetail" />
+		<result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+		<result column="initial_line_type" jdbcType="TINYINT" property="initialLineType" />
+		<result column="real_start_place" jdbcType="VARCHAR" property="realStartPlace" />
+		<result column="real_start_lon" jdbcType="DECIMAL" property="realStartLon" />
+		<result column="real_start_lat" jdbcType="DECIMAL" property="realStartLat" />
+		<result column="real_end_place" jdbcType="VARCHAR" property="realEndPlace" />
+		<result column="real_end_lon" jdbcType="DECIMAL" property="realEndLon" />
+		<result column="real_end_lat" jdbcType="DECIMAL" property="realEndLat" />
+		<result column="expect_aboard_time" jdbcType="TIMESTAMP"
+			property="expectAboardTime" />
+		<result column="expect_off_bus_time" jdbcType="TIMESTAMP"
+			property="expectOffBusTime" />
+		<result column="real_price" jdbcType="DECIMAL" property="realPrice" />
+		<result column="match_times" jdbcType="INTEGER" property="matchTimes" />
+		<result column="real_line_type" jdbcType="TINYINT" property="realLineType" />
+		<result column="is_need_repay" jdbcType="TINYINT" property="isNeedRepay" />
+		<result column="need_repay_price" jdbcType="TINYINT" property="needRepayPrice" />
+		<result column="repay_order_no" jdbcType="CHAR" property="repayOrderNo" />
+		<result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+		<result column="status" jdbcType="TINYINT" property="status" />
+		<result column="match_status" jdbcType="TINYINT" property="matchStatus" />
+		<result column="send_status" jdbcType="TINYINT" property="sendStatus" />
+		<result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+		<result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+		<result column="field1" jdbcType="VARCHAR" property="field1" />
+		<result column="field2" jdbcType="VARCHAR" property="field2" />
+		<result column="field3" jdbcType="VARCHAR" property="field3" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		id, gmt_create, gmt_modified, user_id, match_id, old_match_id,
+		order_no, user_name,
+		initial_start_place, initial_start_lon,
+		initial_start_lat, initial_end_place, initial_end_lon,
+		initial_end_lat, initial_aboard_time, initial_price, seats,
+		paid_price, arrive_or_start_time,
+		return_time, max_walk_distance,
+		earliest_start_time, latest_start_time, is_regular,
+		regular_detail,
+		city_code, initial_line_type, real_start_place, real_start_lon,
+		real_start_lat,
+		real_end_place, real_end_lon, real_end_lat,
+		expect_aboard_time, expect_off_bus_time,
+		real_price, match_times,
+		real_line_type, is_need_repay, need_repay_price, repay_order_no,
+		apply_time, status, match_status, send_status, contact_name,
+		contact_phone, field1,
+		field2, field3
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from carpool_order
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		<!-- @mbggenerated -->
+		delete from carpool_order
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolOrder">
+		<!-- @mbggenerated -->
+		insert into carpool_order (id, gmt_create, gmt_modified,
+		user_id,
+		match_id, old_match_id,
+		order_no, user_name, initial_start_place,
+		initial_start_lon, initial_start_lat, initial_end_place,
+		initial_end_lon, initial_end_lat, initial_aboard_time,
+		initial_price,
+		seats, paid_price,
+		arrive_or_start_time, return_time,
+		max_walk_distance,
+		earliest_start_time, latest_start_time,
+		is_regular,
+		regular_detail, city_code,
+		initial_line_type, real_start_place,
+		real_start_lon,
+		real_start_lat, real_end_place, real_end_lon,
+		real_end_lat, expect_aboard_time, expect_off_bus_time,
+		real_price,
+		match_times, real_line_type,
+		is_need_repay, need_repay_price,
+		repay_order_no,
+		apply_time, status, match_status,
+		send_status,
+		contact_name, contact_phone,
+		field1, field2, field3
+		)
+		values
+		(#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{userId,jdbcType=INTEGER},
+		#{matchId,jdbcType=CHAR}, #{oldMatchId,jdbcType=CHAR},
+		#{orderNo,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR},
+		#{initialStartPlace,jdbcType=VARCHAR},
+		#{initialStartLon,jdbcType=DECIMAL},
+		#{initialStartLat,jdbcType=DECIMAL},
+		#{initialEndPlace,jdbcType=VARCHAR},
+		#{initialEndLon,jdbcType=DECIMAL}, #{initialEndLat,jdbcType=DECIMAL},
+		#{initialAboardTime,jdbcType=TIMESTAMP},
+		#{initialPrice,jdbcType=DECIMAL}, #{seats,jdbcType=TINYINT},
+		#{paidPrice,jdbcType=DECIMAL},
+		#{arriveOrStartTime,jdbcType=TIMESTAMP},
+		#{returnTime,jdbcType=TIMESTAMP}, #{maxWalkDistance,jdbcType=INTEGER},
+		#{earliestStartTime,jdbcType=TIMESTAMP},
+		#{latestStartTime,jdbcType=TIMESTAMP},
+		#{isRegular,jdbcType=TINYINT},
+		#{regularDetail,jdbcType=TINYINT}, #{cityCode,jdbcType=VARCHAR},
+		#{initialLineType,jdbcType=TINYINT},
+		#{realStartPlace,jdbcType=VARCHAR}, #{realStartLon,jdbcType=DECIMAL},
+		#{realStartLat,jdbcType=DECIMAL}, #{realEndPlace,jdbcType=VARCHAR},
+		#{realEndLon,jdbcType=DECIMAL},
+		#{realEndLat,jdbcType=DECIMAL},
+		#{expectAboardTime,jdbcType=TIMESTAMP},
+		#{expectOffBusTime,jdbcType=TIMESTAMP},
+		#{realPrice,jdbcType=DECIMAL},
+		#{matchTimes,jdbcType=INTEGER}, #{realLineType,jdbcType=TINYINT},
+		#{isNeedRepay,jdbcType=TINYINT}, #{needRepayPrice,jdbcType=TINYINT},
+		#{repayOrderNo,jdbcType=CHAR},
+		#{applyTime,jdbcType=TIMESTAMP},
+		#{status,jdbcType=TINYINT}, #{matchStatus,jdbcType=TINYINT},
+		#{sendStatus,jdbcType=TINYINT}, #{contactName,jdbcType=VARCHAR},
+		#{contactPhone,jdbcType=VARCHAR},
+		#{field1,jdbcType=VARCHAR},
+		#{field2,jdbcType=VARCHAR}, #{field3,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolOrder">
+		<!-- @mbggenerated -->
+		insert into carpool_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="matchId != null">
+				match_id,
+			</if>
+			<if test="oldMatchId != null">
+				old_match_id,
+			</if>
+			<if test="orderNo != null">
+				order_no,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="initialStartPlace != null">
+				initial_start_place,
+			</if>
+			<if test="initialStartLon != null">
+				initial_start_lon,
+			</if>
+			<if test="initialStartLat != null">
+				initial_start_lat,
+			</if>
+			<if test="initialEndPlace != null">
+				initial_end_place,
+			</if>
+			<if test="initialEndLon != null">
+				initial_end_lon,
+			</if>
+			<if test="initialEndLat != null">
+				initial_end_lat,
+			</if>
+			<if test="initialAboardTime != null">
+				initial_aboard_time,
+			</if>
+			<if test="initialPrice != null">
+				initial_price,
+			</if>
+			<if test="seats != null">
+				seats,
+			</if>
+			<if test="paidPrice != null">
+				paid_price,
+			</if>
+			<if test="arriveOrStartTime != null">
+				arrive_or_start_time,
+			</if>
+			<if test="returnTime != null">
+				return_time,
+			</if>
+			<if test="maxWalkDistance != null">
+				max_walk_distance,
+			</if>
+			<if test="earliestStartTime != null">
+				earliest_start_time,
+			</if>
+			<if test="latestStartTime != null">
+				latest_start_time,
+			</if>
+			<if test="isRegular != null">
+				is_regular,
+			</if>
+			<if test="regularDetail != null">
+				regular_detail,
+			</if>
+			<if test="cityCode != null">
+				city_code,
+			</if>
+			<if test="initialLineType != null">
+				initial_line_type,
+			</if>
+			<if test="realStartPlace != null">
+				real_start_place,
+			</if>
+			<if test="realStartLon != null">
+				real_start_lon,
+			</if>
+			<if test="realStartLat != null">
+				real_start_lat,
+			</if>
+			<if test="realEndPlace != null">
+				real_end_place,
+			</if>
+			<if test="realEndLon != null">
+				real_end_lon,
+			</if>
+			<if test="realEndLat != null">
+				real_end_lat,
+			</if>
+			<if test="expectAboardTime != null">
+				expect_aboard_time,
+			</if>
+			<if test="expectOffBusTime != null">
+				expect_off_bus_time,
+			</if>
+			<if test="realPrice != null">
+				real_price,
+			</if>
+			<if test="matchTimes != null">
+				match_times,
+			</if>
+			<if test="realLineType != null">
+				real_line_type,
+			</if>
+			<if test="isNeedRepay != null">
+				is_need_repay,
+			</if>
+			<if test="needRepayPrice != null">
+				need_repay_price,
+			</if>
+			<if test="repayOrderNo != null">
+				repay_order_no,
+			</if>
+			<if test="applyTime != null">
+				apply_time,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="matchStatus != null">
+				match_status,
+			</if>
+			<if test="sendStatus != null">
+				send_status,
+			</if>
+			<if test="contactName != null">
+				contact_name,
+			</if>
+			<if test="contactPhone != null">
+				contact_phone,
+			</if>
+			<if test="field1 != null">
+				field1,
+			</if>
+			<if test="field2 != null">
+				field2,
+			</if>
+			<if test="field3 != null">
+				field3,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="matchId != null">
+				#{matchId,jdbcType=CHAR},
+			</if>
+			<if test="oldMatchId != null">
+				#{oldMatchId,jdbcType=CHAR},
+			</if>
+			<if test="orderNo != null">
+				#{orderNo,jdbcType=CHAR},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="initialStartPlace != null">
+				#{initialStartPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="initialStartLon != null">
+				#{initialStartLon,jdbcType=DECIMAL},
+			</if>
+			<if test="initialStartLat != null">
+				#{initialStartLat,jdbcType=DECIMAL},
+			</if>
+			<if test="initialEndPlace != null">
+				#{initialEndPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="initialEndLon != null">
+				#{initialEndLon,jdbcType=DECIMAL},
+			</if>
+			<if test="initialEndLat != null">
+				#{initialEndLat,jdbcType=DECIMAL},
+			</if>
+			<if test="initialAboardTime != null">
+				#{initialAboardTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="initialPrice != null">
+				#{initialPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="seats != null">
+				#{seats,jdbcType=TINYINT},
+			</if>
+			<if test="paidPrice != null">
+				#{paidPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="arriveOrStartTime != null">
+				#{arriveOrStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="returnTime != null">
+				#{returnTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="maxWalkDistance != null">
+				#{maxWalkDistance,jdbcType=INTEGER},
+			</if>
+			<if test="earliestStartTime != null">
+				#{earliestStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="latestStartTime != null">
+				#{latestStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isRegular != null">
+				#{isRegular,jdbcType=TINYINT},
+			</if>
+			<if test="regularDetail != null">
+				#{regularDetail,jdbcType=TINYINT},
+			</if>
+			<if test="cityCode != null">
+				#{cityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="initialLineType != null">
+				#{initialLineType,jdbcType=TINYINT},
+			</if>
+			<if test="realStartPlace != null">
+				#{realStartPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="realStartLon != null">
+				#{realStartLon,jdbcType=DECIMAL},
+			</if>
+			<if test="realStartLat != null">
+				#{realStartLat,jdbcType=DECIMAL},
+			</if>
+			<if test="realEndPlace != null">
+				#{realEndPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="realEndLon != null">
+				#{realEndLon,jdbcType=DECIMAL},
+			</if>
+			<if test="realEndLat != null">
+				#{realEndLat,jdbcType=DECIMAL},
+			</if>
+			<if test="expectAboardTime != null">
+				#{expectAboardTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expectOffBusTime != null">
+				#{expectOffBusTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="realPrice != null">
+				#{realPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="matchTimes != null">
+				#{matchTimes,jdbcType=INTEGER},
+			</if>
+			<if test="realLineType != null">
+				#{realLineType,jdbcType=TINYINT},
+			</if>
+			<if test="isNeedRepay != null">
+				#{isNeedRepay,jdbcType=TINYINT},
+			</if>
+			<if test="needRepayPrice != null">
+				#{needRepayPrice,jdbcType=TINYINT},
+			</if>
+			<if test="repayOrderNo != null">
+				#{repayOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="applyTime != null">
+				#{applyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="matchStatus != null">
+				#{matchStatus,jdbcType=TINYINT},
+			</if>
+			<if test="sendStatus != null">
+				#{sendStatus,jdbcType=TINYINT},
+			</if>
+			<if test="contactName != null">
+				#{contactName,jdbcType=VARCHAR},
+			</if>
+			<if test="contactPhone != null">
+				#{contactPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="field1 != null">
+				#{field1,jdbcType=VARCHAR},
+			</if>
+			<if test="field2 != null">
+				#{field2,jdbcType=VARCHAR},
+			</if>
+			<if test="field3 != null">
+				#{field3,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolOrder">
+		<!-- @mbggenerated -->
+		update carpool_order
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="matchId != null">
+				match_id = #{matchId,jdbcType=CHAR},
+			</if>
+			<if test="oldMatchId != null">
+				old_match_id = #{oldMatchId,jdbcType=CHAR},
+			</if>
+			<if test="orderNo != null">
+				order_no = #{orderNo,jdbcType=CHAR},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="initialStartPlace != null">
+				initial_start_place =
+				#{initialStartPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="initialStartLon != null">
+				initial_start_lon = #{initialStartLon,jdbcType=DECIMAL},
+			</if>
+			<if test="initialStartLat != null">
+				initial_start_lat = #{initialStartLat,jdbcType=DECIMAL},
+			</if>
+			<if test="initialEndPlace != null">
+				initial_end_place = #{initialEndPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="initialEndLon != null">
+				initial_end_lon = #{initialEndLon,jdbcType=DECIMAL},
+			</if>
+			<if test="initialEndLat != null">
+				initial_end_lat = #{initialEndLat,jdbcType=DECIMAL},
+			</if>
+			<if test="initialAboardTime != null">
+				initial_aboard_time =
+				#{initialAboardTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="initialPrice != null">
+				initial_price = #{initialPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="seats != null">
+				seats = #{seats,jdbcType=TINYINT},
+			</if>
+			<if test="paidPrice != null">
+				paid_price = #{paidPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="arriveOrStartTime != null">
+				arrive_or_start_time =
+				#{arriveOrStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="returnTime != null">
+				return_time = #{returnTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="maxWalkDistance != null">
+				max_walk_distance = #{maxWalkDistance,jdbcType=INTEGER},
+			</if>
+			<if test="earliestStartTime != null">
+				earliest_start_time =
+				#{earliestStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="latestStartTime != null">
+				latest_start_time =
+				#{latestStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isRegular != null">
+				is_regular = #{isRegular,jdbcType=TINYINT},
+			</if>
+			<if test="regularDetail != null">
+				regular_detail = #{regularDetail,jdbcType=TINYINT},
+			</if>
+			<if test="cityCode != null">
+				city_code = #{cityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="initialLineType != null">
+				initial_line_type = #{initialLineType,jdbcType=TINYINT},
+			</if>
+			<if test="realStartPlace != null">
+				real_start_place = #{realStartPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="realStartLon != null">
+				real_start_lon = #{realStartLon,jdbcType=DECIMAL},
+			</if>
+			<if test="realStartLat != null">
+				real_start_lat = #{realStartLat,jdbcType=DECIMAL},
+			</if>
+			<if test="realEndPlace != null">
+				real_end_place = #{realEndPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="realEndLon != null">
+				real_end_lon = #{realEndLon,jdbcType=DECIMAL},
+			</if>
+			<if test="realEndLat != null">
+				real_end_lat = #{realEndLat,jdbcType=DECIMAL},
+			</if>
+			<if test="expectAboardTime != null">
+				expect_aboard_time =
+				#{expectAboardTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expectOffBusTime != null">
+				expect_off_bus_time =
+				#{expectOffBusTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="realPrice != null">
+				real_price = #{realPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="matchTimes != null">
+				match_times = #{matchTimes,jdbcType=INTEGER},
+			</if>
+			<if test="realLineType != null">
+				real_line_type = #{realLineType,jdbcType=TINYINT},
+			</if>
+			<if test="isNeedRepay != null">
+				is_need_repay = #{isNeedRepay,jdbcType=TINYINT},
+			</if>
+			<if test="needRepayPrice != null">
+				need_repay_price = #{needRepayPrice,jdbcType=TINYINT},
+			</if>
+			<if test="repayOrderNo != null">
+				repay_order_no = #{repayOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="applyTime != null">
+				apply_time = #{applyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="matchStatus != null">
+				match_status = #{matchStatus,jdbcType=TINYINT},
+			</if>
+			<if test="sendStatus != null">
+				send_status = #{sendStatus,jdbcType=TINYINT},
+			</if>
+			<if test="contactName != null">
+				contact_name = #{contactName,jdbcType=VARCHAR},
+			</if>
+			<if test="contactPhone != null">
+				contact_phone = #{contactPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="field1 != null">
+				field1 = #{field1,jdbcType=VARCHAR},
+			</if>
+			<if test="field2 != null">
+				field2 = #{field2,jdbcType=VARCHAR},
+			</if>
+			<if test="field3 != null">
+				field3 = #{field3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolOrder">
+		<!-- @mbggenerated -->
+		update carpool_order
+		set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+		user_id =
+		#{userId,jdbcType=INTEGER},
+		match_id = #{matchId,jdbcType=CHAR},
+		old_match_id = #{oldMatchId,jdbcType=CHAR},
+		order_no =
+		#{orderNo,jdbcType=CHAR},
+		user_name = #{userName,jdbcType=VARCHAR},
+		initial_start_place = #{initialStartPlace,jdbcType=VARCHAR},
+		initial_start_lon = #{initialStartLon,jdbcType=DECIMAL},
+		initial_start_lat = #{initialStartLat,jdbcType=DECIMAL},
+		initial_end_place = #{initialEndPlace,jdbcType=VARCHAR},
+		initial_end_lon = #{initialEndLon,jdbcType=DECIMAL},
+		initial_end_lat =
+		#{initialEndLat,jdbcType=DECIMAL},
+		initial_aboard_time =
+		#{initialAboardTime,jdbcType=TIMESTAMP},
+		initial_price =
+		#{initialPrice,jdbcType=DECIMAL},
+		seats = #{seats,jdbcType=TINYINT},
+		paid_price = #{paidPrice,jdbcType=DECIMAL},
+		arrive_or_start_time =
+		#{arriveOrStartTime,jdbcType=TIMESTAMP},
+		return_time =
+		#{returnTime,jdbcType=TIMESTAMP},
+		max_walk_distance =
+		#{maxWalkDistance,jdbcType=INTEGER},
+		earliest_start_time =
+		#{earliestStartTime,jdbcType=TIMESTAMP},
+		latest_start_time =
+		#{latestStartTime,jdbcType=TIMESTAMP},
+		is_regular =
+		#{isRegular,jdbcType=TINYINT},
+		regular_detail =
+		#{regularDetail,jdbcType=TINYINT},
+		city_code =
+		#{cityCode,jdbcType=VARCHAR},
+		initial_line_type =
+		#{initialLineType,jdbcType=TINYINT},
+		real_start_place =
+		#{realStartPlace,jdbcType=VARCHAR},
+		real_start_lon =
+		#{realStartLon,jdbcType=DECIMAL},
+		real_start_lat =
+		#{realStartLat,jdbcType=DECIMAL},
+		real_end_place =
+		#{realEndPlace,jdbcType=VARCHAR},
+		real_end_lon =
+		#{realEndLon,jdbcType=DECIMAL},
+		real_end_lat =
+		#{realEndLat,jdbcType=DECIMAL},
+		expect_aboard_time =
+		#{expectAboardTime,jdbcType=TIMESTAMP},
+		expect_off_bus_time =
+		#{expectOffBusTime,jdbcType=TIMESTAMP},
+		real_price =
+		#{realPrice,jdbcType=DECIMAL},
+		match_times =
+		#{matchTimes,jdbcType=INTEGER},
+		real_line_type =
+		#{realLineType,jdbcType=TINYINT},
+		is_need_repay =
+		#{isNeedRepay,jdbcType=TINYINT},
+		need_repay_price =
+		#{needRepayPrice,jdbcType=TINYINT},
+		repay_order_no =
+		#{repayOrderNo,jdbcType=CHAR},
+		apply_time =
+		#{applyTime,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=TINYINT},
+		match_status = #{matchStatus,jdbcType=TINYINT},
+		send_status =
+		#{sendStatus,jdbcType=TINYINT},
+		contact_name =
+		#{contactName,jdbcType=VARCHAR},
+		contact_phone =
+		#{contactPhone,jdbcType=VARCHAR},
+		field1 = #{field1,jdbcType=VARCHAR},
+		field2 = #{field2,jdbcType=VARCHAR},
+		field3 =
+		#{field3,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<!-- 以下为自定义 -->
+	<!-- 根据orderNo更新字段(selective) -->
+	<update id="updateByOrderNoSelective" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolOrder">
+		update carpool_order
+		<set>
+			<if test="matchId != null">
+				match_id = #{matchId,jdbcType=CHAR},
+			</if>
+			<if test="oldMatchId != null">
+				old_match_id = #{oldMatchId,jdbcType=CHAR},
+			</if>
+			<if test="realStartPlace != null">
+				real_start_place = #{realStartPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="realStartLon != null">
+				real_start_lon = #{realStartLon,jdbcType=DECIMAL},
+			</if>
+			<if test="realStartLat != null">
+				real_start_lat = #{realStartLat,jdbcType=DECIMAL},
+			</if>
+			<if test="realEndPlace != null">
+				real_end_place = #{realEndPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="realEndLon != null">
+				real_end_lon = #{realEndLon,jdbcType=DECIMAL},
+			</if>
+			<if test="realEndLat != null">
+				real_end_lat = #{realEndLat,jdbcType=DECIMAL},
+			</if>
+			<if test="expectAboardTime != null">
+				expect_aboard_time =
+				#{expectAboardTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expectOffBusTime != null">
+				expect_off_bus_time =
+				#{expectOffBusTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="realPrice != null">
+				real_price = #{realPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="matchTimes != null">
+				match_times = #{matchTimes,jdbcType=INTEGER},
+			</if>
+			<if test="realLineType != null">
+				real_line_type = #{realLineType,jdbcType=TINYINT},
+			</if>
+			<if test="isNeedRepay != null">
+				is_need_repay = #{isNeedRepay,jdbcType=TINYINT},
+			</if>
+			<if test="needRepayPrice != null">
+				need_repay_price = #{needRepayPrice,jdbcType=TINYINT},
+			</if>
+			<if test="repayOrderNo != null">
+				repay_order_no = #{repayOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="matchStatus != null">
+				match_status = #{matchStatus,jdbcType=TINYINT},
+			</if>
+			<if test="sendStatus != null">
+				send_status = #{sendStatus,jdbcType=TINYINT},
+			</if>
+			<if test="contactName != null">
+				contact_name = #{contactName,jdbcType=VARCHAR},
+			</if>
+			<if test="contactPhone != null">
+				contact_phone = #{contactPhone,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where order_no = #{orderNo,jdbcType=CHAR}
+	</update>
+
+	<!-- 自定义列 -->
+	<sql id="Carpool_Order_Column_List">
+		<!-- @mbggenerated -->
+
+		carpool_order.id as carpoolOrderId, carpool_order.user_id,
+		carpool_order.match_id as carpoolOrderMatchId,
+		carpool_order.old_match_id as carpoolOrderOldMatchId,
+		carpool_order.order_no, carpool_order.user_name,
+		carpool_order.initial_start_place, carpool_order.initial_start_lon,
+		carpool_order.initial_start_lat,
+		carpool_order.initial_end_place,
+		carpool_order.initial_end_lon,carpool_order.initial_end_lat,
+		carpool_order.initial_aboard_time, carpool_order.initial_price,
+		carpool_order.seats, carpool_order.paid_price,
+		carpool_order.arrive_or_start_time,carpool_order.return_time,
+		carpool_order.max_walk_distance,
+		carpool_order.earliest_start_time,
+		carpool_order.latest_start_time, carpool_order.is_regular,
+		carpool_order.regular_detail, carpool_order.city_code,
+		carpool_order.initial_line_type,
+		carpool_order.real_start_place,
+		carpool_order.real_start_lon, carpool_order.real_start_lat,
+		carpool_order.real_end_place, carpool_order.real_end_lon,
+		carpool_order.real_end_lat,
+		carpool_order.expect_aboard_time,
+		carpool_order.expect_off_bus_time,
+		carpool_order.real_price,
+		carpool_order.match_times, carpool_order.real_line_type,
+		carpool_order.is_need_repay, carpool_order.need_repay_price,
+		carpool_order.repay_order_no,
+		carpool_order.apply_time,
+		carpool_order.status, carpool_order.match_status,
+		carpool_order.send_status,
+		carpool_order.contact_name,
+		carpool_order.contact_phone
+	</sql>
+
+	<!-- 自定义列 -->
+	<sql id="Carpool_Match_Column_List">
+		<!-- @mbggenerated -->
+		carpool_match.id as carpoolMatchId,
+		carpool_match.match_status as
+		carpoolMatchMatchStatus, carpool_match.match_persons,
+		carpool_match.required_persons,carpool_match.depart_bus_seats,
+		carpool_match.depart_time, carpool_match.dynamic_msg,
+		carpool_match.match_expect_time,
+		carpool_match.carpool_route_id,
+		carpool_match.vehicle_id, carpool_match.bus_plate_number,
+		carpool_match.depart_bus_type, carpool_match.driver_id,
+		carpool_match.driver_name,
+		carpool_match.driver_phone_no,
+		carpool_match.driver_judgement
+	</sql>
+
+	<!-- 自定义resultMap -->
+	<resultMap type="com.lantaiyuan.ebus.custom.model.carpool.CarpoolDetail"
+		id="CarpoolDetailMap">
+		<id column="carpoolOrderId" jdbcType="BIGINT" property="id" />
+		<result column="carpool_route_name" jdbcType="VARCHAR" property="carpoolRouteName" />
+		<association property="carpoolOrder" column="carpool_order.id"
+			javaType="com.lantaiyuan.ebus.carpool.model.CarpoolOrder">
+			<id column="carpoolOrderId" jdbcType="BIGINT" property="id" />
+			<result column="user_id" jdbcType="INTEGER" property="userId" />
+			<result column="carpoolOrderMatchId" jdbcType="CHAR" property="matchId" />
+			<result column="carpoolOrderOldMatchId" jdbcType="CHAR"
+				property="oldMatchId" />
+			<result column="order_no" jdbcType="CHAR" property="orderNo" />
+			<result column="user_name" jdbcType="VARCHAR" property="userName" />
+			<result column="initial_start_place" jdbcType="VARCHAR"
+				property="initialStartPlace" />
+			<result column="initial_start_lon" jdbcType="DECIMAL"
+				property="initialStartLon" />
+			<result column="initial_start_lat" jdbcType="DECIMAL"
+				property="initialStartLat" />
+			<result column="initial_end_place" jdbcType="VARCHAR"
+				property="initialEndPlace" />
+			<result column="initial_end_lon" jdbcType="DECIMAL" property="initialEndLon" />
+			<result column="initial_end_lat" jdbcType="DECIMAL" property="initialEndLat" />
+			<result column="initial_aboard_time" jdbcType="TIMESTAMP"
+				property="initialAboardTime" />
+			<result column="initial_price" jdbcType="DECIMAL" property="initialPrice" />
+			<result column="seats" jdbcType="TINYINT" property="seats" />
+			<result column="paid_price" jdbcType="DECIMAL" property="paidPrice" />
+			<result column="arrive_or_start_time" jdbcType="TIMESTAMP"
+				property="arriveOrStartTime" />
+			<result column="return_time" jdbcType="TIMESTAMP" property="returnTime" />
+			<result column="max_walk_distance" jdbcType="INTEGER"
+				property="maxWalkDistance" />
+			<result column="earliest_start_time" jdbcType="TIMESTAMP"
+				property="earliestStartTime" />
+			<result column="latest_start_time" jdbcType="TIMESTAMP"
+				property="latestStartTime" />
+			<result column="is_regular" jdbcType="TINYINT" property="isRegular" />
+			<result column="regular_detail" jdbcType="TINYINT" property="regularDetail" />
+			<result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+			<result column="initial_line_type" jdbcType="TINYINT"
+				property="initialLineType" />
+			<result column="real_start_place" jdbcType="VARCHAR" property="realStartPlace" />
+			<result column="real_start_lon" jdbcType="DECIMAL" property="realStartLon" />
+			<result column="real_start_lat" jdbcType="DECIMAL" property="realStartLat" />
+			<result column="real_end_place" jdbcType="VARCHAR" property="realEndPlace" />
+			<result column="real_end_lon" jdbcType="DECIMAL" property="realEndLon" />
+			<result column="real_end_lat" jdbcType="DECIMAL" property="realEndLat" />
+			<result column="expect_aboard_time" jdbcType="TIMESTAMP"
+				property="expectAboardTime" />
+			<result column="expect_off_bus_time" jdbcType="TIMESTAMP"
+				property="expectOffBusTime" />
+			<result column="real_price" jdbcType="DECIMAL" property="realPrice" />
+			<result column="match_times" jdbcType="INTEGER" property="matchTimes" />
+			<result column="real_line_type" jdbcType="TINYINT" property="realLineType" />
+			<result column="is_need_repay" jdbcType="TINYINT" property="isNeedRepay" />
+			<result column="need_repay_price" jdbcType="TINYINT" property="needRepayPrice" />
+			<result column="repay_order_no" jdbcType="CHAR" property="repayOrderNo" />
+			<result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+			<result column="status" jdbcType="TINYINT" property="status" />
+			<result column="match_status" jdbcType="TINYINT" property="matchStatus" />
+			<result column="send_status" jdbcType="TINYINT" property="sendStatus" />
+			<result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+			<result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+		</association>
+		<association property="carpoolMatch" column="carpool_match.id"
+			javaType="com.lantaiyuan.ebus.carpool.model.CarpoolMatch">
+			<id column="carpoolMatchId" jdbcType="BIGINT" property="id" />
+			<result column="carpoolMatchMatchStatus" jdbcType="TINYINT"
+				property="matchStatus" />
+			<result column="match_persons" jdbcType="TINYINT" property="matchPersons" />
+			<result column="required_persons" jdbcType="TINYINT" property="requiredPersons" />
+			<result column="depart_bus_seats" jdbcType="TINYINT" property="departBusSeats" />
+			<result column="depart_time" jdbcType="TIMESTAMP" property="departTime" />
+			<result column="dynamic_msg" jdbcType="VARCHAR" property="dynamicMsg" />
+			<result column="match_expect_time" jdbcType="INTEGER"
+				property="matchExpectTime" />
+			<result column="carpool_route_id" jdbcType="CHAR" property="carpoolRouteId" />
+			<result column="vehicle_id" jdbcType="VARCHAR" property="vehicleId" />
+			<result column="bus_plate_number" jdbcType="VARCHAR" property="busPlateNumber" />
+			<result column="depart_bus_type" jdbcType="INTEGER" property="departBusType" />
+			<result column="driver_id" jdbcType="VARCHAR" property="driverId" />
+			<result column="driver_name" jdbcType="VARCHAR" property="driverName" />
+			<result column="driver_phone_no" jdbcType="VARCHAR" property="driverPhoneNo" />
+			<result column="driver_judgement" jdbcType="VARCHAR" property="driverJudgement" />
+		</association>
+	</resultMap>
+
+	<!-- 自定义 根据订单号查询用户提交的拼车信息和最新拼车动态 -->
+	<select id="selectOrderAndMatchByOrderNo" parameterType="java.lang.String"
+		resultMap="CarpoolDetailMap">
+		select
+		<include refid="Carpool_Order_Column_List" />
+		,
+		<include refid="Carpool_Match_Column_List" />
+		, carpool_route_name 
+		from carpool_order
+		left join carpool_match on(carpool_order.match_id
+		=carpool_match.match_id)
+		left join carpool_route on(carpool_match.carpool_route_id = carpool_route.carpool_route_id)
+		where carpool_order.order_no =
+		#{orderNo,jdbcType=CHAR}
+	</select>
+
+	<!--后台web 自定义：根据城市ID和撮合ID查询预约拼车人的基本情况 -->
+	<select id="findMatchPersonByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolOrderQueryModel">
+		SELECT * FROM carpool_order 
+		where 1 =1
+		<if test="matchId != null and matchId != ''">
+			and match_id = #{matchId,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != -1">
+			and city_code=#{cityCode,jdbcType=VARCHAR}
+		</if>
+		order by id ASC
+	</select>
+
+	<!-- 自定义：carPoolOrderResultMap By YvanTan -->
+	<resultMap id="carPoolOrderResultMap"
+		type="com.lantaiyuan.ebus.custom.model.carpool.CarpoolOrderResult">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="match_id" jdbcType="CHAR" property="matchId" />
+		<result column="old_match_id" jdbcType="CHAR" property="oldMatchId" />
+		<result column="order_no" jdbcType="CHAR" property="orderNo" />
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="initial_start_place" jdbcType="VARCHAR"
+			property="initialStartPlace" />
+		<result column="initial_start_lon" jdbcType="DECIMAL" property="initialStartLon" />
+		<result column="initial_start_lat" jdbcType="DECIMAL" property="initialStartLat" />
+		<result column="initial_end_place" jdbcType="VARCHAR" property="initialEndPlace" />
+		<result column="initial_end_lon" jdbcType="DECIMAL" property="initialEndLon" />
+		<result column="initial_end_lat" jdbcType="DECIMAL" property="initialEndLat" />
+		<result column="initial_aboard_time" jdbcType="TIMESTAMP"
+			property="initialAboardTime" />
+		<result column="initial_price" jdbcType="DECIMAL" property="initialPrice" />
+		<result column="seats" jdbcType="TINYINT" property="seats" />
+		<result column="paid_price" jdbcType="DECIMAL" property="paidPrice" />
+		<result column="arrive_or_start_time" jdbcType="TIMESTAMP"
+			property="arriveOrStartTime" />
+		<result column="return_time" jdbcType="TIMESTAMP" property="returnTime" />
+		<result column="max_walk_distance" jdbcType="INTEGER" property="maxWalkDistance" />
+		<result column="earliest_start_time" jdbcType="TIMESTAMP"
+			property="earliestStartTime" />
+		<result column="latest_start_time" jdbcType="TIMESTAMP"
+			property="latestStartTime" />
+		<result column="is_regular" jdbcType="TINYINT" property="isRegular" />
+		<result column="regular_detail" jdbcType="TINYINT" property="regularDetail" />
+		<result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+		<result column="initial_line_type" jdbcType="TINYINT" property="initialLineType" />
+		<result column="real_start_place" jdbcType="VARCHAR" property="realStartPlace" />
+		<result column="real_start_lon" jdbcType="DECIMAL" property="realStartLon" />
+		<result column="real_start_lat" jdbcType="DECIMAL" property="realStartLat" />
+		<result column="real_end_place" jdbcType="VARCHAR" property="realEndPlace" />
+		<result column="real_end_lon" jdbcType="DECIMAL" property="realEndLon" />
+		<result column="real_end_lat" jdbcType="DECIMAL" property="realEndLat" />
+		<result column="expect_aboard_time" jdbcType="TIMESTAMP"
+			property="expectAboardTime" />
+		<result column="expect_off_bus_time" jdbcType="TIMESTAMP"
+			property="expectOffBusTime" />
+		<result column="real_price" jdbcType="DECIMAL" property="realPrice" />
+		<result column="match_times" jdbcType="INTEGER" property="matchTimes" />
+		<result column="real_line_type" jdbcType="TINYINT" property="realLineType" />
+		<result column="is_need_repay" jdbcType="TINYINT" property="isNeedRepay" />
+		<result column="need_repay_price" jdbcType="TINYINT" property="needRepayPrice" />
+		<result column="repay_order_no" jdbcType="CHAR" property="repayOrderNo" />
+		<result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+		<result column="status" jdbcType="TINYINT" property="status" />
+		<result column="match_status" jdbcType="TINYINT" property="matchStatus" />
+		<result column="send_status" jdbcType="TINYINT" property="sendStatus" />
+		<result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+		<result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+		<result column="field1" jdbcType="VARCHAR" property="field1" />
+		<result column="field2" jdbcType="VARCHAR" property="field2" />
+		<result column="field3" jdbcType="VARCHAR" property="field3" />
+		<result column="match_persons" jdbcType="TINYINT" property="matchPersons" />
+		<result column="required_persons" jdbcType="TINYINT" property="requiredPersons" />
+		<result column="depart_bus_seats" jdbcType="TINYINT" property="departBusSeats" />
+		<result column="depart_time" jdbcType="TIMESTAMP" property="departTime" />
+		<result column="dynamic_msg" jdbcType="VARCHAR" property="dynamicMsg" />
+		<result column="match_expect_time" jdbcType="INTEGER" property="matchExpectTime" />
+		<result column="carpool_route_id" jdbcType="CHAR" property="carpoolRouteId" />
+		<result column="vehicle_id" jdbcType="VARCHAR" property="vehicleId" />
+		<result column="bus_plate_number" jdbcType="VARCHAR" property="busPlateNumber" />
+		<result column="depart_bus_type" jdbcType="INTEGER" property="departBusType" />
+		<result column="driver_id" jdbcType="VARCHAR" property="driverId" />
+		<result column="driver_name" jdbcType="VARCHAR" property="driverName" />
+		<result column="driver_phone_no" jdbcType="VARCHAR" property="driverPhoneNo" />
+		<result column="driver_judgement" jdbcType="VARCHAR" property="driverJudgement" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+
+	<!--自定义：查询我的拼车订单列表 -->
+	<select id="queryCarPoolOrderList" parameterType="java.lang.String"
+		resultMap="carPoolOrderResultMap">
+		SELECT
+		O.*, M.*, O.gmt_create AS createTime
+		FROM
+		carpool_order O
+		LEFT JOIN carpool_match M ON O.match_id = M.match_id
+		WHERE
+		O.user_id = #{userId,jdbcType=VARCHAR}
+		AND O.city_code = #{cityCode,jdbcType=VARCHAR}
+		ORDER BY
+		O.apply_time DESC
+	</select>
+	<!--自定义：修改拼车订单支付状态 -->
+	<update id="updateStatusToPaid" parameterType="java.lang.String">
+		UPDATE carpool_order SET status = 1,match_status = 1 WHERE order_no = #{orderno,jdbcType=VARCHAR}
+	</update>
+</mapper>

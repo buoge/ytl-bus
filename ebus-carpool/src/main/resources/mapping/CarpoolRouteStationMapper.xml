@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.carpool.dao.CarpoolRouteStationMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.carpool.model.CarpoolRouteStation">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="carpool_route_id" jdbcType="CHAR" property="carpoolRouteId" />
+        <result column="station_id" jdbcType="VARCHAR" property="stationId" />
+        <result column="station_name" jdbcType="VARCHAR" property="stationName" />
+        <result column="station_lon" jdbcType="DECIMAL" property="stationLon" />
+        <result column="station_lat" jdbcType="DECIMAL" property="stationLat" />
+        <result column="station_no" jdbcType="INTEGER" property="stationNo" />
+        <result column="arrive_time" jdbcType="TIMESTAMP" property="arriveTime" />
+        <result column="up_num" jdbcType="TINYINT" property="upNum" />
+        <result column="down_num" jdbcType="TINYINT" property="downNum" />
+        <result column="station_type" jdbcType="TINYINT" property="stationType" />
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+        <result column="field1" jdbcType="VARCHAR" property="field1" />
+        <result column="field2" jdbcType="VARCHAR" property="field2" />
+        <result column="field3" jdbcType="VARCHAR" property="field3" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, gmt_create, gmt_modified, carpool_route_id, station_id, station_name, station_lon, 
+        station_lat, station_no, arrive_time, up_num, down_num, station_type, city_code, 
+        field1, field2, field3
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from carpool_route_station
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--
+        @mbggenerated
+        -->
+        delete from carpool_route_station
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolRouteStation">
+        <!--
+        @mbggenerated
+        -->
+        insert into carpool_route_station (id, gmt_create, gmt_modified, 
+            carpool_route_id, station_id, station_name, 
+            station_lon, station_lat, station_no, 
+            arrive_time, up_num, down_num, 
+            station_type, city_code, field1, 
+            field2, field3)
+        values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+            #{carpoolRouteId,jdbcType=CHAR}, #{stationId,jdbcType=VARCHAR}, #{stationName,jdbcType=VARCHAR}, 
+            #{stationLon,jdbcType=DECIMAL}, #{stationLat,jdbcType=DECIMAL}, #{stationNo,jdbcType=INTEGER}, 
+            #{arriveTime,jdbcType=TIMESTAMP}, #{upNum,jdbcType=TINYINT}, #{downNum,jdbcType=TINYINT}, 
+            #{stationType,jdbcType=TINYINT}, #{cityCode,jdbcType=VARCHAR}, #{field1,jdbcType=VARCHAR}, 
+            #{field2,jdbcType=VARCHAR}, #{field3,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolRouteStation">
+        <!--
+        @mbggenerated
+        -->
+        insert into carpool_route_station
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="carpoolRouteId != null">
+                carpool_route_id,
+            </if>
+            <if test="stationId != null">
+                station_id,
+            </if>
+            <if test="stationName != null">
+                station_name,
+            </if>
+            <if test="stationLon != null">
+                station_lon,
+            </if>
+            <if test="stationLat != null">
+                station_lat,
+            </if>
+            <if test="stationNo != null">
+                station_no,
+            </if>
+            <if test="arriveTime != null">
+                arrive_time,
+            </if>
+            <if test="upNum != null">
+                up_num,
+            </if>
+            <if test="downNum != null">
+                down_num,
+            </if>
+            <if test="stationType != null">
+                station_type,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="field1 != null">
+                field1,
+            </if>
+            <if test="field2 != null">
+                field2,
+            </if>
+            <if test="field3 != null">
+                field3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="carpoolRouteId != null">
+                #{carpoolRouteId,jdbcType=CHAR},
+            </if>
+            <if test="stationId != null">
+                #{stationId,jdbcType=VARCHAR},
+            </if>
+            <if test="stationName != null">
+                #{stationName,jdbcType=VARCHAR},
+            </if>
+            <if test="stationLon != null">
+                #{stationLon,jdbcType=DECIMAL},
+            </if>
+            <if test="stationLat != null">
+                #{stationLat,jdbcType=DECIMAL},
+            </if>
+            <if test="stationNo != null">
+                #{stationNo,jdbcType=INTEGER},
+            </if>
+            <if test="arriveTime != null">
+                #{arriveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="upNum != null">
+                #{upNum,jdbcType=TINYINT},
+            </if>
+            <if test="downNum != null">
+                #{downNum,jdbcType=TINYINT},
+            </if>
+            <if test="stationType != null">
+                #{stationType,jdbcType=TINYINT},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="field1 != null">
+                #{field1,jdbcType=VARCHAR},
+            </if>
+            <if test="field2 != null">
+                #{field2,jdbcType=VARCHAR},
+            </if>
+            <if test="field3 != null">
+                #{field3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolRouteStation">
+        <!--
+        @mbggenerated
+        -->
+        update carpool_route_station
+        <set>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="carpoolRouteId != null">
+                carpool_route_id = #{carpoolRouteId,jdbcType=CHAR},
+            </if>
+            <if test="stationId != null">
+                station_id = #{stationId,jdbcType=VARCHAR},
+            </if>
+            <if test="stationName != null">
+                station_name = #{stationName,jdbcType=VARCHAR},
+            </if>
+            <if test="stationLon != null">
+                station_lon = #{stationLon,jdbcType=DECIMAL},
+            </if>
+            <if test="stationLat != null">
+                station_lat = #{stationLat,jdbcType=DECIMAL},
+            </if>
+            <if test="stationNo != null">
+                station_no = #{stationNo,jdbcType=INTEGER},
+            </if>
+            <if test="arriveTime != null">
+                arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="upNum != null">
+                up_num = #{upNum,jdbcType=TINYINT},
+            </if>
+            <if test="downNum != null">
+                down_num = #{downNum,jdbcType=TINYINT},
+            </if>
+            <if test="stationType != null">
+                station_type = #{stationType,jdbcType=TINYINT},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="field1 != null">
+                field1 = #{field1,jdbcType=VARCHAR},
+            </if>
+            <if test="field2 != null">
+                field2 = #{field2,jdbcType=VARCHAR},
+            </if>
+            <if test="field3 != null">
+                field3 = #{field3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolRouteStation">
+        <!--
+        @mbggenerated
+        -->
+        update carpool_route_station
+        set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            carpool_route_id = #{carpoolRouteId,jdbcType=CHAR},
+            station_id = #{stationId,jdbcType=VARCHAR},
+            station_name = #{stationName,jdbcType=VARCHAR},
+            station_lon = #{stationLon,jdbcType=DECIMAL},
+            station_lat = #{stationLat,jdbcType=DECIMAL},
+            station_no = #{stationNo,jdbcType=INTEGER},
+            arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+            up_num = #{upNum,jdbcType=TINYINT},
+            down_num = #{downNum,jdbcType=TINYINT},
+            station_type = #{stationType,jdbcType=TINYINT},
+            city_code = #{cityCode,jdbcType=VARCHAR},
+            field1 = #{field1,jdbcType=VARCHAR},
+            field2 = #{field2,jdbcType=VARCHAR},
+            field3 = #{field3,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <!-- 以下自定义 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into carpool_route_station (carpool_route_id, station_id, station_name,
+        station_lon, station_lat, station_no, arrive_time, up_num, down_num, station_type, city_code)
+        values
+        <foreach collection="carpoolRouteStations" item="item" index="index" separator="," >
+            (#{item.carpoolRouteId,jdbcType=CHAR}, #{item.stationId,jdbcType=VARCHAR}, #{item.stationName,jdbcType=VARCHAR},
+            #{item.stationLon,jdbcType=DECIMAL}, #{item.stationLat,jdbcType=DECIMAL}, #{item.stationNo,jdbcType=INTEGER},
+            #{item.arriveTime,jdbcType=TIMESTAMP}, #{item.upNum,jdbcType=TINYINT}, #{item.downNum,jdbcType=TINYINT},
+            #{item.stationType,jdbcType=TINYINT}, #{item.cityCode,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByCarpoolRouteId" parameterType="java.lang.String">
+        delete from carpool_route_station
+        where #{carpoolRouteId,jdbcType=CHAR}
+    </delete>
+</mapper>

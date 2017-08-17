@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.lantaiyuan.ebus.custom.dao.travelaround.TravelAroundOrderMapper">
+	<resultMap id="BaseResultMap"
+		type="com.lantaiyuan.ebus.custom.model.travelaround.TravelAroundOrder">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+		<result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+		<result column="travel_around_id" jdbcType="VARCHAR" property="travelAroundId" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="location" jdbcType="VARCHAR" property="location" />
+		<result column="pics" jdbcType="VARCHAR" property="pics" />
+		<result column="trip_date" jdbcType="VARCHAR" property="tripDate" />
+		<result column="tourist_id" jdbcType="VARCHAR" property="touristId" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="single_price" jdbcType="DECIMAL" property="singlePrice" />
+		<result column="ticket_num" jdbcType="INTEGER" property="ticketNum" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+		<result column="field1" jdbcType="VARCHAR" property="field1" />
+		<result column="field2" jdbcType="VARCHAR" property="field2" />
+		<result column="field3" jdbcType="VARCHAR" property="field3" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		id, create_time, modified_time, goods_id, travel_around_id, title,
+		location, pics,
+		trip_date, tourist_id, user_id, user_name,
+		single_price, ticket_num, status,
+		city_code,
+		field1, field2, field3
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from base_booktravel
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		<!-- @mbggenerated -->
+		delete from base_booktravel
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="com.lantaiyuan.ebus.custom.model.travelaround.TravelAroundOrder">
+		<!-- @mbggenerated -->
+		insert into base_booktravel (id, create_time, modified_time,
+		goods_id,
+		travel_around_id, title,
+		location, pics, trip_date,
+		tourist_id, user_id,
+		user_name,
+		single_price, ticket_num, status,
+		city_code, field1, field2,
+		field3)
+		values (#{id,jdbcType=BIGINT},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{modifiedTime,jdbcType=TIMESTAMP},
+		#{goodsId,jdbcType=VARCHAR}, #{travelAroundId,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR},
+		#{location,jdbcType=VARCHAR},
+		#{pics,jdbcType=VARCHAR},
+		#{tripDate,jdbcType=VARCHAR},
+		#{touristId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
+		#{userName,jdbcType=VARCHAR},
+		#{singlePrice,jdbcType=DECIMAL},
+		#{ticketNum,jdbcType=INTEGER},
+		#{status,jdbcType=VARCHAR},
+		#{cityCode,jdbcType=VARCHAR}, #{field1,jdbcType=VARCHAR},
+		#{field2,jdbcType=VARCHAR},
+		#{field3,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.lantaiyuan.ebus.custom.model.travelaround.TravelAroundOrder">
+		<!-- @mbggenerated -->
+		insert into base_booktravel
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="modifiedTime != null">
+				modified_time,
+			</if>
+			<if test="goodsId != null">
+				goods_id,
+			</if>
+			<if test="travelAroundId != null">
+				travel_around_id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="location != null">
+				location,
+			</if>
+			<if test="pics != null">
+				pics,
+			</if>
+			<if test="tripDate != null">
+				trip_date,
+			</if>
+			<if test="touristId != null">
+				tourist_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="singlePrice != null">
+				single_price,
+			</if>
+			<if test="ticketNum != null">
+				ticket_num,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="cityCode != null">
+				city_code,
+			</if>
+			<if test="field1 != null">
+				field1,
+			</if>
+			<if test="field2 != null">
+				field2,
+			</if>
+			<if test="field3 != null">
+				field3,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifiedTime != null">
+				#{modifiedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="goodsId != null">
+				#{goodsId,jdbcType=VARCHAR},
+			</if>
+			<if test="travelAroundId != null">
+				#{travelAroundId,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="location != null">
+				#{location,jdbcType=VARCHAR},
+			</if>
+			<if test="pics != null">
+				#{pics,jdbcType=VARCHAR},
+			</if>
+			<if test="tripDate != null">
+				#{tripDate,jdbcType=VARCHAR},
+			</if>
+			<if test="touristId != null">
+				#{touristId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="singlePrice != null">
+				#{singlePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="ticketNum != null">
+				#{ticketNum,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="cityCode != null">
+				#{cityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="field1 != null">
+				#{field1,jdbcType=VARCHAR},
+			</if>
+			<if test="field2 != null">
+				#{field2,jdbcType=VARCHAR},
+			</if>
+			<if test="field3 != null">
+				#{field3,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.lantaiyuan.ebus.custom.model.travelaround.TravelAroundOrder">
+		<!-- @mbggenerated -->
+		update base_booktravel
+		<set>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifiedTime != null">
+				modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="goodsId != null">
+				goods_id = #{goodsId,jdbcType=VARCHAR},
+			</if>
+			<if test="travelAroundId != null">
+				travel_around_id = #{travelAroundId,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="location != null">
+				location = #{location,jdbcType=VARCHAR},
+			</if>
+			<if test="pics != null">
+				pics = #{pics,jdbcType=VARCHAR},
+			</if>
+			<if test="tripDate != null">
+				trip_date = #{tripDate,jdbcType=VARCHAR},
+			</if>
+			<if test="touristId != null">
+				tourist_id = #{touristId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="singlePrice != null">
+				single_price = #{singlePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="ticketNum != null">
+				ticket_num = #{ticketNum,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="cityCode != null">
+				city_code = #{cityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="field1 != null">
+				field1 = #{field1,jdbcType=VARCHAR},
+			</if>
+			<if test="field2 != null">
+				field2 = #{field2,jdbcType=VARCHAR},
+			</if>
+			<if test="field3 != null">
+				field3 = #{field3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.lantaiyuan.ebus.custom.model.travelaround.TravelAroundOrder">
+		<!-- @mbggenerated -->
+		update base_booktravel
+		set create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		modified_time =
+		#{modifiedTime,jdbcType=TIMESTAMP},
+		goods_id =
+		#{goodsId,jdbcType=VARCHAR},
+		travel_around_id =
+		#{travelAroundId,jdbcType=VARCHAR},
+		title = #{title,jdbcType=VARCHAR},
+		location = #{location,jdbcType=VARCHAR},
+		pics =
+		#{pics,jdbcType=VARCHAR},
+		trip_date = #{tripDate,jdbcType=VARCHAR},
+		tourist_id = #{touristId,jdbcType=VARCHAR},
+		user_id =
+		#{userId,jdbcType=INTEGER},
+		user_name = #{userName,jdbcType=VARCHAR},
+		single_price = #{singlePrice,jdbcType=DECIMAL},
+		ticket_num =
+		#{ticketNum,jdbcType=INTEGER},
+		status = #{status,jdbcType=VARCHAR},
+		city_code = #{cityCode,jdbcType=VARCHAR},
+		field1 =
+		#{field1,jdbcType=VARCHAR},
+		field2 = #{field2,jdbcType=VARCHAR},
+		field3
+		= #{field3,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<!--自定义：TravelOrderResultMap -->
+	<resultMap id="TravelOrderResultMap"
+		type="com.lantaiyuan.ebus.custom.model.travelaround.TravelAroundOrderResult">
+		<!-- @mbggenerated -->
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="location" jdbcType="VARCHAR" property="location" />
+		<result column="pics" jdbcType="VARCHAR" property="pics" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="orderNo" jdbcType="VARCHAR" property="orderNo" />
+		<result column="orderType" jdbcType="VARCHAR" property="orderType" />
+		<result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
+        <result column="current_price" jdbcType="DECIMAL" property="currentPrice" />
+        <result column="ticket_num" jdbcType="INTEGER" property="ticketNum" />
+	</resultMap>
+	<!--自定义：queryTravelOrderList -->
+	<select id="queryTravelOrderList" parameterType="java.lang.String"
+		resultMap="TravelOrderResultMap">
+		SELECT B.pics, B.title,B.location ,B.status,B.create_time
+		,O.orderNo ,'4' as orderType ,T.current_price,
+		T.original_price ,B.ticket_num from base_booktravel B,
+		base_order
+		O,base_order_detail
+		D,travel_around T
+		WHERE B.goods_id = D.goodsId
+		AND B.travel_around_id = T.id
+		AND D.orderDetailId =
+		O.orderDetailId
+		AND
+		B.city_code = #{cityCode,jdbcType=VARCHAR}
+		AND
+		B.user_id =
+		#{userId,jdbcType=VARCHAR}
+		ORDER BY
+		B.create_time DESC
+	</select>
+
+	<!--自定义：TravelOrderDeatilMap -->
+	<resultMap id="TravelOrderDeatilMap"
+		type="com.lantaiyuan.ebus.custom.model.travelaround.TravelAroundOrderDetail">
+		<!-- @mbggenerated -->
+		<result column="orderNo" jdbcType="VARCHAR" property="orderNo" />
+		<result column="payTime" jdbcType="TIMESTAMP" property="payTime" />
+		<result column="payType" jdbcType="TINYINT" property="payType" />
+		<result column="payPerson" jdbcType="VARCHAR" property="payPerson" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="location" jdbcType="VARCHAR" property="location" />
+		<result column="pics" jdbcType="VARCHAR" property="pics" />
+		<result column="tripDate" jdbcType="VARCHAR" property="tripDate" />
+		<result column="touristId" jdbcType="VARCHAR" property="touristId" />
+		<result column="userId" jdbcType="INTEGER" property="userId" />
+		<result column="userName" jdbcType="VARCHAR" property="userName" />
+		<result column="singlePrice" jdbcType="DECIMAL" property="singlePrice" />
+		<result column="ticketNum" jdbcType="INTEGER" property="ticketNum" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="cityCode" jdbcType="VARCHAR" property="cityCode" />
+	</resultMap>
+	<!-- 自定义：queryTravelOrderByOrderNo -->
+	<select id="queryTravelOrderByOrderNo" parameterType="java.lang.String"
+		resultMap="TravelOrderDeatilMap">
+		SELECT
+		O.orderNo,
+		O.payTime,
+		O.payType,
+		O.payPerson,
+		O.amount,
+		B.create_time AS createTime,
+		B.title,
+		B.location,
+		B.pics,
+		B.trip_date AS
+		tripDate,
+		B.tourist_id AS touristId,
+		B.user_id AS userId,
+		B.user_name AS
+		userName,
+		B.single_price AS singlePrice,
+		B.ticket_num AS ticketNum,
+		B.status,
+		B.city_code AS cityCode
+		FROM
+		base_booktravel B,
+		base_order O,
+		base_order_detail D
+		WHERE
+		B.goods_id = D.goodsId
+		AND D.orderDetailId =
+		O.orderDetailId
+		AND O.orderNo = #{orderNo,jdbcType=VARCHAR}
+	</select>
+
+	<!--自定义：修改周边游订单支付状态为：1-支付 -->
+	<update id="updateTravelOrderToPaid" parameterType="java.lang.String">
+		UPDATE
+		base_booktravel
+		SET status = 1
+		WHERE
+		goods_id IN (
+		SELECT
+		D.goodsId
+		FROM
+		base_order O,
+		base_order_detail D
+		WHERE
+		O.orderDetailId = D.orderDetailId
+		AND O.orderNo = #{orderno,jdbcType=VARCHAR}
+		)
+	</update>
+</mapper>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.SuggestionMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.Suggestion">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="userId" jdbcType="INTEGER" property="userid" />
+        <result column="userName" jdbcType="VARCHAR" property="username" />
+        <result column="attachPaths" jdbcType="VARCHAR" property="attachpaths" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="messageType" jdbcType="TINYINT" property="messagetype" />
+        <result column="contactInfo" jdbcType="VARCHAR" property="contactinfo" />
+        <result column="topicId" jdbcType="VARCHAR" property="topicid" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lantaiyuan.ebus.custom.model.Suggestion">
+        <!--
+        @mbggenerated
+        -->
+        <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, userId, userName, attachPaths, cityCode, createTime, messageType, contactInfo, 
+        topicId
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        content
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from base_suggestion
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+   
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_suggestion
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.Suggestion">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_suggestion (id, userId, userName, 
+            attachPaths, cityCode, createTime, 
+            messageType, contactInfo, topicId, 
+            content)
+        values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+            #{attachpaths,jdbcType=VARCHAR}, #{citycode,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+            #{messagetype,jdbcType=TINYINT}, #{contactinfo,jdbcType=VARCHAR}, #{topicid,jdbcType=VARCHAR}, 
+            #{content,jdbcType=LONGVARCHAR})
+    </insert>
+    
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.Suggestion">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_suggestion
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userid != null">
+                userId,
+            </if>
+            <if test="username != null">
+                userName,
+            </if>
+            <if test="attachpaths != null">
+                attachPaths,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="messagetype != null">
+                messageType,
+            </if>
+            <if test="contactinfo != null">
+                contactInfo,
+            </if>
+            <if test="topicid != null">
+                topicId,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="attachpaths != null">
+                #{attachpaths,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="messagetype != null">
+                #{messagetype,jdbcType=TINYINT},
+            </if>
+            <if test="contactinfo != null">
+                #{contactinfo,jdbcType=VARCHAR},
+            </if>
+            <if test="topicid != null">
+                #{topicid,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.Suggestion">
+        <!--
+        @mbggenerated
+        -->
+        update base_suggestion
+        <set>
+            <if test="userid != null">
+                userId = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                userName = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="attachpaths != null">
+                attachPaths = #{attachpaths,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="messagetype != null">
+                messageType = #{messagetype,jdbcType=TINYINT},
+            </if>
+            <if test="contactinfo != null">
+                contactInfo = #{contactinfo,jdbcType=VARCHAR},
+            </if>
+            <if test="topicid != null">
+                topicId = #{topicid,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lantaiyuan.ebus.custom.model.Suggestion">
+        <!--
+        @mbggenerated
+        -->
+        update base_suggestion
+        set userId = #{userid,jdbcType=INTEGER},
+            userName = #{username,jdbcType=VARCHAR},
+            attachPaths = #{attachpaths,jdbcType=VARCHAR},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            messageType = #{messagetype,jdbcType=TINYINT},
+            contactInfo = #{contactinfo,jdbcType=VARCHAR},
+            topicId = #{topicid,jdbcType=VARCHAR},
+            content = #{content,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.Suggestion">
+        <!--
+        @mbggenerated
+        -->
+        update base_suggestion
+        set userId = #{userid,jdbcType=INTEGER},
+            userName = #{username,jdbcType=VARCHAR},
+            attachPaths = #{attachpaths,jdbcType=VARCHAR},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            messageType = #{messagetype,jdbcType=TINYINT},
+            contactInfo = #{contactinfo,jdbcType=VARCHAR},
+            topicId = #{topicid,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    
+    <!-- 以下方法为自定义方法 -->
+    <select id="getSuggestTopicByUserId" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+	    select 
+	    <include refid="Base_Column_List" />
+	     ,
+        <include refid="Blob_Column_List" />
+	    from base_suggestion
+	    
+	    <trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="userid != null and userid != ''">
+				and userId = #{userid,jdbcType=INTEGER}
+			</if>
+			<if test="citycode != null and citycode != ''">
+				and cityCode = #{citycode,jdbcType=VARCHAR} 
+			</if>
+			 and ISNULL(topicId)
+		</trim>
+	    ORDER BY lastUpdateTime DESC,createTime DESC
+   </select>
+   
+   <select id="getSysLastReplySuggestionByTopicId" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+	    select 
+        <include refid="Blob_Column_List" />
+	    from base_suggestion
+	    where topicId = #{topicId,jdbcType=VARCHAR}
+	    and messageType = 1
+		ORDER BY createTime DESC
+		LIMIT 0,1
+   </select>
+   
+   <select id="selectDetailListByEntityId" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+	    select 
+	    <include refid="Base_Column_List" />
+	     ,
+        <include refid="Blob_Column_List" />
+	    from base_suggestion
+	    where id = #{entityid,jdbcType=VARCHAR}
+	    or topicId = #{entityid,jdbcType=VARCHAR}
+	    ORDER BY createTime ASC
+   </select>
+   
+   <select id="getSuggestionByPage" resultType="com.lantaiyuan.ebus.custom.model.Suggestion"
+		parameterType="com.lantaiyuan.ebus.custom.model.SuggestionQueryModel">
+		 select 
+	    <include refid="Base_Column_List" />
+	     ,
+        <include refid="Blob_Column_List" />
+	    from base_suggestion
+		<trim prefix="WHERE" prefixOverrides="AND">
+            <if test="id != null and id !=''">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="userid != null">
+                AND userId = #{userid,jdbcType=INTEGER}
+            </if>
+            <if test="username != null and username !=''">
+                AND userName = #{username,jdbcType=VARCHAR}
+            </if>
+            <if test="attachpaths != null">
+                AND attachPaths = #{attachpaths,jdbcType=VARCHAR}
+            </if>
+            <if test="citycode != null and citycode !=''">
+                AND cityCode = #{citycode,jdbcType=VARCHAR}
+            </if>
+            <if test="createtime != null">
+                AND createTime = #{createtime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="messagetype != null">
+                AND messageType = #{messagetype,jdbcType=TINYINT}
+            </if>
+            <if test="contactinfo != null and contactinfo !=''">
+                AND contactInfo like concat('%',concat(#{contactinfo,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="topicid != null">
+                AND topicId = #{topicid,jdbcType=VARCHAR}
+            </if>
+            <if test="content != null">
+                AND content like concat('%',concat(#{content,jdbcType=LONGVARCHAR},'%'))
+            </if>
+            <if test="starttime != null  and starttime !=''">
+				and createTime <![CDATA[>=]]>  STR_TO_DATE(#{starttime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s') 
+			</if>
+			<if test="endtime != null  and endtime !=''">
+				and createTime  <![CDATA[<=]]> STR_TO_DATE(#{endtime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+            AND ISNULL(topicId)
+        </trim>
+        ORDER BY lastUpdateTime DESC,createTime DESC
+	</select>
+   
+   <update id="updateLastUpdateTime">
+        <!--
+        @mbggenerated
+        -->
+        update base_suggestion
+        set lastUpdateTime = #{currenttime,jdbcType=TIMESTAMP}
+        where id = #{topicid,jdbcType=VARCHAR}
+    </update>
+   
+</mapper>

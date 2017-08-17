@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.EvaluationTagMapper">
+   <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.EvaluationTag">
+        <!--
+        @mbggenerated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="STAR_LEVEL" jdbcType="INTEGER" property="starLevel" />
+        <result column="TAG_NAME" jdbcType="VARCHAR" property="tagName" />
+        <result column="COUNT" jdbcType="INTEGER" property="count" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        ID, STAR_LEVEL, TAG_NAME, COUNT, CREATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_evaluation_tag
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_evaluation_tag
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationTag">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_evaluation_tag (ID, STAR_LEVEL, TAG_NAME, 
+            COUNT, CREATE_TIME)
+        values (#{id,jdbcType=VARCHAR}, #{starLevel,jdbcType=INTEGER}, #{tagName,jdbcType=VARCHAR}, 
+            #{count,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationTag">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_evaluation_tag
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="starLevel != null">
+                STAR_LEVEL,
+            </if>
+            <if test="tagName != null">
+                TAG_NAME,
+            </if>
+            <if test="count != null">
+                COUNT,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="starLevel != null">
+                #{starLevel,jdbcType=INTEGER},
+            </if>
+            <if test="tagName != null">
+                #{tagName,jdbcType=VARCHAR},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationTag">
+        <!--
+        @mbggenerated
+        -->
+        update base_evaluation_tag
+        <set>
+            <if test="starLevel != null">
+                STAR_LEVEL = #{starLevel,jdbcType=INTEGER},
+            </if>
+            <if test="tagName != null">
+                TAG_NAME = #{tagName,jdbcType=VARCHAR},
+            </if>
+            <if test="count != null">
+                COUNT = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationTag">
+        <!--
+        @mbggenerated
+        -->
+        update base_evaluation_tag
+        set STAR_LEVEL = #{starLevel,jdbcType=INTEGER},
+            TAG_NAME = #{tagName,jdbcType=VARCHAR},
+            COUNT = #{count,jdbcType=INTEGER},
+            CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    
+    <!-- 自定义方法：条件查询实体信息 -->
+    <select id="selectByCondition" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationTagQueryModel" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_evaluation_tag
+        <trim prefix="WHERE" prefixOverrides="AND" >
+          	<if test="id != null and id !=''">
+	            AND ID = #{id,jdbcType=VARCHAR}
+	        </if>
+	        <if test="starLevel != null and starLevel !=''">
+	            AND STAR_LEVEL = #{starLevel,jdbcType=INTEGER}
+	        </if>
+           
+            <if test="tagName != null and tagName !=''">
+                AND TAG_NAME = #{tagName,jdbcType=VARCHAR}
+            </if>
+            <if test="count != null and count !=''">
+                AND COUNT = #{count,jdbcType=INTEGER}
+            </if>
+        </trim>
+        ORDER BY COUNT DESC
+    </select>
+    
+    <!-- 自定义方法：条件查询实体信息 -->
+    <select id="selectByByCountDesc" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationTagQueryModel" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_evaluation_tag
+        <trim prefix="WHERE" prefixOverrides="AND" >
+          	<if test="id != null and id !=''">
+	            AND ID = #{id,jdbcType=VARCHAR}
+	        </if>
+	        <if test="starLevel != null and starLevel !=''">
+	            AND STAR_LEVEL = #{starLevel,jdbcType=INTEGER}
+	        </if>
+           
+            <if test="tagName != null and tagName !=''">
+                AND TAG_NAME = #{tagName,jdbcType=VARCHAR}
+            </if>
+            <if test="count != null and count !=''">
+                AND COUNT = #{count,jdbcType=INTEGER}
+            </if>
+        </trim>
+        ORDER BY COUNT DESC
+        limit 0,6
+    </select>
+    
+</mapper>

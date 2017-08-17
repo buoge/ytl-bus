@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--app用户 信息配置表  -->
+<mapper namespace="com.lantaiyuan.ebus.realtime.dao.AppUserMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.realtime.model.AppUser">
+        <!--
+        @mbggenerated
+        -->
+        <id column="userId" jdbcType="INTEGER" property="userid" />
+        <result column="userName" jdbcType="VARCHAR" property="username" />
+        <result column="phoneNo" jdbcType="VARCHAR" property="phoneno" />
+        <result column="wechatNo" jdbcType="VARCHAR" property="wechatno" />
+        <result column="qqNo" jdbcType="VARCHAR" property="qqno" />
+        <result column="microBlogNo" jdbcType="VARCHAR" property="microblogno" />
+        <result column="nickName" jdbcType="VARCHAR" property="nickname" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="iconURL" jdbcType="VARCHAR" property="iconurl" />
+        <result column="cityName" jdbcType="VARCHAR" property="cityname" />
+        <result column="onlineStatus" jdbcType="INTEGER" property="onlinestatus" />
+        <result column="loginTime" jdbcType="TIMESTAMP" property="logintime" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="registrationId" jdbcType="VARCHAR" property="registrationId" />
+        <result column="lastLoginSysType" jdbcType="INTEGER" property="lastLoginSysType" />
+        <result column="backURL" jdbcType="VARCHAR" property="backurl" />
+        <result column="sign" jdbcType="VARCHAR" property="sign" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        userId, userName, phoneNo, wechatNo, qqNo, microBlogNo, nickName, sex, iconURL, cityName, 
+        onlineStatus, loginTime, cityCode, status, registrationId, lastLoginSysType, backURL,sign
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_user
+        where userId = #{userid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_user
+        where userId = #{userid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.realtime.model.AppUser">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_user (userId, userName, phoneNo, 
+            wechatNo, qqNo, microBlogNo, 
+            nickName, sex, iconURL, 
+            cityName, onlineStatus, loginTime, 
+            cityCode, status)
+        values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{phoneno,jdbcType=VARCHAR}, 
+            #{wechatno,jdbcType=VARCHAR}, #{qqno,jdbcType=VARCHAR}, #{microblogno,jdbcType=VARCHAR}, 
+            #{nickname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{iconurl,jdbcType=VARCHAR}, 
+            #{cityname,jdbcType=VARCHAR}, #{onlinestatus,jdbcType=INTEGER}, #{logintime,jdbcType=TIMESTAMP}, 
+            #{citycode,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.realtime.model.AppUser">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                userId,
+            </if>
+            <if test="username != null">
+                userName,
+            </if>
+            <if test="phoneno != null">
+                phoneNo,
+            </if>
+            <if test="wechatno != null">
+                wechatNo,
+            </if>
+            <if test="qqno != null">
+                qqNo,
+            </if>
+            <if test="microblogno != null">
+                microBlogNo,
+            </if>
+            <if test="nickname != null">
+                nickName,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="iconurl != null">
+                iconURL,
+            </if>
+            <if test="cityname != null">
+                cityName,
+            </if>
+            <if test="onlinestatus != null">
+                onlineStatus,
+            </if>
+            <if test="logintime != null">
+                loginTime,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="registrationId != null">
+                registrationId,
+            </if>
+            <if test="lastLoginSysType != null">
+                lastLoginSysType,
+            </if>
+            <if test="backurl != null">
+                backURL,
+            </if>
+            <if test="sign != null">
+                sign,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneno != null">
+                #{phoneno,jdbcType=VARCHAR},
+            </if>
+            <if test="wechatno != null">
+                #{wechatno,jdbcType=VARCHAR},
+            </if>
+            <if test="qqno != null">
+                #{qqno,jdbcType=VARCHAR},
+            </if>
+            <if test="microblogno != null">
+                #{microblogno,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="iconurl != null">
+                #{iconurl,jdbcType=VARCHAR},
+            </if>
+            <if test="cityname != null">
+                #{cityname,jdbcType=VARCHAR},
+            </if>
+            <if test="onlinestatus != null">
+                #{onlinestatus,jdbcType=INTEGER},
+            </if>
+            <if test="logintime != null">
+                #{logintime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="registrationId != null">
+                #{registrationId,jdbcType=VARCHAR},
+            </if>
+            <if test="lastLoginSysType != null">
+                #{lastLoginSysType,jdbcType=INTEGER},
+            </if>
+            <if test="backurl != null">
+                #{backurl,jdbcType=VARCHAR},
+            </if>
+             <if test="sign != null">
+                #{sign,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.realtime.model.AppUser">
+        <!--
+        @mbggenerated
+        -->
+        update base_user
+        <set>
+            <if test="username != null">
+                userName = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneno != null">
+                phoneNo = #{phoneno,jdbcType=VARCHAR},
+            </if>
+            <if test="wechatno != null">
+                wechatNo = #{wechatno,jdbcType=VARCHAR},
+            </if>
+            <if test="qqno != null">
+                qqNo = #{qqno,jdbcType=VARCHAR},
+            </if>
+            <if test="microblogno != null">
+                microBlogNo = #{microblogno,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                nickName = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="iconurl != null">
+                iconURL = #{iconurl,jdbcType=VARCHAR},
+            </if>
+            <if test="cityname != null">
+                cityName = #{cityname,jdbcType=VARCHAR},
+            </if>
+            <if test="onlinestatus != null">
+                onlineStatus = #{onlinestatus,jdbcType=INTEGER},
+            </if>
+            <if test="logintime != null">
+                loginTime = #{logintime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="registrationId != null">
+                registrationId = #{registrationId,jdbcType=VARCHAR},
+            </if>
+            <if test="lastLoginSysType != null">
+                lastLoginSysType = #{lastLoginSysType,jdbcType=INTEGER},
+            </if>
+            <if test="backurl != null">
+                backUrl = #{backurl,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                sign = #{sign,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where userId = #{userid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.realtime.model.AppUser">
+        <!--
+        @mbggenerated
+        -->
+        update base_user
+        set userName = #{username,jdbcType=VARCHAR},
+            phoneNo = #{phoneno,jdbcType=VARCHAR},
+            wechatNo = #{wechatno,jdbcType=VARCHAR},
+            qqNo = #{qqno,jdbcType=VARCHAR},
+            microBlogNo = #{microblogno,jdbcType=VARCHAR},
+            nickName = #{nickname,jdbcType=VARCHAR},
+            sex = #{sex,jdbcType=VARCHAR},
+            iconURL = #{iconurl,jdbcType=VARCHAR},
+            cityName = #{cityname,jdbcType=VARCHAR},
+            onlineStatus = #{onlinestatus,jdbcType=INTEGER},
+            loginTime = #{logintime,jdbcType=TIMESTAMP},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            status = #{status,jdbcType=INTEGER}
+        where userId = #{userid,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 自定义  -->
+    <select id="queryAppUserInfo" resultMap="BaseResultMap" parameterType="com.lantaiyuan.ebus.realtime.model.AppUser">
+		 select 
+        <include refid="Base_Column_List" />
+        from base_user
+		where status = 0
+            <if test="phoneno != null">
+              and  phoneNo = #{phoneno,jdbcType=VARCHAR}
+            </if>
+            <if test="wechatno != null">
+             and   wechatNo = #{wechatno,jdbcType=VARCHAR}
+            </if>
+            <if test="qqno != null">
+             and   qqNo = #{qqno,jdbcType=VARCHAR}
+            </if>
+            <if test="microblogno != null">
+             and   microBlogNo = #{microblogno,jdbcType=VARCHAR}
+            </if>
+	</select>
+	
+	<!-- 自定义  -->
+    <select id="getCityUsers" resultMap="BaseResultMap" parameterType="java.lang.String">
+		 select 
+        <include refid="Base_Column_List" />
+        from base_user
+		where status = 0 and cityCode = #{cityCode,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

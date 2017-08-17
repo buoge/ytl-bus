@@ -1,0 +1,63 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" /> 
+<title>下载</title>
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="page">
+    <div class="content">
+        <div class="download"><img src="images/download.png"></div>
+        <a href="#" class="downbtn" onclick="downShowTips()">立即下载</a>
+    </div><!--end content -->
+    <div class="downTip" onclick="downHideTips()"><div class="tipPic"><img src="images/tips.png"> </div></div>
+</div><!--end page -->
+<script src="js/zepto.js"></script>
+<script>
+//点击按钮显示提示
+function downShowTips(){
+	//判断手机型号
+	var ua = navigator.userAgent.toLowerCase();	
+    if(is_weixin()){
+        $('.downTip').show();
+    }
+    else{
+		if (/iphone|ipad|ipod/.test(ua)) {
+			window.location.href="https://itunes.apple.com/us/app/%E5%9D%90%E5%85%AC%E4%BA%A4/id1153972165?l=zh&ls=1&mt=8";	
+		} else {
+			$.ajax({
+				url : '/version/getFinalVersion',
+				cache : false,
+				type : 'GET',
+				dataType : 'JSON',
+				success : function(r) {
+					var data=JSON.parse(r);
+					if (data.success) {
+						window.location.href=data.obj.versionurl;
+					}else {
+						alert('抱歉，出错了。');
+					}
+				}
+			});
+		}
+    }
+}
+
+//点击按钮隐藏提示
+function downHideTips(){
+    $('.downTip').hide();
+}
+//判断是否是微信浏览器
+function is_weixin(){
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>
+</body>
+</html>

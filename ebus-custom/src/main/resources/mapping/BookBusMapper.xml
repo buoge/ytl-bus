@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.BookBusMapper">
+	<resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.BookBus">
+		<!-- @mbggenerated -->
+		<id column="goodsId" jdbcType="VARCHAR" property="goodsid" />
+		<result column="sourceLocation" jdbcType="VARCHAR" property="sourcelocation" />
+		<result column="targetLocation" jdbcType="VARCHAR" property="targetlocation" />
+		<result column="startTime" jdbcType="VARCHAR" property="starttime" />
+		<result column="backTime" jdbcType="VARCHAR" property="backtime" />
+		<result column="passengerNum" jdbcType="INTEGER" property="passengernum" />
+		<result column="contactName" jdbcType="VARCHAR" property="contactname" />
+		<result column="contactPhone" jdbcType="VARCHAR" property="contactphone" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="bookBusType" jdbcType="INTEGER" property="bookbustype" />
+		<result column="quotedPrice" jdbcType="DECIMAL" property="quotedprice" />
+		<result column="quotedTime" jdbcType="TIMESTAMP" property="quotedtime" />
+		<result column="quotedId" jdbcType="VARCHAR" property="quotedid" />
+		<result column="quotedName" jdbcType="VARCHAR" property="quotedname" />
+		<result column="status" jdbcType="BIT" property="status" />
+		<result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		goodsId, sourceLocation, targetLocation, startTime, backTime,
+		passengerNum, contactName,
+		contactPhone, remark, bookBusType, quotedPrice, quotedTime, quotedId, quotedName,
+		status,cityCode
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from base_bookbus
+		where goodsId = #{goodsid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		<!-- @mbggenerated -->
+		delete from base_bookbus
+		where goodsId = #{goodsid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.BookBus">
+		<!-- @mbggenerated -->
+		insert into base_bookbus (goodsId, sourceLocation, targetLocation,
+		startTime, backTime, passengerNum,
+		contactName, contactPhone, remark,
+		bookBusType, quotedPrice, quotedTime,
+		quotedId, quotedName, status,cityCode
+		)
+		values (#{goodsid,jdbcType=VARCHAR}, #{sourcelocation,jdbcType=VARCHAR},
+		#{targetlocation,jdbcType=VARCHAR},
+		#{starttime,jdbcType=VARCHAR}, #{backtime,jdbcType=VARCHAR}, #{passengernum,jdbcType=INTEGER},
+		#{contactname,jdbcType=VARCHAR}, #{contactphone,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{bookbustype,jdbcType=INTEGER}, #{quotedprice,jdbcType=DECIMAL}, #{quotedtime,jdbcType=TIMESTAMP},
+		#{quotedid,jdbcType=VARCHAR}, #{quotedname,jdbcType=VARCHAR},
+		#{status,jdbcType=BIT},#{citycode,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.BookBus">
+		<!-- @mbggenerated -->
+		insert into base_bookbus
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="goodsid != null">
+				goodsId,
+			</if>
+			<if test="sourcelocation != null">
+				sourceLocation,
+			</if>
+			<if test="targetlocation != null">
+				targetLocation,
+			</if>
+			<if test="starttime != null">
+				startTime,
+			</if>
+			<if test="backtime != null">
+				backTime,
+			</if>
+			<if test="passengernum != null">
+				passengerNum,
+			</if>
+			<if test="contactname != null">
+				contactName,
+			</if>
+			<if test="contactphone != null">
+				contactPhone,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="bookbustype != null">
+				bookBusType,
+			</if>
+			<if test="quotedprice != null">
+				quotedPrice,
+			</if>
+			<if test="quotedtime != null">
+				quotedTime,
+			</if>
+			<if test="quotedid != null">
+				quotedId,
+			</if>
+			<if test="quotedname != null">
+				quotedName,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="citycode != null">
+				cityCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="goodsid != null">
+				#{goodsid,jdbcType=VARCHAR},
+			</if>
+			<if test="sourcelocation != null">
+				#{sourcelocation,jdbcType=VARCHAR},
+			</if>
+			<if test="targetlocation != null">
+				#{targetlocation,jdbcType=VARCHAR},
+			</if>
+			<if test="starttime != null">
+				#{starttime,jdbcType=VARCHAR},
+			</if>
+			<if test="backtime != null">
+				#{backtime,jdbcType=VARCHAR},
+			</if>
+			<if test="passengernum != null">
+				#{passengernum,jdbcType=INTEGER},
+			</if>
+			<if test="contactname != null">
+				#{contactname,jdbcType=VARCHAR},
+			</if>
+			<if test="contactphone != null">
+				#{contactphone,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="bookbustype != null">
+				#{bookbustype,jdbcType=INTEGER},
+			</if>
+			<if test="quotedprice != null">
+				#{quotedprice,jdbcType=DECIMAL},
+			</if>
+			<if test="quotedtime != null">
+				#{quotedtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="quotedid != null">
+				#{quotedid,jdbcType=VARCHAR},
+			</if>
+			<if test="quotedname != null">
+				#{quotedname,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=BIT},
+			</if>
+			<if test="citycode != null">
+				#{citycode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.BookBus">
+		<!-- @mbggenerated -->
+		update base_bookbus
+		<set>
+			<if test="sourcelocation != null">
+				sourceLocation = #{sourcelocation,jdbcType=VARCHAR},
+			</if>
+			<if test="targetlocation != null">
+				targetLocation = #{targetlocation,jdbcType=VARCHAR},
+			</if>
+			<if test="starttime != null">
+				startTime = #{starttime,jdbcType=VARCHAR},
+			</if>
+			<if test="backtime != null">
+				backTime = #{backtime,jdbcType=VARCHAR},
+			</if>
+			<if test="passengernum != null">
+				passengerNum = #{passengernum,jdbcType=INTEGER},
+			</if>
+			<if test="contactname != null">
+				contactName = #{contactname,jdbcType=VARCHAR},
+			</if>
+			<if test="contactphone != null">
+				contactPhone = #{contactphone,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="bookbustype != null">
+				bookBusType = #{bookbustype,jdbcType=INTEGER},
+			</if>
+			<if test="quotedprice != null">
+				quotedPrice = #{quotedprice,jdbcType=DECIMAL},
+			</if>
+			<if test="quotedtime != null">
+				quotedTime = #{quotedtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="quotedid != null">
+				quotedId = #{quotedid,jdbcType=VARCHAR},
+			</if>
+			<if test="quotedname != null">
+				quotedName = #{quotedname,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=BIT},
+			</if>
+			<if test="citycode != null">
+				cityCode = #{citycode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where goodsId = #{goodsid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.BookBus">
+		<!-- @mbggenerated -->
+		update base_bookbus
+		set sourceLocation = #{sourcelocation,jdbcType=VARCHAR},
+		targetLocation = #{targetlocation,jdbcType=VARCHAR},
+		startTime = #{starttime,jdbcType=VARCHAR},
+		backTime = #{backtime,jdbcType=VARCHAR},
+		passengerNum = #{passengernum,jdbcType=INTEGER},
+		contactName = #{contactname,jdbcType=VARCHAR},
+		contactPhone = #{contactphone,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		bookBusType = #{bookbustype,jdbcType=INTEGER},
+		quotedPrice = #{quotedprice,jdbcType=DECIMAL},
+		quotedTime = #{quotedtime,jdbcType=TIMESTAMP},
+		quotedId = #{quotedid,jdbcType=VARCHAR},
+		quotedName = #{quotedname,jdbcType=VARCHAR},
+		status = #{status,jdbcType=BIT},
+		cityCode = #{citycode,jdbcType=VARCHAR}
+		where goodsId = #{goodsid,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 自定 -->
+	<select id="findObjectsByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.BookBus">
+		select
+		<include refid="Base_Column_List" />
+		from base_bookbus
+		<trim prefix="WHERE" prefixOverrides="AND" suffixOverrides=",">
+			<if test="goodsid != null">
+				a.goodsid = #{goodsid,jdbcType=VARCHAR},
+			</if>
+			<if test="sourcelocation != null and sourcelocation != ''">
+				a.sourcelocation = #{sourcelocation,jdbcType=VARCHAR},
+			</if>
+			<if test="targetlocation != null and targetlocation != ''">
+				a.targetlocation = #{targetlocation,jdbcType=VARCHAR},
+			</if>
+			<if test="starttime != null and starttime != ''">
+				a.starttime = #{starttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="backtime != null and backtime != ''">
+				a.backtime = #{backtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="passengernum != null and passengernum != ''">
+				a.passengernum = #{passengernum,jdbcType=INTEGER},
+			</if>
+			<if test="contactname != null and contactname != ''">
+				a.contactname = #{contactname,jdbcType=VARCHAR},
+			</if>
+			<if test="contactphone != null and contactphone != ''">
+				a.contactphone = #{contactphone,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null and remark != ''">
+				a.remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="bookbustype != null and bookbustype != ''">
+				a.bookbustype = #{bookbustype,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findBookBusByPage" resultType="com.lantaiyuan.ebus.custom.model.BookBus"
+		parameterType="com.lantaiyuan.ebus.custom.model.BookBusQueryModel">
+		select a.*, c.payPerson,c.payTime,c.orderNo,b.userName,c.createtime as orderTime,
+		c.payType,c.orderStatus,c.orderPrice,c.createtime     
+		from base_bookbus a left join base_order_detail b on(a.goodsId=b.goodsId)  
+		left join base_order c on(b.orderDetailId=c.orderDetailId)  
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="goodsid != null and goodsid != ''">
+				and a.goodsid = #{goodsid,jdbcType=VARCHAR}  
+			</if> 
+			<if test="sourcelocation != null and sourcelocation != ''">
+				and a.sourcelocation = #{sourcelocation,jdbcType=VARCHAR} 
+			</if>
+			<if test="targetlocation != null and targetlocation != ''">
+				and a.targetlocation = #{targetlocation,jdbcType=VARCHAR} 
+			</if>
+			<if test="starttime != null and starttime != ''">
+				and a.starttime = #{starttime,jdbcType=TIMESTAMP} 
+			</if>
+			<if test="backtime != null and backtime != ''">
+				and a.backtime = #{backtime,jdbcType=TIMESTAMP} 
+			</if>
+			<if test="passengernum != null and passengernum != ''">
+				and a.passengernum = #{passengernum,jdbcType=INTEGER} 
+			</if>
+			<if test="contactname != null and contactname != ''">
+				and a.contactname = #{contactname,jdbcType=VARCHAR} 
+			</if>
+			<if test="contactphone != null and contactphone != ''">
+				and a.contactphone like concat('%',concat(#{contactphone,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="remark != null and remark != ''">
+				and a.remark = #{remark,jdbcType=VARCHAR} 
+			</if>
+			<if test="bookbustype != -1">
+				and a.bookbustype = #{bookbustype,jdbcType=INTEGER} 
+			</if>
+			<if test="orderNo != null and orderNo != ''">
+				and c.orderNo like concat('%',concat(#{orderNo,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="citycode != -1">
+				and a.citycode = #{citycode,jdbcType=VARCHAR} 
+			</if>
+			<if test="status != -1">
+				and a.status = #{status,jdbcType=INTEGER} 
+			</if>
+			<if test="orderStatus != -1">
+				and c.orderStatus = #{orderStatus,jdbcType=INTEGER} 
+			</if>
+		</trim>
+		 order by c.createtime desc
+	</select>
+	
+	<select id="findBookBusByPageForOrder" resultType="com.lantaiyuan.ebus.custom.model.BookBus"
+		parameterType="com.lantaiyuan.ebus.custom.model.BookBusQueryModel">
+		select a.*, c.payPerson,c.payTime,c.orderNo,b.userName,c.createtime as orderTime,
+		c.payType,c.orderStatus,c.orderPrice,c.orderDetailId    
+		from base_bookbus a left join base_order_detail b on(a.goodsId=b.goodsId)  
+		left join base_order c on(b.orderDetailId=c.orderDetailId)  
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="goodsid != null and goodsid != ''">
+				and a.goodsid = #{goodsid,jdbcType=VARCHAR}  
+			</if> 
+			<if test="sourcelocation != null and sourcelocation != ''">
+				and a.sourcelocation = #{sourcelocation,jdbcType=VARCHAR} 
+			</if>
+			<if test="targetlocation != null and targetlocation != ''">
+				and a.targetlocation = #{targetlocation,jdbcType=VARCHAR} 
+			</if>
+			<if test="starttime != null and starttime != ''">
+				and a.starttime = #{starttime,jdbcType=TIMESTAMP} 
+			</if>
+			<if test="backtime != null and backtime != ''">
+				and a.backtime = #{backtime,jdbcType=TIMESTAMP} 
+			</if>
+			<if test="passengernum != null and passengernum != ''">
+				and a.passengernum = #{passengernum,jdbcType=INTEGER} 
+			</if>
+			<if test="contactname != null and contactname != ''">
+				and a.contactname = #{contactname,jdbcType=VARCHAR} 
+			</if>
+			<if test="contactphone != null and contactphone != ''">
+				and a.contactphone like concat('%',concat(#{contactphone,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="remark != null and remark != ''">
+				and a.remark = #{remark,jdbcType=VARCHAR} 
+			</if>
+			<if test="bookbustype != -1">
+				and a.bookbustype = #{bookbustype,jdbcType=INTEGER} 
+			</if>
+			<if test="orderNo != null and orderNo != ''">
+				and c.orderNo like concat('%',concat(#{orderNo,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="citycode != -1">
+				and a.citycode = #{citycode,jdbcType=VARCHAR} 
+			</if>
+			<if test="status != -1">
+				and a.status = #{status,jdbcType=INTEGER} 
+			</if>
+			<if test="orderStatus != -1">
+				and c.orderStatus = #{orderStatus,jdbcType=INTEGER} 
+			</if>
+			<if test="orderStatus == -1">
+				and c.orderStatus &lt; 4 
+			</if>
+		</trim>
+		order by c.createtime desc
+	</select>
+	
+	<select id="findBookBusByPageForOrderVerify" resultType="com.lantaiyuan.ebus.custom.model.BookBus"
+		parameterType="com.lantaiyuan.ebus.custom.model.BookBusQueryModel">
+		select a.*, c.payPerson,c.payTime,c.orderNo,b.userName,c.createtime as orderTime,
+		c.payType,c.orderStatus,c.orderPrice,c.orderDetailId,c.remark as refundRemark    
+		from base_bookbus a left join base_order_detail b on(a.goodsId=b.goodsId)  
+		left join base_order c on(b.orderDetailId=c.orderDetailId)  
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="goodsid != null and goodsid != ''">
+				and a.goodsid = #{goodsid,jdbcType=VARCHAR}  
+			</if> 
+			<if test="sourcelocation != null and sourcelocation != ''">
+				and a.sourcelocation = #{sourcelocation,jdbcType=VARCHAR} 
+			</if>
+			<if test="targetlocation != null and targetlocation != ''">
+				and a.targetlocation = #{targetlocation,jdbcType=VARCHAR} 
+			</if>
+			<if test="starttime != null and starttime != ''">
+				and a.starttime = #{starttime,jdbcType=TIMESTAMP} 
+			</if>
+			<if test="backtime != null and backtime != ''">
+				and a.backtime = #{backtime,jdbcType=TIMESTAMP} 
+			</if>
+			<if test="passengernum != null and passengernum != ''">
+				and a.passengernum = #{passengernum,jdbcType=INTEGER} 
+			</if>
+			<if test="contactname != null and contactname != ''">
+				and a.contactname = #{contactname,jdbcType=VARCHAR} 
+			</if>
+			<if test="contactphone != null and contactphone != ''">
+				and a.contactphone like concat('%',concat(#{contactphone,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="remark != null and remark != ''">
+				and a.remark = #{remark,jdbcType=VARCHAR} 
+			</if>
+			<if test="bookbustype != -1">
+				and a.bookbustype = #{bookbustype,jdbcType=INTEGER} 
+			</if>
+			<if test="orderNo != null and orderNo != ''">
+				and c.orderNo like concat('%',concat(#{orderNo,jdbcType=VARCHAR},'%')) 
+			</if>
+			<if test="citycode != -1">
+				and a.citycode = #{citycode,jdbcType=VARCHAR} 
+			</if>
+			<if test="status != -1">
+				and a.status = #{status,jdbcType=INTEGER} 
+			</if>
+			<if test="orderStatus != -1">
+				and c.orderStatus = #{orderStatus,jdbcType=INTEGER} 
+			</if>
+			<if test="orderStatus == -1">
+				and c.orderStatus >= 4 
+			</if>
+		</trim>
+		order by c.createtime desc
+	</select>
+	
+	<select id="findBookBusDetailById" resultType="com.lantaiyuan.ebus.custom.model.BookBus"
+		parameterType="java.lang.String">
+		select a.*, c.payPerson,c.payTime,c.orderNo,b.userName  
+		from base_bookbus a left join base_order_detail b on(a.goodsId=b.goodsId) 
+		left join base_order c on(b.orderDetailId=c.orderDetailId) 
+		where a.goodsId = #{goodsId,jdbcType=VARCHAR} 
+	</select>
+	
+	<!-- 退款申请   start    -->
+	<update id="updateOrderApplyRefund">
+		update base_order set orderStatus = 4, remark = #{remark,jdbcType=VARCHAR}
+		where orderNo = #{orderNo,jdbcType=VARCHAR} 
+	</update>
+	<update id="updateBookBusApplyRefund" parameterType="java.lang.String">
+		update base_bookbus set status = 5 
+		where goodsId = #{goodsId,jdbcType=VARCHAR}  
+	</update>
+	<!-- 退款申请   end  -->
+	
+	<!-- 拒绝退款   start    -->
+	<update id="updateOrderRefuseRefund" parameterType="java.lang.String">
+		update base_order set orderStatus = 1  
+		where orderNo = #{orderNo,jdbcType=VARCHAR} 
+	</update>
+	<update id="updateBookBusRefuseRefund" parameterType="java.lang.String">
+		update base_bookbus set status = 2 
+		where goodsId = #{goodsId,jdbcType=VARCHAR}  
+	</update>
+	<!-- 拒绝退款   end  -->
+	
+	<!-- 同意退款   start    -->
+	<update id="updateOrderApproveRefund" parameterType="java.lang.String">
+		update base_order set orderStatus = 5  
+		where orderNo = #{orderNo,jdbcType=VARCHAR} 
+	</update>
+	<update id="updateBookBusApproveRefund" parameterType="java.lang.String">
+		update base_bookbus set status = 6 
+		where goodsId = #{goodsId,jdbcType=VARCHAR}  
+	</update>
+	<!-- 同意退款   end  -->
+	
+	<update id="updateStatusToTwo" parameterType="java.lang.String">
+		UPDATE base_bookbus
+		SET status = 2
+		WHERE
+		goodsId IN (
+		SELECT
+		goodsId
+		FROM
+		base_order,
+		base_order_detail
+		WHERE
+		base_order_detail.orderDetailId = base_order.orderDetailId
+		AND orderNo = #{orderno,jdbcType=VARCHAR}
+		)
+	</update>
+	
+	<update id="updateQuote" >
+		UPDATE base_bookbus
+		SET quotedPrice = #{quotedPrice},
+		quotedTime = now(),
+		quotedId = #{userId},
+		quotedName = #{userName},
+		status = 1
+		WHERE
+		goodsId = #{goodsId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateOrder">
+		UPDATE base_order 
+		SET amount = #{quotedPrice},
+		orderPrice = #{quotedPrice}
+		WHERE
+		orderNo = #{orderNo,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 自定义：根据goodsId查userId  -->
+	<select id="getUserIdByGoodsId" parameterType="java.lang.String"
+		resultType="int">
+		<!-- @mbggenerated -->
+		select userId from base_order_detail
+		where goodsId = #{goodsId,jdbcType=VARCHAR}
+	</select>
+	<!-- 查询离发车剩余天数 -->
+	<select id="queryRemainDays" parameterType="java.lang.String"
+		resultType="int">
+		<!-- @mbggenerated -->
+		select to_days(startTime) - to_days(now()) AS days FROM base_bookbus WHERE goodsId 
+		 = #{goodsId,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

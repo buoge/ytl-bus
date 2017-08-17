@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.carpool.CarPoolSettingMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.carpool.CarPoolSetting">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="walk_type" jdbcType="BIT" property="walkType" />
+        <result column="delay_minute" jdbcType="DECIMAL" property="delayMinute" />
+        <result column="early_minute" jdbcType="DECIMAL" property="earlyMinute" />
+        <result column="price_type" jdbcType="BIT" property="priceType" />
+        <result column="car_type" jdbcType="BIT" property="carType" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, user_id, walk_type, delay_minute, early_minute, price_type, car_type, gmt_create, 
+        gmt_modified, city_code
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from carpool_setting
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from carpool_setting
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.carpool.CarPoolSetting">
+        <!--
+        @mbggenerated
+        -->
+        insert into carpool_setting (id, user_id, walk_type, 
+            delay_minute, early_minute, price_type, 
+            car_type, gmt_create, gmt_modified, 
+            city_code)
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{walkType,jdbcType=BIT}, 
+            #{delayMinute,jdbcType=DECIMAL}, #{earlyMinute,jdbcType=DECIMAL}, #{priceType,jdbcType=BIT}, 
+            #{carType,jdbcType=BIT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+            #{cityCode,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.carpool.CarPoolSetting">
+        <!--
+        @mbggenerated
+        -->
+        insert into carpool_setting
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="walkType != null">
+                walk_type,
+            </if>
+            <if test="delayMinute != null">
+                delay_minute,
+            </if>
+            <if test="earlyMinute != null">
+                early_minute,
+            </if>
+            <if test="priceType != null">
+                price_type,
+            </if>
+            <if test="carType != null">
+                car_type,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="walkType != null">
+                #{walkType,jdbcType=BIT},
+            </if>
+            <if test="delayMinute != null">
+                #{delayMinute,jdbcType=DECIMAL},
+            </if>
+            <if test="earlyMinute != null">
+                #{earlyMinute,jdbcType=DECIMAL},
+            </if>
+            <if test="priceType != null">
+                #{priceType,jdbcType=BIT},
+            </if>
+            <if test="carType != null">
+                #{carType,jdbcType=BIT},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.carpool.CarPoolSetting">
+        <!--
+        @mbggenerated
+        -->
+        update carpool_setting
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="walkType != null">
+                walk_type = #{walkType,jdbcType=BIT},
+            </if>
+            <if test="delayMinute != null">
+                delay_minute = #{delayMinute,jdbcType=DECIMAL},
+            </if>
+            <if test="earlyMinute != null">
+                early_minute = #{earlyMinute,jdbcType=DECIMAL},
+            </if>
+            <if test="priceType != null">
+                price_type = #{priceType,jdbcType=BIT},
+            </if>
+            <if test="carType != null">
+                car_type = #{carType,jdbcType=BIT},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.carpool.CarPoolSetting">
+        <!--
+        @mbggenerated
+        -->
+        update carpool_setting
+        set user_id = #{userId,jdbcType=INTEGER},
+            walk_type = #{walkType,jdbcType=BIT},
+            delay_minute = #{delayMinute,jdbcType=DECIMAL},
+            early_minute = #{earlyMinute,jdbcType=DECIMAL},
+            price_type = #{priceType,jdbcType=BIT},
+            car_type = #{carType,jdbcType=BIT},
+            gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            city_code = #{cityCode,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+      <!-- 自定义：根据userId查询拼车设置记录 -->
+    <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from carpool_setting
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+</mapper>

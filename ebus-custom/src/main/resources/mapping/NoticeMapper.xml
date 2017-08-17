@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.NoticeMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.Notice">
+        <!--
+        @mbggenerated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="IMPORTANT_GRADE" jdbcType="BIT" property="importantGrade" />
+        <result column="NOTICE_RANGE" jdbcType="BIT" property="noticeRange" />
+        <result column="DISTANCE_RANGE" jdbcType="INTEGER" property="distanceRange" />
+        <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+        <result column="ROUTE_STR" jdbcType="VARCHAR" property="routeStr" />
+        <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+        <result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
+        <result column="PUBLISH_STATUS" jdbcType="BIT" property="publishStatus" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        ID, IMPORTANT_GRADE, NOTICE_RANGE, DISTANCE_RANGE, CITY_CODE, ROUTE_STR, CONTENT, 
+        PUBLISH_TIME, PUBLISH_STATUS, CREATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from weather_notice
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from weather_notice
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.Notice">
+        <!--
+        @mbggenerated
+        -->
+        insert into weather_notice (ID, IMPORTANT_GRADE, NOTICE_RANGE, 
+            DISTANCE_RANGE, CITY_CODE, ROUTE_STR, 
+            CONTENT, PUBLISH_TIME, PUBLISH_STATUS, 
+            CREATE_TIME)
+        values (#{id,jdbcType=VARCHAR}, #{importantGrade,jdbcType=BIT}, #{noticeRange,jdbcType=BIT}, 
+            #{distanceRange,jdbcType=INTEGER}, #{cityCode,jdbcType=VARCHAR}, #{routeStr,jdbcType=VARCHAR}, 
+            #{content,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{publishStatus,jdbcType=BIT}, 
+            #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.Notice">
+        <!--
+        @mbggenerated
+        -->
+        insert into weather_notice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="importantGrade != null">
+                IMPORTANT_GRADE,
+            </if>
+            <if test="noticeRange != null">
+                NOTICE_RANGE,
+            </if>
+            <if test="distanceRange != null">
+                DISTANCE_RANGE,
+            </if>
+            <if test="cityCode != null">
+                CITY_CODE,
+            </if>
+            <if test="routeStr != null">
+                ROUTE_STR,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+            <if test="publishTime != null">
+                PUBLISH_TIME,
+            </if>
+            <if test="publishStatus != null">
+                PUBLISH_STATUS,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="importantGrade != null">
+                #{importantGrade,jdbcType=BIT},
+            </if>
+            <if test="noticeRange != null">
+                #{noticeRange,jdbcType=BIT},
+            </if>
+            <if test="distanceRange != null">
+                #{distanceRange,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="routeStr != null">
+                #{routeStr,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="publishTime != null">
+                #{publishTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="publishStatus != null">
+                #{publishStatus,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.Notice">
+        <!--
+        @mbggenerated
+        -->
+        update weather_notice
+        <set>
+            <if test="importantGrade != null">
+                IMPORTANT_GRADE = #{importantGrade,jdbcType=BIT},
+            </if>
+            <if test="noticeRange != null">
+                NOTICE_RANGE = #{noticeRange,jdbcType=BIT},
+            </if>
+            <if test="distanceRange != null">
+                DISTANCE_RANGE = #{distanceRange,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null">
+                CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="routeStr != null">
+                ROUTE_STR = #{routeStr,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="publishTime != null">
+                PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="publishStatus != null">
+                PUBLISH_STATUS = #{publishStatus,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.Notice">
+        <!--
+        @mbggenerated
+        -->
+        update weather_notice
+        set IMPORTANT_GRADE = #{importantGrade,jdbcType=BIT},
+            NOTICE_RANGE = #{noticeRange,jdbcType=BIT},
+            DISTANCE_RANGE = #{distanceRange,jdbcType=INTEGER},
+            CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+            ROUTE_STR = #{routeStr,jdbcType=VARCHAR},
+            CONTENT = #{content,jdbcType=VARCHAR},
+            PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+            PUBLISH_STATUS = #{publishStatus,jdbcType=BIT},
+            CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    <!--  以下是自定义方法 -->
+    <select id="listByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.NoticeQueryModel">
+		select
+		<include refid="Base_Column_List" />
+		from weather_notice
+		<trim prefix="WHERE" prefixOverrides="AND" suffixOverrides=",">
+			<if test="id != null and id !=''">
+				AND ID=#{id,jdbcType=VARCHAR}
+			</if>
+			<if test="importantGrade != null and importantGrade !=''">
+                AND IMPORTANT_GRADE = #{importantGrade,jdbcType=BIT}
+            </if>
+            <if test="noticeRange != null and noticeRange !=''">
+                AND NOTICE_RANGE = #{noticeRange,jdbcType=BIT}
+            </if>
+            <if test="distanceRange != null and distanceRange !=''">
+                AND DISTANCE_RANGE = #{distanceRange,jdbcType=INTEGER}
+            </if>
+            <if test="cityCode != null and cityCode !=''">
+                AND (CITY_CODE = #{cityCode,jdbcType=VARCHAR} OR CITY_CODE = "-1")
+            </if>
+            <if test="routeStr != null and routeStr !=''">
+                AND ROUTE_STR = #{routeStr,jdbcType=VARCHAR}
+            </if>
+            <if test="content != null and content !=''">
+                AND CONTENT = #{content,jdbcType=VARCHAR}
+            </if>
+            <if test="publishTime != null and publishTime !=''">
+                AND PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus !=''">
+                AND PUBLISH_STATUS = #{publishStatus,jdbcType=BIT}
+            </if>
+            <if test="publishTimeStart != null  and publishTimeStart !=''">
+				AND PUBLISH_TIME <![CDATA[>=]]>  STR_TO_DATE(#{publishTimeStart,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s') 
+			</if>
+			<if test="publishTimeEnd != null  and publishTimeEnd !=''">
+				AND PUBLISH_TIME  <![CDATA[<=]]> STR_TO_DATE(#{publishTimeEnd,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+            <if test="createTime != null and createTime !=''">
+                AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+		</trim>
+		ORDER BY CREATE_TIME DESC
+	</select>
+	
+	<!-- 条件查询紧急通知 -->
+	<select id="listByCondition" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.NoticeQueryModel">
+		select
+		<include refid="Base_Column_List" />
+		from weather_notice
+		<trim prefix="WHERE" prefixOverrides="AND" suffixOverrides=",">
+			<if test="id != null and id !=''">
+				AND ID=#{id,jdbcType=VARCHAR}
+			</if>
+			<if test="importantGrade != null and importantGrade !=''">
+                AND IMPORTANT_GRADE = #{importantGrade,jdbcType=BIT}
+            </if>
+            <if test="noticeRange != null and noticeRange !=''">
+                AND NOTICE_RANGE = #{noticeRange,jdbcType=BIT}
+            </if>
+            <if test="distanceRange != null and distanceRange !=''">
+                AND DISTANCE_RANGE = #{distanceRange,jdbcType=INTEGER}
+            </if>
+            <if test="cityCode != null and cityCode !=''">
+                AND CITY_CODE = #{cityCode,jdbcType=VARCHAR}
+            </if>
+            <if test="routeStr != null and routeStr !=''">
+                AND ROUTE_STR = #{routeStr,jdbcType=VARCHAR}
+            </if>
+            <if test="content != null and content !=''">
+                AND CONTENT = #{content,jdbcType=VARCHAR}
+            </if>
+            <if test="publishTime != null and publishTime !=''">
+                AND PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus !=''">
+                AND PUBLISH_STATUS = #{publishStatus,jdbcType=BIT}
+            </if>
+            <if test="createTime != null and createTime !=''">
+                AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+		</trim>
+	</select>
+</mapper>

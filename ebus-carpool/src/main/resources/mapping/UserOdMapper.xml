@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.carpool.dao.UserOdMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.carpool.model.UserOd">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="calculated_date" jdbcType="DATE" property="calculatedDate" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="week" jdbcType="INTEGER" property="week" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="registration_id" jdbcType="VARCHAR" property="registrationId" />
+        <result column="start_station" jdbcType="VARCHAR" property="startStation" />
+        <result column="start_longitude" jdbcType="DECIMAL" property="startLongitude" />
+        <result column="start_latitude" jdbcType="DECIMAL" property="startLatitude" />
+        <result column="start_radius" jdbcType="INTEGER" property="startRadius" />
+        <result column="start_time" jdbcType="TIME" property="startTime" />
+        <result column="end_station" jdbcType="VARCHAR" property="endStation" />
+        <result column="end_longitude" jdbcType="DOUBLE" property="endLongitude" />
+        <result column="end_latitude" jdbcType="DOUBLE" property="endLatitude" />
+        <result column="end_radius" jdbcType="INTEGER" property="endRadius" />
+        <result column="od_distance" jdbcType="DOUBLE" property="odDistance" />
+        <result column="end_time" jdbcType="TIME" property="endTime" />
+        <result column="priority" jdbcType="INTEGER" property="priority" />
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="field1" jdbcType="VARCHAR" property="field1" />
+        <result column="field2" jdbcType="VARCHAR" property="field2" />
+        <result column="field3" jdbcType="VARCHAR" property="field3" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, calculated_date, type, week, user_id, registration_id, start_station, start_longitude, 
+        start_latitude, start_radius, start_time, end_station, end_longitude, end_latitude, 
+        end_radius, od_distance, end_time, priority, city_code, gmt_create, gmt_modified, 
+        field1, field2, field3
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from user_od
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from user_od
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.carpool.model.UserOd">
+        <!--
+        @mbggenerated
+        -->
+        insert into user_od (id, calculated_date, type, 
+            week, user_id, registration_id, 
+            start_station, start_longitude, start_latitude, 
+            start_radius, start_time, end_station, 
+            end_longitude, end_latitude, end_radius, 
+            od_distance, end_time, priority, 
+            city_code, gmt_create, gmt_modified, 
+            field1, field2, field3
+            )
+        values (#{id,jdbcType=VARCHAR}, #{calculatedDate,jdbcType=DATE}, #{type,jdbcType=INTEGER}, 
+            #{week,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{registrationId,jdbcType=VARCHAR}, 
+            #{startStation,jdbcType=VARCHAR}, #{startLongitude,jdbcType=DECIMAL}, #{startLatitude,jdbcType=DECIMAL}, 
+            #{startRadius,jdbcType=INTEGER}, #{startTime,jdbcType=TIME}, #{endStation,jdbcType=VARCHAR}, 
+            #{endLongitude,jdbcType=DOUBLE}, #{endLatitude,jdbcType=DOUBLE}, #{endRadius,jdbcType=INTEGER}, 
+            #{odDistance,jdbcType=DOUBLE}, #{endTime,jdbcType=TIME}, #{priority,jdbcType=INTEGER}, 
+            #{cityCode,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+            #{field1,jdbcType=VARCHAR}, #{field2,jdbcType=VARCHAR}, #{field3,jdbcType=VARCHAR}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.carpool.model.UserOd">
+        <!--
+        @mbggenerated
+        -->
+        insert into user_od
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="calculatedDate != null">
+                calculated_date,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="week != null">
+                week,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="registrationId != null">
+                registration_id,
+            </if>
+            <if test="startStation != null">
+                start_station,
+            </if>
+            <if test="startLongitude != null">
+                start_longitude,
+            </if>
+            <if test="startLatitude != null">
+                start_latitude,
+            </if>
+            <if test="startRadius != null">
+                start_radius,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endStation != null">
+                end_station,
+            </if>
+            <if test="endLongitude != null">
+                end_longitude,
+            </if>
+            <if test="endLatitude != null">
+                end_latitude,
+            </if>
+            <if test="endRadius != null">
+                end_radius,
+            </if>
+            <if test="odDistance != null">
+                od_distance,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="priority != null">
+                priority,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="field1 != null">
+                field1,
+            </if>
+            <if test="field2 != null">
+                field2,
+            </if>
+            <if test="field3 != null">
+                field3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="calculatedDate != null">
+                #{calculatedDate,jdbcType=DATE},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="week != null">
+                #{week,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="registrationId != null">
+                #{registrationId,jdbcType=VARCHAR},
+            </if>
+            <if test="startStation != null">
+                #{startStation,jdbcType=VARCHAR},
+            </if>
+            <if test="startLongitude != null">
+                #{startLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="startLatitude != null">
+                #{startLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="startRadius != null">
+                #{startRadius,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIME},
+            </if>
+            <if test="endStation != null">
+                #{endStation,jdbcType=VARCHAR},
+            </if>
+            <if test="endLongitude != null">
+                #{endLongitude,jdbcType=DOUBLE},
+            </if>
+            <if test="endLatitude != null">
+                #{endLatitude,jdbcType=DOUBLE},
+            </if>
+            <if test="endRadius != null">
+                #{endRadius,jdbcType=INTEGER},
+            </if>
+            <if test="odDistance != null">
+                #{odDistance,jdbcType=DOUBLE},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIME},
+            </if>
+            <if test="priority != null">
+                #{priority,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="field1 != null">
+                #{field1,jdbcType=VARCHAR},
+            </if>
+            <if test="field2 != null">
+                #{field2,jdbcType=VARCHAR},
+            </if>
+            <if test="field3 != null">
+                #{field3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.carpool.model.UserOd">
+        <!--
+        @mbggenerated
+        -->
+        update user_od
+        <set>
+            <if test="calculatedDate != null">
+                calculated_date = #{calculatedDate,jdbcType=DATE},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="week != null">
+                week = #{week,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="registrationId != null">
+                registration_id = #{registrationId,jdbcType=VARCHAR},
+            </if>
+            <if test="startStation != null">
+                start_station = #{startStation,jdbcType=VARCHAR},
+            </if>
+            <if test="startLongitude != null">
+                start_longitude = #{startLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="startLatitude != null">
+                start_latitude = #{startLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="startRadius != null">
+                start_radius = #{startRadius,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIME},
+            </if>
+            <if test="endStation != null">
+                end_station = #{endStation,jdbcType=VARCHAR},
+            </if>
+            <if test="endLongitude != null">
+                end_longitude = #{endLongitude,jdbcType=DOUBLE},
+            </if>
+            <if test="endLatitude != null">
+                end_latitude = #{endLatitude,jdbcType=DOUBLE},
+            </if>
+            <if test="endRadius != null">
+                end_radius = #{endRadius,jdbcType=INTEGER},
+            </if>
+            <if test="odDistance != null">
+                od_distance = #{odDistance,jdbcType=DOUBLE},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIME},
+            </if>
+            <if test="priority != null">
+                priority = #{priority,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="field1 != null">
+                field1 = #{field1,jdbcType=VARCHAR},
+            </if>
+            <if test="field2 != null">
+                field2 = #{field2,jdbcType=VARCHAR},
+            </if>
+            <if test="field3 != null">
+                field3 = #{field3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.carpool.model.UserOd">
+        <!--
+        @mbggenerated
+        -->
+        update user_od
+        set calculated_date = #{calculatedDate,jdbcType=DATE},
+            type = #{type,jdbcType=INTEGER},
+            week = #{week,jdbcType=INTEGER},
+            user_id = #{userId,jdbcType=INTEGER},
+            registration_id = #{registrationId,jdbcType=VARCHAR},
+            start_station = #{startStation,jdbcType=VARCHAR},
+            start_longitude = #{startLongitude,jdbcType=DECIMAL},
+            start_latitude = #{startLatitude,jdbcType=DECIMAL},
+            start_radius = #{startRadius,jdbcType=INTEGER},
+            start_time = #{startTime,jdbcType=TIME},
+            end_station = #{endStation,jdbcType=VARCHAR},
+            end_longitude = #{endLongitude,jdbcType=DOUBLE},
+            end_latitude = #{endLatitude,jdbcType=DOUBLE},
+            end_radius = #{endRadius,jdbcType=INTEGER},
+            od_distance = #{odDistance,jdbcType=DOUBLE},
+            end_time = #{endTime,jdbcType=TIME},
+            priority = #{priority,jdbcType=INTEGER},
+            city_code = #{cityCode,jdbcType=VARCHAR},
+            gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            field1 = #{field1,jdbcType=VARCHAR},
+            field2 = #{field2,jdbcType=VARCHAR},
+            field3 = #{field3,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!-- 以下为自定义 -->
+    <insert id="insertBatch">
+        insert into user_od (id, calculated_date, type,
+        week, user_id, registration_id,start_station, start_longitude, start_latitude,start_radius, start_time,
+        end_station,end_longitude, end_latitude, end_radius,od_distance, end_time, priority,city_code)
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.id,jdbcType=VARCHAR}, #{item.calculatedDate,jdbcType=DATE}, #{item.type,jdbcType=INTEGER},
+            #{item.week,jdbcType=INTEGER}, #{item.userId,jdbcType=INTEGER}, #{item.registrationId,jdbcType=VARCHAR},
+            #{item.startStation,jdbcType=VARCHAR}, #{item.startLongitude,jdbcType=DECIMAL}, #{item.startLatitude,jdbcType=DECIMAL},
+            #{item.startRadius,jdbcType=INTEGER}, #{item.startTime,jdbcType=TIME}, #{item.endStation,jdbcType=VARCHAR},
+            #{item.endLongitude,jdbcType=DOUBLE}, #{item.endLatitude,jdbcType=DOUBLE}, #{item.endRadius,jdbcType=INTEGER},
+            #{item.odDistance,jdbcType=DOUBLE}, #{item.endTime,jdbcType=TIME}, #{item.priority,jdbcType=INTEGER},
+            #{item.cityCode,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+
+    <delete id="deleteOldOD">
+        delete from user_od where datediff(curdate(), calculated_date) >= 7
+    </delete>
+</mapper>

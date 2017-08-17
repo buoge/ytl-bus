@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.RelRouteStationMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.RelRouteStation">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="routeId" jdbcType="VARCHAR" property="routeid" />
+        <result column="stationId" jdbcType="VARCHAR" property="stationid" />
+        <result column="previousStationId" jdbcType="INTEGER" property="previousstationid" />
+        <result column="nextStationId" jdbcType="INTEGER" property="nextstationid" />
+        <result column="stationNo" jdbcType="INTEGER" property="stationno" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+        <result column="direction" jdbcType="INTEGER" property="direction" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, routeId, stationId, previousStationId, nextStationId, stationNo, createTime, 
+        cityCode, direction
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from rel_route_station
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from rel_route_station
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.RelRouteStation">
+        <!--
+        @mbggenerated
+        -->
+        insert into rel_route_station (id, routeId, stationId, 
+            previousStationId, nextStationId, stationNo, 
+            createTime, cityCode, direction
+            )
+        values (#{id,jdbcType=INTEGER}, #{routeid,jdbcType=VARCHAR}, #{stationid,jdbcType=VARCHAR}, 
+            #{previousstationid,jdbcType=INTEGER}, #{nextstationid,jdbcType=INTEGER}, #{stationno,jdbcType=INTEGER}, 
+            #{createtime,jdbcType=TIMESTAMP}, #{citycode,jdbcType=VARCHAR}, #{direction,jdbcType=INTEGER}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.RelRouteStation">
+        <!--
+        @mbggenerated
+        -->
+        insert into rel_route_station
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="routeid != null">
+                routeId,
+            </if>
+            <if test="stationid != null">
+                stationId,
+            </if>
+            <if test="previousstationid != null">
+                previousStationId,
+            </if>
+            <if test="nextstationid != null">
+                nextStationId,
+            </if>
+            <if test="stationno != null">
+                stationNo,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+            <if test="direction != null">
+                direction,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="routeid != null">
+                #{routeid,jdbcType=VARCHAR},
+            </if>
+            <if test="stationid != null">
+                #{stationid,jdbcType=VARCHAR},
+            </if>
+            <if test="previousstationid != null">
+                #{previousstationid,jdbcType=INTEGER},
+            </if>
+            <if test="nextstationid != null">
+                #{nextstationid,jdbcType=INTEGER},
+            </if>
+            <if test="stationno != null">
+                #{stationno,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                #{direction,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.RelRouteStation">
+        <!--
+        @mbggenerated
+        -->
+        update rel_route_station
+        <set>
+            <if test="routeid != null">
+                routeId = #{routeid,jdbcType=VARCHAR},
+            </if>
+            <if test="stationid != null">
+                stationId = #{stationid,jdbcType=VARCHAR},
+            </if>
+            <if test="previousstationid != null">
+                previousStationId = #{previousstationid,jdbcType=INTEGER},
+            </if>
+            <if test="nextstationid != null">
+                nextStationId = #{nextstationid,jdbcType=INTEGER},
+            </if>
+            <if test="stationno != null">
+                stationNo = #{stationno,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                direction = #{direction,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.RelRouteStation">
+        <!--
+        @mbggenerated
+        -->
+        update rel_route_station
+        set routeId = #{routeid,jdbcType=VARCHAR},
+            stationId = #{stationid,jdbcType=VARCHAR},
+            previousStationId = #{previousstationid,jdbcType=INTEGER},
+            nextStationId = #{nextstationid,jdbcType=INTEGER},
+            stationNo = #{stationno,jdbcType=INTEGER},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            direction = #{direction,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+
+ 	<!-- 自定义  -->
+    <select id="getCityRelRouteStation" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from
+		rel_route_station where routeId = #{routeId} and direction = #{direction} and 
+			cityCode = #{cityCode} 
+	</select>
+	<!-- 自定义 getStationsIdByRouteId -->
+	<select id="getStationsIdByRouteId" resultType="Integer">
+		select stationId from
+		rel_route_station 
+		where routeId = #{routeId} and direction = #{direction} 
+		and cityCode = #{cityCode} order by stationNo
+	</select> 
+	<!-- 自定义 getStationNo -->
+	<select id="getStationNo" resultType="Integer">
+		select stationNo from
+		rel_route_station 
+		where routeId = #{routeId} and direction = #{direction} 
+		and cityCode = #{cityCode} and stationId = #{stationId}
+	</select>
+	<!-- 根据站点id和城市代码获取线路id及方向  -->
+	<select id="queryRoutesIdByStationId" resultType="com.lantaiyuan.ebus.realtime.model.RouteSimpleInfo">
+		select routeId,direction from rel_route_station
+		where stationId = #{stationId} and cityCode = #{cityCode}
+	</select>
+	<!-- 自定义  -->
+    <select id="getAllRelRouteStations" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from
+		rel_route_station 
+	</select>
+	<!-- 自定义  -->
+    <select id="getStationRoutes" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from
+		rel_route_station where stationId = #{stationId} and cityCode = #{cityCode}
+	</select>
+	<!-- 获得两个站序中间的所有站点  -->
+    <select id="getRelRouteStationBetweenTwoStations" resultType="com.lantaiyuan.ebus.custom.model.mytrail.StationInMyTrail">
+		SELECT  r.routeId, r.stationId as stationid, r.stationNo, r.cityCode, r.direction, s.name, s.longitude, s.latitude
+		FROM rel_route_station r LEFT JOIN base_station s ON (r.stationId = s.stationId and r.cityCode = s.cityCode)
+		WHERE r.routeId = #{routeId,jdbcType=VARCHAR} 
+		AND r.cityCode = #{cityCode,jdbcType=VARCHAR}
+		AND r.direction = #{direction,jdbcType=INTEGER}
+		AND (r.stationNo BETWEEN #{startStationNo,jdbcType=INTEGER} AND #{endStationNo,jdbcType=INTEGER})
+		ORDER BY stationNo ASC
+	</select>
+	
+	
+	<select id="getNearestStation" resultType="com.lantaiyuan.ebus.custom.model.UpAndDownStation">
+		SELECT
+			r.stationId,
+			r.stationNo,
+			s.`name`,
+			s.longitude,
+			s.latitude,
+			round(6378.138*2*asin(sqrt(pow(sin( (s.latitude*pi()/180-#{currentlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(s.latitude*pi()/180)*cos(#{currentlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (s.longitude*pi()/180-#{currentlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) as distance
+		FROM
+			rel_route_station r
+		LEFT JOIN base_station s ON r.cityCode = s.cityCode
+		AND r.stationId = s.stationId
+		WHERE
+			r.routeId = #{routeid,jdbcType=VARCHAR}
+			AND r.cityCode = #{citycode,jdbcType=VARCHAR}
+			AND r.direction = #{direction,jdbcType=INTEGER}
+		ORDER BY distance ASC
+		LIMIT 0, 1
+	</select>
+	
+</mapper>

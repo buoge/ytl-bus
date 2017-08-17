@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.TickcetSchedualMapper">
+	<resultMap id="BaseResultMap"
+		type="com.lantaiyuan.ebus.custom.model.TickcetSchedual">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="routeId" property="routeid" jdbcType="VARCHAR" />
+		<result column="serverTime" property="servertime" jdbcType="VARCHAR" />
+		<result column="serverDate" property="serverdate" jdbcType="VARCHAR" />
+		<result column="remainTicketNum" property="remainticketnum"
+			jdbcType="INTEGER" />
+		<result column="price" property="price" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, routeId, serverTime, serverDate, remainTicketNum, price
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from base_tickcet_schedual
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		base_tickcet_schedual
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.TickcetSchedual">
+		insert into
+		base_tickcet_schedual (id, routeId, serverTime,
+		serverDate,
+		remainTicketNum, price
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{routeid,jdbcType=VARCHAR},
+		#{servertime,jdbcType=VARCHAR},
+		#{serverdate,jdbcType=VARCHAR}, #{remainticketnum,jdbcType=INTEGER},
+		#{price,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.TickcetSchedual">
+		insert into base_tickcet_schedual
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="routeid != null">
+				routeId,
+			</if>
+			<if test="servertime != null">
+				serverTime,
+			</if>
+			<if test="serverdate != null">
+				serverDate,
+			</if>
+			<if test="remainticketnum != null">
+				remainTicketNum,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="routeid != null">
+				#{routeid,jdbcType=VARCHAR},
+			</if>
+			<if test="servertime != null">
+				#{servertime,jdbcType=VARCHAR},
+			</if>
+			<if test="serverdate != null">
+				#{serverdate,jdbcType=VARCHAR},
+			</if>
+			<if test="remainticketnum != null">
+				#{remainticketnum,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.TickcetSchedual">
+		update base_tickcet_schedual
+		<set>
+			<if test="routeid != null">
+				routeId = #{routeid,jdbcType=VARCHAR},
+			</if>
+			<if test="servertime != null">
+				serverTime = #{servertime,jdbcType=VARCHAR},
+			</if>
+			<if test="serverdate != null">
+				serverDate = #{serverdate,jdbcType=VARCHAR},
+			</if>
+			<if test="remainticketnum != null">
+				remainTicketNum = #{remainticketnum,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.TickcetSchedual">
+		update
+		base_tickcet_schedual
+		set routeId = #{routeid,jdbcType=VARCHAR},
+		serverTime = #{servertime,jdbcType=VARCHAR},
+		serverDate =
+		#{serverdate,jdbcType=VARCHAR},
+		remainTicketNum =
+		#{remainticketnum,jdbcType=INTEGER},
+		price = #{price,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 自定义 -->
+	<update id="updateRemainTicketNum" parameterType="java.lang.String">
+		UPDATE
+		base_tickcet_schedual SET base_tickcet_schedual.remainTicketNum =
+		base_tickcet_schedual.remainTicketNum-1
+		WHERE
+		base_tickcet_schedual.routeId in(SELECT
+		base_bookticket.routeId
+		FROM
+		base_bookticket,
+		base_order
+		WHERE
+		base_bookticket.orderDetailId =
+		base_order.orderDetailId
+		AND orderNo = #{orderno,jdbcType=VARCHAR})
+		and
+		base_tickcet_schedual.serverDate in (SELECT
+		base_bookticket.takeDate
+		FROM
+		base_bookticket,
+		base_order
+		WHERE
+		base_bookticket.orderDetailId =
+		base_order.orderDetailId
+		AND orderNo = #{orderno,jdbcType=VARCHAR})
+		and
+		base_tickcet_schedual.cityCode in (SELECT
+		base_bookticket.cityCode
+		FROM
+		base_bookticket,
+		base_order
+		WHERE
+		base_bookticket.orderDetailId =
+		base_order.orderDetailId
+		AND orderNo = #{orderno,jdbcType=VARCHAR})
+	</update>
+
+	<!-- <select id="queryTicketByRouteId" parameterType="java.lang.String" 
+		resultMap="BaseResultMap"> select <include refid="Base_Column_List" /> from 
+		base_tickcet_schedual where routeId = #{routeid,jdbcType=VARCHAR} and isOpenToBuy 
+		= 1 ORDER BY STR_TO_DATE(serverDate,'%Y-%m-%d') </select> -->
+
+	<select id="queryTicketByRouteId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_tickcet_schedual
+		where routeId = #{routeId,jdbcType=VARCHAR}
+		and cityCode = #{cityCode,jdbcType=VARCHAR}
+		and isOpenToBuy = 1
+		ORDER BY
+		STR_TO_DATE(serverDate,'%Y-%m-%d')
+	</select>
+
+	<select id="getTicketsBeforeMakeOrder" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select *
+		from base_tickcet_schedual
+		where
+		routeId = #{routeId}
+		and
+		cityCode = #{cityCode}
+		and
+		isOpenToBuy = 1
+		and serverDate in
+		<foreach collection="serverDate" index="index" item="item"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<update id="addRemainTicketNum" parameterType="java.lang.String">
+		UPDATE
+		base_tickcet_schedual SET base_tickcet_schedual.remainTicketNum =
+		base_tickcet_schedual.remainTicketNum+1
+		WHERE
+		base_tickcet_schedual.routeId in(SELECT
+		base_bookticket.routeId
+		FROM
+		base_bookticket,
+		base_order
+		WHERE
+		base_bookticket.orderDetailId =
+		base_order.orderDetailId
+		AND orderNo = #{orderno,jdbcType=VARCHAR})
+		and
+		base_tickcet_schedual.serverDate in (SELECT
+		base_bookticket.takeDate
+		FROM
+		base_bookticket,
+		base_order
+		WHERE
+		base_bookticket.orderDetailId =
+		base_order.orderDetailId
+		AND orderNo = #{orderno,jdbcType=VARCHAR})
+		and
+		base_tickcet_schedual.cityCode in (SELECT
+		base_bookticket.cityCode
+		FROM
+		base_bookticket,
+		base_order
+		WHERE
+		base_bookticket.orderDetailId =
+		base_order.orderDetailId
+		AND orderNo = #{orderno,jdbcType=VARCHAR})
+	</update>
+
+	<update id="addRemainTicketNumByTicketId" parameterType="java.lang.String">
+		UPDATE base_tickcet_schedual
+		SET base_tickcet_schedual.remainTicketNum =
+		base_tickcet_schedual.remainTicketNum + 1
+		WHERE
+		base_tickcet_schedual.routeId IN (
+		SELECT
+		base_bookticket.routeId
+		FROM
+		base_bookticket
+		WHERE
+		base_bookticket.goodsId = #{goodsId,jdbcType=VARCHAR})
+		AND base_tickcet_schedual.serverDate IN
+		(
+		SELECT
+		base_bookticket.takeDate
+		FROM
+		base_bookticket
+		WHERE
+		base_bookticket.goodsId = #{goodsId,jdbcType=VARCHAR})
+		AND base_tickcet_schedual.cityCode IN (
+		SELECT
+		base_bookticket.cityCode
+		FROM
+		base_bookticket
+		WHERE
+		base_bookticket.goodsId = #{goodsId,jdbcType=VARCHAR})
+	</update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.OrderDetail" >
+    <id column="orderDetailId" property="orderdetailid" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="goodsNum" property="goodsnum" jdbcType="INTEGER" />
+    <result column="goodsId" property="goodsid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderDetailId, userId, userName, type, goodsNum, goodsId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_order_detail
+    where orderDetailId = #{orderdetailid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_order_detail
+    where orderDetailId = #{orderdetailid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.OrderDetail" >
+    insert into base_order_detail (orderDetailId, userId, userName, 
+      type, goodsNum, goodsId
+      )
+    values (#{orderdetailid,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{type,jdbcType=TINYINT}, #{goodsnum,jdbcType=INTEGER}, #{goodsid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.OrderDetail" >
+    insert into base_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderdetailid != null" >
+        orderDetailId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="goodsnum != null" >
+        goodsNum,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderdetailid != null" >
+        #{orderdetailid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="goodsnum != null" >
+        #{goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.OrderDetail" >
+    update base_order_detail
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="goodsnum != null" >
+        goodsNum = #{goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null" >
+        goodsId = #{goodsid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderDetailId = #{orderdetailid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.OrderDetail" >
+    update base_order_detail
+    set userId = #{userid,jdbcType=INTEGER},
+      userName = #{username,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      goodsNum = #{goodsnum,jdbcType=INTEGER},
+      goodsId = #{goodsid,jdbcType=VARCHAR}
+    where orderDetailId = #{orderdetailid,jdbcType=VARCHAR}
+  </update>
+  <!-- 自定义：queryOrderDetailByOrderNo -->
+  <select id="queryOrderDetailByOrderNo" parameterType="java.lang.String"
+		resultMap="BaseResultMap" >
+		SELECT
+		base_order_detail.* from
+		base_order_detail,base_order
+		WHERE
+		base_order_detail.orderDetailId=base_order.orderDetailId
+		and orderNo =
+		#{orderno,jdbcType=VARCHAR}
+	</select>
+</mapper>

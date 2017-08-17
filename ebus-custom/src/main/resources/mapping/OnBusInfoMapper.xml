@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.OnBusInfoMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.OnBusInfo">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="onBusTime" jdbcType="VARCHAR" property="onbustime" />
+        <result column="onBusStationName" jdbcType="VARCHAR" property="onbusstationname" />
+        <result column="ceateTime" jdbcType="TIMESTAMP" property="ceatetime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, onBusTime, onBusStationName, ceateTime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_onbusinfo
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_onbusinfo
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.OnBusInfo">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_onbusinfo (id, onBusTime, onBusStationName, 
+            ceateTime)
+        values (#{id,jdbcType=VARCHAR}, #{onbustime,jdbcType=VARCHAR}, #{onbusstationname,jdbcType=VARCHAR}, 
+            #{ceatetime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.OnBusInfo">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_onbusinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="onbustime != null">
+                onBusTime,
+            </if>
+            <if test="onbusstationname != null">
+                onBusStationName,
+            </if>
+            <if test="ceatetime != null">
+                ceateTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="onbustime != null">
+                #{onbustime,jdbcType=VARCHAR},
+            </if>
+            <if test="onbusstationname != null">
+                #{onbusstationname,jdbcType=VARCHAR},
+            </if>
+            <if test="ceatetime != null">
+                #{ceatetime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.OnBusInfo">
+        <!--
+        @mbggenerated
+        -->
+        update base_onbusinfo
+        <set>
+            <if test="onbustime != null">
+                onBusTime = #{onbustime,jdbcType=VARCHAR},
+            </if>
+            <if test="onbusstationname != null">
+                onBusStationName = #{onbusstationname,jdbcType=VARCHAR},
+            </if>
+            <if test="ceatetime != null">
+                ceateTime = #{ceatetime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.OnBusInfo">
+        <!--
+        @mbggenerated
+        -->
+        update base_onbusinfo
+        set onBusTime = #{onbustime,jdbcType=VARCHAR},
+            onBusStationName = #{onbusstationname,jdbcType=VARCHAR},
+            ceateTime = #{ceatetime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>

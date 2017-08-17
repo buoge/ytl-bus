@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.BaseImageMapper">
+	<resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.BaseImage">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="avd_image" jdbcType="VARCHAR" property="avdImage" />
+		<result column="html_url" jdbcType="VARCHAR" property="htmlUrl" />
+		<result column="width" jdbcType="SMALLINT" property="width" />
+		<result column="height" jdbcType="SMALLINT" property="height" />
+		<result column="startDate" jdbcType="DATE" property="startdate" />
+		<result column="endDate" jdbcType="DATE" property="enddate" />
+		<result column="orderNo" jdbcType="SMALLINT" property="orderno" />
+		<result column="type" jdbcType="TINYINT" property="type" />
+		<result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		id, title, avd_image, html_url, width, height, startDate, endDate,
+		orderNo, type,
+		cityCode
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from base_image
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="queryImage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_image
+		where curdate() between startDate and endDate and
+		type=#{type}
+		<if test="cityCode != null and cityCode != ''">
+			and cityCode = #{cityCode}
+		</if>
+		
+		<choose>  
+            <when test="type == 1 or type == 2">  
+                order by startDate,orderNo LIMIT 1
+            </when >  
+            
+            <when test="type == 3">  
+                ORDER BY width,orderNo
+            </when >  
+            
+            <otherwise>  
+            </otherwise>  
+        </choose>  
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbggenerated -->
+		delete from base_image
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.BaseImage">
+		<!-- @mbggenerated -->
+		insert into base_image (id, title, avd_image,
+		html_url, width, height,
+		startDate, endDate, orderNo,
+		type, cityCode)
+		values
+		(#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+		#{avdImage,jdbcType=VARCHAR},
+		#{htmlUrl,jdbcType=VARCHAR},
+		#{width,jdbcType=SMALLINT}, #{height,jdbcType=SMALLINT},
+		#{startdate,jdbcType=DATE}, #{enddate,jdbcType=DATE},
+		#{orderno,jdbcType=SMALLINT},
+		#{type,jdbcType=TINYINT},
+		#{citycode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseImage">
+		<!-- @mbggenerated -->
+		insert into base_image
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="avdImage != null">
+				avd_image,
+			</if>
+			<if test="htmlUrl != null">
+				html_url,
+			</if>
+			<if test="width != null">
+				width,
+			</if>
+			<if test="height != null">
+				height,
+			</if>
+			<if test="startdate != null">
+				startDate,
+			</if>
+			<if test="enddate != null">
+				endDate,
+			</if>
+			<if test="orderno != null">
+				orderNo,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="citycode != null">
+				cityCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="avdImage != null">
+				#{avdImage,jdbcType=VARCHAR},
+			</if>
+			<if test="htmlUrl != null">
+				#{htmlUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="width != null">
+				#{width,jdbcType=SMALLINT},
+			</if>
+			<if test="height != null">
+				#{height,jdbcType=SMALLINT},
+			</if>
+			<if test="startdate != null">
+				#{startdate,jdbcType=DATE},
+			</if>
+			<if test="enddate != null">
+				#{enddate,jdbcType=DATE},
+			</if>
+			<if test="orderno != null">
+				#{orderno,jdbcType=SMALLINT},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=TINYINT},
+			</if>
+			<if test="citycode != null">
+				#{citycode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseImage">
+		<!-- @mbggenerated -->
+		update base_image
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="avdImage != null">
+				avd_image = #{avdImage,jdbcType=VARCHAR},
+			</if>
+			<if test="htmlUrl != null">
+				html_url = #{htmlUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="width != null">
+				width = #{width,jdbcType=SMALLINT},
+			</if>
+			<if test="height != null">
+				height = #{height,jdbcType=SMALLINT},
+			</if>
+			<if test="startdate != null">
+				startDate = #{startdate,jdbcType=DATE},
+			</if>
+			<if test="enddate != null">
+				endDate = #{enddate,jdbcType=DATE},
+			</if>
+			<if test="orderno != null">
+				orderNo = #{orderno,jdbcType=SMALLINT},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=TINYINT},
+			</if>
+			<if test="citycode != null">
+				cityCode = #{citycode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.BaseImage">
+		<!-- @mbggenerated -->
+		update base_image
+		set title = #{title,jdbcType=VARCHAR},
+		avd_image =
+		#{avdImage,jdbcType=VARCHAR},
+		html_url = #{htmlUrl,jdbcType=VARCHAR},
+		width = #{width,jdbcType=SMALLINT},
+		height =
+		#{height,jdbcType=SMALLINT},
+		startDate = #{startdate,jdbcType=DATE},
+		endDate = #{enddate,jdbcType=DATE},
+		orderNo =
+		#{orderno,jdbcType=SMALLINT},
+		type = #{type,jdbcType=TINYINT},
+		cityCode
+		= #{citycode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 自定义：后台管理系统：修改广告闪屏记录状态》使其重新生效(从当天开始的七天内) -->
+	<update id="modifyImageToValid" parameterType="java.lang.Integer">
+		<!-- @mbggenerated -->
+		UPDATE base_image SET
+		startDate = CURDATE(),
+		endDate =
+		date_sub(CURDATE(),interval -6 day)
+		WHERE
+		id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!--后台管理系统：修改广告闪屏记录状态》使其失效 -->
+	<update id="modifyImageToUnValid" parameterType="java.lang.Integer">
+		<!-- @mbggenerated -->
+		UPDATE base_image SET
+		startDate = date_sub(CURDATE(),interval 2 day),
+		endDate = date_sub(CURDATE(),interval 1 day)
+		WHERE
+		id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<!--自定义 -->
+	<resultMap extends="BaseResultMap" id="ResultMapWithIsValid"
+		type="com.lantaiyuan.ebus.custom.model.BaseImageDetail">
+		<!-- @mbggenerated -->
+		<result column="isValid" jdbcType="VARCHAR" property="isvalid" />
+	</resultMap>
+	<!-- 失效+有效 -->
+	<select id="findAllImageByPage" parameterType="com.lantaiyuan.ebus.custom.model.BaseImageQueryModel"
+		resultMap="ResultMapWithIsValid">
+		SELECT *,IF(CURDATE() <![CDATA[<=]]> endDate,1,0) as isValid from base_image
+		Where 1=1
+		<if test="type != null">
+				and type = #{type,jdbcType=TINYINT}
+		</if>  
+			<if test="citycode != -1  ">
+				and cityCode = #{citycode,jdbcType=VARCHAR}
+		</if>
+		order by id desc
+	</select>
+	<!-- 有效 -->
+	<select id="findValidListByPage" parameterType="com.lantaiyuan.ebus.custom.model.BaseImageQueryModel"
+		resultMap="ResultMapWithIsValid">
+		SELECT *,1 as isValid from base_image WHERE CURDATE() <![CDATA[<=]]>
+		endDate
+		<if test="type != null">
+				and type = #{type,jdbcType=TINYINT}
+		</if>
+		<if test="citycode != -1  ">
+				and cityCode = #{citycode,jdbcType=VARCHAR}
+		</if>
+		order by id desc
+	</select>
+	<!-- 失效 -->
+	<select id="findUnValidListByPage" parameterType="com.lantaiyuan.ebus.custom.model.BaseImageQueryModel"
+		resultMap="ResultMapWithIsValid">
+		SELECT *,0 as isValid from base_image WHERE CURDATE() <![CDATA[>]]> endDate
+		<if test="type != null">
+				and type = #{type,jdbcType=TINYINT}
+		</if>
+		<if test="citycode != -1  ">
+				and cityCode = #{citycode,jdbcType=VARCHAR}
+		</if>
+		order by id desc
+	</select>
+</mapper>

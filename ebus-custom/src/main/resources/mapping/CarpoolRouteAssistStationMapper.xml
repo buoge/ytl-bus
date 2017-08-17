@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.CarpoolRouteAssistStationMapper">
+	<resultMap id="BaseResultMap"
+		type="com.lantaiyuan.ebus.custom.model.carpool.CarpoolRouteAssistStation">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+		<result column="carpool_route_id" jdbcType="CHAR" property="carpoolRouteId" />
+		<result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+		<result column="field1" jdbcType="VARCHAR" property="field1" />
+		<result column="field2" jdbcType="VARCHAR" property="field2" />
+		<result column="field3" jdbcType="VARCHAR" property="field3" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.lantaiyuan.ebus.custom.model.carpool.CarpoolRouteAssistStation">
+		<!-- @mbggenerated -->
+		<result column="station_map" jdbcType="LONGVARCHAR" property="stationMap" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		id, gmt_create, gmt_modified, carpool_route_id, city_code, field1,
+		field2, field3
+	</sql>
+	<sql id="Blob_Column_List">
+		<!-- @mbggenerated -->
+		station_map
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="ResultMapWithBLOBs">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from carpool_route_assit_station
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		<!-- @mbggenerated -->
+		delete from carpool_route_assit_station
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="com.lantaiyuan.ebus.custom.model.carpool.CarpoolRouteAssistStation">
+		<!-- @mbggenerated -->
+		insert into carpool_route_assit_station (id, gmt_create, gmt_modified,
+		carpool_route_id, city_code, field1,
+		field2, field3, station_map
+		)
+		values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{carpoolRouteId,jdbcType=CHAR}, #{cityCode,jdbcType=VARCHAR}, #{field1,jdbcType=VARCHAR},
+		#{field2,jdbcType=VARCHAR}, #{field3,jdbcType=VARCHAR},
+		#{stationMap,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.lantaiyuan.ebus.custom.model.carpool.CarpoolRouteAssistStation">
+		<!-- @mbggenerated -->
+		insert into carpool_route_assit_station
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="carpoolRouteId != null">
+				carpool_route_id,
+			</if>
+			<if test="cityCode != null">
+				city_code,
+			</if>
+			<if test="field1 != null">
+				field1,
+			</if>
+			<if test="field2 != null">
+				field2,
+			</if>
+			<if test="field3 != null">
+				field3,
+			</if>
+			<if test="stationMap != null">
+				station_map,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="carpoolRouteId != null">
+				#{carpoolRouteId,jdbcType=CHAR},
+			</if>
+			<if test="cityCode != null">
+				#{cityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="field1 != null">
+				#{field1,jdbcType=VARCHAR},
+			</if>
+			<if test="field2 != null">
+				#{field2,jdbcType=VARCHAR},
+			</if>
+			<if test="field3 != null">
+				#{field3,jdbcType=VARCHAR},
+			</if>
+			<if test="stationMap != null">
+				#{stationMap,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.lantaiyuan.ebus.custom.model.carpool.CarpoolRouteAssistStation">
+		<!-- @mbggenerated -->
+		update carpool_route_assit_station
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="carpoolRouteId != null">
+				carpool_route_id = #{carpoolRouteId,jdbcType=CHAR},
+			</if>
+			<if test="cityCode != null">
+				city_code = #{cityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="field1 != null">
+				field1 = #{field1,jdbcType=VARCHAR},
+			</if>
+			<if test="field2 != null">
+				field2 = #{field2,jdbcType=VARCHAR},
+			</if>
+			<if test="field3 != null">
+				field3 = #{field3,jdbcType=VARCHAR},
+			</if>
+			<if test="stationMap != null">
+				station_map = #{stationMap,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs"
+		parameterType="com.lantaiyuan.ebus.custom.model.carpool.CarpoolRouteAssistStation">
+		<!-- @mbggenerated -->
+		update carpool_route_assit_station
+		set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+		carpool_route_id = #{carpoolRouteId,jdbcType=CHAR},
+		city_code = #{cityCode,jdbcType=VARCHAR},
+		field1 = #{field1,jdbcType=VARCHAR},
+		field2 = #{field2,jdbcType=VARCHAR},
+		field3 = #{field3,jdbcType=VARCHAR},
+		station_map = #{stationMap,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.lantaiyuan.ebus.custom.model.carpool.CarpoolRouteAssistStation">
+		<!-- @mbggenerated -->
+		update carpool_route_assit_station
+		set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+		carpool_route_id = #{carpoolRouteId,jdbcType=CHAR},
+		city_code = #{cityCode,jdbcType=VARCHAR},
+		field1 = #{field1,jdbcType=VARCHAR},
+		field2 = #{field2,jdbcType=VARCHAR},
+		field3 = #{field3,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<!-- 自定义：findStationMapByMatchid -->
+	<select id="findStationMapByMatchid" parameterType="java.lang.String"
+		resultMap="ResultMapWithBLOBs">
+		<!-- @mbggenerated -->
+		SELECT * from carpool_route_assit_station WHERE carpool_route_id in
+		(SELECT carpool_route_id from carpool_match WHERE match_id =
+		#{matchId,jdbcType=CHAR})
+	</select>
+</mapper>

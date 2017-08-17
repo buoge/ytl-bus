@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.CircularTourMapper">
+	<resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.CircularTour">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="tour_name" property="tourName" jdbcType="VARCHAR" />
+		<result column="tour_url" property="tourUrl" jdbcType="VARCHAR" />
+		<result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, tour_name, tour_url, city_code
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from base_circular_tour
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 自定义方法 , 分页查询周边游项目信息 -->
+	<select id="selectByPage" resultType="com.lantaiyuan.ebus.custom.model.CircularTour"
+		parameterType="com.lantaiyuan.ebus.custom.model.CircularTourQueryModel">
+		select
+		id, tour_name as tourName, tour_url as tourUrl, city_code as cityCode
+		from
+		base_circular_tour
+		where city_code = #{cityCode}
+		order by gmt_create desc
+	</select>
+
+	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from base_circular_tour
+		where id = #{id,jdbcType=INTEGER} and city_code =
+		#{cityCode,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from base_circular_tour
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from base_circular_tour
+		where id = #{id,jdbcType=INTEGER} and city_code =
+		#{cityCode,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.CircularTour">
+		insert into base_circular_tour (id, tour_name, tour_url,
+		gmt_create, gmt_modified, city_code
+		)
+		values (#{id,jdbcType=INTEGER}, #{tourName,jdbcType=VARCHAR},
+		#{tourUrl,jdbcType=VARCHAR},
+		#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{cityCode,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.CircularTour">
+		insert into base_circular_tour
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="tourName != null">
+				tour_name,
+			</if>
+			<if test="tourUrl != null">
+				tour_url,
+			</if>
+			<if test="cityCode != null">
+				city_code,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="tourName != null">
+				#{tourName,jdbcType=VARCHAR},
+			</if>
+			<if test="tourUrl != null">
+				#{tourUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="cityCode != null">
+				#{cityCode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.CircularTour">
+		update base_circular_tour
+		<set>
+			gmt_modified = current_timestamp,
+			<if test="tourName != null">
+				tour_name = #{tourName,jdbcType=VARCHAR},
+			</if>
+			<if test="tourUrl != null">
+				tour_url = #{tourUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="cityCode != null">
+				city_code = #{cityCode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.CircularTour">
+		update base_circular_tour
+		set tour_name = #{tourName,jdbcType=VARCHAR},
+		tour_url = #{tourUrl,jdbcType=VARCHAR},
+		gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+		city_code = #{cityCode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

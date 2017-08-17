@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.ServiceIpMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.ServiceIp">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="serviceIp" jdbcType="VARCHAR" property="serviceip" />
+        <result column="times" jdbcType="TINYINT" property="times" />
+        <result column="cityName" jdbcType="VARCHAR" property="cityname" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+        <result column="authority" jdbcType="SMALLINT" property="authority" />
+        <result column="authDesc" jdbcType="VARCHAR" property="authdesc" />
+        <result column="busCompanyTitle" jdbcType="VARCHAR" property="busCompanyTitle" />
+        <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, serviceIp, times, cityName, cityCode, authority,authDesc, busCompanyTitle, imgUrl
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_service_ip
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_service_ip
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.ServiceIp">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_service_ip (id, serviceIp, times, 
+            cityName, cityCode, authority,authDesc, busCompanyTitle, imgUrl
+            )
+        values (#{id,jdbcType=VARCHAR}, #{serviceip,jdbcType=VARCHAR}, #{times,jdbcType=TINYINT}, 
+            #{cityname,jdbcType=VARCHAR}, #{citycode,jdbcType=VARCHAR}, #{authority,jdbcType=SMALLINT}, 
+            #{authdesc,jdbcType=VARCHAR},#{busCompanyTitle,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.ServiceIp">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_service_ip
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="serviceip != null">
+                serviceIp,
+            </if>
+            <if test="times != null">
+                times,
+            </if>
+            <if test="cityname != null">
+                cityName,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+            <if test="authority != null">
+                authority,
+            </if>
+            <if test="authdesc != null">
+                authDesc,
+            </if>
+            <if test="busCompanyTitle != null">
+                busCompanyTitle,
+            </if>
+            <if test="imgurl != null">
+                imgUrl,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceip != null">
+                #{serviceip,jdbcType=VARCHAR},
+            </if>
+            <if test="times != null">
+                #{times,jdbcType=TINYINT},
+            </if>
+            <if test="cityname != null">
+                #{cityname,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="authority != null">
+                #{authority,jdbcType=SMALLINT},
+            </if>
+            <if test="authdesc != null">
+                 #{authdesc,jdbcType=VARCHAR},
+            </if>
+            <if test="busCompanyTitle != null">
+                #{busCompanyTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="imgurl != null">
+                #{imgurl,jdbcType=VARCHAR},
+            </if>
+            
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.ServiceIp">
+        <!--
+        @mbggenerated
+        -->
+        update base_service_ip
+        <set>
+            <if test="serviceip != null">
+                serviceIp = #{serviceip,jdbcType=VARCHAR},
+            </if>
+            <if test="times != null">
+                times = #{times,jdbcType=TINYINT},
+            </if>
+            <if test="cityname != null">
+                cityName = #{cityname,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="authority != null">
+                authority = #{authority,jdbcType=SMALLINT},
+            </if>
+            <if test="authdesc != null">
+                authDesc = #{authdesc,jdbcType=VARCHAR},
+            </if>
+            <if test="busCompanyTitle != null">
+                busCompanyTitle = #{busCompanyTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="imgurl != null">
+                imgUrl = #{imgurl,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.ServiceIp">
+        <!--
+        @mbggenerated
+        -->
+        update base_service_ip
+        set serviceIp = #{serviceip,jdbcType=VARCHAR},
+            times = #{times,jdbcType=TINYINT},
+            cityName = #{cityname,jdbcType=VARCHAR},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            authority = #{authority,jdbcType=SMALLINT},
+            authDesc = #{authdesc,jdbcType=VARCHAR},
+            busCompanyTitle = #{busCompanyTitle,jdbcType=VARCHAR},
+            imgUrl = #{imgurl,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    
+    <!-- 以下是自定义方法 -->
+    <select id="findObjectsByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.ServiceIpQueryModel">
+		 select 
+	    <include refid="Base_Column_List" />
+	    from base_service_ip
+		<trim prefix="WHERE" prefixOverrides="AND">
+            <if test="id != null and id !=''">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceip != null and serviceip !=''">
+                AND serviceIp = #{serviceip,jdbcType=VARCHAR}
+            </if>
+            <if test="times != null and times !=''">
+                AND times = #{times,jdbcType=INTEGER}
+            </if>
+            <if test="cityname != null and cityname !=''">
+                AND cityName like concat('%',concat(#{cityname,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="citycode != null and citycode !=''">
+                AND cityCode like concat('%',concat(#{citycode,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="authority != null and authority !=''">
+                AND authority = #{authority,jdbcType=INTEGER}
+            </if>
+        </trim>
+	</select>
+
+	 <!-- 自定义方法 -->
+    <select id="selectAuthorityByCityCode" resultType="java.lang.Integer">
+    	select authority from base_service_ip 
+    	where cityCode = #{cityCode,jdbcType=VARCHAR} 
+    </select>
+    
+    <!-- 查询城市权限(new) -->
+    <select id="selectAuthDescByCityCode" resultType="java.lang.String">
+    	select authDesc from base_service_ip 
+    	where cityCode = #{cityCode,jdbcType=VARCHAR} 
+    </select>
+	
+	<!-- 自定义方法 -->
+	<select id="getCitites" resultMap="BaseResultMap">
+		select distinct citycode, cityname from base_service_ip 
+		 <if test="cityCode != null and cityCode != -1">
+              where citycode = #{cityCode,jdbcType=VARCHAR}
+         </if>
+         order by citycode
+	</select> 
+	<!-- 自定义方法 -->
+	<select id="getCititesForMobile" resultType="com.lantaiyuan.ebus.custom.model.Cities">
+		select citycode, cityname, busCompanyTitle, imgurl from base_service_ip 
+        order by citycode
+	</select>
+	<!-- 自定义方法 -->
+	<select id="getServiceIp" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from base_service_ip 
+       where citycode = #{cityCode,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 获取所有cityCode 自定义方法 -->
+	<select id="getAllDistinctCityCodes" resultType="java.lang.String">
+		select citycode from base_service_ip 
+	</select> 
+
+</mapper>

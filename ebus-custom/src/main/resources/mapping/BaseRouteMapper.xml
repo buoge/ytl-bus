@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.BaseRouteMapper">
+	<resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.BaseRoute">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="routeId" property="routeid" jdbcType="VARCHAR" />
+		<result column="routeNo" property="routeno" jdbcType="VARCHAR" />
+		<result column="routeName" property="routename" jdbcType="VARCHAR" />
+		<result column="shortName" property="shortname" jdbcType="VARCHAR" />
+		<result column="routeType" property="routetype" jdbcType="INTEGER" />
+		<result column="distance" property="distance" jdbcType="DECIMAL" />
+		<result column="price" property="price" jdbcType="VARCHAR" />
+		<result column="intervals" property="intervals" jdbcType="VARCHAR" />
+		<result column="summerStartTime" property="summerstarttime"
+			jdbcType="VARCHAR" />
+		<result column="summerEndTime" property="summerendtime"
+			jdbcType="VARCHAR" />
+		<result column="winterStartTime" property="winterstarttime"
+			jdbcType="VARCHAR" />
+		<result column="winterEndTime" property="winterendtime"
+			jdbcType="VARCHAR" />
+		<result column="startStation" property="startstation" jdbcType="VARCHAR" />
+		<result column="endStation" property="endstation" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="direction" property="direction" jdbcType="INTEGER" />
+		<result column="cityCode" property="citycode" jdbcType="VARCHAR" />
+		<result column="summerEndDate" property="summerenddate"
+			jdbcType="TIMESTAMP" />
+		<result column="summerStartDate" property="summerstartdate"
+			jdbcType="TIMESTAMP" />
+		<result column="winterEndDate" property="winterenddate"
+			jdbcType="TIMESTAMP" />
+		<result column="winterStartDate" property="winterstartdate"
+			jdbcType="TIMESTAMP" />
+		<result column="reversal" property="reversal" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, routeId, routeNo, routeName, shortName, routeType, distance, price, intervals, 
+		summerStartTime,
+		summerEndTime, winterStartTime, winterEndTime, startStation, endStation, status,
+		direction, cityCode, summerEndDate, summerStartDate, winterEndDate,
+		winterStartDate,
+		reversal
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from base_route
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByCityCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		routeId,routeName
+		from base_route
+		where cityCode = #{cityCode,jdbcType=VARCHAR}
+		and routeType = #{routeType,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from base_route
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.BaseRoute">
+		insert into base_route (id, routeId, routeNo,
+		routeName, shortName, routeType,
+		distance, price, summerStartTime,
+		summerEndTime, winterStartTime, winterEndTime,
+		startStation, endStation, status,
+		direction, cityCode, summerEndDate,
+		summerStartDate, winterEndDate, winterStartDate,
+		reversal)
+		values (#{id,jdbcType=INTEGER}, #{routeid,jdbcType=VARCHAR},
+		#{routeno,jdbcType=VARCHAR},
+		#{routename,jdbcType=VARCHAR}, #{shortname,jdbcType=VARCHAR}, #{routetype,jdbcType=INTEGER},
+		#{distance,jdbcType=DECIMAL}, #{price,jdbcType=VARCHAR},
+		#{summerstarttime,jdbcType=VARCHAR},
+		#{summerendtime,jdbcType=VARCHAR},
+		#{winterstarttime,jdbcType=VARCHAR},
+		#{winterendtime,jdbcType=VARCHAR},
+		#{startstation,jdbcType=VARCHAR}, #{endstation,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+		#{direction,jdbcType=INTEGER}, #{citycode,jdbcType=VARCHAR},
+		#{summerenddate,jdbcType=TIMESTAMP},
+		#{summerstartdate,jdbcType=TIMESTAMP},
+		#{winterenddate,jdbcType=TIMESTAMP},
+		#{winterstartdate,jdbcType=TIMESTAMP},
+		#{reversal,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseRoute">
+		insert into base_route
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="routeid != null">
+				routeId,
+			</if>
+			<if test="routeno != null">
+				routeNo,
+			</if>
+			<if test="routename != null">
+				routeName,
+			</if>
+			<if test="shortname != null">
+				shortName,
+			</if>
+			<if test="routetype != null">
+				routeType,
+			</if>
+			<if test="distance != null">
+				distance,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="summerstarttime != null">
+				summerStartTime,
+			</if>
+			<if test="summerendtime != null">
+				summerEndTime,
+			</if>
+			<if test="winterstarttime != null">
+				winterStartTime,
+			</if>
+			<if test="winterendtime != null">
+				winterEndTime,
+			</if>
+			<if test="startstation != null">
+				startStation,
+			</if>
+			<if test="endstation != null">
+				endStation,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="direction != null">
+				direction,
+			</if>
+			<if test="citycode != null">
+				cityCode,
+			</if>
+			<if test="summerenddate != null">
+				summerEndDate,
+			</if>
+			<if test="summerstartdate != null">
+				summerStartDate,
+			</if>
+			<if test="winterenddate != null">
+				winterEndDate,
+			</if>
+			<if test="winterstartdate != null">
+				winterStartDate,
+			</if>
+			<if test="reversal != null">
+				reversal,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="routeid != null">
+				#{routeid,jdbcType=VARCHAR},
+			</if>
+			<if test="routeno != null">
+				#{routeno,jdbcType=VARCHAR},
+			</if>
+			<if test="routename != null">
+				#{routename,jdbcType=VARCHAR},
+			</if>
+			<if test="shortname != null">
+				#{shortname,jdbcType=VARCHAR},
+			</if>
+			<if test="routetype != null">
+				#{routetype,jdbcType=INTEGER},
+			</if>
+			<if test="distance != null">
+				#{distance,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=VARCHAR},
+			</if>
+			<if test="summerstarttime != null">
+				#{summerstarttime,jdbcType=VARCHAR},
+			</if>
+			<if test="summerendtime != null">
+				#{summerendtime,jdbcType=VARCHAR},
+			</if>
+			<if test="winterstarttime != null">
+				#{winterstarttime,jdbcType=VARCHAR},
+			</if>
+			<if test="winterendtime != null">
+				#{winterendtime,jdbcType=VARCHAR},
+			</if>
+			<if test="startstation != null">
+				#{startstation,jdbcType=VARCHAR},
+			</if>
+			<if test="endstation != null">
+				#{endstation,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="direction != null">
+				#{direction,jdbcType=INTEGER},
+			</if>
+			<if test="citycode != null">
+				#{citycode,jdbcType=VARCHAR},
+			</if>
+			<if test="summerenddate != null">
+				#{summerenddate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="summerstartdate != null">
+				#{summerstartdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="winterenddate != null">
+				#{winterenddate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="winterstartdate != null">
+				#{winterstartdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reversal != null">
+				#{reversal,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.BaseRoute">
+		update base_route
+		<set>
+			<if test="routeid != null">
+				routeId = #{routeid,jdbcType=VARCHAR},
+			</if>
+			<if test="routeno != null">
+				routeNo = #{routeno,jdbcType=VARCHAR},
+			</if>
+			<if test="routename != null">
+				routeName = #{routename,jdbcType=VARCHAR},
+			</if>
+			<if test="shortname != null">
+				shortName = #{shortname,jdbcType=VARCHAR},
+			</if>
+			<if test="routetype != null">
+				routeType = #{routetype,jdbcType=INTEGER},
+			</if>
+			<if test="distance != null">
+				distance = #{distance,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=VARCHAR},
+			</if>
+			<if test="summerstarttime != null">
+				summerStartTime = #{summerstarttime,jdbcType=VARCHAR},
+			</if>
+			<if test="summerendtime != null">
+				summerEndTime = #{summerendtime,jdbcType=VARCHAR},
+			</if>
+			<if test="winterstarttime != null">
+				winterStartTime = #{winterstarttime,jdbcType=VARCHAR},
+			</if>
+			<if test="winterendtime != null">
+				winterEndTime = #{winterendtime,jdbcType=VARCHAR},
+			</if>
+			<if test="startstation != null">
+				startStation = #{startstation,jdbcType=VARCHAR},
+			</if>
+			<if test="endstation != null">
+				endStation = #{endstation,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="direction != null">
+				direction = #{direction,jdbcType=INTEGER},
+			</if>
+			<if test="citycode != null">
+				cityCode = #{citycode,jdbcType=VARCHAR},
+			</if>
+			<if test="summerenddate != null">
+				summerEndDate = #{summerenddate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="summerstartdate != null">
+				summerStartDate = #{summerstartdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="winterenddate != null">
+				winterEndDate = #{winterenddate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="winterstartdate != null">
+				winterStartDate = #{winterstartdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reversal != null">
+				reversal = #{reversal,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.BaseRoute">
+		update base_route
+		set routeId = #{routeid,jdbcType=VARCHAR},
+		routeNo = #{routeno,jdbcType=VARCHAR},
+		routeName = #{routename,jdbcType=VARCHAR},
+		shortName = #{shortname,jdbcType=VARCHAR},
+		routeType = #{routetype,jdbcType=INTEGER},
+		distance = #{distance,jdbcType=DECIMAL},
+		price = #{price,jdbcType=VARCHAR},
+		summerStartTime = #{summerstarttime,jdbcType=VARCHAR},
+		summerEndTime = #{summerendtime,jdbcType=VARCHAR},
+		winterStartTime = #{winterstarttime,jdbcType=VARCHAR},
+		winterEndTime = #{winterendtime,jdbcType=VARCHAR},
+		startStation = #{startstation,jdbcType=VARCHAR},
+		endStation = #{endstation,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		direction = #{direction,jdbcType=INTEGER},
+		cityCode = #{citycode,jdbcType=VARCHAR},
+		summerEndDate = #{summerenddate,jdbcType=TIMESTAMP},
+		summerStartDate = #{summerstartdate,jdbcType=TIMESTAMP},
+		winterEndDate = #{winterenddate,jdbcType=TIMESTAMP},
+		winterStartDate = #{winterstartdate,jdbcType=TIMESTAMP},
+		reversal = #{reversal,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+     <!-- 自定义  -->
+	<resultMap id="BusNumtMap" type="com.lantaiyuan.ebus.custom.model.BusNumInfo">
+		<result column="busPlateNumber" property="busnum" jdbcType="VARCHAR" />
+		<result column="routeName" property="routename" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="queryBusNumList" resultMap="BusNumtMap" parameterType="java.lang.String">
+		SELECT
+		DISTINCT base_bus.busPlateNumber,base_route.routeName
+		FROM
+		base_bus,base_route,rel_route_bus
+		WHERE
+		base_bus.vehicleId = rel_route_bus.vehicleId
+		AND
+		base_route.cityCode = base_bus.cityCode
+		AND
+		base_route.routeNo = rel_route_bus.routeNo
+		AND
+		busPlateNumber LIKE CONCAT('%',#{busnum,jdbcType=VARCHAR},'%')
+		AND
+		base_route.cityCode = #{citycode,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 自定义线路模糊查询 -->
+	<select id="getRouteByName" parameterType="java.lang.String" resultType="com.lantaiyuan.ebus.realtime.model.RouteInBaseLine">
+		select
+		id,direction,startStation,endStation,price,reversal,routeId,routeName,status,distance,routeNo,routeType,shortName,
+		
+		<if test="season == 0">
+			summerStartTime as startTime, summerEndTime as endTime
+		</if>
+		<if test="season == 1">
+			winterStartTime as startTime, winterEndTime as endTime
+		</if>
+		
+		from base_route where cityCode=#{cityCode} and routeName like concat('%',#{routeName},'%')
+	</select> 
+	
+	<!-- 自定义 -->
+	<select id="getRouteByRouteId" resultType="com.lantaiyuan.ebus.realtime.model.RouteInBaseLine">
+		select
+		id,routeId,routeNo,routeName,shortName,routeType,distance,price,startStation,
+		endStation,status,direction,cityCode,
+		<if test="season == 0">
+			summerStartTime as startTime, summerEndTime as endTime
+		</if>
+		<if test="season == 1">
+			winterStartTime as startTime, winterEndTime as endTime
+		</if>
+		,reversal
+		from
+		base_route 
+		where routeId = #{routeId} and direction = #{direction} and cityCode = #{cityCode}
+	</select>
+	
+	<!-- 自定义线路模糊查询 -->
+	<select id="queryRoutesByIds" resultType="com.lantaiyuan.ebus.custom.model.BaseRoute">
+		select
+		id,routeId,routeNo,routeName,shortName,routeType,distance,price,startStation,
+		endStation,status,direction,cityCode,reversal,
+		<if test="season == 0">
+			summerStartTime as startTime, summerEndTime as endTime
+		</if>
+		<if test="season == 1">
+			winterStartTime as startTime, winterEndTime as endTime
+		</if>
+		,reversal
+		from base_route
+		where 1=1 and
+		<foreach collection="routeSimpleInfo" index="index" item="item"
+			open="(" separator="or" close=")">
+			(routeId = #{item.routeId} and direction = #{item.direction})
+		</foreach>
+	</select>
+	
+	<!-- 根据stationId查询所有BaseRoute -->
+	<select id="queryRoutesByStationId" resultType="com.lantaiyuan.ebus.custom.model.BaseRoute">
+		select
+		b.id,b.routeId,b.routeNo,b.routeName,b.shortName,b.routeType,b.distance,b.price,b.startStation,
+		b.endStation,b.status,b.direction,b.cityCode,
+		<if test="season == 0">
+			b.summerStartTime as startTime, b.summerEndTime as endTime
+		</if>
+		<if test="season == 1">
+			b.winterStartTime as startTime, b.winterEndTime as endTime
+		</if>
+		,b.reversal
+		from rel_route_station a join base_route b 
+		on(a.routeId = b.routeId and a.direction = b.direction and a.cityCode = b.cityCode)
+		where a.stationId = #{stationId} and a.cityCode = #{cityCode}
+	</select>
+	
+	<!-- 根据当前stationId/stationName/cityCode获取到达目标站点所有线路集合 -->
+	<select id="queryRoutesByStationIdAndStationName" resultType="com.lantaiyuan.ebus.realtime.model.RouteInBaseLine">
+		SELECT
+		b.id,b.routeId,b.routeNo,b.routeName,b.shortName,b.routeType,b.distance,b.price,b.startStation,
+		b.endStation,b.status,b.direction,b.cityCode,
+		 <if test="season == 0">
+			b.summerStartTime AS startTime, b.summerEndTime AS endTime
+		 </if>
+		 <if test="season == 1">
+			 b.winterStartTime as startTime, b.winterEndTime as endTime
+		 </if>
+		,b.reversal
+		FROM 
+		(
+		SELECT t1.* FROM
+		<!-- 自连接本表过滤查询 --> 
+		(SELECT *,(SELECT GROUP_CONCAT(stationId) FROM base_station WHERE NAME = #{stationName} AND cityCode = #{cityCode}) AS stationIds FROM rel_route_station  WHERE stationId = #{stationId} AND cityCode = #{cityCode}) t1 
+		<!-- AND t2.stationId IN t1.stationIds --> 
+		JOIN (SELECT * FROM rel_route_station WHERE cityCode = #{cityCode}) t2 
+		ON (t2.routeId = t1.routeId AND t2.stationNo > t1.stationNo AND t2.direction = t1.direction
+		 AND t1.stationIds LIKE CONCAT('%',t2.stationId,'%')
+		<!-- and t2.stationId in concat('(',t1.stationIds,')')-->
+		)) a 
+		JOIN base_route b 
+		ON(a.routeId = b.routeId AND a.direction = b.direction AND a.cityCode = b.cityCode)
+	</select>
+	
+	
+	<!-- 自定义 查询出城市里的所有线路 -->
+	<select id="getCityRoutes" resultType="com.lantaiyuan.ebus.realtime.model.RouteInBaseLine">
+		select
+		id,routeId,routeNo,routeName,shortName,routeType,distance,price,startStation,
+		endStation,status,direction,cityCode,reversal,
+		<if test="season == 0">
+			summerStartTime as startTime, summerEndTime as endTime
+		</if>
+		<if test="season == 1">
+			winterStartTime as startTime, winterEndTime as endTime
+		</if>
+		from base_route where cityCode = #{cityCode,jdbcType=VARCHAR}
+	</select>
+	<!-- 自定义 查询出所有线路 -->
+	<select id="getAllRoutes" resultType="com.lantaiyuan.ebus.realtime.model.RouteInBaseLine">
+		select
+		id,routeId,routeNo,routeName,shortName,routeType,distance,price,startStation,
+		endStation,status,direction,cityCode,reversal,
+		<if test="season == 0">
+			summerStartTime as startTime, summerEndTime as endTime
+		</if>
+		<if test="season == 1">
+			winterStartTime as startTime, winterEndTime as endTime
+		</if>
+		from base_route
+	</select>
+	
+	<select id="getRouteByIdAndDirection" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_route
+		where cityCode = #{cityCode,jdbcType=VARCHAR}
+		and routeId = #{routeId,jdbcType=VARCHAR}
+		and direction = #{direction,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getRoutesByKeywordNumber" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_route
+		where 1=1
+		AND GetNum(routeName) = ${keyword}  
+		AND cityCode = #{cityCode,jdbcType=VARCHAR} ORDER BY direction
+	</select>
+	
+	<!-- 根据起点和终点查询匹配的人民公交 -->
+	<select id="findRoutesByStartAndDistinctPlace" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_route
+		where cityCode = #{citycode,jdbcType=VARCHAR}
+		AND status = 3
+		AND routeId IN(
+				SELECT c.routeId from rel_route_station c where c.routeId in (
+					SELECT b.routeId FROM base_route b
+							INNER JOIN rel_route_station r 
+							ON b.routeId = r.routeId where r.stationId in(
+									select stationId from (SELECT *,round(6378.138*2*asin(sqrt(pow(sin( (s.latitude*pi()/180-#{startlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(s.latitude*pi()/180)*cos(#{startlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (s.longitude*pi()/180-#{startlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) as distance FROM base_station s ) t WHERE t.distance <![CDATA[<]]>1000
+							)
+					)
+				and  c.stationId in (
+						select stationId from (SELECT *,round(6378.138*2*asin(sqrt(pow(sin( (s.latitude*pi()/180-#{endlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(s.latitude*pi()/180)*cos(#{endlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (s.longitude*pi()/180-#{endlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) as distance FROM base_station s ) t WHERE t.distance <![CDATA[<]]>1000
+				)
+		)
+	</select>
+	
+	<!-- 根据起点信息查询经过当前位置的人民公交 -->
+	<select id="findRoutesByCurrentPlace" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_route
+		where 1=1
+		<if test="citycode != null  and citycode !=''">
+			and cityCode = #{citycode,jdbcType=VARCHAR}
+		</if>
+		AND status = 3
+		AND routeType = 1
+		AND routeId IN(
+				SELECT c.routeId from rel_route_station c where c.routeId in (
+					SELECT b.routeId FROM base_route b
+							INNER JOIN rel_route_station r 
+							ON b.routeId = r.routeId where r.stationId in(
+									select stationId from (SELECT *,round(6378.138*2*asin(sqrt(pow(sin( (s.latitude*pi()/180-#{startlatitude,jdbcType=DECIMAL}*pi()/180)/2),2)+cos(s.latitude*pi()/180)*cos(#{startlatitude,jdbcType=DECIMAL}*pi()/180)* pow(sin( (s.longitude*pi()/180-#{startlongitude,jdbcType=DECIMAL}*pi()/180)/2),2)))*1000) as distance FROM base_station s ) t WHERE t.distance <![CDATA[<]]>1000
+							)
+					)
+		)
+	</select>
+	
+	<!-- 根据cityCode lineIdList 专线类型=2 查询该周边游下挂的专线信息 -->
+	<select id="queryCustomList" parameterType="java.util.Map" resultType="java.util.Map">
+		select routeId,   routeName,  routeType, distance, price,  startStation, endStation,
+		 direction, cityCode
+		from base_route
+		where
+		cityCode = #{cityCode}
+		and
+		routeType = 2
+		and routeId in
+		<foreach collection="lineIdList" index="index" item="item"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>

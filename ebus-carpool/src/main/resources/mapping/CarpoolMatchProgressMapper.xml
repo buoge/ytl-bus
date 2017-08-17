@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.carpool.dao.CarpoolMatchProgressMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.carpool.model.CarpoolMatchProgress">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="match_id" jdbcType="CHAR" property="matchId" />
+        <result column="progess_type" jdbcType="BIT" property="progessType" />
+        <result column="progess_no" jdbcType="CHAR" property="progessNo" />
+        <result column="progess_order_no" jdbcType="CHAR" property="progessOrderNo" />
+        <result column="progress_detail" jdbcType="VARCHAR" property="progressDetail" />
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="field1" jdbcType="VARCHAR" property="field1" />
+        <result column="field2" jdbcType="VARCHAR" property="field2" />
+        <result column="field3" jdbcType="VARCHAR" property="field3" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, match_id, progess_type, progess_no, progess_order_no, progress_detail, city_code, 
+        gmt_create, gmt_modified, field1, field2, field3
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from carpool_match_progress
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--
+        @mbggenerated
+        -->
+        delete from carpool_match_progress
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolMatchProgress">
+        <!--
+        @mbggenerated
+        -->
+        insert into carpool_match_progress (id, match_id, progess_type, 
+            progess_no, progess_order_no, progress_detail, 
+            city_code, gmt_create, gmt_modified, 
+            field1, field2, field3
+            )
+        values (#{id,jdbcType=BIGINT}, #{matchId,jdbcType=CHAR}, #{progessType,jdbcType=BIT}, 
+            #{progessNo,jdbcType=CHAR}, #{progessOrderNo,jdbcType=CHAR}, #{progressDetail,jdbcType=VARCHAR}, 
+            #{cityCode,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+            #{field1,jdbcType=VARCHAR}, #{field2,jdbcType=VARCHAR}, #{field3,jdbcType=VARCHAR}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolMatchProgress">
+        <!--
+        @mbggenerated
+        -->
+        insert into carpool_match_progress
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="matchId != null">
+                match_id,
+            </if>
+            <if test="progessType != null">
+                progess_type,
+            </if>
+            <if test="progessNo != null">
+                progess_no,
+            </if>
+            <if test="progessOrderNo != null">
+                progess_order_no,
+            </if>
+            <if test="progressDetail != null">
+                progress_detail,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="field1 != null">
+                field1,
+            </if>
+            <if test="field2 != null">
+                field2,
+            </if>
+            <if test="field3 != null">
+                field3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="matchId != null">
+                #{matchId,jdbcType=CHAR},
+            </if>
+            <if test="progessType != null">
+                #{progessType,jdbcType=BIT},
+            </if>
+            <if test="progessNo != null">
+                #{progessNo,jdbcType=CHAR},
+            </if>
+            <if test="progessOrderNo != null">
+                #{progessOrderNo,jdbcType=CHAR},
+            </if>
+            <if test="progressDetail != null">
+                #{progressDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="field1 != null">
+                #{field1,jdbcType=VARCHAR},
+            </if>
+            <if test="field2 != null">
+                #{field2,jdbcType=VARCHAR},
+            </if>
+            <if test="field3 != null">
+                #{field3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolMatchProgress">
+        <!--
+        @mbggenerated
+        -->
+        update carpool_match_progress
+        <set>
+            <if test="matchId != null">
+                match_id = #{matchId,jdbcType=CHAR},
+            </if>
+            <if test="progessType != null">
+                progess_type = #{progessType,jdbcType=BIT},
+            </if>
+            <if test="progessNo != null">
+                progess_no = #{progessNo,jdbcType=CHAR},
+            </if>
+            <if test="progessOrderNo != null">
+                progess_order_no = #{progessOrderNo,jdbcType=CHAR},
+            </if>
+            <if test="progressDetail != null">
+                progress_detail = #{progressDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="field1 != null">
+                field1 = #{field1,jdbcType=VARCHAR},
+            </if>
+            <if test="field2 != null">
+                field2 = #{field2,jdbcType=VARCHAR},
+            </if>
+            <if test="field3 != null">
+                field3 = #{field3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.carpool.model.CarpoolMatchProgress">
+        <!--
+        @mbggenerated
+        -->
+        update carpool_match_progress
+        set match_id = #{matchId,jdbcType=CHAR},
+            progess_type = #{progessType,jdbcType=BIT},
+            progess_no = #{progessNo,jdbcType=CHAR},
+            progess_order_no = #{progessOrderNo,jdbcType=CHAR},
+            progress_detail = #{progressDetail,jdbcType=VARCHAR},
+            city_code = #{cityCode,jdbcType=VARCHAR},
+            gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            field1 = #{field1,jdbcType=VARCHAR},
+            field2 = #{field2,jdbcType=VARCHAR},
+            field3 = #{field3,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

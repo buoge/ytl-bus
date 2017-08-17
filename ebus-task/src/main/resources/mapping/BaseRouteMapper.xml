@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.dao.BaseRouteMapper">
+	<resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.model.BaseRoute">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="routeId" property="routeid" jdbcType="VARCHAR" />
+		<result column="routeNo" property="routeno" jdbcType="VARCHAR" />
+		<result column="routeName" property="routename" jdbcType="VARCHAR" />
+		<result column="shortName" property="shortname" jdbcType="VARCHAR" />
+		<result column="routeType" property="routetype" jdbcType="INTEGER" />
+		<result column="distance" property="distance" jdbcType="DECIMAL" />
+		<result column="price" property="price" jdbcType="VARCHAR" />
+		<result column="summerStartTime" property="summerstarttime"
+			jdbcType="VARCHAR" />
+		<result column="summerEndTime" property="summerendtime"
+			jdbcType="VARCHAR" />
+		<result column="winterStartTime" property="winterstarttime"
+			jdbcType="VARCHAR" />
+		<result column="winterEndTime" property="winterendtime"
+			jdbcType="VARCHAR" />
+		<result column="startStation" property="startstation" jdbcType="VARCHAR" />
+		<result column="endStation" property="endstation" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="direction" property="direction" jdbcType="INTEGER" />
+		<result column="cityCode" property="citycode" jdbcType="VARCHAR" />
+		<result column="summerEndDate" property="summerenddate"
+			jdbcType="TIMESTAMP" />
+		<result column="summerStartDate" property="summerstartdate"
+			jdbcType="TIMESTAMP" />
+		<result column="winterEndDate" property="winterenddate"
+			jdbcType="TIMESTAMP" />
+		<result column="winterStartDate" property="winterstartdate"
+			jdbcType="TIMESTAMP" />
+		<result column="reversal" property="reversal" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, routeId, routeNo, routeName, shortName, routeType, distance, price,
+		summerStartTime,
+		summerEndTime, winterStartTime, winterEndTime, startStation, endStation, status,
+		direction, cityCode, summerEndDate, summerStartDate, winterEndDate,
+		winterStartDate,
+		reversal
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from base_route
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from base_route
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.model.BaseRoute">
+		insert into base_route (id, routeId, routeNo,
+		routeName, shortName, routeType,
+		distance, price, summerStartTime,
+		summerEndTime, winterStartTime, winterEndTime,
+		startStation, endStation, status,
+		direction, cityCode, summerEndDate,
+		summerStartDate, winterEndDate, winterStartDate,
+		reversal)
+		values (#{id,jdbcType=INTEGER}, #{routeid,jdbcType=VARCHAR},
+		#{routeno,jdbcType=VARCHAR},
+		#{routename,jdbcType=VARCHAR}, #{shortname,jdbcType=VARCHAR}, #{routetype,jdbcType=INTEGER},
+		#{distance,jdbcType=DECIMAL}, #{price,jdbcType=VARCHAR},
+		#{summerstarttime,jdbcType=VARCHAR},
+		#{summerendtime,jdbcType=VARCHAR},
+		#{winterstarttime,jdbcType=VARCHAR},
+		#{winterendtime,jdbcType=VARCHAR},
+		#{startstation,jdbcType=VARCHAR}, #{endstation,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+		#{direction,jdbcType=INTEGER}, #{citycode,jdbcType=VARCHAR},
+		#{summerenddate,jdbcType=TIMESTAMP},
+		#{summerstartdate,jdbcType=TIMESTAMP},
+		#{winterenddate,jdbcType=TIMESTAMP},
+		#{winterstartdate,jdbcType=TIMESTAMP},
+		#{reversal,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.model.BaseRoute">
+		insert into base_route
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="routeid != null">
+				routeId,
+			</if>
+			<if test="routeno != null">
+				routeNo,
+			</if>
+			<if test="routename != null">
+				routeName,
+			</if>
+			<if test="shortname != null">
+				shortName,
+			</if>
+			<if test="routetype != null">
+				routeType,
+			</if>
+			<if test="distance != null">
+				distance,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="summerstarttime != null">
+				summerStartTime,
+			</if>
+			<if test="summerendtime != null">
+				summerEndTime,
+			</if>
+			<if test="winterstarttime != null">
+				winterStartTime,
+			</if>
+			<if test="winterendtime != null">
+				winterEndTime,
+			</if>
+			<if test="startstation != null">
+				startStation,
+			</if>
+			<if test="endstation != null">
+				endStation,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="direction != null">
+				direction,
+			</if>
+			<if test="citycode != null">
+				cityCode,
+			</if>
+			<if test="summerenddate != null">
+				summerEndDate,
+			</if>
+			<if test="summerstartdate != null">
+				summerStartDate,
+			</if>
+			<if test="winterenddate != null">
+				winterEndDate,
+			</if>
+			<if test="winterstartdate != null">
+				winterStartDate,
+			</if>
+			<if test="reversal != null">
+				reversal,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="routeid != null">
+				#{routeid,jdbcType=VARCHAR},
+			</if>
+			<if test="routeno != null">
+				#{routeno,jdbcType=VARCHAR},
+			</if>
+			<if test="routename != null">
+				#{routename,jdbcType=VARCHAR},
+			</if>
+			<if test="shortname != null">
+				#{shortname,jdbcType=VARCHAR},
+			</if>
+			<if test="routetype != null">
+				#{routetype,jdbcType=INTEGER},
+			</if>
+			<if test="distance != null">
+				#{distance,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=VARCHAR},
+			</if>
+			<if test="summerstarttime != null">
+				#{summerstarttime,jdbcType=VARCHAR},
+			</if>
+			<if test="summerendtime != null">
+				#{summerendtime,jdbcType=VARCHAR},
+			</if>
+			<if test="winterstarttime != null">
+				#{winterstarttime,jdbcType=VARCHAR},
+			</if>
+			<if test="winterendtime != null">
+				#{winterendtime,jdbcType=VARCHAR},
+			</if>
+			<if test="startstation != null">
+				#{startstation,jdbcType=VARCHAR},
+			</if>
+			<if test="endstation != null">
+				#{endstation,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="direction != null">
+				#{direction,jdbcType=INTEGER},
+			</if>
+			<if test="citycode != null">
+				#{citycode,jdbcType=VARCHAR},
+			</if>
+			<if test="summerenddate != null">
+				#{summerenddate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="summerstartdate != null">
+				#{summerstartdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="winterenddate != null">
+				#{winterenddate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="winterstartdate != null">
+				#{winterstartdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reversal != null">
+				#{reversal,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.model.BaseRoute">
+		update base_route
+		<set>
+			<if test="routeid != null">
+				routeId = #{routeid,jdbcType=VARCHAR},
+			</if>
+			<if test="routeno != null">
+				routeNo = #{routeno,jdbcType=VARCHAR},
+			</if>
+			<if test="routename != null">
+				routeName = #{routename,jdbcType=VARCHAR},
+			</if>
+			<if test="shortname != null">
+				shortName = #{shortname,jdbcType=VARCHAR},
+			</if>
+			<if test="routetype != null">
+				routeType = #{routetype,jdbcType=INTEGER},
+			</if>
+			<if test="distance != null">
+				distance = #{distance,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=VARCHAR},
+			</if>
+			<if test="summerstarttime != null">
+				summerStartTime = #{summerstarttime,jdbcType=VARCHAR},
+			</if>
+			<if test="summerendtime != null">
+				summerEndTime = #{summerendtime,jdbcType=VARCHAR},
+			</if>
+			<if test="winterstarttime != null">
+				winterStartTime = #{winterstarttime,jdbcType=VARCHAR},
+			</if>
+			<if test="winterendtime != null">
+				winterEndTime = #{winterendtime,jdbcType=VARCHAR},
+			</if>
+			<if test="startstation != null">
+				startStation = #{startstation,jdbcType=VARCHAR},
+			</if>
+			<if test="endstation != null">
+				endStation = #{endstation,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="direction != null">
+				direction = #{direction,jdbcType=INTEGER},
+			</if>
+			<if test="citycode != null">
+				cityCode = #{citycode,jdbcType=VARCHAR},
+			</if>
+			<if test="summerenddate != null">
+				summerEndDate = #{summerenddate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="summerstartdate != null">
+				summerStartDate = #{summerstartdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="winterenddate != null">
+				winterEndDate = #{winterenddate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="winterstartdate != null">
+				winterStartDate = #{winterstartdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reversal != null">
+				reversal = #{reversal,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.model.BaseRoute">
+		update base_route
+		set routeId = #{routeid,jdbcType=VARCHAR},
+		routeNo = #{routeno,jdbcType=VARCHAR},
+		routeName = #{routename,jdbcType=VARCHAR},
+		shortName = #{shortname,jdbcType=VARCHAR},
+		routeType = #{routetype,jdbcType=INTEGER},
+		distance = #{distance,jdbcType=DECIMAL},
+		price = #{price,jdbcType=VARCHAR},
+		summerStartTime = #{summerstarttime,jdbcType=VARCHAR},
+		summerEndTime = #{summerendtime,jdbcType=VARCHAR},
+		winterStartTime = #{winterstarttime,jdbcType=VARCHAR},
+		winterEndTime = #{winterendtime,jdbcType=VARCHAR},
+		startStation = #{startstation,jdbcType=VARCHAR},
+		endStation = #{endstation,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		direction = #{direction,jdbcType=INTEGER},
+		cityCode = #{citycode,jdbcType=VARCHAR},
+		summerEndDate = #{summerenddate,jdbcType=TIMESTAMP},
+		summerStartDate = #{summerstartdate,jdbcType=TIMESTAMP},
+		winterEndDate = #{winterenddate,jdbcType=TIMESTAMP},
+		winterStartDate = #{winterstartdate,jdbcType=TIMESTAMP},
+		reversal = #{reversal,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 根据routeId，cityCode，direction查询routeNo -->
+	<select id="getRouteNo" resultType="java.lang.String">
+		select routeNo from base_route
+		where cityCode = #{cityCode,jdbcType=VARCHAR}
+		and routeId = #{routeId,jdbcType=VARCHAR}
+		and direction = #{direction,jdbcType=INTEGER}
+		limit 0,1
+	</select>
+	
+</mapper>

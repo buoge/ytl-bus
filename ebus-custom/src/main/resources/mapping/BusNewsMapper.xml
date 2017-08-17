@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.BusNewsMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.BusNews">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="type" jdbcType="TINYINT" property="type" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="icon_url" jdbcType="VARCHAR" property="icon_url" />
+        <result column="content_url" jdbcType="VARCHAR" property="content_url" />
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lantaiyuan.ebus.custom.model.BusNews">
+        <!--
+        @mbggenerated
+        -->
+        <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, type, title, icon_url, content_url, createtime, cityCode, newsCategory, source, 
+        source_ip, peopleViews
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        content
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.lantaiyuan.ebus.custom.model.BusNews">
+        select 
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from base_bus_news
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <!-- 自定义方法 -->
+    <select id="getFiveBigNews" resultType="com.lantaiyuan.ebus.custom.model.BusNewsResult">
+        <!--
+        @mbggenerated
+        -->
+        select 
+       id, type, title, icon_url, content_url, createtime, cityCode, newsCategory, source, peopleViews 
+        from base_bus_news
+        where type=1 and newsCategory = 1 and (cityCode = #{cityCode} or cityCode = -1) 
+
+        order by createtime desc limit 0,5
+    </select>
+    <!-- 自定义方法, 分页查询小标题新闻 -->
+    <select id="findSmallNewsByPage" resultType="com.lantaiyuan.ebus.custom.model.BusNewsResult"
+		parameterType="com.lantaiyuan.ebus.custom.model.BusNewsQueryModel">
+		select
+		id, type, title, icon_url, content_url, createtime, cityCode, newsCategory, source, peopleViews
+		from base_bus_news 
+		where type = 2 and newsCategory = 1 and (cityCode = #{cityCode} or cityCode = -1) 
+	    order by createtime desc 
+	</select> 
+    <!-- 自定义方法 , 分页查询失物招领信息-->
+    <select id="findLostPropertyByPage" resultType="com.lantaiyuan.ebus.custom.model.LostProperty"
+		parameterType="com.lantaiyuan.ebus.custom.model.LostPropertyQueryModel">
+		select
+		id, type, title, icon_url, content_url, content as brief,createtime, cityCode, newsCategory, source, peopleViews
+		from base_bus_news 
+		where newsCategory = 2 and (cityCode = #{cityCode} or cityCode = -1) 
+	    order by createtime desc 
+	</select>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.BusNews">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_bus_news (id, type, title, 
+            icon_url, content_url, createtime, 
+             content)
+        values (#{id,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{title,jdbcType=VARCHAR}, 
+            #{iconUrl,jdbcType=VARCHAR}, #{contentUrl,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+            #{content,jdbcType=LONGVARCHAR})
+    </insert>
+    
+    <!-- 自定义方法 -->
+    <insert id="insertNews">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_bus_news (type, title, icon_url, content_url, createtime, content,cityCode,source,source_ip)
+        values (#{news.type,jdbcType=TINYINT}, #{news.title,jdbcType=VARCHAR}, 
+            #{news.icon_url,jdbcType=VARCHAR}, #{news.content_url,jdbcType=VARCHAR}, 
+            #{news.createtime,jdbcType=TIMESTAMP}, #{news.content,jdbcType=LONGVARCHAR},
+            #{news.cityCode,jdbcType=VARCHAR},1,#{ip,jdbcType=VARCHAR})
+    </insert>
+    
+    <!-- 自定义方法 -->
+	<select id="findBusNewsByPage" 
+		resultType="com.lantaiyuan.ebus.custom.model.BusNews"
+		parameterType="com.lantaiyuan.ebus.custom.model.BusNewsQueryModel">
+		select
+		a.id, a.type, a.title, a.icon_url, a.content_url, a.createtime, a.cityCode, a.newsCategory, a.source, 
+        a.source_ip, a.peopleViews, b.cityName
+		from base_bus_news a left join base_service_ip b on(a.cityCode=b.cityCode) 
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<!-- newsCategory = 2是失物招领，失物招领不区分大小标题 -->
+			<if test="newsCategory != 2 and type != null and type != -1">
+				and a.type=#{type,jdbcType=TINYINT} 
+			</if>
+			<if test="title != null and title != ''">
+				and a.title like concat('%',concat(#{title,jdbcType=VARCHAR},'%'))
+			</if>
+			<if test="newsCategory != null and newsCategory != -1"> 
+				and a.newsCategory=#{newsCategory,jdbcType=TINYINT} 
+			</if>
+			<if test="startTime != null and startTime != ''">
+				and a.createtime >= #{startTime,jdbcType=TIMESTAMP} 
+			</if>
+			<if test="endTime != null and endTime != ''">
+				and a.createtime &lt;= #{endTime,jdbcType=TIMESTAMP} 
+			</if>
+			<if test="cityCode != null and cityCode != -1">
+				and a.cityCode=#{cityCode,jdbcType=VARCHAR} 
+			</if>
+		</trim>
+		order by a.createTime desc
+	</select>
+	
+	
+	<!--自定义 从后台添加新闻 -->
+	<insert id="insertFromWebapp" parameterType="com.lantaiyuan.ebus.custom.model.BusNews">
+        insert into base_bus_news (type, title, icon_url, content_url,createtime, content,cityCode,
+        source,newsCategory) 
+        values (#{type,jdbcType=TINYINT}, #{title,jdbcType=VARCHAR}, 
+            #{icon_url,jdbcType=VARCHAR},  #{content_url,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+            #{content,jdbcType=LONGVARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+            #{source,jdbcType=TINYINT}, #{newsCategory,jdbcType=TINYINT})
+    </insert>
+    
+    <!-- 自定义 修改新闻 -->
+    <update id="updateNews" parameterType="com.lantaiyuan.ebus.custom.model.BusNews">
+        update base_bus_news
+        <set>
+            <if test="type != null and type != -1">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="title != null and title != ''">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="icon_url != null and icon_url != ''">
+                icon_url = #{icon_url,jdbcType=VARCHAR},
+            </if>
+            <if test="content_url != null and content_url != ''">
+                content_url = #{content_url,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null and createtime != ''">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                cityCode = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="newsCategory != null">
+                newsCategory = #{newsCategory,jdbcType=TINYINT},
+            </if>
+            <if test="peopleViews != null">
+                peopleViews = peopleViews + 1,
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+     <!-- 删除新闻 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_bus_news
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+	<select id="selectNewsContent"  resultType="java.lang.String">
+    	select content from base_bus_news where id = #{id}
+    </select>
+    
+    <!-- 自定义方法 -->
+    <select id="countIp" parameterType="java.lang.String" resultType="java.lang.Integer">
+    	select count(source_ip) from base_bus_news where source_ip=#{ip,jdbcType=VARCHAR} 
+    	and date_format(createtime,'%Y-%m-%d') = curdate() 
+    </select>
+    <!-- 自定义方法 -->
+    <select id="checkDuplicate" parameterType="com.lantaiyuan.ebus.custom.model.BusNews" resultType="java.lang.Integer">
+    	select count(id) from base_bus_news where title = #{title,jdbcType=VARCHAR}  and cityCode= #{cityCode,jdbcType=VARCHAR} 
+    </select>
+    <!-- 自定义方法 -->
+    <select id="findBigNews" resultType="java.lang.Integer">
+    	select a.id  from base_bus_news a
+		where a.type=1 and a.cityCode = #{cityCode,jdbcType=VARCHAR} order by a.createtime 
+    </select>
+     <!-- 自定义方法 -->
+    <update id="changeBigToSmall">
+    	update base_bus_news set type = 2 where id in 
+    	<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+    
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.BusNews">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_bus_news
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="iconUrl != null">
+                icon_url,
+            </if>
+            <if test="contentUrl != null">
+                content_url,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="iconUrl != null">
+                #{iconUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="contentUrl != null">
+                #{contentUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.BusNews">
+        <!--
+        @mbggenerated
+        -->
+        update base_bus_news
+        <set>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="iconUrl != null">
+                icon_url = #{iconUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="contentUrl != null">
+                content_url = #{contentUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lantaiyuan.ebus.custom.model.BusNews">
+        <!--
+        @mbggenerated
+        -->
+        update base_bus_news
+        set type = #{type,jdbcType=TINYINT},
+            title = #{title,jdbcType=VARCHAR},
+            icon_url = #{iconUrl,jdbcType=VARCHAR},
+            content_url = #{contentUrl,jdbcType=VARCHAR},
+            createtime = #{createtime,jdbcType=TIMESTAMP},
+            content = #{content,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.BusNews">
+        <!--
+        @mbggenerated
+        -->
+        update base_bus_news
+        set type = #{type,jdbcType=TINYINT},
+            title = #{title,jdbcType=VARCHAR},
+            icon_url = #{iconUrl,jdbcType=VARCHAR},
+            content_url = #{contentUrl,jdbcType=VARCHAR},
+            createtime = #{createtime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!--自定义： -->
+	<select id="getCountByCondition" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select COUNT(1)
+		from base_bus_news
+		where (cityCode=#{citycode,jdbcType=VARCHAR} or cityCode = -1)
+		<if test="'NEWS' == newsOrLost">
+			 and newsCategory = 1
+        </if>
+        <if test="'LOST_AND_FOUND' == newsOrLost">
+			 and newsCategory = 2
+        </if>
+		<if test="lastRequestTime != null and lastRequestTime !=''">
+			and createtime <![CDATA[>]]>  STR_TO_DATE(#{lastRequestTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s') 
+        </if>
+	</select>
+</mapper>

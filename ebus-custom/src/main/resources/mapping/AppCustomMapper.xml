@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.AppCustomMapper">
+    <resultMap id="resMap" type="com.lantaiyuan.ebus.custom.model.RouteStationRelationCollection">
+        <id column="id" property="id" />
+		
+		<result column="routeIdDirection" property="routeiddirection" />
+		
+		<collection property="routeStationRelations" ofType="com.lantaiyuan.ebus.custom.model.RouteStationRelation">
+			<result column="routeId" property="routeid"/>
+			<result column="stationId" property="stationid"/>
+			<result column="previousStationId" property="previousstationid"/>
+			<result column="nextStationId" property="nextstationid"/>
+			<result column="stationNo" property="stationno"/>
+			<result column="createTime" property="createtime"/>
+			<result column="direction" property="direction"/>
+			<result column="name" property="name"/>
+			<result column="longitude" property="longitude"/>
+			<result column="latitude" property="latitude"/>
+			<result column="longitudeIn" property="longitudein"/>
+			<result column="latitudeIn" property="latitudein"/>
+			<result column="longitudeOut" property="longitudeout"/>
+			<result column="latitudeOut" property="latitudeout"/>
+			<result column="stationFlag" property="stationflag"/>
+			<result column="stationStatus" property="stationstatus"/>
+		</collection>
+    </resultMap>
+    
+    <resultMap id="customMap" type="com.lantaiyuan.ebus.custom.model.StationRecord">
+		<result column="routeIdDirectionStationNo" property="routeiddirectionstationno" />
+		<result column="routeId" property="routeid" />
+		<result column="stationId" property="stationid" />
+		<result column="stationNo" property="stationno" />
+		<result column="direction" property="direction" />
+		<result column="name" property="name" />
+		<result column="longitude" property="longitude" />
+		<result column="latitude" property="latitude" />
+		<result column="cityCode" property="citycode" />
+	</resultMap>
+    
+    <select id="getRouteStationRelationsByCitycode" parameterType="java.lang.String" resultMap="resMap">
+        SELECT x.*,CONCAT(x.routeId,'_',x.direction) AS routeIdDirection,CONCAT(x.routeId,'_',x.direction) AS id FROM
+
+		(SELECT t.*,k.* FROM
+		
+		(SELECT routeId,stationId,previousStationId, nextStationId, stationNo,createTime,direction FROM  rel_route_station WHERE cityCode = #{citycode}) t
+		
+		JOIN
+		
+		(SELECT stationId AS stationId1,NAME,longitude,latitude,longitudeIn,latitudeIn,longitudeOut,latitudeOut,stationFlag,stationStatus FROM  base_station WHERE cityCode = #{citycode}) k
+		
+		ON t.stationId = k.stationId1) x ORDER BY CONVERT(x.routeId,SIGNED),CONVERT(x.direction,SIGNED),CONVERT(x.stationNo,SIGNED) 
+		
+    </select>
+    
+    <!-- 查询表中的所有车辆 -->
+ 	<select id="selectAllBus" resultMap="busEntityMap">
+		select b.*,l.LineName from t_app_bus b join t_app_line l on b.LineId=l.LineId AND l.IsValid = 0
+	</select> 
+	
+	<resultMap type="com.lantaiyuan.ebus.custom.model.Bus" id="busEntityMap">
+		<id property="id" column="Id"/>
+		<result property="busName" column="Bus_Name"/>
+		<result property="lineId" column="LineId"/>
+		<result property="devId" column="DEV_ID"/>
+		<result property="createTime" column="CreateTime"/>
+		<result property="lineName" column="LineName"/>
+	</resultMap>
+	
+	<!-- 根据citycode查询routeId-direction-stationNo -->
+	<select id="getRouteIdDirectionStationNoByCityCode" parameterType="java.lang.String" resultType="com.lantaiyuan.ebus.custom.model.StationRecord">
+		SELECT x.*,CONCAT(x.routeId,'_',x.direction,'_',stationNo) AS
+		routeIdDirectionStationNo FROM
+
+		(SELECT t.*,k.* FROM
+
+		(SELECT routeId,stationId, stationNo,direction,cityCode FROM rel_route_station WHERE
+		cityCode = #{cityCode}) t
+
+		JOIN
+
+		(SELECT stationId AS stationId1,NAME,longitude,latitude,cityCode AS cityCode1 FROM base_station
+		WHERE cityCode = #{cityCode}) k
+
+		ON t.stationId = k.stationId1) x ORDER BY
+		CONVERT(x.routeId,SIGNED),CONVERT(x.direction,SIGNED),CONVERT(x.stationNo,SIGNED)
+	</select>
+	
+	<!-- 查询所有城市routeId-direction-stationNo -->
+	<select id="getRouteIdDirectionStationNoAllCities" resultMap="customMap">
+		SELECT x.*,CONCAT(x.routeId,'_',x.direction,'_',stationNo) AS
+		routeIdDirectionStationNo FROM	
+		(SELECT t.*,k.* FROM
+
+		(SELECT routeId,stationId, stationNo,direction,cityCode FROM rel_route_station) t
+
+		JOIN
+
+		(SELECT stationId AS stationId1,NAME,longitude,latitude,cityCode AS cityCode1 FROM base_station) k
+
+		ON t.cityCode = k.cityCode1 AND t.stationId = k.stationId1) x ORDER BY
+		CONVERT(x.cityCode,SIGNED),CONVERT(x.routeId,SIGNED),CONVERT(x.direction,SIGNED),CONVERT(x.stationNo,SIGNED)
+	</select>
+   
+</mapper>

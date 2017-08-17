@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+extraProperties=sonar.host.url\=http\://10.1.10.77\:9090/sonarqube/\r\nsonar.jdbc.password\=root\r\nsonar.jdbc.url\=jdbc\:mysql\://10.1.10.79\:3306/sonarqube?useUnicode\=true&characterEncoding\=utf8\r\nsonar.jdbc.username\=root
+projectKey=org.lanqiao\:ebus-custom
+serverUrl=
+version=2

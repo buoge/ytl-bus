@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.travelaround.TravelAroundMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.travelaround.TravelAround">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="travel_type" jdbcType="TINYINT" property="travelType" />
+        <result column="template_type" jdbcType="TINYINT" property="templateType" />
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="location" jdbcType="VARCHAR" property="location" />
+        <result column="brief_introduction" jdbcType="VARCHAR" property="briefIntroduction" />
+        <result column="is_permanent_valid" jdbcType="BIT" property="isPermanentValid" />
+        <result column="start_valid_period" jdbcType="TIMESTAMP" property="startValidPeriod" />
+        <result column="end_valid_period" jdbcType="TIMESTAMP" property="endValidPeriod" />
+        <result column="trip_date" jdbcType="VARCHAR" property="tripDate" />
+        <result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
+        <result column="current_price" jdbcType="DECIMAL" property="currentPrice" />
+        <result column="ticket_num" jdbcType="INTEGER" property="ticketNum" />
+        <result column="is_ticket_num_shown" jdbcType="BIT" property="isTicketNumShown" />
+        <result column="person_limit_num" jdbcType="INTEGER" property="personLimitNum" />
+        <result column="pics" jdbcType="VARCHAR" property="pics" />
+        <result column="is_recommended" jdbcType="BIT" property="isRecommended" />
+        <result column="related_customline" jdbcType="VARCHAR" property="relatedCustomline" />
+        <result column="event_detail" jdbcType="VARCHAR" property="eventDetail" />
+        <result column="ticket_note" jdbcType="VARCHAR" property="ticketNote" />
+        <result column="pv" jdbcType="INTEGER" property="pv" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="field1" jdbcType="VARCHAR" property="field1" />
+        <result column="field2" jdbcType="VARCHAR" property="field2" />
+        <result column="field3" jdbcType="VARCHAR" property="field3" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, travel_type, template_type, city_code, title, location, brief_introduction, is_permanent_valid, 
+        start_valid_period, end_valid_period, trip_date, original_price, current_price, ticket_num, 
+        is_ticket_num_shown, person_limit_num, pics, is_recommended, related_customline, 
+        event_detail, ticket_note, pv, gmt_create, gmt_modified, field1, field2, field3
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from travel_around
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+   
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from travel_around
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.travelaround.TravelAround">
+        <!--
+        @mbggenerated
+        -->
+        insert into travel_around (id, travel_type, template_type, 
+            city_code, title, location, 
+            brief_introduction, is_permanent_valid, start_valid_period, 
+            end_valid_period, trip_date, original_price, 
+            current_price, ticket_num, is_ticket_num_shown, 
+            person_limit_num, pics, is_recommended, 
+            related_customline, event_detail, ticket_note, 
+            pv, gmt_create, gmt_modified, 
+            field1, field2, field3
+            )
+        values (#{id,jdbcType=VARCHAR}, #{travelType,jdbcType=TINYINT}, #{templateType,jdbcType=TINYINT}, 
+            #{cityCode,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+            #{briefIntroduction,jdbcType=VARCHAR}, #{isPermanentValid,jdbcType=BIT}, #{startValidPeriod,jdbcType=TIMESTAMP}, 
+            #{endValidPeriod,jdbcType=TIMESTAMP}, #{tripDate,jdbcType=VARCHAR}, #{originalPrice,jdbcType=DECIMAL}, 
+            #{currentPrice,jdbcType=DECIMAL}, #{ticketNum,jdbcType=INTEGER}, #{isTicketNumShown,jdbcType=BIT}, 
+            #{personLimitNum,jdbcType=INTEGER}, #{pics,jdbcType=VARCHAR}, #{isRecommended,jdbcType=BIT}, 
+            #{relatedCustomline,jdbcType=VARCHAR}, #{eventDetail,jdbcType=VARCHAR}, #{ticketNote,jdbcType=VARCHAR}, 
+            #{pv,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+            #{field1,jdbcType=VARCHAR}, #{field2,jdbcType=VARCHAR}, #{field3,jdbcType=VARCHAR}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.travelaround.TravelAround">
+        <!--
+        @mbggenerated
+        -->
+        insert into travel_around
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="travelType != null">
+                travel_type,
+            </if>
+            <if test="templateType != null">
+                template_type,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="location != null">
+                location,
+            </if>
+            <if test="briefIntroduction != null">
+                brief_introduction,
+            </if>
+            <if test="isPermanentValid != null">
+                is_permanent_valid,
+            </if>
+            <if test="startValidPeriod != null">
+                start_valid_period,
+            </if>
+            <if test="endValidPeriod != null">
+                end_valid_period,
+            </if>
+            <if test="tripDate != null">
+                trip_date,
+            </if>
+            <if test="originalPrice != null">
+                original_price,
+            </if>
+            <if test="currentPrice != null">
+                current_price,
+            </if>
+            <if test="ticketNum != null">
+                ticket_num,
+            </if>
+            <if test="isTicketNumShown != null">
+                is_ticket_num_shown,
+            </if>
+            <if test="personLimitNum != null">
+                person_limit_num,
+            </if>
+            <if test="pics != null">
+                pics,
+            </if>
+            <if test="isRecommended != null">
+                is_recommended,
+            </if>
+            <if test="relatedCustomline != null">
+                related_customline,
+            </if>
+            <if test="eventDetail != null">
+                event_detail,
+            </if>
+            <if test="ticketNote != null">
+                ticket_note,
+            </if>
+            <if test="pv != null">
+                pv,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="field1 != null">
+                field1,
+            </if>
+            <if test="field2 != null">
+                field2,
+            </if>
+            <if test="field3 != null">
+                field3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="travelType != null">
+                #{travelType,jdbcType=TINYINT},
+            </if>
+            <if test="templateType != null">
+                #{templateType,jdbcType=TINYINT},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="briefIntroduction != null">
+                #{briefIntroduction,jdbcType=VARCHAR},
+            </if>
+            <if test="isPermanentValid != null">
+                #{isPermanentValid,jdbcType=BIT},
+            </if>
+            <if test="startValidPeriod != null">
+                #{startValidPeriod,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endValidPeriod != null">
+                #{endValidPeriod,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tripDate != null">
+                #{tripDate,jdbcType=VARCHAR},
+            </if>
+            <if test="originalPrice != null">
+                #{originalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="currentPrice != null">
+                #{currentPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="ticketNum != null">
+                #{ticketNum,jdbcType=INTEGER},
+            </if>
+            <if test="isTicketNumShown != null">
+                #{isTicketNumShown,jdbcType=BIT},
+            </if>
+            <if test="personLimitNum != null">
+                #{personLimitNum,jdbcType=INTEGER},
+            </if>
+            <if test="pics != null">
+                #{pics,jdbcType=VARCHAR},
+            </if>
+            <if test="isRecommended != null">
+                #{isRecommended,jdbcType=BIT},
+            </if>
+            <if test="relatedCustomline != null">
+                #{relatedCustomline,jdbcType=VARCHAR},
+            </if>
+            <if test="eventDetail != null">
+                #{eventDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="ticketNote != null">
+                #{ticketNote,jdbcType=VARCHAR},
+            </if>
+            <if test="pv != null">
+                #{pv,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="field1 != null">
+                #{field1,jdbcType=VARCHAR},
+            </if>
+            <if test="field2 != null">
+                #{field2,jdbcType=VARCHAR},
+            </if>
+            <if test="field3 != null">
+                #{field3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.travelaround.TravelAround">
+        <!--
+        @mbggenerated
+        -->
+        update travel_around
+        <set>
+            <if test="travelType != null">
+                travel_type = #{travelType,jdbcType=TINYINT},
+            </if>
+            <if test="templateType != null">
+                template_type = #{templateType,jdbcType=TINYINT},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                location = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="briefIntroduction != null">
+                brief_introduction = #{briefIntroduction,jdbcType=VARCHAR},
+            </if>
+            <if test="isPermanentValid != null">
+                is_permanent_valid = #{isPermanentValid,jdbcType=BIT},
+            </if>
+            <if test="startValidPeriod != null">
+                start_valid_period = #{startValidPeriod,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endValidPeriod != null">
+                end_valid_period = #{endValidPeriod,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tripDate != null">
+                trip_date = #{tripDate,jdbcType=VARCHAR},
+            </if>
+            <if test="originalPrice != null">
+                original_price = #{originalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="currentPrice != null">
+                current_price = #{currentPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="ticketNum != null">
+                ticket_num = #{ticketNum,jdbcType=INTEGER},
+            </if>
+            <if test="isTicketNumShown != null">
+                is_ticket_num_shown = #{isTicketNumShown,jdbcType=BIT},
+            </if>
+            <if test="personLimitNum != null">
+                person_limit_num = #{personLimitNum,jdbcType=INTEGER},
+            </if>
+            <if test="pics != null">
+                pics = #{pics,jdbcType=VARCHAR},
+            </if>
+            <if test="isRecommended != null">
+                is_recommended = #{isRecommended,jdbcType=BIT},
+            </if>
+            <if test="relatedCustomline != null">
+                related_customline = #{relatedCustomline,jdbcType=VARCHAR},
+            </if>
+            <if test="eventDetail != null">
+                event_detail = #{eventDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="ticketNote != null">
+                ticket_note = #{ticketNote,jdbcType=VARCHAR},
+            </if>
+            <if test="pv != null">
+                pv = #{pv,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="field1 != null">
+                field1 = #{field1,jdbcType=VARCHAR},
+            </if>
+            <if test="field2 != null">
+                field2 = #{field2,jdbcType=VARCHAR},
+            </if>
+            <if test="field3 != null">
+                field3 = #{field3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.travelaround.TravelAround">
+        <!--
+        @mbggenerated
+        -->
+        update travel_around
+        set travel_type = #{travelType,jdbcType=TINYINT},
+            template_type = #{templateType,jdbcType=TINYINT},
+            city_code = #{cityCode,jdbcType=VARCHAR},
+            title = #{title,jdbcType=VARCHAR},
+            location = #{location,jdbcType=VARCHAR},
+            brief_introduction = #{briefIntroduction,jdbcType=VARCHAR},
+            is_permanent_valid = #{isPermanentValid,jdbcType=BIT},
+            start_valid_period = #{startValidPeriod,jdbcType=TIMESTAMP},
+            end_valid_period = #{endValidPeriod,jdbcType=TIMESTAMP},
+            trip_date = #{tripDate,jdbcType=VARCHAR},
+            original_price = #{originalPrice,jdbcType=DECIMAL},
+            current_price = #{currentPrice,jdbcType=DECIMAL},
+            ticket_num = #{ticketNum,jdbcType=INTEGER},
+            is_ticket_num_shown = #{isTicketNumShown,jdbcType=BIT},
+            person_limit_num = #{personLimitNum,jdbcType=INTEGER},
+            pics = #{pics,jdbcType=VARCHAR},
+            is_recommended = #{isRecommended,jdbcType=BIT},
+            related_customline = #{relatedCustomline,jdbcType=VARCHAR},
+            event_detail = #{eventDetail,jdbcType=VARCHAR},
+            ticket_note = #{ticketNote,jdbcType=VARCHAR},
+            pv = #{pv,jdbcType=INTEGER},
+            gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            field1 = #{field1,jdbcType=VARCHAR},
+            field2 = #{field2,jdbcType=VARCHAR},
+            field3 = #{field3,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    <!--自定义： queryTravelList -->
+     <select id="queryTravelList" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from travel_around
+        where city_code = #{cityCode,jdbcType=VARCHAR}
+    </select>
+    
+    <!--每次点击详情增加PV数  -->
+    <update id="addPv" parameterType="java.lang.String">
+        update travel_around
+        set
+            pv = pv + 1
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+ <!-- 自定义方法 , 分页查询周边游项目信息 -->
+	<select id="selectByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.travelaround.TravelAroundQueryModel">
+		select
+		<include refid="Base_Column_List" />
+		from   travel_around
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="cityCode != null and cityCode != ''">
+				and city_code = #{cityCode,jdbcType=VARCHAR}
+			</if>
+			<if test="title != null and title != ''">
+				and title like concat('%',#{title,jdbcType=VARCHAR},'%')
+			</if>
+		</trim>
+		order by gmt_create desc
+	</select>
+	
+	<!-- reduceTicketNum -->
+	 <update id="reduceTicketNum" parameterType="java.lang.String">
+        update travel_around
+        set
+            ticket_num = ticket_num -  #{num,jdbcType=INTEGER}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>

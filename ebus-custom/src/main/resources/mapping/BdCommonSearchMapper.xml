@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.realtime.dao.BdCommonSearchMapper" >
+  <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.realtime.model.BdCommonSearch" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="route_id" property="routeId" jdbcType="VARCHAR" />
+    <result column="direction" property="direction" jdbcType="INTEGER" />
+    <result column="route_name" property="routeName" jdbcType="VARCHAR" />
+    <result column="aboard_station_id" property="aboardStationId" jdbcType="INTEGER" />
+    <result column="aboard_station_name" property="aboardStationName" jdbcType="VARCHAR" />
+    <result column="aboard_position" property="aboardPosition" jdbcType="VARCHAR" />
+    <result column="aboard_time" property="aboardTime" jdbcType="TIMESTAMP" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="citycode" property="citycode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, route_id, direction, route_name, aboard_station_id, aboard_station_name, 
+    aboard_position, aboard_time, longitude, latitude, citycode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bd_common_search
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bd_common_search
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lantaiyuan.ebus.realtime.model.BdCommonSearch" >
+    insert into bd_common_search (id, user_id, route_id, 
+      direction, route_name, aboard_station_id, 
+      aboard_station_name, aboard_position, aboard_time, 
+      longitude, latitude, citycode
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{routeId,jdbcType=VARCHAR}, 
+      #{direction,jdbcType=INTEGER}, #{routeName,jdbcType=VARCHAR}, #{aboardStationId,jdbcType=INTEGER}, 
+      #{aboardStationName,jdbcType=VARCHAR}, #{aboardPosition,jdbcType=VARCHAR}, #{aboardTime,jdbcType=TIMESTAMP}, 
+      #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, #{citycode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.realtime.model.BdCommonSearch" >
+    insert into bd_common_search
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="routeId != null" >
+        route_id,
+      </if>
+      <if test="direction != null" >
+        direction,
+      </if>
+      <if test="routeName != null" >
+        route_name,
+      </if>
+      <if test="aboardStationId != null" >
+        aboard_station_id,
+      </if>
+      <if test="aboardStationName != null" >
+        aboard_station_name,
+      </if>
+      <if test="aboardPosition != null" >
+        aboard_position,
+      </if>
+      <if test="aboardTime != null" >
+        aboard_time,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="citycode != null" >
+        citycode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="routeId != null" >
+        #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null" >
+        #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="routeName != null" >
+        #{routeName,jdbcType=VARCHAR},
+      </if>
+      <if test="aboardStationId != null" >
+        #{aboardStationId,jdbcType=INTEGER},
+      </if>
+      <if test="aboardStationName != null" >
+        #{aboardStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="aboardPosition != null" >
+        #{aboardPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="aboardTime != null" >
+        #{aboardTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="citycode != null" >
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.realtime.model.BdCommonSearch" >
+    update bd_common_search
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="routeId != null" >
+        route_id = #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null" >
+        direction = #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="routeName != null" >
+        route_name = #{routeName,jdbcType=VARCHAR},
+      </if>
+      <if test="aboardStationId != null" >
+        aboard_station_id = #{aboardStationId,jdbcType=INTEGER},
+      </if>
+      <if test="aboardStationName != null" >
+        aboard_station_name = #{aboardStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="aboardPosition != null" >
+        aboard_position = #{aboardPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="aboardTime != null" >
+        aboard_time = #{aboardTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="citycode != null" >
+        citycode = #{citycode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.realtime.model.BdCommonSearch" >
+    update bd_common_search
+    set user_id = #{userId,jdbcType=INTEGER},
+      route_id = #{routeId,jdbcType=VARCHAR},
+      direction = #{direction,jdbcType=INTEGER},
+      route_name = #{routeName,jdbcType=VARCHAR},
+      aboard_station_id = #{aboardStationId,jdbcType=INTEGER},
+      aboard_station_name = #{aboardStationName,jdbcType=VARCHAR},
+      aboard_position = #{aboardPosition,jdbcType=VARCHAR},
+      aboard_time = #{aboardTime,jdbcType=TIMESTAMP},
+      longitude = #{longitude,jdbcType=DECIMAL},
+      latitude = #{latitude,jdbcType=DECIMAL},
+      citycode = #{citycode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectRouteStationByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bd_common_search
+    where user_id = #{userId,jdbcType=INTEGER} AND citycode = #{cityCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

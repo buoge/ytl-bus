@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.WalletRecordMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.WalletRecord">
+        <!--
+        @mbggenerated
+        -->
+        <id column="ID" jdbcType="INTEGER" property="id" />
+        <result column="RECORD_ID" jdbcType="VARCHAR" property="recordId" />
+        <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+        <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+        <result column="OPT_TYPE" jdbcType="BIT" property="optType" />
+        <result column="PAY_TYPE" jdbcType="BIT" property="payType" />
+        <result column="PAY_STATUS" jdbcType="BIT" property="payStatus" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        ID, RECORD_ID, USER_ID, AMOUNT, OPT_TYPE, PAY_TYPE, PAY_STATUS, CREATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from t_app_mywallet_record
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from t_app_mywallet_record
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.WalletRecord">
+        <!--
+        @mbggenerated
+        -->
+        insert into t_app_mywallet_record (ID, RECORD_ID, USER_ID, 
+            AMOUNT, OPT_TYPE, PAY_TYPE, 
+            PAY_STATUS, CREATE_TIME)
+        values (#{id,jdbcType=INTEGER}, #{recordId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+            #{amount,jdbcType=DECIMAL}, #{optType,jdbcType=BIT}, #{payType,jdbcType=BIT}, 
+            #{payStatus,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.WalletRecord">
+        <!--
+        @mbggenerated
+        -->
+        insert into t_app_mywallet_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="recordId != null">
+                RECORD_ID,
+            </if>
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="amount != null">
+                AMOUNT,
+            </if>
+            <if test="optType != null">
+                OPT_TYPE,
+            </if>
+            <if test="payType != null">
+                PAY_TYPE,
+            </if>
+            <if test="payStatus != null">
+                PAY_STATUS,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="recordId != null">
+                #{recordId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="optType != null">
+                #{optType,jdbcType=BIT},
+            </if>
+            <if test="payType != null">
+                #{payType,jdbcType=BIT},
+            </if>
+            <if test="payStatus != null">
+                #{payStatus,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.WalletRecord">
+        <!--
+        @mbggenerated
+        -->
+        update t_app_mywallet_record
+        <set>
+            <if test="recordId != null">
+                RECORD_ID = #{recordId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                USER_ID = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                AMOUNT = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="optType != null">
+                OPT_TYPE = #{optType,jdbcType=BIT},
+            </if>
+            <if test="payType != null">
+                PAY_TYPE = #{payType,jdbcType=BIT},
+            </if>
+            <if test="payStatus != null">
+                PAY_STATUS = #{payStatus,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.WalletRecord">
+        <!--
+        @mbggenerated
+        -->
+        update t_app_mywallet_record
+        set RECORD_ID = #{recordId,jdbcType=VARCHAR},
+            USER_ID = #{userId,jdbcType=VARCHAR},
+            AMOUNT = #{amount,jdbcType=DECIMAL},
+            OPT_TYPE = #{optType,jdbcType=BIT},
+            PAY_TYPE = #{payType,jdbcType=BIT},
+            PAY_STATUS = #{payStatus,jdbcType=BIT},
+            CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!--自定义： queryMyBills -->
+     <select id="queryMyBills" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        ID, RECORD_ID, USER_ID, AMOUNT, OPT_TYPE, PAY_TYPE, PAY_STATUS, DATE_FORMAT(CREATE_TIME, '%Y-%m-%d %H:%i:%s') as CREATE_TIME
+        from t_app_mywallet_record
+        where USER_ID = #{userId,jdbcType=VARCHAR} AND PAY_STATUS = 1 order by  CREATE_TIME DESC
+    </select>
+    
+     <select id="queryWalletLogByRecordId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from t_app_mywallet_record
+        where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="queryOneTopUplogByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from  t_app_mywallet_record WHERE OPT_TYPE = 1 AND PAY_STATUS = 0 AND USER_ID = #{userId,jdbcType=VARCHAR} ORDER  BY ID DESC LIMIT 1
+    </select>
+    
+</mapper>

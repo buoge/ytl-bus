@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.OrderMapper">
+	<resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.Order">
+		<!-- @mbggenerated -->
+		<id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+		<result column="orderDetailId" jdbcType="VARCHAR" property="orderdetailid" />
+		<result column="orderStatus" jdbcType="TINYINT" property="orderstatus" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+		<result column="payTime" jdbcType="TIMESTAMP" property="paytime" />
+		<result column="payType" jdbcType="TINYINT" property="paytype" />
+		<result column="payPerson" jdbcType="VARCHAR" property="payperson" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="orderPrice" jdbcType="DECIMAL" property="orderprice" />
+		<result column="wxPrepayId" jdbcType="VARCHAR" property="wxprepayid" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		orderNo, orderDetailId, orderStatus, createTime, payTime, payType,
+		payPerson, amount,
+		orderPrice,wxPrepayId
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from base_order
+		where orderNo = #{orderno,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		<!-- @mbggenerated -->
+		delete from base_order
+		where orderNo = #{orderno,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.BookBusOrder">
+		<!-- @mbggenerated -->
+		insert into base_order (orderNo, orderDetailId, orderStatus,
+		createTime, payTime, payType,
+		payPerson, amount, orderPrice
+		)
+		values
+		(#{orderno,jdbcType=VARCHAR}, #{orderdetailid,jdbcType=VARCHAR},
+		#{orderstatus,jdbcType=TINYINT},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{paytime,jdbcType=TIMESTAMP}, #{paytype,jdbcType=TINYINT},
+		#{payperson,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL},
+		#{orderprice,jdbcType=DECIMAL}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.BookBusOrder">
+		<!-- @mbggenerated -->
+		insert into base_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="orderno != null">
+				orderNo,
+			</if>
+			<if test="orderdetailid != null">
+				orderDetailId,
+			</if>
+			<if test="orderstatus != null">
+				orderStatus,
+			</if>
+			<if test="createtime != null">
+				createTime,
+			</if>
+			<if test="paytime != null">
+				payTime,
+			</if>
+			<if test="paytype != null">
+				payType,
+			</if>
+			<if test="payperson != null">
+				payPerson,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="orderprice != null">
+				orderPrice,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="orderno != null">
+				#{orderno,jdbcType=VARCHAR},
+			</if>
+			<if test="orderdetailid != null">
+				#{orderdetailid,jdbcType=VARCHAR},
+			</if>
+			<if test="orderstatus != null">
+				#{orderstatus,jdbcType=TINYINT},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="paytime != null">
+				#{paytime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="paytype != null">
+				#{paytype,jdbcType=TINYINT},
+			</if>
+			<if test="payperson != null">
+				#{payperson,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="orderprice != null">
+				#{orderprice,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.BookBusOrder">
+		<!-- @mbggenerated -->
+		update base_order
+		<set>
+			<if test="orderdetailid != null">
+				orderDetailId = #{orderdetailid,jdbcType=VARCHAR},
+			</if>
+			<if test="orderstatus != null">
+				orderStatus = #{orderstatus,jdbcType=TINYINT},
+			</if>
+			<if test="createtime != null">
+				createTime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="paytime != null">
+				payTime = #{paytime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="paytype != null">
+				payType = #{paytype,jdbcType=TINYINT},
+			</if>
+			<if test="payperson != null">
+				payPerson = #{payperson,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="orderprice != null">
+				orderPrice = #{orderprice,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where orderNo = #{orderno,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.BookBusOrder">
+		<!-- @mbggenerated -->
+		update base_order
+		set orderDetailId =
+		#{orderdetailid,jdbcType=VARCHAR},
+		orderStatus =
+		#{orderstatus,jdbcType=TINYINT},
+		createTime =
+		#{createtime,jdbcType=TIMESTAMP},
+		payTime =
+		#{paytime,jdbcType=TIMESTAMP},
+		payType = #{paytype,jdbcType=TINYINT},
+		payPerson = #{payperson,jdbcType=VARCHAR},
+		amount =
+		#{amount,jdbcType=DECIMAL},
+		orderPrice =
+		#{orderprice,jdbcType=DECIMAL},
+		wxPrepayId =
+		#{wxprepayid,jdbcType=VARCHAR}
+		where orderNo =
+		#{orderno,jdbcType=VARCHAR}
+	</update>
+
+
+	<!-- 查询包车订单 -->
+	<select id="selectBookBusOrder" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		SELECT
+		b.backTime AS backTime,
+		d.type AS type,
+		b.sourceLocation AS
+		sourceLocation,
+		b.targetLocation AS targetLocation,
+		o.orderNo AS
+		orderNo,
+		b.passengerNum AS passengerNum,
+		b.bookBusType AS bookBusType,
+		b.startTime AS startTime,
+		o.orderStatus AS orderStatus,
+		b.quotedTime AS
+		quotedTime,
+		b.status AS status,
+		b.quotedTime AS quotedTime,
+		o.orderPrice
+		AS orderPrice,
+		o.amount AS amount,
+		b.contactName AS contactName,
+		b.contactPhone AS contactPhone,
+		b.remark AS remark,
+		b.goodsId AS
+		goodsId,
+		o.payType AS payType,
+		o.payTime AS payTime
+		FROM
+		base_order_detail d
+		INNER JOIN base_bookbus b ON d.goodsId = b.goodsId
+		INNER JOIN base_order o ON o.orderDetailId = d.orderDetailId
+
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="userId != null and userId != ''">
+				and d.userId = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="cityCode != null and cityCode != ''">
+				and b.cityCode = #{cityCode,jdbcType=VARCHAR}
+			</if>
+		</trim>
+		<!-- ORDER BY b.`status` DESC -->
+		ORDER BY
+		case
+		when b.`status`=1 then 1
+		when b.`status`=2 then 2
+		when
+		b.`status`=0 then 3
+		when b.`status`=3 then 4
+		when b.`status`=4 then 5
+		end
+	</select>
+
+	<select id="queryUnPaidOrderNums" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		base_order
+		WHERE
+		EXISTS (
+		SELECT
+		orderDetailId
+		FROM
+		base_order_detail
+		WHERE
+		base_order.orderDetailId=base_order_detail.orderDetailId and userId =
+		#{userid,jdbcType=INTEGER}
+		)
+		AND
+		orderStatus = 0
+	</select>
+
+	<select id="selectByOrderNo" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from base_order
+		where orderNo = #{orderno,jdbcType=VARCHAR}
+	</select>
+
+	<select id="queryUnPaidOrder" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		base_order
+		WHERE
+		EXISTS (
+		SELECT
+		orderDetailId
+		FROM
+		base_order_detail
+		WHERE
+		base_order.orderDetailId=base_order_detail.orderDetailId and
+		userId = #{userid,jdbcType=INTEGER}
+		)
+		AND
+		orderStatus = 0
+	</select>
+
+	<select id="queryOrderTypeByOrderNo" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		SELECT
+		base_order_detail.type from
+		base_order_detail,base_order
+		WHERE
+		base_order_detail.orderDetailId=base_order.orderDetailId
+		and orderNo =
+		#{orderno,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 取消订单——修改订单表 -->
+	<update id="updateOrder" parameterType="java.lang.String">
+		<!-- @mbggenerated -->
+		update base_order
+		set orderStatus = 2
+		where orderNo =
+		#{orderNo,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 取消订单——修改专车表 -->
+	<update id="updateBookBus" parameterType="java.lang.String">
+		<!-- @mbggenerated -->
+		update base_bookbus
+		set status = 3
+		where goodsId =
+		#{goodsId,jdbcType=VARCHAR}
+	</update>
+
+	<resultMap id="TicketOrderResultMap" type="com.lantaiyuan.ebus.custom.model.TicketOrder">
+		<!-- @mbggenerated -->
+		<result column="orderNo"  jdbcType="VARCHAR"  property="orderNo" />
+		<result column="payType" jdbcType="VARCHAR"  property="payType" />
+		<result column="routeName" jdbcType="VARCHAR"  property="routeName" />
+		<result column="orderStatus" jdbcType="VARCHAR"  property="orderStatus" />
+		<result column="totalTickets" jdbcType="INTEGER"  property="totalTickets" />
+		<result column="amount" jdbcType="DECIMAL"  property="amount" />
+		<result column="createTime" jdbcType="VARCHAR"  property="createTime" />
+		<result column="sourceLocation"  jdbcType="VARCHAR" property="sourceLocation" />
+		<result column="targetLocation" jdbcType="VARCHAR"  property="targetLocation" />
+		<result column="takeTime"  jdbcType="VARCHAR" property="takeTime" />
+		<result column="distance" jdbcType="INTEGER" property="distance" />
+		<result column="spendTime" jdbcType="INTEGER" property="spendTime" />
+		<result column="routeId"  jdbcType="VARCHAR" property="routeId" />
+	</resultMap>
+	<!--查询我的车票订单列表 -->
+	<select id="queryTicketOrderList" parameterType="java.lang.String"
+		resultMap="TicketOrderResultMap">
+		<!-- @mbggenerated -->
+		SELECT
+		B.orderNo,B.payType,D.routeName,B.orderStatus,COUNT(*) AS
+		totalTickets,B.amount,DATE_FORMAT(B.createTime, '%Y-%m-%d %H:%i:%s') as createTime,C.sourceLocation,C.targetLocation,C.takeTime,
+		0 as "distance",0 as "spendTime",D.routeId
+		FROM
+		base_order_detail A,
+		base_order B,
+		base_bookticket C,
+		base_custom_line D
+		WHERE
+		userId =
+		#{userId,jdbcType=VARCHAR}
+		AND type = 1
+		AND A.orderDetailId =
+		B.orderDetailId
+		AND B.orderDetailId = C.orderDetailId
+		AND D.cityCode =
+		#{cityCode,jdbcType=VARCHAR}
+		AND D.id = C.routeId
+		GROUP BY B.orderNo
+		ORDER BY B.createTime DESC
+	</select>
+	<resultMap id="TicketStatusResultMap" type="com.lantaiyuan.ebus.custom.model.TicketStatus">
+		<!-- @mbggenerated -->
+		<result column="orderNo"  jdbcType="VARCHAR"  property="orderNo" />
+		<result column="ticketId" jdbcType="VARCHAR"  property="ticketId" />
+		<result column="takeDate" jdbcType="VARCHAR"  property="takeDate" />
+		<result column="ticketStatus" jdbcType="VARCHAR"  property="ticketStatus" />
+		<result column="price" jdbcType="DECIMAL"   property="price" />
+		<result column="cityCode" jdbcType="INTEGER"  property="cityCode" />
+	</resultMap>
+	<!--查询单个订单下的车票情况（） -->
+	<select id="queryTicketDetailByOrderNo" parameterType="java.lang.String"
+		resultMap="TicketStatusResultMap">
+		SELECT A.orderNo, B.goodsId AS ticketId,B.takeDate
+		,B.ticketStatus,C.price,C.cityCode FROM base_order A ,base_bookticket
+		B,base_tickcet_schedual C
+		WHERE A.orderDetailId = B.orderDetailId
+		AND B.routeId = C.routeId
+		AND B.takeDate =C.serverDate
+		and A.orderNo =#{orderNo,jdbcType=VARCHAR}
+	</select>
+	<!--查询数据库状态为未支付的订单    -->
+	<select id="selectUnpaidByOrderNo" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from base_order
+		where orderNo = #{orderno,jdbcType=VARCHAR}
+		and orderStatus = 0
+	</select>
+</mapper>

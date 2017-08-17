@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.dao.MyTrailMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.model.MyTrail">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="routeId" jdbcType="VARCHAR" property="routeid" />
+        <result column="direction" jdbcType="INTEGER" property="direction" />
+        <result column="vehicleId" jdbcType="VARCHAR" property="vehicleid" />
+        <result column="busPlateNumber" jdbcType="VARCHAR" property="busplatenumber" />
+        <result column="driverNumber" jdbcType="VARCHAR" property="drivernumber" />
+        <result column="driverName" jdbcType="VARCHAR" property="drivername" />
+        <result column="userId" jdbcType="INTEGER" property="userid" />
+        <result column="startStationId" jdbcType="INTEGER" property="startstationid" />
+        <result column="startLongitude" jdbcType="DECIMAL" property="startlongitude" />
+        <result column="startLatitude" jdbcType="DECIMAL" property="startlatitude" />
+        <result column="startTime" jdbcType="TIMESTAMP" property="starttime" />
+        <result column="endStationId" jdbcType="INTEGER" property="endstationid" />
+        <result column="endLongitude" jdbcType="DECIMAL" property="endlongitude" />
+        <result column="endLatitude" jdbcType="DECIMAL" property="endlatitude" />
+        <result column="endTime" jdbcType="TIMESTAMP" property="endtime" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+        <result column="trailDistance" jdbcType="DOUBLE" property="traildistance" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, routeId, direction, vehicleId, busPlateNumber, driverNumber, driverName, userId, 
+        startStationId, startLongitude, startLatitude, startTime, endStationId, endLongitude, 
+        endLatitude, endTime, createTime, cityCode, trailDistance
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from my_trail
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from my_trail
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.model.MyTrail">
+        <!--
+        @mbggenerated
+        -->
+        insert into my_trail (id, routeId, direction, 
+            vehicleId, busPlateNumber, driverNumber, 
+            driverName, userId, startStationId, 
+            startLongitude, startLatitude, startTime, 
+            endStationId, endLongitude, endLatitude, 
+            endTime, createTime, cityCode, 
+            trailDistance)
+        values (#{id,jdbcType=INTEGER}, #{routeid,jdbcType=VARCHAR}, #{direction,jdbcType=INTEGER}, 
+            #{vehicleid,jdbcType=VARCHAR}, #{busplatenumber,jdbcType=VARCHAR}, #{drivernumber,jdbcType=VARCHAR}, 
+            #{drivername,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{startstationid,jdbcType=INTEGER}, 
+            #{startlongitude,jdbcType=DECIMAL}, #{startlatitude,jdbcType=DECIMAL}, #{starttime,jdbcType=TIMESTAMP}, 
+            #{endstationid,jdbcType=INTEGER}, #{endlongitude,jdbcType=DECIMAL}, #{endlatitude,jdbcType=DECIMAL}, 
+            #{endtime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{citycode,jdbcType=VARCHAR}, 
+            #{traildistance,jdbcType=DOUBLE})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.model.MyTrail">
+        <!--
+        @mbggenerated
+        -->
+        insert into my_trail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="routeid != null">
+                routeId,
+            </if>
+            <if test="direction != null">
+                direction,
+            </if>
+            <if test="vehicleid != null">
+                vehicleId,
+            </if>
+            <if test="busplatenumber != null">
+                busPlateNumber,
+            </if>
+            <if test="drivernumber != null">
+                driverNumber,
+            </if>
+            <if test="drivername != null">
+                driverName,
+            </if>
+            <if test="userid != null">
+                userId,
+            </if>
+            <if test="startstationid != null">
+                startStationId,
+            </if>
+            <if test="startlongitude != null">
+                startLongitude,
+            </if>
+            <if test="startlatitude != null">
+                startLatitude,
+            </if>
+            <if test="starttime != null">
+                startTime,
+            </if>
+            <if test="endstationid != null">
+                endStationId,
+            </if>
+            <if test="endlongitude != null">
+                endLongitude,
+            </if>
+            <if test="endlatitude != null">
+                endLatitude,
+            </if>
+            <if test="endtime != null">
+                endTime,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+            <if test="traildistance != null">
+                trailDistance,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="routeid != null">
+                #{routeid,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                #{direction,jdbcType=INTEGER},
+            </if>
+            <if test="vehicleid != null">
+                #{vehicleid,jdbcType=VARCHAR},
+            </if>
+            <if test="busplatenumber != null">
+                #{busplatenumber,jdbcType=VARCHAR},
+            </if>
+            <if test="drivernumber != null">
+                #{drivernumber,jdbcType=VARCHAR},
+            </if>
+            <if test="drivername != null">
+                #{drivername,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="startstationid != null">
+                #{startstationid,jdbcType=INTEGER},
+            </if>
+            <if test="startlongitude != null">
+                #{startlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="startlatitude != null">
+                #{startlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="starttime != null">
+                #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endstationid != null">
+                #{endstationid,jdbcType=INTEGER},
+            </if>
+            <if test="endlongitude != null">
+                #{endlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="endlatitude != null">
+                #{endlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="endtime != null">
+                #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="traildistance != null">
+                #{traildistance,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.model.MyTrail">
+        <!--
+        @mbggenerated
+        -->
+        update my_trail
+        <set>
+            <if test="routeid != null">
+                routeId = #{routeid,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                direction = #{direction,jdbcType=INTEGER},
+            </if>
+            <if test="vehicleid != null">
+                vehicleId = #{vehicleid,jdbcType=VARCHAR},
+            </if>
+            <if test="busplatenumber != null">
+                busPlateNumber = #{busplatenumber,jdbcType=VARCHAR},
+            </if>
+            <if test="drivernumber != null">
+                driverNumber = #{drivernumber,jdbcType=VARCHAR},
+            </if>
+            <if test="drivername != null">
+                driverName = #{drivername,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                userId = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="startstationid != null">
+                startStationId = #{startstationid,jdbcType=INTEGER},
+            </if>
+            <if test="startlongitude != null">
+                startLongitude = #{startlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="startlatitude != null">
+                startLatitude = #{startlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="starttime != null">
+                startTime = #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endstationid != null">
+                endStationId = #{endstationid,jdbcType=INTEGER},
+            </if>
+            <if test="endlongitude != null">
+                endLongitude = #{endlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="endlatitude != null">
+                endLatitude = #{endlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="endtime != null">
+                endTime = #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="traildistance != null">
+                trailDistance = #{traildistance,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.model.MyTrail">
+        <!--
+        @mbggenerated
+        -->
+        update my_trail
+        set routeId = #{routeid,jdbcType=VARCHAR},
+            direction = #{direction,jdbcType=INTEGER},
+            vehicleId = #{vehicleid,jdbcType=VARCHAR},
+            busPlateNumber = #{busplatenumber,jdbcType=VARCHAR},
+            driverNumber = #{drivernumber,jdbcType=VARCHAR},
+            driverName = #{drivername,jdbcType=VARCHAR},
+            userId = #{userid,jdbcType=INTEGER},
+            startStationId = #{startstationid,jdbcType=INTEGER},
+            startLongitude = #{startlongitude,jdbcType=DECIMAL},
+            startLatitude = #{startlatitude,jdbcType=DECIMAL},
+            startTime = #{starttime,jdbcType=TIMESTAMP},
+            endStationId = #{endstationid,jdbcType=INTEGER},
+            endLongitude = #{endlongitude,jdbcType=DECIMAL},
+            endLatitude = #{endlatitude,jdbcType=DECIMAL},
+            endTime = #{endtime,jdbcType=TIMESTAMP},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            trailDistance = #{traildistance,jdbcType=DOUBLE}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 自定义 添加O点信息 -->
+    <insert id="insertOriginPoint" parameterType="com.lantaiyuan.ebus.model.ProduceOriginPoint">
+        insert into my_trail (routeId, direction, vehicleId,userId, startStationId,startTime,cityCode)
+        values (#{routeid,jdbcType=VARCHAR}, #{direction,jdbcType=INTEGER},#{vehicleid,jdbcType=VARCHAR},
+            #{userid,jdbcType=INTEGER}, #{startstationid,jdbcType=INTEGER},#{starttime,jdbcType=TIMESTAMP}, 
+            #{citycode,jdbcType=VARCHAR})
+    </insert>
+    
+    <!-- 自定义 查询用户最近(当前)行程-->
+    <select id="getCurrentTrail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    	select <include refid="Base_Column_List" /> from my_trail where userId=#{userId,jdbcType=INTEGER} 
+    	order by startTime desc limit 0,1
+    </select>
+    
+    
+</mapper>

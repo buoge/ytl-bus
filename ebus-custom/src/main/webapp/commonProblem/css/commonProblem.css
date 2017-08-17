@@ -1,0 +1,138 @@
+/*========basic css=========*/
+html {
+    font-size: 20px;
+}
+@media only screen and (min-width: 400px) {
+    html {
+        font-size: 21.33333333px !important;
+    }
+}
+@media only screen and (min-width: 414px) {
+    html {
+        font-size: 22.08px !important;
+    }
+}
+@media only screen and (min-width: 480px) {
+    html {
+        font-size: 25.6px !important;
+    }
+}
+@media only screen and (min-width: 640px) {
+    html {
+        font-size: 40px !important;
+    }
+}
+body, ol, ul, h1, h2, h3, h4, h5, div, p, tabel, th, td, dl, dd, form, fieldset, legend, input, button, textarea, select, figure, section {
+    margin: 0; padding: 0;}
+ul, li, dl, dd, dt {list-style: none;}
+input, button, textarea, a {-webkit-appearance: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); outline:none;}
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
+body {
+    text-align: left;
+    color: #333;
+    font-family: microsoft YaHei;
+    background-color: #f5f5f5;
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    -webkit-appearance:none;
+    -webkit-overflow-scrolling: touch;/*��׿�������������webkit˽����������*/
+}
+a, a:visited { text-decoration: none; cursor: pointer;}
+a:hover {text-decoration: none;}
+a:hover img {text-decoration: none;}
+
+i, em {font-style: normal;}
+
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.clx{
+    clear: both;
+}
+.pd30{
+    padding: 0rem 0.75rem;
+}
+.h88{
+    height: 2.2rem;
+    line-height: 2.2rem;
+}
+.bodB{
+    border-bottom: 1px solid #ddd;
+}
+.bodT{
+    border-top: 1px solid #ddd;
+}
+.bgDef{
+    background-color: #fff;
+}
+.hide{
+	display:none;
+}
+/*��ť*/
+
+.btnNav{
+    display: block;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 0.55rem;
+    background: url("../images/btnNavRSmall.png") no-repeat center;
+}
+.btnJump{
+    display: block;
+    margin-top: 0.7rem;
+    margin-right: 0.75rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    background: url("../images/btnJumpSmall.png") no-repeat center;
+}
+/*top*/
+header{
+    background-color:#3b3a3f ;
+}
+header h1{
+    width: calc(100% - 2.6rem);
+    text-align: center;
+    font-size: 0.9rem;
+    color:#fff;
+}
+/*content*/
+
+.top{
+    box-sizing: border-box;
+    padding-top: 0.75rem;
+    font-size: 0.65rem;
+    line-height: 1.45rem;
+    color:#999;
+}
+.problemTit{
+    padding-left: 0.75rem;
+}
+.qusTit{
+    line-height: 2.2rem;
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: #333;
+}
+
+.bottom{
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color:#333;
+    line-height: 2.2rem;
+}
+
+.titles{
+
+}
+.question{
+    font-size: 0.75rem;
+    color:#333;
+}
+.conts{
+    padding: 0.75rem 0.75rem 2.2rem;
+}

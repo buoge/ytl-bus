@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.CustomLineApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.CustomLineApplication" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="lineId" property="lineid" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="sourceLocation" property="sourcelocation" jdbcType="VARCHAR" />
+    <result column="targetLocation" property="targetlocation" jdbcType="VARCHAR" />
+    <result column="startLongitude" property="startlongitude" jdbcType="DECIMAL" />
+    <result column="startLatitude" property="startlatitude" jdbcType="DECIMAL" />
+    <result column="endLongitude" property="endlongitude" jdbcType="DECIMAL" />
+    <result column="endLatitude" property="endlatitude" jdbcType="DECIMAL" />
+    <result column="startTime" property="starttime" jdbcType="VARCHAR" />
+    <result column="backTime" property="backtime" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="applicantId" property="applicantid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, lineId, userId, userName, sourceLocation, targetLocation, startLongitude, startLatitude, 
+    endLongitude, endLatitude, startTime, backTime, createTime, flag, applicantId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_custom_line_application
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from base_custom_line_application
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.CustomLineApplication" >
+    insert into base_custom_line_application (id, lineId, userId, 
+      userName, sourceLocation, targetLocation, 
+      startLongitude, startLatitude, endLongitude, 
+      endLatitude, startTime, backTime, 
+      createTime, flag, applicantId
+      )
+    values (#{id,jdbcType=INTEGER}, #{lineid,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{username,jdbcType=VARCHAR}, #{sourcelocation,jdbcType=VARCHAR}, #{targetlocation,jdbcType=VARCHAR}, 
+      #{startlongitude,jdbcType=DECIMAL}, #{startlatitude,jdbcType=DECIMAL}, #{endlongitude,jdbcType=DECIMAL}, 
+      #{endlatitude,jdbcType=DECIMAL}, #{starttime,jdbcType=VARCHAR}, #{backtime,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}, #{applicantid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.CustomLineApplication" >
+    insert into base_custom_line_application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lineid != null" >
+        lineId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="sourcelocation != null" >
+        sourceLocation,
+      </if>
+      <if test="targetlocation != null" >
+        targetLocation,
+      </if>
+      <if test="startlongitude != null" >
+        startLongitude,
+      </if>
+      <if test="startlatitude != null" >
+        startLatitude,
+      </if>
+      <if test="endlongitude != null" >
+        endLongitude,
+      </if>
+      <if test="endlatitude != null" >
+        endLatitude,
+      </if>
+      <if test="starttime != null" >
+        startTime,
+      </if>
+      <if test="backtime != null" >
+        backTime,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="applicantid != null" >
+        applicantId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lineid != null" >
+        #{lineid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcelocation != null" >
+        #{sourcelocation,jdbcType=VARCHAR},
+      </if>
+      <if test="targetlocation != null" >
+        #{targetlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="startlongitude != null" >
+        #{startlongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="startlatitude != null" >
+        #{startlatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="endlongitude != null" >
+        #{endlongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="endlatitude != null" >
+        #{endlatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="backtime != null" >
+        #{backtime,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="applicantid != null" >
+        #{applicantid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.CustomLineApplication" >
+    update base_custom_line_application
+    <set >
+      <if test="lineid != null" >
+        lineId = #{lineid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcelocation != null" >
+        sourceLocation = #{sourcelocation,jdbcType=VARCHAR},
+      </if>
+      <if test="targetlocation != null" >
+        targetLocation = #{targetlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="startlongitude != null" >
+        startLongitude = #{startlongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="startlatitude != null" >
+        startLatitude = #{startlatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="endlongitude != null" >
+        endLongitude = #{endlongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="endlatitude != null" >
+        endLatitude = #{endlatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="backtime != null" >
+        backTime = #{backtime,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="applicantid != null" >
+        applicantId = #{applicantid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.CustomLineApplication" >
+    update base_custom_line_application
+    set lineId = #{lineid,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      userName = #{username,jdbcType=VARCHAR},
+      sourceLocation = #{sourcelocation,jdbcType=VARCHAR},
+      targetLocation = #{targetlocation,jdbcType=VARCHAR},
+      startLongitude = #{startlongitude,jdbcType=DECIMAL},
+      startLatitude = #{startlatitude,jdbcType=DECIMAL},
+      endLongitude = #{endlongitude,jdbcType=DECIMAL},
+      endLatitude = #{endlatitude,jdbcType=DECIMAL},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      backTime = #{backtime,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER},
+      applicantId = #{applicantid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 自定 -->
+	<select id="findObjectsByPage" resultMap="BaseResultMap"
+		parameterType="com.lantaiyuan.ebus.custom.model.CustomLineApplicationQueryModel">
+		select
+		<include refid="Base_Column_List" />
+		from base_custom_line_application
+		<trim prefix="WHERE" prefixOverrides="AND" suffixOverrides="," >
+		 <if test="id != null" >
+       id = #{id,jdbcType=INTEGER}
+      </if>
+		 <if test="lineid != null" >
+        lineId = #{lineid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcelocation != null" >
+        sourceLocation = #{sourcelocation,jdbcType=VARCHAR},
+      </if>
+      <if test="targetlocation != null" >
+        targetLocation = #{targetlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="startlongitude != null" >
+        startLongitude = #{startlongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="startlatitude != null" >
+        startLatitude = #{startlatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="endlongitude != null" >
+        endLongitude = #{endlongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="endlatitude != null" >
+        endLatitude = #{endlatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="backtime != null" >
+        backTime = #{backtime,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="applicantid != null" >
+        applicantId = #{applicantid,jdbcType=INTEGER},
+      </if>
+    </trim>
+	</select>
+		
+	 <!-- 自定义方法 -->
+	<select id="findCustomLineSubListByPage" resultType="com.lantaiyuan.ebus.custom.model.CustomLineApplication"
+		parameterType="com.lantaiyuan.ebus.custom.model.CustomLineApplicationQueryModel">
+		select
+		<include refid="Base_Column_List" />
+		from base_custom_line_application
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		  <if test="id != null" >
+	        and id = #{id,jdbcType=INTEGER} 
+	      </if>
+		  <if test="lineid != null and lineid != ''" >
+	        and lineId = #{lineid,jdbcType=VARCHAR} 
+	      </if>
+	      <if test="userid != null" >
+	        and userId = #{userid,jdbcType=INTEGER} 
+	      </if>
+	      <if test="username != null" >
+	        and userName = #{username,jdbcType=VARCHAR} 
+	      </if>
+	      <if test="sourcelocation != null" >
+	       and sourceLocation = #{sourcelocation,jdbcType=VARCHAR} 
+	      </if>
+	      <if test="targetlocation != null" >
+	        and targetLocation = #{targetlocation,jdbcType=VARCHAR} 
+	      </if>
+	      <if test="startlongitude != null" >
+	        and startLongitude = #{startlongitude,jdbcType=DECIMAL} 
+	      </if>
+	      <if test="startlatitude != null" >
+	        and startLatitude = #{startlatitude,jdbcType=DECIMAL} 
+	      </if>
+	      <if test="endlongitude != null" >
+	        and endLongitude = #{endlongitude,jdbcType=DECIMAL} 
+	      </if>
+	      <if test="endlatitude != null" >
+	        and endLatitude = #{endlatitude,jdbcType=DECIMAL} 
+	      </if>
+	      <if test="starttime != null" >
+	        and startTime = #{starttime,jdbcType=VARCHAR} 
+	      </if>
+	      <if test="backtime != null" >
+	        and backTime = #{backtime,jdbcType=VARCHAR} 
+	      </if>
+	      <if test="createtime != null" >
+	        and createTime = #{createtime,jdbcType=TIMESTAMP} 
+	      </if>
+	      <if test="flag != null" >
+	        and flag = #{flag,jdbcType=INTEGER} 
+	      </if>
+	      <if test="applicantid != null" >
+	        and applicantId = #{applicantid,jdbcType=INTEGER} 
+	      </if>
+	    </trim>
+	    order by createTime desc
+	</select>
+	
+	<!-- 查询指定线路参与人数（包括申请人和加入人） -->
+	<select id="findPaticalNumByLineId" resultType="int" parameterType="string" >
+	   SELECT
+			count(*)
+	   FROM
+			base_custom_line_application
+	   WHERE
+			lineId = #{lineId,jdbcType=VARCHAR}
+  </select>
+  <!-- 查询指定线路参与人列表 -->
+  <select id="findByLineId" resultType="java.util.HashMap" parameterType="string" >
+	   SELECT
+			<include refid="Base_Column_List" />
+	   FROM
+			base_custom_line_application
+	   WHERE
+			lineId = #{lineid,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findByLineId2" resultType="com.lantaiyuan.ebus.custom.model.CustomLineApplication" parameterType="string" >
+	   SELECT
+			<include refid="Base_Column_List" />
+	   FROM
+			base_custom_line_application
+	   WHERE
+			lineId = #{lineid,jdbcType=VARCHAR}
+  </select>
+  
+ <!-- 查询指定线路参与人列表 -->
+  <select id="getByLineId" resultType="com.lantaiyuan.ebus.custom.model.CustomLineApplication"> 
+	   SELECT
+			<include refid="Base_Column_List" />
+	   FROM
+			base_custom_line_application
+		<if test="lineId != null and lineId != ''">
+		WHERE lineId in
+		<foreach collection="list" index="index" item="item"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		</if>
+  </select> 
+  
+  
+  
+</mapper>

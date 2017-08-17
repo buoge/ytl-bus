@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.BookTicketMapper">
+	<resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.BookTicket">
+		<!-- @mbggenerated -->
+		<id column="goodsId" jdbcType="VARCHAR" property="goodsid" />
+		<result column="orderDetailId" jdbcType="VARCHAR" property="orderdetailid" />
+		<result column="routeId" jdbcType="VARCHAR" property="routeid" />
+		<result column="sourceLocation" jdbcType="VARCHAR" property="sourcelocation" />
+		<result column="targetLocation" jdbcType="VARCHAR" property="targetlocation" />
+		<result column="takeTime" jdbcType="VARCHAR" property="taketime" />
+		<result column="takeDate" jdbcType="VARCHAR" property="takedate" />
+		<result column="ticketStatus" jdbcType="VARCHAR" property="ticketstatus" />
+		<result column="ceateTime" jdbcType="TIMESTAMP" property="ceatetime" />
+		<result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		goodsId, orderDetailId, routeId, sourceLocation, targetLocation,
+		takeTime, takeDate,
+		ticketStatus, ceateTime, cityCode
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from base_bookticket
+		where goodsId = #{goodsid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		<!-- @mbggenerated -->
+		delete from base_bookticket
+		where goodsId = #{goodsid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.BookTicket">
+		<!-- @mbggenerated -->
+		insert into base_bookticket (goodsId, orderDetailId, routeId,
+		sourceLocation, targetLocation, takeTime,
+		takeDate, ticketStatus, ceateTime,
+		cityCode)
+		values (#{goodsid,jdbcType=VARCHAR}, #{orderdetailid,jdbcType=VARCHAR},
+		#{routeid,jdbcType=VARCHAR},
+		#{sourcelocation,jdbcType=VARCHAR}, #{targetlocation,jdbcType=VARCHAR}, #{taketime,jdbcType=VARCHAR},
+		#{takedate,jdbcType=VARCHAR}, #{ticketstatus,jdbcType=VARCHAR},
+		#{ceatetime,jdbcType=TIMESTAMP},
+		#{citycode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.BookTicket">
+		<!-- @mbggenerated -->
+		insert into base_bookticket
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="goodsid != null">
+				goodsId,
+			</if>
+			<if test="orderdetailid != null">
+				orderDetailId,
+			</if>
+			<if test="routeid != null">
+				routeId,
+			</if>
+			<if test="sourcelocation != null">
+				sourceLocation,
+			</if>
+			<if test="targetlocation != null">
+				targetLocation,
+			</if>
+			<if test="taketime != null">
+				takeTime,
+			</if>
+			<if test="takedate != null">
+				takeDate,
+			</if>
+			<if test="ticketstatus != null">
+				ticketStatus,
+			</if>
+			<if test="ceatetime != null">
+				ceateTime,
+			</if>
+			<if test="citycode != null">
+				cityCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="goodsid != null">
+				#{goodsid,jdbcType=VARCHAR},
+			</if>
+			<if test="orderdetailid != null">
+				#{orderdetailid,jdbcType=VARCHAR},
+			</if>
+			<if test="routeid != null">
+				#{routeid,jdbcType=VARCHAR},
+			</if>
+			<if test="sourcelocation != null">
+				#{sourcelocation,jdbcType=VARCHAR},
+			</if>
+			<if test="targetlocation != null">
+				#{targetlocation,jdbcType=VARCHAR},
+			</if>
+			<if test="taketime != null">
+				#{taketime,jdbcType=VARCHAR},
+			</if>
+			<if test="takedate != null">
+				#{takedate,jdbcType=VARCHAR},
+			</if>
+			<if test="ticketstatus != null">
+				#{ticketstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="ceatetime != null">
+				#{ceatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="citycode != null">
+				#{citycode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.BookTicket">
+		<!-- @mbggenerated -->
+		update base_bookticket
+		<set>
+			<if test="orderdetailid != null">
+				orderDetailId = #{orderdetailid,jdbcType=VARCHAR},
+			</if>
+			<if test="routeid != null">
+				routeId = #{routeid,jdbcType=VARCHAR},
+			</if>
+			<if test="sourcelocation != null">
+				sourceLocation = #{sourcelocation,jdbcType=VARCHAR},
+			</if>
+			<if test="targetlocation != null">
+				targetLocation = #{targetlocation,jdbcType=VARCHAR},
+			</if>
+			<if test="taketime != null">
+				takeTime = #{taketime,jdbcType=VARCHAR},
+			</if>
+			<if test="takedate != null">
+				takeDate = #{takedate,jdbcType=VARCHAR},
+			</if>
+			<if test="ticketstatus != null">
+				ticketStatus = #{ticketstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="ceatetime != null">
+				ceateTime = #{ceatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="citycode != null">
+				cityCode = #{citycode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where goodsId = #{goodsid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.BookTicket">
+		<!-- @mbggenerated -->
+		update base_bookticket
+		set orderDetailId = #{orderdetailid,jdbcType=VARCHAR},
+		routeId = #{routeid,jdbcType=VARCHAR},
+		sourceLocation = #{sourcelocation,jdbcType=VARCHAR},
+		targetLocation = #{targetlocation,jdbcType=VARCHAR},
+		takeTime = #{taketime,jdbcType=VARCHAR},
+		takeDate = #{takedate,jdbcType=VARCHAR},
+		ticketStatus = #{ticketstatus,jdbcType=VARCHAR},
+		ceateTime = #{ceatetime,jdbcType=TIMESTAMP},
+		cityCode = #{citycode,jdbcType=VARCHAR}
+		where goodsId = #{goodsid,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 自定 -->
+	<resultMap id="MyTicketsMap" type="com.lantaiyuan.ebus.custom.model.MyTickets">
+		<!-- @mbggenerated -->
+		<result column="routeId" jdbcType="VARCHAR" property="routeid" />
+		<result column="sourceLocation" jdbcType="VARCHAR" property="sourcelocation" />
+		<result column="targetLocation" jdbcType="VARCHAR" property="targetlocation" />
+		<result column="takeTime" jdbcType="VARCHAR" property="taketime" />
+		<result column="ticketStatus" jdbcType="VARCHAR" property="ticketstatus" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="distance" property="distance" jdbcType="DECIMAL" />
+		<result column="budgetTime" property="budgettime" jdbcType="INTEGER" />
+		<result column="numbers" property="numbers" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="TicketDetailMap" type="com.lantaiyuan.ebus.custom.model.TicketDetail">
+		<!-- @mbggenerated -->
+		<result column="userId" property="userid" jdbcType="INTEGER" />
+		<result column="takeDate" jdbcType="VARCHAR" property="takedate" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+		<result column="routeId" jdbcType="VARCHAR" property="routeid" />
+		<result column="orderNo" jdbcType="VARCHAR" property="orderno" />
+		<result column="timeStamp" jdbcType="VARCHAR" property="timestamp" />
+	</resultMap>
+	<!-- 自定义 -->
+	<select id="queryMyTickets" parameterType="java.lang.String"
+		resultMap="MyTicketsMap">
+		<!-- @mbggenerated -->
+		SELECT
+		base_custom_line.routeId,
+		base_bookticket.sourceLocation,
+		base_bookticket.targetLocation,
+		base_bookticket.takeTime,
+		base_bookticket.ticketStatus,
+		base_custom_line.price,
+		base_custom_line.distance,
+		base_custom_line.budgetTime,
+		count(*) as
+		numbers
+		FROM
+		base_bookticket,
+		base_custom_line
+		WHERE
+		orderDetailId IN (
+		SELECT
+		orderDetailId
+		FROM
+		base_order_detail
+		WHERE
+		userId =
+		#{userid,jdbcType=VARCHAR}
+		)
+		AND
+		base_bookticket.routeId
+		=base_custom_line.id
+		and
+		base_bookticket.ticketStatus in(1,2,3)
+		and
+		base_bookticket.cityCode =
+		#{citycode,jdbcType=VARCHAR}
+		GROUP BY
+		base_bookticket.routeId,
+		base_bookticket.sourceLocation,
+		base_bookticket.targetLocation,
+		base_bookticket.ticketStatus
+		ORDER BY
+		ticketStatus
+	</select>
+
+	<update id="updateStatusToValid" parameterType="java.lang.String">
+		<!-- @mbggenerated -->
+		UPDATE base_bookticket SET base_bookticket.ticketStatus = 1
+		WHERE
+		orderDetailId in (
+		SELECT orderDetailId FROM base_order WHERE orderNo =
+		#{orderno,jdbcType=VARCHAR})
+	</update>
+
+	<select id="queryTicketDetail"
+		parameterType="com.lantaiyuan.ebus.custom.model.TicketDetailQueryModel"
+		resultMap="TicketDetailMap">
+		<!-- @mbggenerated -->
+		SELECT
+		base_order_detail.userId,
+		base_bookticket.takeDate,
+		base_custom_line.price,
+		base_custom_line.cityCode,
+		base_custom_line.routeId,
+		base_bookticket.goodsId AS orderNo,
+		unix_timestamp(now()) AS
+		timeStamp
+		FROM
+		base_bookticket,
+		base_order_detail,
+		base_order,
+		base_custom_line
+		WHERE
+		base_bookticket.orderDetailId =
+		base_order_detail.orderDetailId
+		AND
+		base_order.orderDetailId =
+		base_order_detail.orderDetailId
+		AND
+		base_bookticket.routeId =
+		base_custom_line.id
+		AND
+		base_custom_line.routeId =
+		#{routeid,jdbcType=VARCHAR}
+		AND
+		base_bookticket.sourceLocation =
+		#{sourcelocation,jdbcType=VARCHAR}
+		AND
+		base_bookticket.targetLocation =
+		#{targetlocation,jdbcType=VARCHAR}
+		AND
+		base_bookticket.ticketStatus
+		=#{ticketstatus,jdbcType=VARCHAR}
+		AND
+		base_order_detail.userId =
+		#{userid,jdbcType=INTEGER}
+		AND
+		base_bookticket.cityCode = #{citycode,jdbcType=VARCHAR}
+		ORDER BY base_bookticket.takeDate ASC limit
+		0,1
+	</select>
+
+	<!--根据userid和routeid查询已经购票的信息 -->
+	<!-- <select id="queryBookedTicket" parameterType="java.lang.String" resultMap="BaseResultMap"> 
+		@mbggenerated SELECT base_bookticket.* FROM base_tickcet_schedual, base_bookticket, 
+		base_order_detail WHERE base_order_detail.orderDetailId = base_bookticket.orderDetailId 
+		AND base_tickcet_schedual.serverDate = base_bookticket.takeDate AND base_tickcet_schedual.routeId 
+		= base_bookticket.routeId AND base_bookticket.ticketStatus = 1 AND base_order_detail.userId 
+		= #{userid,jdbcType=VARCHAR} AND base_tickcet_schedual.routeId = #{routeid,jdbcType=VARCHAR} 
+		</select> -->
+
+	<!--根据userid和routeid,citycode查询已经购票的信息 -->
+	<select id="queryBookedTicket" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		SELECT
+		base_bookticket.*
+		FROM
+		base_tickcet_schedual,
+		base_bookticket,
+		base_order_detail
+		WHERE
+		base_order_detail.orderDetailId =
+		base_bookticket.orderDetailId
+		AND base_tickcet_schedual.serverDate =
+		base_bookticket.takeDate
+		AND base_tickcet_schedual.routeId =
+		base_bookticket.routeId
+		AND base_bookticket.ticketStatus = 1
+		AND
+		base_tickcet_schedual.cityCode = #{citycode,jdbcType=VARCHAR}
+		AND base_order_detail.userId = #{userid,jdbcType=VARCHAR}
+		AND
+		base_tickcet_schedual.routeId = #{routeid,jdbcType=VARCHAR}
+	</select>
+
+	<update id="updateStatusToUsed" parameterType="java.lang.String">
+		<!-- @mbggenerated -->
+		UPDATE base_bookticket SET ticketStatus = 2
+		WHERE
+		goodsId =
+		#{ticketId,jdbcType=VARCHAR}
+	</update>
+
+	<!--退票 -->
+	<update id="updateStatusToRefund" parameterType="java.util.List">
+		UPDATE base_bookticket SET
+		ticketStatus = 4
+		WHERE goodsId IN
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item}
+			)
+		</foreach>
+	</update>
+	<!-- 待支付车票订单 -->
+	<select id="queryUnPaidTicketOrder" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		SELECT B.* FROM base_order_detail A,base_bookticket B,base_order C
+		WHERE A.orderDetailId = C.orderDetailId
+		AND A.orderDetailId = B.orderDetailId
+		AND A.userId = #{userId}
+		AND B.routeId = #{routeId}
+		AND B.cityCode = #{cityCode}
+		AND B.ticketStatus = 0
+		AND B.takeDate IN 
+		<foreach collection="takeDate" index="index" item="item"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		AND C.orderStatus = 0
+	</select>
+</mapper>

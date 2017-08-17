@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans.xsd 
+            http://www.springframework.org/schema/tx
+ 	  		http://www.springframework.org/schema/tx/spring-tx.xsd
+ 	  		http://www.springframework.org/schema/context 
+      		http://www.springframework.org/schema/context/spring-context.xsd
+      		http://www.springframework.org/schema/aop 
+      		http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="locations">
+	        <list>
+	           <value>classpath:config.properties</value>
+	        </list>
+	     </property>		       
+	</bean>
+	
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+      <constructor-arg index="0" ref="jedisPoolConfig"/>
+      <constructor-arg index="1" value="${redis.host}"/>
+      <constructor-arg index="2" value="${redis.port}" type="int"/>
+      <constructor-arg index="3" value="${redis.timeout}" type="int"/>
+    </bean>
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxActive" value="${redis.pool.maxActive}" />
+	    <property name="maxIdle" value="${redis.pool.maxIdle}" />
+	    <property name="maxWait" value="${redis.pool.maxWait}" />
+	    <property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+	    <property name="testOnReturn" value="${redis.pool.testOnReturn}"/>
+	</bean>
+	
+	
+	<bean id="redis" class="com.lty.redis.RedisHelper">
+		<constructor-arg>
+     		<ref bean="jedisPool"/>
+     	</constructor-arg>
+	</bean>
+  
+	 <!-- 定义consumer的参数 -->
+     <bean id="consumerProperties" class="com.lty.kafka.config.KafkaConsumerConfig">
+     </bean>
+     
+     <!-- 创建consumerFactory bean -->
+     <bean id="consumerFactory" class="org.springframework.kafka.core.DefaultKafkaConsumerFactory">
+     	<constructor-arg>
+     		<ref bean="consumerProperties"/>
+     	</constructor-arg>
+     </bean>
+        
+     <!-- 实际执行消息消费的类 -->
+     <bean id="kafkaMessageConsumer" class="com.lty.kafka.consumer.KafkaCousumerClientMain">
+     	<constructor-arg index="0">
+     		<ref bean="jedisPool"/>
+     	</constructor-arg>
+     	<constructor-arg index="1" value="${kafka.cityCode}"/>   
+     	<constructor-arg index="2" value="${constants.cachedCounter}"/> 
+     </bean>
+     
+     <!-- 消费者容器配置信息 -->
+     <bean id="containerProperties" class="org.springframework.kafka.listener.config.ContainerProperties">
+     	<constructor-arg value="${kafka.topic.name}"/>    	
+     	<property name="messageListener" ref="kafkaMessageConsumer"/>
+     </bean>
+         
+     <bean id="messageListenerContainer" class="org.springframework.kafka.listener.ConcurrentMessageListenerContainer" init-method="doStart">
+     	<constructor-arg ref="consumerFactory"/>
+     	<constructor-arg ref="containerProperties"/>
+     	<property name="concurrency" value="1"/>
+     </bean>
+</beans>

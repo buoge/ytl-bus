@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.EvaluationMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.Evaluation">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="userId" jdbcType="INTEGER" property="userid" />
+        <result column="evaluatObjName" jdbcType="VARCHAR" property="evaluatobjname" />
+        <result column="routeName" jdbcType="VARCHAR" property="routename" />
+        <result column="userName" jdbcType="VARCHAR" property="username" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="type" jdbcType="TINYINT" property="type" />
+        <result column="typeDetail" jdbcType="TINYINT" property="typedetail" />
+        <result column="score" jdbcType="DOUBLE" property="score" />
+        <result column="kind" jdbcType="VARCHAR" property="kind" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+        <result column="attachPaths" jdbcType="VARCHAR" property="attachpaths" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lantaiyuan.ebus.custom.model.Evaluation">
+        <!--
+        @mbggenerated
+        -->
+        <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, userId, evaluatObjName, routeName, userName, createTime, type, typeDetail, score, 
+        kind, cityCode, attachPaths
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        comment
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from base_evaluation
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_evaluation
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.Evaluation">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_evaluation (id, userId, evaluatObjName, 
+            routeName, userName, createTime, 
+            type, typeDetail, score, 
+            kind, cityCode, attachPaths, 
+            comment)
+        values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{evaluatobjname,jdbcType=VARCHAR}, 
+            #{routename,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+            #{type,jdbcType=TINYINT}, #{typedetail,jdbcType=TINYINT}, #{score,jdbcType=DOUBLE}, 
+            #{kind,jdbcType=VARCHAR}, #{citycode,jdbcType=VARCHAR}, #{attachpaths,jdbcType=VARCHAR}, 
+            #{comment,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.Evaluation">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_evaluation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userid != null">
+                userId,
+            </if>
+            <if test="evaluatobjname != null">
+                evaluatObjName,
+            </if>
+            <if test="routename != null">
+                routeName,
+            </if>
+            <if test="username != null">
+                userName,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="typedetail != null">
+                typeDetail,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+            <if test="kind != null">
+                kind,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+            <if test="attachpaths != null">
+                attachPaths,
+            </if>
+            <if test="comment != null">
+                comment,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="evaluatobjname != null">
+                #{evaluatobjname,jdbcType=VARCHAR},
+            </if>
+            <if test="routename != null">
+                #{routename,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="typedetail != null">
+                #{typedetail,jdbcType=TINYINT},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=DOUBLE},
+            </if>
+            <if test="kind != null">
+                #{kind,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="attachpaths != null">
+                #{attachpaths,jdbcType=VARCHAR},
+            </if>
+            <if test="comment != null">
+                #{comment,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.Evaluation">
+        <!--
+        @mbggenerated
+        -->
+        update base_evaluation
+        <set>
+            <if test="userid != null">
+                userId = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="evaluatobjname != null">
+                evaluatObjName = #{evaluatobjname,jdbcType=VARCHAR},
+            </if>
+            <if test="routename != null">
+                routeName = #{routename,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                userName = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="typedetail != null">
+                typeDetail = #{typedetail,jdbcType=TINYINT},
+            </if>
+            <if test="score != null">
+                score = #{score,jdbcType=DOUBLE},
+            </if>
+            <if test="kind != null">
+                kind = #{kind,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="attachpaths != null">
+                attachPaths = #{attachpaths,jdbcType=VARCHAR},
+            </if>
+            <if test="comment != null">
+                comment = #{comment,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lantaiyuan.ebus.custom.model.Evaluation">
+        <!--
+        @mbggenerated
+        -->
+        update base_evaluation
+        set userId = #{userid,jdbcType=INTEGER},
+            evaluatObjName = #{evaluatobjname,jdbcType=VARCHAR},
+            routeName = #{routename,jdbcType=VARCHAR},
+            userName = #{username,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            type = #{type,jdbcType=TINYINT},
+            typeDetail = #{typedetail,jdbcType=TINYINT},
+            score = #{score,jdbcType=DOUBLE},
+            kind = #{kind,jdbcType=VARCHAR},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            attachPaths = #{attachpaths,jdbcType=VARCHAR},
+            comment = #{comment,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.Evaluation">
+        <!--
+        @mbggenerated
+        -->
+        update base_evaluation
+        set userId = #{userid,jdbcType=INTEGER},
+            evaluatObjName = #{evaluatobjname,jdbcType=VARCHAR},
+            routeName = #{routename,jdbcType=VARCHAR},
+            userName = #{username,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            type = #{type,jdbcType=TINYINT},
+            typeDetail = #{typedetail,jdbcType=TINYINT},
+            score = #{score,jdbcType=DOUBLE},
+            kind = #{kind,jdbcType=VARCHAR},
+            cityCode = #{citycode,jdbcType=VARCHAR},
+            attachPaths = #{attachpaths,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+      <!-- findEvalutionListByPage by tanyuan -->
+	<select id="findEvalutionListByPage" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationQueryModel"
+		resultMap="ResultMapWithBLOBs">
+		SELECT
+		id,
+		evaluatObjName,
+		routeName,
+		userName,
+		createTime,
+		type,
+		typeDetail,
+		score,
+		kind,
+		CONCAT(typeDetail,":",comment) AS comment
+		FROM
+		base_evaluation
+		where 1=1
+		    <if test="id != null">
+			and id=	#{id,jdbcType=INTEGER}
+			</if>
+			 <if test="evaluatobjname != null">
+              and   evaluatObjName like  concat('%',#{evaluatobjname,jdbcType=VARCHAR},'%') 
+            </if>
+            <if test="routename != null">
+              and   routeName like concat('%',#{routename,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="username != null">
+             and    userName like concat('%',#{username,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="createtime != null">
+              and   createTime = #{createtime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="type != null">
+             and    type = #{type,jdbcType=TINYINT}
+            </if>
+            <if test="typedetail != null">
+             and    typeDetail = #{typedetail,jdbcType=TINYINT}
+            </if>
+            <if test="score != null">
+              and   score = #{score,jdbcType=DOUBLE}
+            </if>
+            <if test="kind != null">
+             and    kind = #{kind,jdbcType=VARCHAR}
+            </if>
+            <if test="comment != null">
+             and    comment = #{comment,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="citycode != -1 ">
+             and  cityCode = #{citycode,jdbcType=VARCHAR}
+            </if>
+			<if test="startdate != null">
+			and createTime <![CDATA[>=]]>  STR_TO_DATE(#{startdate,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s') 
+			</if>
+			<if test="enddate != null">
+			and createTime  <![CDATA[<=]]> STR_TO_DATE(#{enddate,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			order by  createTime desc
+	</select>
+	
+	<!--queryEvaluationPie by tanyuan 后期新增cityCode需修改  -->
+	<select id="findEvaluationPieByPage" parameterType="com.lantaiyuan.ebus.custom.model.EvaluationPieQueryModel"
+		resultMap="ResultMapWithBLOBs">
+		SELECT
+		id,
+		evaluatObjName,
+		routeName,
+		userName,
+		createTime,
+		type,
+		typeDetail,
+		score,
+		count(*) as kind,
+		CONCAT(typeDetail,":",comment) AS comment
+		FROM
+		base_evaluation
+		where 1=1
+		  <if test="citycode != -1 "> 
+			 and cityCode=#{citycode,jdbcType=VARCHAR}
+		  </if>
+		GROUP BY score ORDER BY score	  
+	</select>
+</mapper>

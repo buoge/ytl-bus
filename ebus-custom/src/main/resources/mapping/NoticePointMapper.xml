@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.NoticePointMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.NoticePoint">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="noticeId" jdbcType="VARCHAR" property="noticeid" />
+        <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+        <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, noticeId, longitude, latitude
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from weather_notice_point
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from weather_notice_point
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.NoticePoint">
+        <!--
+        @mbggenerated
+        -->
+        insert into weather_notice_point (id, noticeId, longitude, 
+            latitude)
+        values (#{id,jdbcType=VARCHAR}, #{noticeid,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, 
+            #{latitude,jdbcType=DOUBLE})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.NoticePoint">
+        <!--
+        @mbggenerated
+        -->
+        insert into weather_notice_point
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="noticeid != null">
+                noticeId,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="noticeid != null">
+                #{noticeid,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DOUBLE},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.NoticePoint">
+        <!--
+        @mbggenerated
+        -->
+        update weather_notice_point
+        <set>
+            <if test="noticeid != null">
+                noticeId = #{noticeid,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DOUBLE},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.NoticePoint">
+        <!--
+        @mbggenerated
+        -->
+        update weather_notice_point
+        set noticeId = #{noticeid,jdbcType=VARCHAR},
+            longitude = #{longitude,jdbcType=DOUBLE},
+            latitude = #{latitude,jdbcType=DOUBLE}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    
+   <!--  以下是自定义方法 -->
+   <select id="getPointsByNoticeId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from weather_notice_point
+        where noticeId = #{noticeId,jdbcType=VARCHAR}
+    </select>
+</mapper>

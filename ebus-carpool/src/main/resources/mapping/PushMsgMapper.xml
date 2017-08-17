@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.carpool.dao.PushMsgMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.carpool.model.jpush.PushMsg">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="order_no" jdbcType="CHAR" property="orderNo" />
+        <result column="push_title" jdbcType="VARCHAR" property="pushTitle" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="push_msg" jdbcType="VARCHAR" property="pushMsg" />
+        <result column="push_type" jdbcType="TINYINT" property="pushType" />
+        <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="field1" jdbcType="VARCHAR" property="field1" />
+        <result column="field2" jdbcType="VARCHAR" property="field2" />
+        <result column="field3" jdbcType="VARCHAR" property="field3" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, order_no, push_title, user_id, push_msg, push_type, img_url, city_code, gmt_create, 
+        gmt_modified, field1, field2, field3
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from carpool_push_msg
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--
+        @mbggenerated
+        -->
+        delete from carpool_push_msg
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.carpool.model.jpush.PushMsg">
+        <!--
+        @mbggenerated
+        -->
+        insert into carpool_push_msg (id, order_no, push_title, 
+            user_id, push_msg, push_type, 
+            img_url, city_code, gmt_create, 
+            gmt_modified, field1, field2, 
+            field3)
+        values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=CHAR}, #{pushTitle,jdbcType=VARCHAR}, 
+            #{userId,jdbcType=INTEGER}, #{pushMsg,jdbcType=VARCHAR}, #{pushType,jdbcType=TINYINT}, 
+            #{imgUrl,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+            #{gmtModified,jdbcType=TIMESTAMP}, #{field1,jdbcType=VARCHAR}, #{field2,jdbcType=VARCHAR}, 
+            #{field3,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.carpool.model.jpush.PushMsg">
+        <!--
+        @mbggenerated
+        -->
+        insert into carpool_push_msg
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="orderNo != null">
+                order_no,
+            </if>
+            <if test="pushTitle != null">
+                push_title,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="pushMsg != null">
+                push_msg,
+            </if>
+            <if test="pushType != null">
+                push_type,
+            </if>
+            <if test="imgUrl != null">
+                img_url,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="field1 != null">
+                field1,
+            </if>
+            <if test="field2 != null">
+                field2,
+            </if>
+            <if test="field3 != null">
+                field3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="orderNo != null">
+                #{orderNo,jdbcType=CHAR},
+            </if>
+            <if test="pushTitle != null">
+                #{pushTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="pushMsg != null">
+                #{pushMsg,jdbcType=VARCHAR},
+            </if>
+            <if test="pushType != null">
+                #{pushType,jdbcType=TINYINT},
+            </if>
+            <if test="imgUrl != null">
+                #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="field1 != null">
+                #{field1,jdbcType=VARCHAR},
+            </if>
+            <if test="field2 != null">
+                #{field2,jdbcType=VARCHAR},
+            </if>
+            <if test="field3 != null">
+                #{field3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.carpool.model.jpush.PushMsg">
+        <!--
+        @mbggenerated
+        -->
+        update carpool_push_msg
+        <set>
+            <if test="orderNo != null">
+                order_no = #{orderNo,jdbcType=CHAR},
+            </if>
+            <if test="pushTitle != null">
+                push_title = #{pushTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="pushMsg != null">
+                push_msg = #{pushMsg,jdbcType=VARCHAR},
+            </if>
+            <if test="pushType != null">
+                push_type = #{pushType,jdbcType=TINYINT},
+            </if>
+            <if test="imgUrl != null">
+                img_url = #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="field1 != null">
+                field1 = #{field1,jdbcType=VARCHAR},
+            </if>
+            <if test="field2 != null">
+                field2 = #{field2,jdbcType=VARCHAR},
+            </if>
+            <if test="field3 != null">
+                field3 = #{field3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.carpool.model.jpush.PushMsg">
+        <!--
+        @mbggenerated
+        -->
+        update carpool_push_msg
+        set order_no = #{orderNo,jdbcType=CHAR},
+            push_title = #{pushTitle,jdbcType=VARCHAR},
+            user_id = #{userId,jdbcType=INTEGER},
+            push_msg = #{pushMsg,jdbcType=VARCHAR},
+            push_type = #{pushType,jdbcType=TINYINT},
+            img_url = #{imgUrl,jdbcType=VARCHAR},
+            city_code = #{cityCode,jdbcType=VARCHAR},
+            gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            field1 = #{field1,jdbcType=VARCHAR},
+            field2 = #{field2,jdbcType=VARCHAR},
+            field3 = #{field3,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    
+    
+    
+    <!-- 以下是推送与用户相关的信息 -->
+    <select id="getRegIdByUserId" parameterType="java.lang.Integer" resultType="java.lang.String">
+       select registrationId from base_user where userId = #{userId,jdbcType=INTEGER};
+    </select>
+       
+    <select id="getUserSimpleInfoByUserId" parameterType="java.lang.Integer" resultType="com.lantaiyuan.ebus.carpool.model.jpush.UserSimpleInfo">
+	   select userId,userName,registrationId,lastLoginSysType from base_user where userId = #{userId,jdbcType=INTEGER};
+	</select>
+    
+</mapper>

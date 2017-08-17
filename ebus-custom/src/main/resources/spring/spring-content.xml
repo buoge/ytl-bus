@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 读入配置属性文件 -->
+	<context:property-placeholder location="classpath:config.properties" />
+	<!-- 自动扫描(自动注入) -->
+	<context:component-scan
+		base-package="com.lantaiyuan.ebus.common.aop,com.lantaiyuan.ebus.custom.service,com.lantaiyuan.ebus.realtime.service,com.lantaiyuan.ebus.common.util,com.lantaiyuan.ebus.custom.kafka,com.lantaiyuan.ebus.oauthlogin.service" />
+
+	<!-- 引入mybatis -->
+	<import resource="classpath:spring/spring-mybatis.xml" />
+	<import resource="classpath:spring/spring-redis.xml" />
+	<!-- 引入spring的定时器 -->
+	<import resource="classpath:spring/spring-tasks.xml" />
+	<!-- 引入mongodb配置文件 -->
+	<import resource="classpath:spring/spring-mongodb.xml" />
+	<bean
+		class="com.lantaiyuan.ebus.common.constants.ReadPropertyFromXmlBySpringBean">
+		<property name="fdsAddressPre" value="${FDS_ADDRESS}" />
+	</bean>
+
+	<bean class="org.lanqiao.fdfs.FastDFSHelper" init-method="init">
+		<property name="addresses" value="${FDS_SERVER_ADDRESS}" />
+	</bean>
+	
+	<bean id="appNameSetter" class="com.lantaiyuan.ebus.custom.scheme.AppNameSetter" />
+</beans>

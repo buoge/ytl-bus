@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.WalletMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.Wallet">
+        <!--
+        @mbggenerated
+        -->
+        <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
+        <result column="BALANCE" jdbcType="DECIMAL" property="balance" />
+        <result column="FROZEN" jdbcType="BIT" property="frozen" />
+        <result column="MODIFYTIME" jdbcType="TIMESTAMP" property="modifytime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        USER_ID, BALANCE, FROZEN, MODIFYTIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from t_app_mywallet
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from t_app_mywallet
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.Wallet">
+        <!--
+        @mbggenerated
+        -->
+        insert into t_app_mywallet (USER_ID, BALANCE, FROZEN, 
+            MODIFYTIME)
+        values (#{userId,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, #{frozen,jdbcType=BIT}, 
+            #{modifytime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.Wallet">
+        <!--
+        @mbggenerated
+        -->
+        insert into t_app_mywallet
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="balance != null">
+                BALANCE,
+            </if>
+            <if test="frozen != null">
+                FROZEN,
+            </if>
+            <if test="modifytime != null">
+                MODIFYTIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="balance != null">
+                #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="frozen != null">
+                #{frozen,jdbcType=BIT},
+            </if>
+            <if test="modifytime != null">
+                #{modifytime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.Wallet">
+        <!--
+        @mbggenerated
+        -->
+        update t_app_mywallet
+        <set>
+            <if test="balance != null">
+                BALANCE = #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="frozen != null">
+                FROZEN = #{frozen,jdbcType=BIT},
+            </if>
+            <if test="modifytime != null">
+                MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.Wallet">
+        <!--
+        @mbggenerated
+        -->
+        update t_app_mywallet
+        set BALANCE = #{balance,jdbcType=DECIMAL},
+            FROZEN = #{frozen,jdbcType=BIT},
+            MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP}
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </update>
+    
+    <!--  自定义--> 
+     <select id="queryMyBalance" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from t_app_mywallet
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </select>
+    
+    <update id="addBalanceByUserId" parameterType="com.lantaiyuan.ebus.custom.model.Wallet">
+        <!--
+        @mbggenerated
+        -->
+        update t_app_mywallet
+        set BALANCE = BALANCE+#{balance,jdbcType=DECIMAL}
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </update>
+    
+    <update id="reduceBalance" >
+        <!--  @mbggenerated -->
+        update t_app_mywallet set BALANCE = BALANCE - #{balance,jdbcType=DECIMAL} where USER_ID = #{userId,jdbcType=VARCHAR}
+    </update>
+</mapper>

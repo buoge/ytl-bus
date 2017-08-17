@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.SysUserMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.SysUser">
+        <!--
+        @mbggenerated
+        -->
+        <id column="id" jdbcType="CHAR" property="id" />
+        <result column="userName" jdbcType="VARCHAR" property="username" />
+        <result column="passWord" jdbcType="VARCHAR" property="password" />
+        <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        id, userName, passWord, cityCode
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_sys_user
+        where id = #{id,jdbcType=CHAR}
+    </select>
+    <select id="login" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from base_sys_user
+        where userName = #{userName,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from base_sys_user
+        where id = #{id,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.SysUser">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_sys_user (id, userName, passWord, 
+            cityCode)
+        values (#{id,jdbcType=CHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+            #{citycode,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.SysUser">
+        <!--
+        @mbggenerated
+        -->
+        insert into base_sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                userName,
+            </if>
+            <if test="password != null">
+                passWord,
+            </if>
+            <if test="citycode != null">
+                cityCode,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=CHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.SysUser">
+        <!--
+        @mbggenerated
+        -->
+        update base_sys_user
+        <set>
+            <if test="username != null">
+                userName = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                passWord = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                cityCode = #{citycode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.SysUser">
+        <!--
+        @mbggenerated
+        -->
+        update base_sys_user
+        set userName = #{username,jdbcType=VARCHAR},
+            passWord = #{password,jdbcType=VARCHAR},
+            cityCode = #{citycode,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=CHAR}
+    </update>
+</mapper>

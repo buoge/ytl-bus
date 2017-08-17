@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lantaiyuan.ebus.realtime.dao.TraveCarSettingMapper">
+    <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.realtime.model.TraveCarSetting">
+        <!--
+        @mbggenerated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+        <result column="ROUTE_ID" jdbcType="VARCHAR" property="routeId" />
+        <result column="STATION_ID" jdbcType="VARCHAR" property="stationId" />
+        <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+        <result column="LONGITUDE" jdbcType="DECIMAL" property="longitude" />
+        <result column="LATITUDE" jdbcType="DECIMAL" property="latitude" />
+        <result column="TYPE" jdbcType="BIT" property="type" />
+        <result column="IS_REMIND" jdbcType="BIT" property="isRemind" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        ID, USER_ID, ROUTE_ID, STATION_ID, LONGITUDE, LATITUDE, TYPE, CITY_CODE, IS_REMIND, CREATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from t_trave_car_setting
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--
+        @mbggenerated
+        -->
+        delete from t_trave_car_setting
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lantaiyuan.ebus.realtime.model.TraveCarSetting">
+        <!--
+        @mbggenerated
+        -->
+        insert into t_trave_car_setting (ID, USER_ID, ROUTE_ID, 
+            STATION_ID, LONGITUDE, LATITUDE, 
+            TYPE,CITY_CODE, CREATE_TIME)
+        values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{routeId,jdbcType=VARCHAR}, 
+            #{stationId,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, 
+            #{type,jdbcType=BIT}, #{cityCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.realtime.model.TraveCarSetting">
+        <!--
+        @mbggenerated
+        -->
+        insert into t_trave_car_setting
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="routeId != null">
+                ROUTE_ID,
+            </if>
+            <if test="stationId != null">
+                STATION_ID,
+            </if>
+            <if test="longitude != null">
+                LONGITUDE,
+            </if>
+            <if test="latitude != null">
+                LATITUDE,
+            </if>
+            <if test="type != null">
+                TYPE,
+            </if>
+            <if test="cityCode != null">
+                CITY_CODE,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="routeId != null">
+                #{routeId,jdbcType=VARCHAR},
+            </if>
+            <if test="stationId != null">
+                #{stationId,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=BIT},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.realtime.model.TraveCarSetting">
+        <!--
+        @mbggenerated
+        -->
+        update t_trave_car_setting
+        <set>
+            <if test="userId != null">
+                USER_ID = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="routeId != null">
+                ROUTE_ID = #{routeId,jdbcType=VARCHAR},
+            </if>
+            <if test="stationId != null">
+                STATION_ID = #{stationId,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                LONGITUDE = #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                LATITUDE = #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="type != null">
+                TYPE = #{type,jdbcType=BIT},
+            </if>
+            <if test="cityCode != null">
+                CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="isRemind != null">
+                IS_REMIND = #{isRemind,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.realtime.model.TraveCarSetting">
+        <!--
+        @mbggenerated
+        -->
+        update t_trave_car_setting
+        set USER_ID = #{userId,jdbcType=VARCHAR},
+            ROUTE_ID = #{routeId,jdbcType=VARCHAR},
+            STATION_ID = #{stationId,jdbcType=VARCHAR},
+            LONGITUDE = #{longitude,jdbcType=DECIMAL},
+            LATITUDE = #{latitude,jdbcType=DECIMAL},
+            TYPE = #{type,jdbcType=BIT},
+            CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+            IS_REMIND = #{isRemind,jdbcType=BIT},
+            CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    <select id="selectByCondition" parameterType="com.lantaiyuan.ebus.realtime.model.TraveCarSettingQueryModel" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from t_trave_car_setting
+        <trim prefix="WHERE" prefixOverrides="AND" >
+          	<if test="id != null and id !=''">
+	            AND id = #{id,jdbcType=VARCHAR}
+	        </if>
+	        <if test="userId != null and userId !=''">
+	            AND USER_ID = #{userId,jdbcType=VARCHAR}
+	        </if>
+	        <if test="routeId != null and routeId !=''">
+	           	AND ROUTE_ID = #{routeId,jdbcType=VARCHAR}
+	        </if>
+	        <if test="stationId != null and stationId !=''">
+	            AND STATION_ID = #{stationId,jdbcType=VARCHAR}
+	        </if>
+	        <if test="longitude != null and longitude !=''">
+	            AND LONGITUDE = #{longitude,jdbcType=DECIMAL}
+	        </if>
+	        <if test="latitude != null and latitude !=''">
+	            AND LATITUDE = #{latitude,jdbcType=DECIMAL}
+	        </if>
+	        <if test="type != null and type !=''">
+	            AND TYPE = #{type,jdbcType=BIT}
+	        </if>
+	        <if test="cityCode != null and cityCode !=''">
+	            AND CITY_CODE = #{cityCode,jdbcType=VARCHAR}
+	        </if>
+	        <if test="isRemind != null and isRemind !=''">
+                AND IS_REMIND = #{isRemind,jdbcType=BIT}
+            </if>
+        </trim>
+        ORDER BY CREATE_TIME DESC
+    </select>
+</mapper>

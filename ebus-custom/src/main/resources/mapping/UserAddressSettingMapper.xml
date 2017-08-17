@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lantaiyuan.ebus.custom.dao.UserAddressSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.lantaiyuan.ebus.custom.model.UserAddressSetting" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="address_user_id" property="addressUserId" jdbcType="INTEGER" />
+    <result column="firm_name" property="firmName" jdbcType="VARCHAR" />
+    <result column="home_name" property="homeName" jdbcType="VARCHAR" />
+    <result column="firm_longitude" property="firmLongitude" jdbcType="DECIMAL" />
+    <result column="firm_latitude" property="firmLatitude" jdbcType="DECIMAL" />
+    <result column="home_longitude" property="homeLongitude" jdbcType="DECIMAL" />
+    <result column="home_latitude" property="homeLatitude" jdbcType="DECIMAL" />
+    <result column="up_time" property="upTime" jdbcType="VARCHAR" />
+    <result column="down_time" property="downTime" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, address_user_id, firm_name, home_name, firm_longitude, firm_latitude, home_longitude, 
+    home_latitude, up_time, down_time, gmt_create, gmt_modified, city_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_user_address_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserIdAndCityCode" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_user_address_setting
+    where address_user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from base_user_address_setting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lantaiyuan.ebus.custom.model.UserAddressSetting" >
+    insert into base_user_address_setting (id, address_user_id, firm_name, 
+      home_name, firm_longitude, firm_latitude, 
+      home_longitude, home_latitude, up_time, 
+      down_time, gmt_create, gmt_modified, 
+      city_code)
+    values (#{id,jdbcType=INTEGER}, #{addressUserId,jdbcType=INTEGER}, #{firmName,jdbcType=VARCHAR}, 
+      #{homeName,jdbcType=VARCHAR}, #{firmLongitude,jdbcType=DECIMAL}, #{firmLatitude,jdbcType=DECIMAL}, 
+      #{homeLongitude,jdbcType=DECIMAL}, #{homeLatitude,jdbcType=DECIMAL}, #{upTime,jdbcType=VARCHAR}, 
+      #{downTime,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{cityCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lantaiyuan.ebus.custom.model.UserAddressSetting" >
+    insert into base_user_address_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="addressUserId != null" >
+        address_user_id,
+      </if>
+      <if test="firmName != null" >
+        firm_name,
+      </if>
+      <if test="homeName != null" >
+        home_name,
+      </if>
+      <if test="firmLongitude != null" >
+        firm_longitude,
+      </if>
+      <if test="firmLatitude != null" >
+        firm_latitude,
+      </if>
+      <if test="homeLongitude != null" >
+        home_longitude,
+      </if>
+      <if test="homeLatitude != null" >
+        home_latitude,
+      </if>
+      <if test="upTime != null" >
+        up_time,
+      </if>
+      <if test="downTime != null" >
+        down_time,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="addressUserId != null" >
+        #{addressUserId,jdbcType=INTEGER},
+      </if>
+      <if test="firmName != null" >
+        #{firmName,jdbcType=VARCHAR},
+      </if>
+      <if test="homeName != null" >
+        #{homeName,jdbcType=VARCHAR},
+      </if>
+      <if test="firmLongitude != null" >
+        #{firmLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="firmLatitude != null" >
+        #{firmLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="homeLongitude != null" >
+        #{homeLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="homeLatitude != null" >
+        #{homeLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="downTime != null" >
+        #{downTime,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lantaiyuan.ebus.custom.model.UserAddressSetting" >
+    update base_user_address_setting
+    <set >
+      <if test="addressUserId != null" >
+        address_user_id = #{addressUserId,jdbcType=INTEGER},
+      </if>
+      <if test="firmName != null" >
+        firm_name = #{firmName,jdbcType=VARCHAR},
+      </if>
+      <if test="homeName != null" >
+        home_name = #{homeName,jdbcType=VARCHAR},
+      </if>
+      <if test="firmLongitude != null" >
+        firm_longitude = #{firmLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="firmLatitude != null" >
+        firm_latitude = #{firmLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="homeLongitude != null" >
+        home_longitude = #{homeLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="homeLatitude != null" >
+        home_latitude = #{homeLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="upTime != null" >
+        up_time = #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="downTime != null" >
+        down_time = #{downTime,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByUserIdAndCityCodeSelective" parameterType="com.lantaiyuan.ebus.custom.model.UserAddressSetting" >
+    update base_user_address_setting
+    <set >
+      <if test="firmName != null" >
+        firm_name = #{firmName,jdbcType=VARCHAR},
+      </if>
+      <if test="homeName != null" >
+        home_name = #{homeName,jdbcType=VARCHAR},
+      </if>
+      <if test="firmLongitude != null" >
+        firm_longitude = #{firmLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="firmLatitude != null" >
+        firm_latitude = #{firmLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="homeLongitude != null" >
+        home_longitude = #{homeLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="homeLatitude != null" >
+        home_latitude = #{homeLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="upTime != null" >
+        up_time = #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="downTime != null" >
+        down_time = #{downTime,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where address_user_id = #{addressUserId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lantaiyuan.ebus.custom.model.UserAddressSetting" >
+    update base_user_address_setting
+    set address_user_id = #{addressUserId,jdbcType=INTEGER},
+      firm_name = #{firmName,jdbcType=VARCHAR},
+      home_name = #{homeName,jdbcType=VARCHAR},
+      firm_longitude = #{firmLongitude,jdbcType=DECIMAL},
+      firm_latitude = #{firmLatitude,jdbcType=DECIMAL},
+      home_longitude = #{homeLongitude,jdbcType=DECIMAL},
+      home_latitude = #{homeLatitude,jdbcType=DECIMAL},
+      up_time = #{upTime,jdbcType=VARCHAR},
+      down_time = #{downTime,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      city_code = #{cityCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

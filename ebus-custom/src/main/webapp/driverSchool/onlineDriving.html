@@ -1,0 +1,107 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" /> 
+
+<title>网上驾校</title>
+<link href="css/sm.css" rel="stylesheet">
+<link href="css/sm-extend.css" rel="stylesheet">
+<link href="css/iconfont/iconfont.css" rel="stylesheet">
+
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="page" id="page-index">
+    <div class="content  gray-bg scroll-wrap">
+        <div class="ui-content  ">
+        <div class="banner">
+            <div class="swiper-container"  data-space-between='5'>
+                <div class="swiper-wrapper">
+                    <!--<div class="swiper-slide"><img class="online-address" src="images/online.png"></div>-->
+
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+
+            </div>
+        </div>
+
+        <div class="ui-item ui-itembtm white-bg ui-border-b">
+            <div class="ui-line ui-btm">
+                <span class="ui-lable"><img class="ui-icon" src="images/icon_address.png "></span>
+                <p class="ui-p">地址：<i class="online-address">深圳市福田区福锦西联纺路128号</i></p>
+            </div>
+            <div class="ui-line">
+                <span class="ui-lable"><img class="ui-icon ui-telephone" src="images/icon_telephone.png "></span>
+                <p class="ui-p">电话：<i class="online-phone">8127556</i></p>
+            </div>
+
+        </div>
+        <div class="ui-item ui-itembtm white-bg ui-border-tb">
+            <div class="ui-line">
+                <span class="ui-lable"><img class="ui-icon" src="images/icon_content.png "></span>
+
+                    <p class="ui-p ui-btm">驾校简介：</p>
+
+                    <p class="ui-conp ui-textend online-info">邯郸驾校创建于1984年，是全市办学最早的驾校之一，是经交通、公安、工商、税务、物价等部门核准备案正规驾驶学校。</p>
+
+                </div>
+                </div>
+
+         <a href="makeAppointment.html" class="bookbtn ui-postation">立即预约</a>
+        </div>
+    </div><!--end content -->
+</div><!--end page -->
+
+<script src="js/zepto.js"></script>
+<script>
+    $.config = {
+        router: false
+    }
+</script>
+<script src="js/sm.js"></script>
+<script src="js/sm-extend.js"></script>
+<script src="js/all.js"></script>
+
+<script>
+$(function() {
+    getDriving();
+	
+	
+});
+//参数获取
+function getQueryString(name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
+}
+function getDriving(){
+   var cityCode=getQueryString("cityCode");
+    $.ajax({
+        url :  '/driver/school/cityCode/'+cityCode,
+        cache : false,
+        type : 'get',
+        dataType : 'JSON',
+        success : function(data) {
+            var data=JSON.parse(data);
+            console.log(data);
+            if (data.success) {
+                var dataItem=data.obj;
+                 $('.online-phone').text(dataItem.tel);
+                 $('.online-address').text(dataItem.location);
+                $('.online-info').html(dataItem.introduction);
+                //本地缓存驾校id
+                localStorageUtil.setLocalStorageItem('driverSchoolId',dataItem.id);
+                var str='<div class="swiper-slide"><img class="online-address" src='+dataItem.image+'></div>';
+                $('.swiper-wrapper').append(str);
+            }
+        }
+    });
+}
+</script>
+</body>
+</html>

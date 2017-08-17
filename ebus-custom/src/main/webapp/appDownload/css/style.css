@@ -1,0 +1,68 @@
+﻿/* CSS Document */
+/*========basic css=========*/
+html {
+	font-size: 20px;
+}
+@media only screen and (min-width: 400px) {
+	html {
+		font-size: 21.33333333px !important;
+	}
+}
+@media only screen and (min-width: 414px) {
+	html {
+		font-size: 22.08px !important;
+	}
+}
+@media only screen and (min-width: 480px) {
+	html {
+		font-size: 25.6px !important;
+	}
+}
+@media only screen and (min-width: 640px) {
+	html {
+		font-size: 40px !important;
+	}
+}
+body, ol, ul, h1, h2, h3, h4, h5, div, p, tabel, th, td, dl, dd, form, fieldset, legend, input, button, textarea, select, figure, section {
+	margin: 0; padding: 0;}
+ul, li, dl, dd, dt {list-style: none;}
+input, button, textarea, a {-webkit-appearance: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); outline:none;}
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
+body {
+	text-align: left;
+	color: #333;
+	font-family: microsoft YaHei;
+	background-color: #fff;
+	-webkit-touch-callout: none;
+	-webkit-text-size-adjust: none;
+	-webkit-user-select: none;
+	-webkit-appearance:none;
+	-webkit-overflow-scrolling: touch;/*安卓浏览器滚动流畅webkit私有属性设置*/
+}
+a, a:visited { text-decoration: none; cursor: pointer;}
+a:hover {text-decoration: none;}
+a:hover img {text-decoration: none;}
+
+i, em {font-style: normal;}
+img {border: 0; display: block;}
+
+.crbox:after, .ul-list:after {
+	clear: both; content: "."; display: block; height: 0; visibility: hidden;
+}
+.crbox, .ul-list {display: inline-block;}
+.crbox, .ul-list {display: block;}
+
+/* 文字截断 */
+/*单行省略*/
+.ui-nowrap {max-width: 100%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.ui-nowrap-flex {display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 1;-webkit-box-flex: 1;height: inherit;}
+/*二行省略*/
+.ui-nowrap-multi {display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 2;}
+.page{position: absolute;top:0px;left:0px;width: 100%;height: 100%; background: #3dc968;z-index: 10;}
+.content{position: absolute;top:0px;left:0px;width: 100%;height: 100%;z-index: 12; background:url("../images/bg.png") no-repeat; background-size:100% 100%; }
+.download{width: 14.2rem;height:22.2rem;margin: 0 auto; margin-top:1.325rem; }
+.download img{ width:100%; display: block;}
+.downbtn{display: block;width:11.45rem;  text-align: center; margin: 0 auto;padding:0.475rem 0; font-size:1.25rem; font-weight:600; color:#c37212; background:#ffed1f; border-radius: 3px;}
+.downTip{position: absolute;top:0px;left:0px;width: 100%;height: 100%;background: rgba(0,0,0,0.7); z-index:14; display: none;}
+.tipPic{ width:100%; margin-top:2.1rem; }
+.tipPic img{width:18rem;height:4.95rem; margin:0 auto;}
